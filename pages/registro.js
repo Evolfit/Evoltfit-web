@@ -1,8 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,14 +17,18 @@ export default function Home() {
       <main className={styles.main}>
         <h1 class="font-thin text-2xl">
           SI...
-          <br/>
-          <span class="animate-pulse text-8xl text-blue-600 font-normal">ESTA ES LA PÁGINA DE REGISTRO</span>
+          <br />
+          <span class="animate-pulse text-8xl text-blue-600 font-normal">
+            ESTA ES LA PÁGINA DE REGISTRO
+          </span>
         </h1>
 
-        <button className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">
-          {"Chingas a tu madre :)"}
+        <button
+          onClick={() => router.push('/')}
+          className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10"
+        >
+          {'Chingas a tu madre :)'}
         </button>
-
       </main>
 
       <footer className={styles.footer}>
@@ -33,5 +40,5 @@ export default function Home() {
         </p>
       </footer>
     </div>
-  )
+  );
 }
