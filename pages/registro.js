@@ -1,12 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router'
 
 export default function Home() {
-  
-  const router = useRouter();
-
   return (
     <div className={styles.container}>
       <Head>
@@ -17,12 +13,14 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 class="font-thin text-2xl">
-          {"Bienvenido a... "} 
+          SI...
           <br/>
-          <span class="animate-pulse text-8xl text-blue-600 font-normal">EvoltFit</span>
+          <span class="animate-pulse text-8xl text-blue-600 font-normal">ESTA ES LA PÁGINA DE REGISTRO</span>
         </h1>
 
-        <button onClick={() => router.push('/registro')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Registrarme</button>
+        <button className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">
+          {"Chingas a tu madre :)"}
+        </button>
 
       </main>
 
