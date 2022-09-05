@@ -16,10 +16,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 class="font-thin text-2xl">
+        <h1 className="font-thin text-2xl">
           {"Bienvenido a... "} 
           <br/>
-          <span class="animate-pulse text-8xl text-blue-600 font-normal">EvoltFit</span>
+          <span className="animate-pulse text-8xl text-blue-600 font-normal">EvoltFit</span>
         </h1>
 
         <button onClick={() => router.push('/registro')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Registrarme</button>

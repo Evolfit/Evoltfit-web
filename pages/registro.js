@@ -15,10 +15,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 class="font-thin text-2xl">
+        <h1 className="font-thin text-2xl">
           SI...
           <br />
-          <span class="animate-pulse text-8xl text-blue-600 font-normal">
+          <span className="animate-pulse text-8xl text-blue-600 font-normal">
             ESTA ES LA PÁGINA DE REGISTRO
           </span>
         </h1>
