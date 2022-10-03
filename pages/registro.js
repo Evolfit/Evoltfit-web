@@ -1,10 +1,39 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import supabase from '../config/supabaseClient';
 
 export default function Home() {
   const router = useRouter();
+
+  //console.log(supabase);
+  const [fetchError, setFetchError] = useState(null);
+  const [datos, setDatos] = useState(null);
+
+
+  useEffect(() => {
+    const fetchDatos = async () => {
+      const { data, error } = await supabase
+        .from('prueba')
+        .select()
+
+        if(error){
+          setFetchError('Error al conseguir datos');
+          setDatos(null);
+          console.log(error);
+        }
+        if(data){
+          setDatos(data);
+          setFetchError(null);
+        }
+    }
+
+    fetchDatos();
+  }, [])
+
+  console.log(datos);
+  console.log(fetchError);
 
   return (
     <div className={styles.container}>
@@ -15,13 +44,21 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="font-thin text-2xl">
+        <h2 className="font-thin text-2xl">
           SI...
           <br />
-          <span className="animate-pulse text-8xl text-blue-600 font-normal">
-            ESTA ES LA PÁGINA DE REGISTRO
-          </span>
-        </h1>
+          {fetchError && (<p>{fetchError}</p>)}
+          {datos && (
+            <div className="datos">
+              {datos.map(dato => (
+                <span className="animate-pulse text-8xl text-blue-600 font-normal">
+                  {dato.texto}
+                </span>
+              ))}
+            </div>
+          )}
+          
+        </h2>
 
         <button
           onClick={() => router.push('/')}
