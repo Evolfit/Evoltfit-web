@@ -51,9 +51,9 @@ export default function Home() {
           {datos && (
             <div className="datos">
               {datos.map(dato => (
-                <span className="animate-pulse text-8xl text-blue-600 font-normal">
+                <p key={dato.id} className="animate-pulse text-8xl text-blue-600 font-normal">
                   {dato.texto}
-                </span>
+                </p>
               ))}
             </div>
           )}
