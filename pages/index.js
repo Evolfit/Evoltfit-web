@@ -17,11 +17,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className="font-thin text-2xl">
+          {"Bienvenido a... "} 
           <br/>
           <span className="animate-pulse text-8xl text-blue-600 font-normal">EvoltFit</span>
         </h1>
 
-        <button onClick={() => router.push('/registro')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Registrarme</button>
+        <button onClick={() => router.push('/login')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Login</button>
+        <button onClick={() => router.push('/pruebafetch')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Fetch base de Datos</button>
 
       </main>
 

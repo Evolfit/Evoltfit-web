@@ -94,12 +94,12 @@ export default function Home() {
 
       <main className={styles.main}>
         <h2 className="font-thin text-2xl">
-          Registro
+          Login
         </h2>
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">{"Nombre"}</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani") ? "No juegues echo por favor" : ""}</span>
+            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani") ? "uuy primo juan es mejor que tu en rocket" : ""}</span>
           </label>
 
           <input name="nombre" value={datosInput.nombre || ""} onChange={handleOnInputChange} type="text" placeholder="Nombre" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.nombre, "error")  ? "input-error" : " ")}/>
@@ -107,19 +107,20 @@ export default function Home() {
           <label className="label">
             <span className="label-text-alt">
               {
-                (incluye(errorDatosInput.nombre, "dani")  ? "Que feo nombre" : "") + 
-                (incluye(errorDatosInput.nombre, "error")  ? " No uses números ni caracteres especiales" : "")
+                (incluye(errorDatosInput.nombre, "dani")  ? "no mames que nombre mas qlero" : "") + 
+                (incluye(errorDatosInput.nombre, "error")  ? " No uses números ni caracteres especiales pinche perra" : "")
               }</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani")  ? "Que feo nombre" : ""}</span>
+            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani")  ? "haha ese en nombre de pvto" : ""}</span>
           </label>
 
         </div>
 
+
         <button
-          onClick={() => router.push('/login')}
+          onClick={() => router.push('/registro')}
           className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10"
         >
-          Login
+          Registrarme
         </button>
 
         <button
