@@ -64,7 +64,7 @@ export default function Home() {
           onClick={() => router.push('/')}
           className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10"
         >
-          {'Chingas a tu madre :)'}
+          {'Primera prueba :)'}
         </button>
       </main>
 

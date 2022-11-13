@@ -17,7 +17,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className="font-thin text-2xl">
-          {"Bienvenido a... "} 
           <br/>
           <span className="animate-pulse text-8xl text-blue-600 font-normal">EvoltFit</span>
         </h1>
