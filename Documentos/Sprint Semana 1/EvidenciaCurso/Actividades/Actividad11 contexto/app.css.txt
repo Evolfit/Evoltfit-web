@@ -1,0 +1,32 @@
+.App{
+  display: flex;
+  height: calc(100vh - 40px);
+}
+.hijo{
+  width: 33.3%;
+  border: 1px solid gray;
+  text-align: center;
+}
+.colores{
+  display: flex;
+}
+.color{
+  width: 22px;
+  height: 22px;
+  background-color: red;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+.color:nth-child(1){
+  background-color: aqua;
+}
+.color:nth-child(2){
+  background-color: red;
+}
+.color:nth-child(3){
+  background-color: yellow;
+}
+.color:nth-child(4){
+  background-color: green;
+}

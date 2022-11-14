@@ -1,0 +1,49 @@
+import React, { useContext } from 'react'
+import { Contexto } from './contexto/Contexto';
+
+function Idiomas() {
+  const {setalumno}=useContext(Contexto);
+  const {alumno}=useContext(Contexto);
+
+  const cambio1=()=>{
+
+    setalumno(
+        alumno.map((dato,indice)=>
+        indice===3
+        ? {...dato,idioma:0}
+        : {...dato}
+        )
+    );
+  }
+  const cambio2=()=>{
+
+    setalumno(
+        alumno.map((dato,indice)=>
+        indice===3
+        ? {...dato,idioma:1}
+        : {...dato}
+        )
+    );
+  }
+  const cambio3=()=>{
+    setalumno(
+        alumno.map((dato,indice)=>
+        indice===3
+        ? {...dato,idioma:2}
+        : {...dato}
+        )
+    );
+  }
+  return (
+    <>
+    <div className='idiomas'>
+        <div className='bandera' onClick={cambio1}><img alt='bandera' onClick={cambio1} src='../idiomas/spain.jpg'></img></div>
+        <div className='bandera' onClick={cambio2}><img alt='bandera' onClick={cambio2} src='../idiomas/uk.png'></img></div>
+        <div className='bandera' onClick={cambio3}><img alt='bandera' src='../idiomas/francia.png'></img></div>
+    </div>
+
+    </>
+  )
+}
+
+export default Idiomas

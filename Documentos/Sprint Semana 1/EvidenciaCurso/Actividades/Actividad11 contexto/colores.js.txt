@@ -1,0 +1,16 @@
+import React, {useContext} from 'react'
+import { Contexto } from './contexto/Contexto';
+
+function Colores() {
+const {setcolor}=useContext(Contexto);
+  return (
+    <div className='colores'>
+        <div className='color' onClick={()=>{setcolor("aqua")}}></div>
+        <div className='color' onClick={()=>{setcolor("red")}}></div>
+        <div className='color' onClick={()=>{setcolor("yellow")}}></div>
+        <div className='color' onClick={()=>{setcolor("green")}}></div>
+    </div>
+  )
+}
+
+export default Colores

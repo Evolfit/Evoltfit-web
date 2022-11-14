@@ -1,0 +1,19 @@
+import React from 'react'
+import Idiomas from "./Idiomas";
+import Pagina from "./Pagina";
+import "./App.css";
+import Provider from './contexto/Provider';
+function App() {
+  return (
+    <Provider>
+    <div className='banderas'>
+        <Idiomas></Idiomas>
+    </div>
+    <div className='contenido'>
+        <Pagina></Pagina>
+    </div>
+    </Provider>
+  )
+}
+
+export default App

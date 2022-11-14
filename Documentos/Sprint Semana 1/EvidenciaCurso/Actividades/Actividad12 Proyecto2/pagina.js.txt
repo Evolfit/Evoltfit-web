@@ -1,0 +1,40 @@
+import React, { useContext, useState } from 'react'
+import { Contexto } from './contexto/Contexto';
+import Profesora from "./Profesora";
+import Ubicacion from "./Ubicacion";
+function Pagina() {
+
+const {alumno}=useContext(Contexto);
+const idioma=alumno[3].idioma;
+const [ocultar1,setocultar1]=useState(false);
+const [ocultar2,setocultar2]=useState(false);
+const mostrar1=()=>{
+    setocultar1(!ocultar1);
+    setocultar2(false);
+}
+const mostrar2=()=>{
+    setocultar2(!ocultar2);
+    setocultar1(false);
+}
+  return (
+    <>
+    <h1>{alumno[idioma].titulo}</h1>
+    <h2>{alumno[idioma].texto}</h2>
+    <div className='botones'>
+        <button onClick={mostrar1}>{alumno[idioma].boton1}</button>
+        <button onClick={mostrar2}>{alumno[idioma].boton2}</button>
+    </div>
+    {ocultar1
+    ? <Profesora />
+    : null
+    }
+    {ocultar2
+    ? <Ubicacion />
+    : null
+    }
+
+    </>
+  )
+}
+
+export default Pagina
