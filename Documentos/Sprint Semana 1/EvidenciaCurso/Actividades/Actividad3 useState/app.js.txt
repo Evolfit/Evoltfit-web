@@ -1,0 +1,27 @@
+import React,{useState} from 'react'
+
+const App = () => {
+
+
+  const [contador,setContador]= useState(0);//funcion que se va a encargar de asignar el valor a la variable
+
+  const aumentar=()=>{
+    setContador(contador+1);
+  }
+  const diminuir=()=>{
+    setContador(contador-1);
+  }
+  const reset=()=>{
+    setContador(0);
+  }
+  return (
+    <>
+    <div>Contador {contador}</div>
+    <button onClick={aumentar}>+</button>
+    <button onClick={diminuir}>-</button>
+    <button onClick={reset}>Restablecer</button>
+    </>
+  )
+}
+
+export default App

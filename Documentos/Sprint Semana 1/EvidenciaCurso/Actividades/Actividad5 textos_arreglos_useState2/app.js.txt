@@ -1,0 +1,41 @@
+import React,{useState} from 'react'
+import "./App.css";
+
+const App = () => {
+  const [contador,setContador]= useState(0);
+
+  const reyesGodos=[
+    {
+      nombre: "Ataúlfo",
+      aficion: "comer toros sin pelar",
+    },{
+      nombre: "Recesvinto",
+      aficion: "leer a Hegel en arameo",
+    },{
+      nombre: "Teodorico",
+      aficion: "la cría del escarabajo en almíbar"
+    }
+  ]
+  const[name,setname]=useState(reyesGodos[0].nombre);
+  const[aff,setaff]=useState(reyesGodos[0].aficion);
+
+  const cambiar =()=>{
+    setContador(contador+1);
+    if(contador+1>reyesGodos.length){
+      setContador(0);
+    }
+
+    setname(reyesGodos[contador].nombre);
+    setaff(reyesGodos[contador].aficion);
+
+
+  }
+  return (
+    <>
+    <button onClick={cambiar}>Siguiente</button>
+    <div className='caja'>
+    <p>La aficion principal de <span style={{color:"red"}}>{name}</span> es <span style={{color:"green"}}>{aff}</span></p>
+    </div>
+    </>
+  )
+}
