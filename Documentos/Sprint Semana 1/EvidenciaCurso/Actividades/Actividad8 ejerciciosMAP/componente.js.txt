@@ -1,0 +1,18 @@
+import React from 'react'
+import './App.css';
+function Micomponente({reyes}) {
+  const url="https://www.html6.es/img/rey_"
+  const resultado=reyes.map(e=> 
+  <div key={e.nombre} className="rey">
+  <span className='rojo'>{e.nombre.toUpperCase()} </span>
+  ha comido {e.reinadoe.vacasComidas365} en sus {e.reinado} años de vida
+  <img alt='rey' src={url+e.nombre.toLowerCase()+".png"}></img>
+  </div>)
+  return (
+    <>
+    {resultado}
+    </>
+  )
+}
+
+export default Micomponente

@@ -1,0 +1,28 @@
+import React from 'react'
+import {useEffect,useState} from "react"
+
+function App() {
+    const [datos,setdatos]=useState("");
+    const otro=()=>{
+        const url="https://api.chucknorris.io/jokes/random";
+        const peticion=fetch(url);
+
+        peticion
+
+        .then(datos=> datos.json())
+        .then(lectura=> setdatos(lectura.value) )
+        .catch(()=>console.log("Error en api"))
+    }
+    useEffect( () => {
+        otro();
+    },[])
+
+  return (
+    <>
+    {datos}
+    <button onClick={otro}>Otro chiste</button>
+    </>
+  )
+}
+
+export default App
