@@ -23,7 +23,7 @@ export default function Home() {
         </h1>
 
         <button onClick={() => router.push('/login')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Login</button>
-        <button onClick={() => router.push('/pruebafetch')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10">Fetch base de Datos</button>
+        <button onClick={() => router.push('/pruebafetch')} className="btn btn-info btn-outline btn-wide btn-md rounded-full my-0">Fetch base de Datos</button>
 
       </main>
 
@@ -31,7 +31,7 @@ export default function Home() {
         <p className="font-light">
           {'Powered by '}
           <span className="animate-pulse font-bold text-fuchsia-500">
-            {'Chupapi Muñaño'}
+            {'Evoltfit'}
           </span>
         </p>
       </footer>

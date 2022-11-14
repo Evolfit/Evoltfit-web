@@ -32,8 +32,8 @@ export default function Home() {
     fetchDatos();
   }, [])
 
-  console.log(datos);
-  console.log(fetchError);
+  //console.log(datos);
+  //console.log(fetchError);
 
   return (
     <div className={styles.container}>
@@ -45,14 +45,14 @@ export default function Home() {
 
       <main className={styles.main}>
         <h2 className="font-thin text-2xl">
-          SI...
+          {"Tabla Prueba"}
           <br />
           {fetchError && (<p>{fetchError}</p>)}
           {datos && (
             <div className="datos">
               {datos.map(dato => (
-                <p key={dato.id} className="animate-pulse text-8xl text-blue-600 font-normal">
-                  {dato.texto}
+                <p key={dato.id} className="animate-pulse text-2xl text-blue-600 font-normal">
+                  {"Id " + dato.id+ ": " + dato.texto}
                 </p>
               ))}
             </div>
@@ -72,7 +72,7 @@ export default function Home() {
         <p className="font-light">
           {'Powered by '}
           <span className="animate-pulse font-bold text-fuchsia-500">
-            {'Chupapi Muñaño'}
+            {'Evoltfit'}
           </span>
         </p>
       </footer>

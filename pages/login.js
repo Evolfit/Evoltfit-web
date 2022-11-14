@@ -125,7 +125,7 @@ export default function Home() {
 
         <button
           onClick={() => router.push('/')}
-          className="btn btn-info btn-outline btn-wide btn-md rounded-full my-10"
+          className="btn btn-info btn-outline btn-wide btn-md rounded-full my-0"
         >
           Inicio
         </button>
@@ -135,7 +135,7 @@ export default function Home() {
         <p className="font-light">
           {'Powered by '}
           <span className="animate-pulse font-bold text-fuchsia-500">
-            {'Chupapi Muñaño'}
+            {'Evoltfit'}
           </span>
         </p>
       </footer>
