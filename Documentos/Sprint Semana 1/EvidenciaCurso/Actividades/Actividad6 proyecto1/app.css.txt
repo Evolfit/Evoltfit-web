@@ -1,0 +1,15 @@
+.rey{
+  color: white;
+  padding: 2px 15px 20px;
+  margin-bottom: 10px;
+  width: 47%;
+  box-sizing: border-box;
+}
+img{
+  width: 100%;
+}
+.cajaC{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

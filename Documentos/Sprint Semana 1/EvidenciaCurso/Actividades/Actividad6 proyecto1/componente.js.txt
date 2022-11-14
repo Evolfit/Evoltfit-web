@@ -1,0 +1,36 @@
+import React from 'react'
+import './App.css';
+
+function Micomponente({ nombre, precio, color, setcosto }) {
+  const ruta="http://www.html6.es/img/rey_";
+  const imagen=${ruta}${nombre.toLowerCase()}.png;
+  console.log(imagen);
+
+  const comprar=(elementos)=>{
+    setcosto((e)=> e+precio);
+    elementos.target.parentNode.parentNode.parentNode.style.display="none";
+  }
+
+  return (
+    <>
+
+      <div className='rey' style={{backgroundColor:color}}>
+        <h1>{nombre}</h1>
+        <img src={imagen}></img>
+        <div className='titulo'>Precio:</div>
+        <div className='precio'>{precio}
+          <div>
+            <button onClick={comprar}>Comprar</button>
+          </div>
+        </div>
+      </div>
+
+    </>
+
+
+  )
+}
+Micomponente.defaultProps = {
+
+}
+export default Micomponente
