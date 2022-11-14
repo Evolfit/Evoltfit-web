@@ -1,0 +1,27 @@
+.Nombre{
+  display: flex;/Los 3 esten en la misma fila/
+  justify-content: space-evenly;/Distribuidos a nivel horizontal/
+}
+.contenedor{
+width: 30%;
+background-color: orange;
+font-size: 2em;/Todo el texto dentro tenga esto/
+border-radius: 12px;/borde redondeado/
+border: 1px solid black;
+color: black;
+text-align: center;
+padding: 12px;/Espacio interior/
+margin: 12px;/Espacio exterior/
+}
+img{
+  width: 100%;/que todas las imagenes se adapten al 100% de su caja/
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

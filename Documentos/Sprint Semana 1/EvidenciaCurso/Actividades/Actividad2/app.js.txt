@@ -1,0 +1,48 @@
+import logo from './descarga.png';
+import logo2 from './e.png';
+import './App.css';
+import { useRef } from 'react';
+
+function App() {
+  //Aquí se puede usar javascript normal
+  const refCaja=useRef();
+
+  const incrementar=(e)=>{
+    e.target.innerHTML=Number(e.target.innerHTML) +1;
+    if(Number(e.target.innerHTML)===9){
+      e.target.style.backgroundColor="red"; 
+    }
+    else if(Number(e.target.innerHTML)===10){
+      e.target.innerHTML=0;
+      e.target.style.backgroundColor=null; 
+    }
+  }
+  const multiplicar =()=>{
+    refCaja.current.innerHTML=Number(refCaja.current.innerHTML)*3;
+  }
+  const cambio =(j)=>{
+    if(j.target.src.includes("descarga")){
+      j.target.src=logo;
+    }
+    else{
+      j.target.src=logo2;
+    }
+
+  }
+  const lectura =(e)=>{
+    refCaja.current.innerHTML=e.target.value;
+  }
+  return (
+    <>
+    <div ref={refCaja} className='caja' onClick={incrementar}>1</div>
+    <button onClick={multiplicar}>Aceptar</button>
+    <div><img onClick={cambio} src={logo} alt="si"></img></div>
+    <input onChange={lectura}></input>
+    </>
+  );
+}
+
+export default App;
+
+
+}
