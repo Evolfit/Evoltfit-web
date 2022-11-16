@@ -12,41 +12,40 @@ export default function Home() {
   const [datos, setDatos] = useState(null);
 
   //----------------------------------------------------------------
-  const [datosInput, setdatosInput] = useState({});
+  const [correoInput, setCorreoInput] = useState({});
+  const [passwordInput, setPasswordInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
 
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name } = event.target;
-      setdatosInput({
-        ...datosInput,
-        [name]: value,
-      });
 
-      //VALIDACIÓN INPUT NOMBRE
-      if (name == "nombre"){
-        var error = ['control'];
-        var regex = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
-
-        if (!regex.test(value)){
-          error.push("error");
-        }
-
-        setErrorDatosInput({
-          ...errorDatosInput,
-          [name]: error,
+      //VALIDACIÓN INPUT CORREO
+      if (name == "correo"){
+        setCorreoInput({
+          ...correoInput,
+          [name]: value,
         });
       }
+
+      //VALIDACIÓN INPUT PASSWORD
+      if (name == "password"){
+        setPasswordInput({
+          ...passwordInput,
+          [name]: value,
+        });
+      }
+
     },
-    [datosInput, setdatosInput]
+    [correoInput, setCorreoInput, passwordInput, setPasswordInput]
   );
 
   //----------------------------------------------------------------
-
+  /*
   useEffect(() => {
     const fetchDatos = async () => {
       const { data, error } = await supabase
-        .from('prueba')
+        .from('usuarios_prueba')
         .select()
 
         if(error){
@@ -62,6 +61,16 @@ export default function Home() {
 
     fetchDatos();
   }, [])
+  */
+
+  
+
+  function validarLogin() {
+    var correo = incluye()
+    var password = incluye()
+
+    
+  }
 
   function incluye(arreglo, buscar) {
     if (arreglo != undefined){
@@ -96,23 +105,21 @@ export default function Home() {
         <h2 className="font-thin text-2xl">
           Login
         </h2>
-        <div className="form-control w-full max-w-xs">
+
+        <div className="form-control w-full max-w-xs border-double border-4 p-6 m-6 border-gray-700 rounded-lg">
+          {/*CAMPO CORREO ------------------------ */}
           <label className="label">
             <span className="label-text">{"Nombre"}</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani") ? "uuy primo juan es mejor que tu en rocket" : ""}</span>
           </label>
+          <input name="correo" value={correoInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Nombre" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
 
-          <input name="nombre" value={datosInput.nombre || ""} onChange={handleOnInputChange} type="text" placeholder="Nombre" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.nombre, "error")  ? "input-error" : " ")}/>
-          
+          {/*CAMPO CONTRASEÑA ------------------------ */}
           <label className="label">
-            <span className="label-text-alt">
-              {
-                (incluye(errorDatosInput.nombre, "dani")  ? "no mames que nombre mas qlero" : "") + 
-                (incluye(errorDatosInput.nombre, "error")  ? " No uses números ni caracteres especiales pinche perra" : "")
-              }</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani")  ? "haha ese en nombre de pvto" : ""}</span>
+            <span className="label-text">{"Password"}</span>
           </label>
-
+          <input name="password" value={passwordInput.password || ""} onChange={handleOnInputChange} type="text" placeholder="Password" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
+        
+          <button className="btn btn-outline btn-success rounded-full m-6" onClick={validarLogin}>Iniciar Sesión</button>
         </div>
 
 

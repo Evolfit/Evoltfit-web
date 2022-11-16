@@ -12,41 +12,62 @@ export default function Home() {
   const [datos, setDatos] = useState(null);
 
   //----------------------------------------------------------------
-  const [datosInput, setdatosInput] = useState({});
+  const [formInput, setFormInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
 
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name } = event.target;
-      setdatosInput({
-        ...datosInput,
+
+      setFormInput({
+        ...formInput,
         [name]: value,
       });
 
-      //VALIDACIÓN INPUT NOMBRE
-      if (name == "nombre"){
+      //VALIDACIÓN INPUT CORREO
+      if (name == "correo"){
         var error = ['control'];
-        var regex = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
+        var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;        
 
         if (!regex.test(value)){
           error.push("error");
         }
-
+    
         setErrorDatosInput({
           ...errorDatosInput,
           [name]: error,
         });
       }
+
+      //VALIDACIÓN INPUT PASSWORD
+      if (name == "password"){
+
+      }
+
+      //VALIDACIÓN INPUT PASSWORD
+      if (name == "confirmarPassword"){
+        var error = ['control'];       
+
+        if (formInput.password != value){
+          error.push("error");
+        }
+    
+        setErrorDatosInput({
+          ...errorDatosInput,
+          [name]: error,
+        });
+      }
+
     },
-    [datosInput, setdatosInput]
+    [formInput, setFormInput]
   );
 
   //----------------------------------------------------------------
-
+  /*
   useEffect(() => {
     const fetchDatos = async () => {
       const { data, error } = await supabase
-        .from('prueba')
+        .from('usuarios_prueba')
         .select()
 
         if(error){
@@ -62,6 +83,26 @@ export default function Home() {
 
     fetchDatos();
   }, [])
+  */
+
+  const handleRegistro = async () => {
+
+    const { data, error } = await supabase.auth.signUp({
+      email: formInput.correo,
+      password: formInput.password,
+    })
+
+    if(error){
+      setFetchError('Error al conseguir datos');
+      setDatos(null);
+      console.log(error);
+    }
+    if(data){
+      setDatos(data);
+      setFetchError(null);
+      console.log(data);
+    }
+  }
 
   function incluye(arreglo, buscar) {
     if (arreglo != undefined){
@@ -96,23 +137,44 @@ export default function Home() {
         <h2 className="font-thin text-2xl">
           Registro
         </h2>
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">{"Nombre"}</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani") ? "No juegues echo por favor" : ""}</span>
-          </label>
 
-          <input name="nombre" value={datosInput.nombre || ""} onChange={handleOnInputChange} type="text" placeholder="Nombre" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.nombre, "error")  ? "input-error" : " ")}/>
+        <div className="form-control w-full max-w-xs border-double border-4 p-6 m-6 border-gray-700 rounded-lg">
+          {/*CAMPO CORREO ---------------------------- */}
+          <label className="label">
+            <span className="label-text mt-4">{"Correo"}</span>
+          </label>
+          <input name="correo" value={formInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Correo" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
           
           <label className="label">
             <span className="label-text-alt">
               {
-                (incluye(errorDatosInput.nombre, "dani")  ? "Que feo nombre" : "") + 
-                (incluye(errorDatosInput.nombre, "error")  ? " No uses números ni caracteres especiales" : "")
+                //(incluye(errorDatosInput.correo, "error")  ? "Use una dirección de correo válida." : "")
               }</span>
-            <span className="label-text-alt">{incluye(errorDatosInput.nombre, "dani")  ? "Que feo nombre" : ""}</span>
+            <span className="label-text-alt text-red-500 m-0">{incluye(errorDatosInput.correo, "error")  ? "Usar un correo válido." : ""}</span>
           </label>
 
+          {/*CAMPO CONTRASEÑA ------------------------ */}
+          <label className="label">
+            <span className="label-text">{"Contraseña"}</span>
+          </label>
+          <input name="password" value={formInput.password || ""} onChange={handleOnInputChange} type="password" placeholder="Contraseña" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
+        
+          {/*CAMPO CONFIRMAR CONTRASEÑA -------------- */}
+          <label className="label">
+            <span className="label-text mt-4">{"Confirmar Contraseña"}</span>
+          </label>
+          <input name="confirmarPassword" value={formInput.confirmarPassword || ""} onChange={handleOnInputChange} type="password" placeholder="Confirmar Contraseña" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.confirmarPassword, "error")  ? "input-error" : " ")}/>
+        
+          <label className="label">
+            <span className="label-text-alt">
+              {
+                //(incluye(errorDatosInput.correo, "error")  ? "Use una dirección de correo válida." : "")
+              }</span>
+            <span className="label-text-alt text-red-500">{incluye(errorDatosInput.confirmarPassword, "error")  ? "Las contraseñas no coinciden." : ""}</span>
+          </label>
+
+          {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
+          <button className="btn btn-outline btn-success rounded-full m-4" onClick={handleRegistro}>Iniciar Sesión</button>
         </div>
 
         <button
