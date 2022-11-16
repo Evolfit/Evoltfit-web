@@ -63,28 +63,6 @@ export default function Home() {
   );
 
   //----------------------------------------------------------------
-  /*
-  useEffect(() => {
-    const fetchDatos = async () => {
-      const { data, error } = await supabase
-        .from('usuarios_prueba')
-        .select()
-
-        if(error){
-          setFetchError('Error al conseguir datos');
-          setDatos(null);
-          console.log(error);
-        }
-        if(data){
-          setDatos(data);
-          setFetchError(null);
-        }
-    }
-
-    fetchDatos();
-  }, [])
-  */
-
   const handleRegistro = async () => {
 
     const { data, error } = await supabase.auth.signUp({
@@ -93,14 +71,14 @@ export default function Home() {
     })
 
     if(error){
-      setFetchError('Error al conseguir datos');
       setDatos(null);
-      console.log(error);
-    }
-    if(data){
+      setFetchError('Error al conseguir datos');
+      console.log("Error: " + error);
+    } 
+    else {
       setDatos(data);
       setFetchError(null);
-      console.log(data);
+      console.log("Registro exitoso :)");
     }
   }
 
@@ -174,7 +152,7 @@ export default function Home() {
           </label>
 
           {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
-          <button className="btn btn-outline btn-success rounded-full m-4" onClick={handleRegistro}>Iniciar Sesión</button>
+          <button className="btn btn-outline btn-success rounded-full m-4" onClick={handleRegistro}>Registrarse</button>
         </div>
 
         <button

@@ -12,64 +12,43 @@ export default function Home() {
   const [datos, setDatos] = useState(null);
 
   //----------------------------------------------------------------
-  const [correoInput, setCorreoInput] = useState({});
-  const [passwordInput, setPasswordInput] = useState({});
+  const [formInput, setFormInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
 
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name } = event.target;
 
-      //VALIDACIÓN INPUT CORREO
-      if (name == "correo"){
-        setCorreoInput({
-          ...correoInput,
-          [name]: value,
-        });
-      }
-
-      //VALIDACIÓN INPUT PASSWORD
-      if (name == "password"){
-        setPasswordInput({
-          ...passwordInput,
-          [name]: value,
-        });
-      }
+      setFormInput({
+        ...formInput,
+        [name]: value,
+      });
 
     },
-    [correoInput, setCorreoInput, passwordInput, setPasswordInput]
+    [formInput, setFormInput]
   );
 
   //----------------------------------------------------------------
-  /*
-  useEffect(() => {
-    const fetchDatos = async () => {
-      const { data, error } = await supabase
-        .from('usuarios_prueba')
-        .select()
+  const handleLogin = async () => {
 
-        if(error){
-          setFetchError('Error al conseguir datos');
-          setDatos(null);
-          console.log(error);
-        }
-        if(data){
-          setDatos(data);
-          setFetchError(null);
-        }
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formInput.correo,
+      password: formInput.password,
+    })
+
+    if(error){
+      setDatos(null);
+      setFetchError('Error en el login.');
+      console.log("Login fallido");
+      console.log(error);
+    } 
+    else {
+      setDatos(data);
+      setFetchError(null);
+      console.log("Login exitoso");
+      console.log(data);
+      router.push('/login')
     }
-
-    fetchDatos();
-  }, [])
-  */
-
-  
-
-  function validarLogin() {
-    var correo = incluye()
-    var password = incluye()
-
-    
   }
 
   function incluye(arreglo, buscar) {
@@ -109,17 +88,22 @@ export default function Home() {
         <div className="form-control w-full max-w-xs border-double border-4 p-6 m-6 border-gray-700 rounded-lg">
           {/*CAMPO CORREO ------------------------ */}
           <label className="label">
-            <span className="label-text">{"Nombre"}</span>
+            <span className="label-text mt-6">{"Correo"}</span>
           </label>
-          <input name="correo" value={correoInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Nombre" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
+          <input name="correo" value={formInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Correo" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
 
           {/*CAMPO CONTRASEÑA ------------------------ */}
           <label className="label">
-            <span className="label-text">{"Password"}</span>
+            <span className="label-text mt-6">{"Password"}</span>
           </label>
-          <input name="password" value={passwordInput.password || ""} onChange={handleOnInputChange} type="text" placeholder="Password" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
+          <input name="password" value={formInput.password || ""} onChange={handleOnInputChange} type="password" placeholder="Password" className={"input input-bordered w-full max-w-xs " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
         
-          <button className="btn btn-outline btn-success rounded-full m-6" onClick={validarLogin}>Iniciar Sesión</button>
+          <button className="btn btn-outline btn-success rounded-full m-6 mt-12" onClick={handleLogin}>Iniciar Sesión</button>
+        
+          <p>{datos ? "LOGIN EXITOSO" : ""}</p>
+          <p>{datos ? datos.user.email : ""}</p>
+
+          <p>{fetchError ? "LOGIN FALLIDO" : ""}</p>
         </div>
 
 
