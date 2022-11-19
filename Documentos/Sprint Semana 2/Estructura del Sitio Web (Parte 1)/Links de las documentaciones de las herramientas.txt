@@ -1,0 +1,3 @@
+https://daisyui.com/docs/install/
+https://reactjs.org/docs/getting-started.html
+https://tailwindcss.com/docs/installation
