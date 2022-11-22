@@ -1,0 +1,35 @@
+import $ from 'jquery';
+import React, { Component } from 'react';
+
+class VideoDetail extends Component {
+  componentDidUpdate() {
+    const $node = $(this.videoPlayer);
+    $node.embed({
+      source: 'youtube',
+      id: this.props.video.id.videoId,
+      placeholder: this.props.video.snippet.thumbnails.high.url,
+    });
+    $node.embed('change', 'youtube', this.props.video.id.videoId,
+      `https://www.youtube.com/embed/${this.props.video.id.videoId}`);
+  }
+
+  render() {
+    if (!this.props.video) {
+      return (<div className="ui inverted active dimmer">
+        <div className="ui text loader">Loading</div>
+      </div>);
+    }
+    return (<div className="ui container">
+      <h2 className="ui header dash_header">
+        <i className="youtube icon"></i>
+        <div className="content">Selected video</div>
+      </h2>
+      <div className="ui embed" ref={(c) => (this.videoPlayer = c)}></div>
+    </div>);
+  }
+}
+VideoDetail.propTypes = {
+  video: React.PropTypes.any,
+};
+
+export default VideoDetail;
