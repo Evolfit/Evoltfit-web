@@ -33,7 +33,7 @@ const Navbar = () => {
                         
                         <button onClick={() => router.push("../registro")} className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
                         duration-500'>Únete</button>
-                        <button onClick={() => router.push("../login")} className='bg-blue-800 text-white border-blue-800 border-2 rounded-3xl font-family:Fira-Sans py-2 px-6 rounded md:ml-8 hover:bg-white hover:text-black
+                        <button onClick={() => router.push("../login")} className='bg-blue-800 text-white border-blue-800 border-2  font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-white hover:text-black
                         duration-500'>Ingresa</button>
                         
                 </ul>
