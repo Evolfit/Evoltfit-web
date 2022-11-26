@@ -1,0 +1,2 @@
+Usaremos la API de Stripe para implementar todas las formas de pago de la página
+https://stripe.com/docs
