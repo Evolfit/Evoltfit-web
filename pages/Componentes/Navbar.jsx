@@ -14,7 +14,7 @@ const Navbar = () => {
     const router = useRouter();
 
     return (
-        <div className = "shadow-md w-full fixed top-0 left-0">
+        <div className = "shadow-md w-full fixed top-0 left-0 z-40">
             <div className = "md:flex items-center justify-between bg-white py-4 md:px-10 px-7 ">
                 <div>
                     <img  src = "evologo.png" className='h-16 ml-6'/>
