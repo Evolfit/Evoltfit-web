@@ -49,27 +49,31 @@ export default function Home() {
       </Head>
       <Navbar/>
       <main className={styles.main}>
-        <h1 className="font-thin text-2xl">
-          {"Bienvenido a... "}
           <br />
           {sesion ? 
             (
               <div>
+                <h2 className="font-thin text-2xl">
+                  {"Bienvenido... "}
+                </h2>
                 <span className="text-2xl text-blue-600 font-normal">
-                  {"Bienvenido: " + sesion.user.email}
+                  {sesion.user.email}
                 </span>
-                <button className="btn btn-error btn-lg m-6" onClick={handleLogout}>Cerrar Sesión</button>
               </div>
             )
             :
             (
-              <span className="animate-pulse text-8xl text-blue-600 font-normal">
-                la página de inicio
-              </span>
-
+              <div>
+                <h2 className="font-thin text-2xl">
+                  {"Bienvenido a... "}
+                </h2>
+                <span className="animate-pulse text-8xl text-blue-600 font-normal">
+                  la página de inicio
+                </span>
+              </div>
             )
           }
-        </h1>
+        
         </main>
     </div>
    /* <div className={styles.container}>
