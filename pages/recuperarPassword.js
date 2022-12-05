@@ -24,21 +24,6 @@ export default function Home() {
         [name]: value,
       });
 
-      //VALIDACIÓN INPUT CORREO
-      if (name == "correo"){
-        var error = ['control'];
-        var regexCorreo = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;        
-
-        if (!regexCorreo.test(value)){
-          error.push("error");
-        }
-    
-        setErrorDatosInput({
-          ...errorDatosInput,
-          [name]: error,
-        });
-      }
-
       //VALIDACIÓN INPUT PASSWORD
       if (name == "password"){
         var error = ['control'];
@@ -67,29 +52,39 @@ export default function Home() {
           [name]: error,
         });
       }
-
     },
     [formInput, setFormInput]
   );
 
-  //----------------------------------------------------------------
-  const handleRegistro = async () => {
+  useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event != "PASSWORD_RECOVERY") {
+        router.push('/')
+      }
+      else{
+        
+      }
+    })
+  }, [])
 
-    if(formInput.correo != null){
-      const { data, error } = await supabase.auth.signUp({
-        email: formInput.correo,
-        password: formInput.password,
+  const handleRecuperarPassword = async () => {
+
+    if(formInput.password != null){
+
+      const { data, error } = await supabase.auth.updateUser({ 
+        password: formInput.password
       })
 
       if(error){
         setDatos(null);
-        setFetchError('Error al conseguir datos');
+        setFetchError('Error al actualizar contraseña.');
         console.log("Error: " + error);
       } 
       else {
         setDatos(data);
         setFetchError(null);
-        console.log("Registro exitoso :)");
+        console.log("Contraseña actualizada: " + data);
+        //router.push('/login')
       }
     }
   }
@@ -112,6 +107,9 @@ export default function Home() {
     }
   }
 
+  //console.log(datos);
+  //console.log(fetchError);
+
   return (
     <div className="bg-stone-100 w-full h-screen" data-theme="emerald">
       <Head>
@@ -121,22 +119,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div className="form-control py-10 px-16 bg-blue-100 rounded-lg shadow-lg">
+      <div className="form-control py-10 px-16 bg-blue-100 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-10">
-            Registro
+            Restablecer Contraseña
           </h2>
-
-          {/*CAMPO CORREO ---------------------------- */}
-          <input name="correo" value={formInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Correo" className={"input input-lg mt-2 " +  (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error")  ? "input-error" : "input-success") : " ")}/>
-          
-          <label className="label">
-            <span className="label-text-alt">
-              {
-                //(incluye(errorDatosInput.correo, "error")  ? "Use una dirección de correo válida." : "")
-              }
-            </span>
-            <span className="label-text-alt text-red-500">{incluye(errorDatosInput.correo, "error")  ? "Use un correo válido." : ""}</span>
-          </label>
 
           {/*CAMPO CONTRASEÑA ------------------------ */}
           <input name="password" value={formInput.password || ""} onChange={handleOnInputChange} type="password" placeholder="Contraseña" className={"input input-lg mt-2 " +  (incluye(errorDatosInput.password, "control")  ? (incluye(errorDatosInput.password, "error")  ? "input-error" : "input-success") : " ")}/>
@@ -168,7 +154,7 @@ export default function Home() {
               <div className="alert alert-success font-bold text-white">
                 <div>
                   <span>
-                    ¡Se envió un correo de verificación!
+                    ¡Contraseña actualizada!
                   </span>
                 </div>
               </div>
@@ -191,9 +177,7 @@ export default function Home() {
           }
           
           {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
-          <button className={"btn btn-secondary btn-lg m-6 " + (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error") || incluye(errorDatosInput.password, "error") || incluye(errorDatosInput.confirmarPassword, "error") ? "btn-disabled" : " ") : " ")} onClick={handleRegistro}>Registrarse</button>
-
-          <a className="link link-secondary self-end mt-2" onClick={() => router.push('/login')}>¿Ya tienes cuenta? Inicia sesión</a>
+          <button className={"btn btn-secondary btn-lg m-6 " + (incluye(errorDatosInput.password, "control")  ? (incluye(errorDatosInput.correo, "error") || incluye(errorDatosInput.password, "error") || incluye(errorDatosInput.confirmarPassword, "error") ? "btn-disabled" : " ") : " ")} onClick={handleRecuperarPassword}>Enviar</button>
         </div>
 
         <button
@@ -205,6 +189,7 @@ export default function Home() {
           </svg>
           &nbsp;Volver al Inicio
         </button>
+
       </main>
 
       <footer className={styles.footer}>
