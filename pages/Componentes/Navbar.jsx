@@ -1,8 +1,42 @@
 import React from 'react';
-import Reacto, { useState } from 'react'
 import { useRouter } from "next/router";
+import { useState, useEffect } from 'react';
+import supabase from '/config/supabaseClient';
 
 const Navbar = () => {
+    const [sesion, setSesion] = useState(null);
+
+    useEffect(() => {
+        handleSesion()
+    
+    }, [])
+
+    const handleSesion = async () => {
+
+        const { data, error } = await supabase.auth.getSession()
+
+        if(data.session){
+        setSesion(data.session);
+        console.log(data);
+        } 
+        else {
+        setSesion(null);
+        console.log("No hay Sesión " + error);
+        console.log(data);
+        }
+    }
+
+    const handleLogout = async () => {
+        const { error } = await supabase.auth.signOut()
+        
+        if(error){
+        console.log(error);
+        }
+        else{
+        router.reload(window.location.pathname);
+        }
+    }
+
     let Links = [
         {name:"Inicio", link:"../"},
         {name:"Herramientas", link:"../herramientas"},
@@ -31,9 +65,7 @@ const Navbar = () => {
                         ))
                         }
                         
-                        <button onClick={() => router.push("../registro")} className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
-                        duration-500'>Únete</button>
-                        <button onClick={() => router.push("../login")} className='bg-blue-800 text-white border-blue-800 border-2  font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-white hover:text-black
+                        <button onClick={() => router.push("../login")} className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
                         duration-500'>Ingresa</button>
                         
                 </ul>

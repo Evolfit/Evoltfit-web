@@ -112,9 +112,6 @@ export default function Home() {
     }
   }
 
-  //console.log(datos);
-  //console.log(fetchError);
-
   return (
     <div className="bg-stone-100 w-full h-screen" data-theme="emerald">
       <Head>
