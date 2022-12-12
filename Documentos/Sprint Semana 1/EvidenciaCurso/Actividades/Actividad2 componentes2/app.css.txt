@@ -1,5 +1,0 @@
-img{
-  width: 400px;
-}
-.caja{
-  user-select: none;
