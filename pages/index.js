@@ -75,7 +75,8 @@ export default function Home() {
                   la página de inicio
                 </span>
                 <br/><br/><br/><br/>
-                <a href = "/sistemaexperto" ><button>Pal sistema experto pai</button></a>
+                <a href = "/sistemaexperto" ><button className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
+                            duration-500'>Pal sistema experto pai</button></a>
               </div>
             )
           }

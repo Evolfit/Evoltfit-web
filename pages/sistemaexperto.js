@@ -1,11 +1,33 @@
-import React from 'react';
+import React , { useState } from 'react';
 import Navbar from './Componentes/Navbar';
 import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+
 export default function Home() {
-  
+  const [text, setText] = useState('Pregunta 1');
+  const [image, setImage] = useState('/a1.png');
+  const [currentIndex, setCurrentIndex] = useState(0);
+ 
+
+  const texts = ['Pregunta 1', 'Pregunta 2', 'Pregunta 3', 'Pregunta 4', 'Pregunta 5'];
+  const images = ['/a1.png', 'a2.png', 'a3.png', 'a4.png', 'a5.png'];
+
+  const handleNext = () => {
+    const nextIndex = (currentIndex + 1) % texts.length;
+    setCurrentIndex(nextIndex);
+    setText(texts[nextIndex]);
+    setImage(images[nextIndex]);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = currentIndex === 0 ? texts.length - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setText(texts[prevIndex]);
+    setImage(images[prevIndex]);
+  };
+
   
     return (
       <div className = "bg-blue-100 w-full h-screen">
@@ -15,14 +37,17 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Navbar/>
+        
         <main className={styles.main}>
-        <h1 className="font-thin text-2xl">
-          {"Bienvenido a... "}
-          <br />
-          <span className="animate-pulse text-8xl text-blue-600 font-normal">
-            la página del sistema experto
-          </span>
-        </h1>
+
+        <div className='SI'>
+        <img src={image} alt="Imagen" />
+        <p>{text}</p>
+        </div>
+
+        <button onClick={handlePrev}>Anterior</button>
+        <button onClick={handleNext}>Siguiente</button>
+
         </main>
         <Footer></Footer>
       </div>
