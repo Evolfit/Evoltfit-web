@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from "next/router";
 import { useState, useEffect } from 'react';
 import supabase from '/config/supabaseClient';
-import Script from 'next/script';
 import Head from 'next/head';
 
 

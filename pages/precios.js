@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "./Componentes/Navbar";
+import Footer from "./Componentes/Footer";
 import Head from "next/head";
-import {CheckIcon} from '@heroicons/react/solid'
 import Precios from './Componentes/CardsPrecios';
-import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 
 const plans = [
@@ -96,6 +95,13 @@ export default function Home() {
         }
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <Footer></Footer>
     </div>
   );
 }
