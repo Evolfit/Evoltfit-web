@@ -6,8 +6,10 @@ import Navbar from './Componentes/Navbar';
 import supabase from '../config/supabaseClient';
 
 export default function Home() {
+
   const router = useRouter();
   const [sesion, setSesion] = useState(null);
+  
 
   useEffect(() => {
     handleSesion()
@@ -41,6 +43,8 @@ export default function Home() {
   }
 
   return (
+    
+    
     <div className = "bg-stone-100 w-full h-screen">
       <Head>
         <title>EvoltFit</title>
