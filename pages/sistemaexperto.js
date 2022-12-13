@@ -7,12 +7,12 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [text, setText] = useState('Pregunta 1');
-  const [image, setImage] = useState('/a1.png');
+  const [image, setImage] = useState('a1.png');
   const [currentIndex, setCurrentIndex] = useState(0);
  
 
   const texts = ['Pregunta 1', 'Pregunta 2', 'Pregunta 3', 'Pregunta 4', 'Pregunta 5'];
-  const images = ['/a1.png', 'a2.png', 'a3.png', 'a4.png', 'a5.png'];
+  const images = ['a1.png', 'a2.png', 'a3.png', 'a4.png', 'a5.png'];
 
   const handleNext = () => {
     const nextIndex = (currentIndex + 1) % texts.length;
