@@ -30,7 +30,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main className={styles.main}>
+      <main>
         <br />
         <h2 className="text-2xl text-left">Biblioteca de Ejercicios</h2>
         <div>

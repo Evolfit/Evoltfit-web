@@ -17,12 +17,12 @@ const Footer = () => {
 
           <div className="mb-6 md:mb-0 box-border h-36 w-72">
             <a href="../" className="flex items-center">
-              <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white mb-4">
                 Sobre nosotros
               </span>
             </a>
-            <a href="#" className="text-justify">
-              Evolfit es una plataforma que te ayudará de multiples maneras a
+            <a href="#" className="text-justify ">
+              Evoltfit es una plataforma que te ayudará de multiples maneras a
               comenzar o a progresar en tu camino fitness
             </a>
           </div>
@@ -110,7 +110,7 @@ const Footer = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2022{" "}
             <a href="../" className="hover:underline">
-              Evolfit™
+              Evoltfit™
             </a>
             . Todos los derechos reservados.
           </span>
