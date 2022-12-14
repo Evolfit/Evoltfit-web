@@ -1,8 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Catamaran&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Catamaran&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+.body-map {
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-map__container {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.body-map__body {
+  height: 550px;
+}
+.body-map__model {
+  color: #000;
+}
+.body-map__muscle {
+  color: #ebebeb;
+  transition: color 25ms ease-in-out;
+}
+.body-map__muscle:hover {
+  color: #fe5b7f;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .body-map__body {
+    height: 650px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .body-map__body {
+    height: 650px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .body-map__body {
+    height: 600px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .body-map__body {
+    height: 500px;
+  }
+}

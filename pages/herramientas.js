@@ -16,6 +16,7 @@ export default function Home() {
         </Head>
         <Navbar/>
         <main className={styles.main}>
+          
         <h1 className="font-thin text-2xl">
           {"Bienvenido a... "}
           <br />
@@ -23,6 +24,7 @@ export default function Home() {
             la página herramientas
           </span>
         </h1>
+        
         </main>
         <Footer></Footer>
       </div>
