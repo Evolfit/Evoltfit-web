@@ -10,7 +10,7 @@ const Footer = () => {
             <a href="../" className="flex items-center">
               <img src="evologo.png" className="mr-3 h-8" alt="Evolfit Logo" />
               <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white">
-                EvolFit
+                EvoltFit
               </span>
             </a>
           </div>
