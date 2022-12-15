@@ -3,30 +3,37 @@ import Navbar from './Componentes/Navbar';
 import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
-
+import Seccion1 from "./SistemaE/Seccion1";
+import Seccion2 from "./SistemaE/Seccion2";
+import Seccion3 from "./SistemaE/Seccion3";
 export default function Home() {
-  const [text, setText] = useState('Pregunta 1');
-  const [image, setImage] = useState('a1.png');
-  const [currentIndex, setCurrentIndex] = useState(0);
  
+  const [value, setValue] = useState(0);
 
-  const texts = ['Pregunta 1', 'Pregunta 2', 'Pregunta 3', 'Pregunta 4', 'Pregunta 5'];
-  const images = ['a1.png', 'a2.png', 'a3.png', 'a4.png', 'a5.png'];
+  let element;
+  if (value === 0) {
+    element = <Seccion1 />;
+    //element = <p>Componente A</p>;
+  } else if (value === 1) {
+    element = <Seccion2 />;
+    //element = <p>Componente B</p>;
+  } else {
+    element = <Seccion3 />;
+    //element = <p>Componente C</p>;
+  }
 
-  const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % texts.length;
-    setCurrentIndex(nextIndex);
-    setText(texts[nextIndex]);
-    setImage(images[nextIndex]);
-  };
 
-  const handlePrev = () => {
-    const prevIndex = currentIndex === 0 ? texts.length - 1 : currentIndex - 1;
-    setCurrentIndex(prevIndex);
-    setText(texts[prevIndex]);
-    setImage(images[prevIndex]);
-  };
+  function handleNext() {
+    if (value < 2) {
+      setValue(value+1);
+    }
+  }
+
+  function handlePrevious() {
+    if (value > 0) {
+      setValue(value-1);
+    }
+  }
 
   
     return (
@@ -41,11 +48,10 @@ export default function Home() {
         <main className={styles.main}>
 
         <div className='SI'>
-        <img src={image} alt="Imagen" />
-        <p>{text}</p>
+        <h1>{element}</h1>
         </div>
 
-        <button onClick={handlePrev}>Anterior</button>
+        <button onClick={handlePrevious}>Anterior</button>
         <button onClick={handleNext}>Siguiente</button>
 
         </main>
