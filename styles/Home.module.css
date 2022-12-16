@@ -122,3 +122,19 @@
   height: 440px;
   margin-top: 5%;
 }
+.s{
+  display: flex;
+  flex-direction: column;
+}
+.imagenes{
+  width: 200px;
+  height: 200px;
+}
+.inputs{
+  display: flex;
+  justify-content: center;
+}
+.radiu{
+  display: flex;
+  flex-direction: column;
+}

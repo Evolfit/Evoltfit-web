@@ -1,3 +1,5 @@
+import styled from 'daisyui/dist/styled';
+import styles from "../../styles/Home.module.css";
 import React, { useState } from 'react'
 
 
@@ -9,33 +11,47 @@ function Seccion1() {
   };
 
   return (
-    <div className='s'>
+    <div className={styles.s}>
+      <div className={styles.texto}>
       <h1>¿Cual de las siguientes opciones te describe mejor?</h1>
+      </div>
       <br /><br /><br />
+      <div className={styles.inputs}>
+      <div className={styles.radiu}>
       <input
         type="radio"
         name="radioGroup"
-        value="image1"
-        checked={selectedValue === 'image1'}
+        value="hombre"
+        checked={selectedValue === 'hombre'}
         onChange={handleChange}
       />
-      <img src="/path/to/image1.jpg" alt="Image 1" />
+      <img className={styles.imagenes} src="img/male.png" alt="Image 1" />
+      <p>Hombre</p>
+      </div>
+      <div className={styles.radiu}>
       <input
         type="radio"
         name="radioGroup"
-        value="image2"
-        checked={selectedValue === 'image2'}
+        value="mujer"
+        checked={selectedValue === 'mujer'}
         onChange={handleChange}
       />
-      <img src="/path/to/image2.jpg" alt="Image 2" />
+      <img className={styles.imagenes} src="img/female.png" alt="mujer" />
+      <p>Mujer</p>
+      </div>
+      <div className={styles.radiu}>
       <input
         type="radio"
         name="radioGroup"
-        value="image3"
-        checked={selectedValue === 'image3'}
+        value="otro"
+        checked={selectedValue === 'otro'}
         onChange={handleChange}
       />
-      <img src="/path/to/image3.jpg" alt="Image 3" />
+      <img className={styles.imagenes} src="img/other.png" alt="other" />
+      <p>Otro</p>
+      </div>
+      </div>
+      <br/><br/><br/><br/>
     </div>
   )
 }
