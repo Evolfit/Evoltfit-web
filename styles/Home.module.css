@@ -107,4 +107,18 @@
   .logo img {
     filter: invert(1);
   }
+} 
+
+/*SE*/
+
+.si{
+  display: flex;
+  padding: 12px;
+  margin: 10px;
+}
+.seccion{
+  background-color: white;
+  width: 80%;
+  height: 440px;
+  margin-top: 5%;
 }

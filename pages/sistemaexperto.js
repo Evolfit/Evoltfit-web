@@ -47,12 +47,14 @@ export default function Home() {
         
         <main className={styles.main}>
 
-        <div className='SI'>
+        <div className={styles.seccion}>
         <h1>{element}</h1>
         </div>
 
-        <button onClick={handlePrevious}>Anterior</button>
-        <button onClick={handleNext}>Siguiente</button>
+        <div className='si'>
+        <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>
+        <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handleNext}>Siguiente</button>
+        </div>
 
         </main>
         <Footer></Footer>
