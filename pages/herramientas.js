@@ -22,7 +22,58 @@ export default function Home() {
         <br />
         <br />
 
-       
+        <section className="bg-white dark:bg-gray-900">
+          <div className="container px-6 py-10 mx-auto">
+            <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
+              Prueba las herramientas
+            </h1>
+
+            <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+              Te ofrecemos un repertorio de herramientas que te serviran para hace un seguimiento de tu progreso.
+            </p>
+
+            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+              <div
+                className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img" 
+                >
+                <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
+                  <h2 className="mt-4 text-2xl font-semibold text-white ">
+                    Genera una rutina especialmente para ti
+                  </h2>
+                  <p className="mt-2 text-lg tracking-wider text-blue-400 uppercase ">
+                    Generador de rutinas
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img"
+                
+              >
+                <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
+                  <h2 className="mt-4 text-2xl font-semibold text-white capitalize">
+                    Utiliza un gran repertorio de ejercicios
+                  </h2>
+                  <p className="mt-2 text-lg tracking-wider text-blue-400 uppercase ">
+                    Biblioteca de ejercicios
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
+                  <h2 className="mt-4 text-2xl font-semibold text-white capitalize">
+                    Lleva un control de tu consumo diario
+                  </h2>
+                  <p className="mt-2 text-lg tracking-wider text-blue-400 uppercase ">
+                    Contador de calorías
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <br />
         <br />
