@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.5",
+    "react-scroll": "^1.8.9",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

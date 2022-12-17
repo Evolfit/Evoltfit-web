@@ -4,7 +4,7 @@ const Footer = () => {
 
     return (
 
-        <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
+        <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900 z-40">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="../" className="flex items-center">
@@ -16,12 +16,12 @@ const Footer = () => {
           </div>
 
           <div className="mb-6 md:mb-0 box-border h-36 w-72">
-            <a href="../" className="flex items-center">
+            <a className="flex items-center">
               <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white mb-4">
                 Sobre nosotros
               </span>
             </a>
-            <a href="#" className="text-justify ">
+            <a className="text-justify ">
               Evoltfit es una plataforma que te ayudará de multiples maneras a
               comenzar o a progresar en tu camino fitness
             </a>

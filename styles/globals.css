@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.bg-internal-img {
+  background-image: url('../public/bcprice.jpg');
+}
+
 .body-map {
   padding: 24px 0;
   display: flex;
@@ -18,7 +23,7 @@
   flex-wrap: wrap;
 }
 .body-map__body {
-  height: 550px;
+  height: 540px;
 }
 .body-map__model {
   color: #000;
@@ -31,6 +36,8 @@
   color: #fe5b7f;
   cursor: pointer;
 }
+
+
 @media screen and (max-width: 600px) {
   .body-map__body {
     height: 650px;
@@ -51,3 +58,5 @@
     height: 500px;
   }
 }
+
+

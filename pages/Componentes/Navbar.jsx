@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
+import { Link } from "react-scroll";
 
 
 const Navbar = () => {
@@ -63,7 +64,9 @@ const Navbar = () => {
 
             <div className = "md:flex items-center justify-between bg-white py-4 md:px-10 px-7 ">
                 <div>
+                    <a href="/">
                     <img  src = "evologo.png" className='h-16 ml-6' onClick={() => router.push("/")}/>
+                    </a>
                 </div>
                 <div onClick={() => setOpen(!open)} className = "text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
                     <ion-icon name={open ? 'close':'menu'}></ion-icon>
