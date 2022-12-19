@@ -10,6 +10,9 @@ export default function Home() {
   const router = useRouter();
   const [sesion, setSesion] = useState(null);
   const [ejercicios, setEjercicios] = useState(null);
+  const query = router.query;
+  const name = query.name;
+  console.log(name);
 
   useEffect(() => {
     getEjercicios();
