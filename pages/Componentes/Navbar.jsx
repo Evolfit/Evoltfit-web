@@ -3,15 +3,12 @@ import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
-import { Link } from "react-scroll";
-
 
 const Navbar = () => {
     const [sesion, setSesion] = useState(null);
 
     useEffect(() => {
         handleSesion()
-    
     }, [])
 
     const handleSesion = async () => {
@@ -53,7 +50,6 @@ const Navbar = () => {
     const router = useRouter();
 
     return (
-        
 
         <div className = "shadow-md w-full fixed top-0 left-0 z-40"  data-theme="emerald">
               <Head>
