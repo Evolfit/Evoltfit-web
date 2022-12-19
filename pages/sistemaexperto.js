@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import Navbar from './Componentes/Navbar';
 import Footer from "./Componentes/Footer";
 import Head from "next/head";
@@ -9,19 +9,12 @@ import Seccion3 from "./SistemaE/Seccion3";
 export default function Home() {
  
   const [value, setValue] = useState(0);
+  const [formData, setFormData] = useState({});
+  const [showButton, setShowButton] = useState(false);
 
   let element;
-  if (value === 0) {
-    element = <Seccion1 />;
-    //element = <p>Componente A</p>;
-  } else if (value === 1) {
-    element = <Seccion2 />;
-    //element = <p>Componente B</p>;
-  } else {
-    element = <Seccion3 />;
-    //element = <p>Componente C</p>;
-  }
-
+  
+ 
 
   function handleNext() {
     if (value < 2) {
@@ -34,8 +27,29 @@ export default function Home() {
       setValue(value-1);
     }
   }
-
+  //en los parametros recibo el name si quiero
+  const handleChange = (value) => {
+    setFormData({
+      ...formData, value
+    });
+  setShowButton(true);
+  }
+  //cambiar de componentes
+  if (value === 0) {
+    element = <Seccion1 onChange={handleChange}/>;
+    //element = <p>Componente A</p>;
+  } else if (value === 1) {
+    element = <Seccion2 />;
+    //element = <p>Componente B</p>;
+  } else {
+    element = <Seccion3 />;
+    //element = <p>Componente C</p>;
+  }
   
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
     return (
       <div className = "bg-blue-100 w-full h-screen">
         <Head>
@@ -52,8 +66,13 @@ export default function Home() {
         </div>
 
         <div className='si'>
-        <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>
+        {/*<button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>*/}
+        {showButton ? (
         <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handleNext}>Siguiente</button>
+        ) : (
+        <button>Siguiente</button>
+        )}
+        
         </div>
 
         </main>
