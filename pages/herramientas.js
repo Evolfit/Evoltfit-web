@@ -4,7 +4,16 @@ import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "/config/supabaseClient";
-import { Fade, Flip, Rotate, Zoom, Bounce, Roll, Slide, LightSpeed } from "react-reveal";
+import {
+  Fade,
+  Flip,
+  Rotate,
+  Zoom,
+  Bounce,
+  Roll,
+  Slide,
+  LightSpeed,
+} from "react-reveal";
 
 export default function Home() {
   const [sesion, setSesion] = useState(null);
@@ -44,32 +53,42 @@ export default function Home() {
           <section className="bg-gray-100 shadow-lg shadow-zinc-300">
             <div className="container px-6 py-10 mx-auto">
               <Fade top>
-              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
-                Todo lo que necesitas en un solo lugar
-              </h1>
+                <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
+                  Todo lo que necesitas en un solo lugar
+                </h1>
               </Fade>
               <Slide bottom>
-              <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
-                Te ofrecemos un repertorio de herramientas que te serviran para
-                hacer un seguimiento de tu progreso.
-              </p>
+                <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+                  Te ofrecemos un repertorio de herramientas que te serviran
+                  para hacer un seguimiento de tu progreso.
+                </p>
               </Slide>
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="rutina.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Generador de rutinas automático
                       </h2>
                     </div>
                   </a>
                 </div>
-               
+
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="cal.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Contador de calorías
                       </h2>
                     </div>
@@ -79,7 +98,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="registro.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Registro de series y repeticiones
                       </h2>
                     </div>
@@ -89,7 +113,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="progreso.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Visualizador de progreso
                       </h2>
                     </div>
@@ -99,7 +128,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Máximo peso para una repetición
                       </h2>
                       <p className="animate-pulse mt-2 text-lg tracking-wider text-lime-500 font-catamaran hover:text-lime-400">
@@ -113,7 +147,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Sobrecarga progresiva
                       </h2>
                       <p className="animate-pulse mt-2 text-lg tracking-wider text-lime-500 font-catamaran hover:text-lime-400">
@@ -127,7 +166,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Método Bilbo
                       </h2>
                       <p className="animate-pulse mt-2 text-lg tracking-wider text-lime-500 font-catamaran">
@@ -144,22 +188,27 @@ export default function Home() {
           <section className="bg-gray-100 shadow-lg shadow-zinc-300">
             <div className="container px-6 py-10 mx-auto">
               <Fade top>
-              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
-                Todo lo que necesitas en un solo lugar
-              </h1>
+                <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
+                  Todo lo que necesitas en un solo lugar
+                </h1>
               </Fade>
               <Slide bottom>
-              <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
-                Te ofrecemos un repertorio de herramientas que te serviran para
-                hacer un seguimiento de tu progreso.
-              </p>
+                <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+                  Te ofrecemos un repertorio de herramientas que te serviran
+                  para hacer un seguimiento de tu progreso.
+                </p>
               </Slide>
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="rutina.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Generador de rutinas automático
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -172,7 +221,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="cal.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Contador de calorías
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -185,7 +239,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="registro.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Registro de series y repeticiones
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -198,7 +257,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="progreso.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Visualizador de progreso
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -211,7 +275,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Máximo peso para una repetición
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -229,7 +298,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Sobrecarga progresiva
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -246,7 +320,12 @@ export default function Home() {
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <a href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
-                      <h2 className="mt-4 text-2xl text-white font-bold">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="metodo.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold">
                         Método Bilbo
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
