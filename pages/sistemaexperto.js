@@ -10,6 +10,7 @@ export default function Home() {
  
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({});
+  const [arreglo, setArreglo] = useState([]);
   const [showButton, setShowButton] = useState(false);
 
   let element;
@@ -19,6 +20,8 @@ export default function Home() {
   function handleNext() {
     if (value < 2) {
       setValue(value+1);
+      const { value: valor } = formData;
+      setArreglo([...arreglo, valor]);
     }
   }
 
@@ -27,19 +30,18 @@ export default function Home() {
       setValue(value-1);
     }
   }
-  //en los parametros recibo el name si quiero
+  //en los parametros recibo el name si quiero/// GENERO
   const handleChange = (value) => {
-    setFormData({
-      ...formData, value
-    });
-  setShowButton(true);
+    setFormData({...formData, value});
+    setShowButton(true);
   }
+
   //cambiar de componentes
   if (value === 0) {
     element = <Seccion1 onChange={handleChange}/>;
     //element = <p>Componente A</p>;
   } else if (value === 1) {
-    element = <Seccion2 />;
+    element = <Seccion2 onChange={handleChange}/>;
     //element = <p>Componente B</p>;
   } else {
     element = <Seccion3 />;
@@ -48,7 +50,8 @@ export default function Home() {
   
   useEffect(() => {
     console.log(formData);
-  }, [formData]);
+    console.log(arreglo);
+  }, [formData,arreglo]);
 
     return (
       <div className = "bg-blue-100 w-full h-screen">
