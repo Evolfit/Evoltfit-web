@@ -6,51 +6,77 @@ import styles from "../styles/Home.module.css";
 import Seccion1 from "./SistemaE/Seccion1";
 import Seccion2 from "./SistemaE/Seccion2";
 import Seccion3 from "./SistemaE/Seccion3";
+import Seccion4 from "./SistemaE/Seccion4";
+import Seccion5 from "./SistemaE/Seccion5";
+import Seccion6 from "./SistemaE/Seccion6";
 export default function Home() {
  
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({});
   const [arreglo, setArreglo] = useState([]);
   const [showButton, setShowButton] = useState(false);
-
+  const [formDatosU, setFormDatosU] = useState({});
   let element;
   
  
-
+//Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
+//y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
-    if (value < 2) {
-      setValue(value+1);
+      if(value!=4){
       const { value: valor } = formData;
       setArreglo([...arreglo, valor]);
-    }
+      }
+      setValue(value+1);
+      setShowButton(false);
   }
-
+//Funcion para retroceder entre componentes posiblemente no será implementada
   function handlePrevious() {
     if (value > 0) {
       setValue(value-1);
     }
   }
-  //en los parametros recibo el name si quiero/// GENERO
+  //funcion que recibe solo un valor por componente
   const handleChange = (value) => {
     setFormData({...formData, value});
     setShowButton(true);
   }
-
+  //funcion para enficar y recibir datos del formulario
+  function handleFormSubmit(formValues) {
+    if (formValues.edad === 0 && formValues.altura === 0 && formValues.peso === 0) {
+      setValue(value+1);
+      console.log(formValues);
+      setFormData(formValues);
+    }else{
+    console.log(formValues);
+    setFormData(formValues);
+    setShowButton(true);
+    }
+  }
   //cambiar de componentes
   if (value === 0) {
     element = <Seccion1 onChange={handleChange}/>;
-    //element = <p>Componente A</p>;
+
   } else if (value === 1) {
     element = <Seccion2 onChange={handleChange}/>;
-    //element = <p>Componente B</p>;
+    
+  } else if (value === 2) {
+    element = <Seccion3 onChange={handleChange}/>;
+    
+  } else if (value === 3) {
+    element = <Seccion4 onChange={handleChange}/>;
+   
+  } else if (value === 4) {
+    element = <Seccion5 onSubmit={handleFormSubmit}/>;
+   
   } else {
-    element = <Seccion3 />;
-    //element = <p>Componente C</p>;
+    element = <Seccion6 />;
+    
   }
-  
+  //actualizador solo para visualizar el funcionamiento de datos
   useEffect(() => {
     console.log(formData);
     console.log(arreglo);
+    //console.log(value);
   }, [formData,arreglo]);
 
     return (
