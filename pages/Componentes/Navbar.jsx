@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
+import Script from 'next/script';
 
 const Navbar = () => {
     const [sesion, setSesion] = useState(null);
@@ -53,8 +54,8 @@ const Navbar = () => {
 
         <div className = "shadow-md w-full fixed top-0 left-0 z-40"  data-theme="emerald">
               <Head>
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></Script>
+                <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></Script>
               </Head>
               
 

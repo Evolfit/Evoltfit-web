@@ -13,9 +13,15 @@ export default function Home() {
  
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({});
+  const [checkboxes, setCheckboxes] = useState({
+    checkbox1: false,
+    checkbox2: false,
+    checkbox3: false,
+    checkbox4: false,
+  });
   const [arreglo, setArreglo] = useState([]);
   const [showButton, setShowButton] = useState(false);
-  const [formDatosU, setFormDatosU] = useState({});
+  
   let element;
   
  
@@ -45,13 +51,21 @@ export default function Home() {
     if (formValues.edad === 0 && formValues.altura === 0 && formValues.peso === 0) {
       setValue(value+1);
       console.log(formValues);
-      setFormData(formValues);
+      //setFormData(formValues);
     }else{
     console.log(formValues);
-    setFormData(formValues);
+    //setFormData(formValues);
     setShowButton(true);
     }
   }
+  //Funcion para las herramientas
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckboxes({
+      ...checkboxes,
+      [name]: checked,
+    });
+  };
   //cambiar de componentes
   if (value === 0) {
     element = <Seccion1 onChange={handleChange}/>;
@@ -69,15 +83,19 @@ export default function Home() {
     element = <Seccion5 onSubmit={handleFormSubmit}/>;
    
   } else {
-    element = <Seccion6 />;
+    element = <Seccion6 onCheckboxChange={handleCheckboxChange}/>;
     
   }
   //actualizador solo para visualizar el funcionamiento de datos
   useEffect(() => {
+    console.log("------------------");
     console.log(formData);
     console.log(arreglo);
+    console.log("Herramientas: ");
+    console.log(checkboxes);
+    //console.log(formHerra);
     //console.log(value);
-  }, [formData,arreglo]);
+  }, [formData,arreglo,checkboxes]);
 
     return (
       <div className = "bg-blue-100 w-full h-screen">
@@ -98,12 +116,12 @@ export default function Home() {
         {/*<button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>*/}
         {showButton ? (
         <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" onClick={handleNext}>
-        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
         Siguiente
         </span>
         </button>
         ) : (
-        <button class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Siguiente</button>
+        <button className="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Siguiente</button>
         )}
         
         </div>
