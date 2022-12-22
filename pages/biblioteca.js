@@ -14,7 +14,8 @@ export default function Home() {
   const [cantidad, setCantidad] = useState(null);
   const [formInput, setFormInput] = useState({musculo: "Todos"});
   const [equipo, setEquipo] = useState(["Mancuernas", "Barra", "Bandas de resistencia", "Banca plano"]);
-  
+  const musculoIndex = router.query.name;
+
   useEffect(() => {
     getEjercicios();
   }, []);
@@ -148,31 +149,20 @@ export default function Home() {
           <div className="w-9/12 mx-auto">
             <h2 className="text-4xl text-left text-secondary font-semibold">Biblioteca de Ejercicios</h2>
             <br/>
-            <h2 className="text-lg text-left text-secondary font-light">Filtros:</h2>
+            <h2>{musculoIndex ? "TENEMOS QUE BUSCAR: " + musculoIndex : ""}</h2>
 
+            <h2 className="text-lg text-left text-secondary font-light">Filtros:</h2>
 
             <div className="flex flex-col lg:flex-row items-center p-4 bg-white rounded-xl shadow-lg w-max">
               <div className="flex bg-gray-100 p-4 space-x-4 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input name="search" className="bg-gray-100 outline-none w-max" type="text" placeholder="Busque algún ejercicio..." value={formInput.search || ""} onChange={handleOnInputChange}/>
               </div>
               <div className="flex rounded-lg text-gray-500 font-semibold cursor-pointer my-4 lg:my-0">
-                <div className="form-control w-full max-w-xs mr-4 lg:mx-4" >
-                  <select name="musculo" className="select hover:bg-slate-100">
-                    <option selected>TODOS LOS MUSCULOS</option>
-                    <option>BICEPS</option>
-                    <option>TRICEPS</option>
-                    <option>PECHO</option>
-                    <option>HOMBROS</option>
-                    <option>ESPALDA SUPERIOR</option>
-                    <option>ANTEBRAZOS</option>
-                    <option>CUADRICEPS</option>
-                  </select>
-                </div>
                 <div className="bg-gray-800 px-2 text-white font-semibold rounded-lg cursor-pointer">
-                  <button className="btn btn-ghost">Buscar</button>
+                  <button className="btn btn-ghost" onClick={getEjercicios}>Buscar</button>
                 </div>
               </div>
             </div>
@@ -183,15 +173,15 @@ export default function Home() {
               <label className="label">
                 <span className="label-text text-md">Grupo Muscular Primario</span>
               </label>
-              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-bordered select-secondary">
-                <option value="Todos" selected>TODOS</option>
-                <option value="Biceps">Biceps</option>
-                <option value="Triceps">Triceps</option>
-                <option value="Pecho">Pecho</option>
-                <option value="Hombros">Hombros</option>
-                <option value="Espalda Superior">Espalda Superior</option>
-                <option value="Antebrazos">Antebrazos</option>
-                <option value="Cuadriceps">Cuadriceps</option>
+              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-bordered select-secondary" defaultValue="Todos">
+                <option id="Todos" value="Todos">TODOS</option>
+                <option id="Biceps" value="Biceps">Biceps</option>
+                <option id="Triceps" value="Triceps">Triceps</option>
+                <option id="Pecho" value="Pecho">Pecho</option>
+                <option id="Hombros" value="Hombros">Hombros</option>
+                <option id="Espalda Superior" value="Espalda Superior">Espalda Superior</option>
+                <option id="Antebrazos" value="Antebrazos">Antebrazos</option>
+                <option id="Cuadriceps" value="Cuadriceps">Cuadriceps</option>
               </select>
               <label className="label">
                 <span className="label-text">SELECT GRUPO MUSCULAR</span>
