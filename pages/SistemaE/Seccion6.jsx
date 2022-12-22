@@ -18,33 +18,121 @@ function Seccion6(props) {
     <div className={styles.radiu2}>
     <input
       type="checkbox"
-      name="checkbox1"
+      name="Ninguno"
       onChange={onCheckboxChange}
-    /> Barra con pesas
+    /> Ninguno
     </div>
 
    <div className={styles.radiu2}>
     <input
       type="checkbox"
-      name="checkbox2"
+      name="Bandaresistencia"
       onChange={onCheckboxChange}
-    /> Mancuernas
+    /> Banda de Resistencia
     </div>
 
     <div className={styles.radiu2}>
     <input
       type="checkbox"
-      name="checkbox3"
+      name="Bandasuspension"
       onChange={onCheckboxChange}
-    /> Ligas de Resistencia Cerrada
+    /> Banda de suspensión.
     </div>
 
     <div className={styles.radiu2}>
     <input
       type="checkbox"
-      name="checkbox4"
+      name="Barra"
       onChange={onCheckboxChange}
-    /> Banco Plano
+    /> Barra.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="BarraZ"
+      onChange={onCheckboxChange}
+    /> Barra Z.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="Barras"
+      onChange={onCheckboxChange}
+    /> Barras &lpar;dominadas, paralelas&lpar;
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="Mancuerna"
+      onChange={onCheckboxChange}
+    /> Mancuerna.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="Mancuernas"
+      onChange={onCheckboxChange}
+    /> Mancuernas.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="PesaRusa"
+      onChange={onCheckboxChange}
+    /> Pesa Rusa.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="PlacaPeso"
+      onChange={onCheckboxChange}
+    /> Placa de Peso.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="MaquinasGYM"
+      onChange={onCheckboxChange}
+    /> Máquinas en GYM.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="BancoPlano"
+      onChange={onCheckboxChange}
+    /> Banco Plano.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="BancoDeclinado"
+      onChange={onCheckboxChange}
+    /> Banco Declinado.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="BancoInclinado"
+      onChange={onCheckboxChange}
+    /> Banco Inclinado.
+    </div>
+
+    <div className={styles.radiu2}>
+    <input
+      type="checkbox"
+      name="Cuerda"
+      onChange={onCheckboxChange}
+    /> Cuerda.
     </div>
 
     </div>
