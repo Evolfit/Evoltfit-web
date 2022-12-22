@@ -57,8 +57,6 @@ export default function Home() {
         <br/>
         <br/>
         <br/>
-
-        
         <div className="body-map" id="body-map">
           <div id="male-body-maps" className="body-map__container">
             <div className="body-map__body">

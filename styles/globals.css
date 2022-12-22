@@ -5,9 +5,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .bg-internal-img {
   background-image: url('../public/bcprice.jpg');
+}
+
+.bg-internal-img2 {
+  background-image: url('../public/bcgym.jpg');
+}
+
+.textform{
+  resize: none;
 }
 
 .body-map {

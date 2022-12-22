@@ -50,7 +50,7 @@ export default function Home() {
         <br />
 
         {sesion ? (
-          <section className="bg-gray-100 shadow-lg shadow-zinc-300">
+          <section className="bg-blue-50">
             <div className="container px-6 py-10 mx-auto">
               <Fade top>
                 <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
@@ -185,7 +185,7 @@ export default function Home() {
             </div>
           </section>
         ) : (
-          <section className="bg-gray-100 shadow-lg shadow-zinc-300">
+          <section className="bg-blue-50">
             <div className="container px-6 py-10 mx-auto">
               <Fade top>
                 <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">

@@ -42,7 +42,7 @@ const Navbar = () => {
         {name:"Inicio", link:"../"},
         {name:"Herramientas", link:"../herramientas"},
         {name:"Nosotros", link:"/"},
-        {name:"Ayuda", link:"/"},
+        {name:"Ayuda", link:"../ayuda"},
         {name:"Precios", link:"../precios"},
     ];
 
@@ -52,10 +52,13 @@ const Navbar = () => {
 
     return (
 
+     
         <div className = "shadow-md w-full fixed top-0 left-0 z-40"  data-theme="emerald">
+            <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></Script>
+            <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></Script>
               <Head>
-                <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></Script>
-                <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></Script>
+               
+                
               </Head>
               
 
