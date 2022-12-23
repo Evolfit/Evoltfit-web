@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { useRouter } from "next/router";
 import Navbar from './Componentes/Navbar';
 import Footer from "./Componentes/Footer";
@@ -8,13 +9,33 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const router = useRouter();
   const { formData2, checkboxes, arreglo } = router.query;
+  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+  const [columnOrder, setColumnOrder] = useState(daysOfWeek);
+
+  const moveColumn = (direction, index) => {
+    const newColumnOrder = [...columnOrder];
+    if (direction === 'left') {
+      if (index === 0) return; // no se puede mover la primera columna a la izquierda
+      const previousColumn = newColumnOrder[index - 1];
+      newColumnOrder[index - 1] = newColumnOrder[index];
+      newColumnOrder[index] = previousColumn;
+    } else {
+      if (index === columnOrder.length - 1) return; // no se puede mover la última columna a la derecha
+      const nextColumn = newColumnOrder[index + 1];
+      newColumnOrder[index + 1] = newColumnOrder[index];
+      newColumnOrder[index] = nextColumn;
+    }
+    setColumnOrder(newColumnOrder);
+  };
 
   const handleClick = () => {
     console.log(JSON.parse(formData2));
     console.log(JSON.parse(checkboxes));
     console.log(JSON.parse(arreglo));
   };
-  
+  //Para mover las columnas de las tablas.
+
   return (
     <div className="bg-blue-100 w-full h-screen">
       <Head>
@@ -25,7 +46,37 @@ export default function Home() {
       <Navbar />
 
       <main className={styles.main}>
-      <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
+
+
+        <div className="overflow-x-auto relative">
+          <table>
+            <thead>
+              <tr>
+                {columnOrder.map((column, index) => (
+                  <th key={column}>
+                    {index !== 0 && <span onClick={() => moveColumn('left', index)}>&lt;</span>}
+                    {column}
+                    {index !== columnOrder.length - 1 && <span onClick={() => moveColumn('right', index)}>&gt;</span>}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[1, 2, 3, 4, 5].map((row) => (
+                <tr key={row}>
+                  {columnOrder.map((day, index) => (
+                    <td key={day}>
+                      Hola{index + 1}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
+        <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
 
       </main>
       <Footer></Footer>
