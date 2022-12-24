@@ -154,7 +154,7 @@ export default function Home() {
             <h2 className="text-lg text-left text-secondary font-light">Filtros:</h2>
 
             <div className="flex flex-col lg:flex-row items-center p-4 bg-white rounded-xl shadow-lg w-max">
-              <div className="flex bg-gray-100 p-4 space-x-4 rounded-lg">
+              <div className="flex bg-gray-100driceps p-4 space-x-4 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -175,13 +175,21 @@ export default function Home() {
               </label>
               <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-bordered select-secondary" defaultValue="Todos">
                 <option id="Todos" value="Todos">TODOS</option>
+                <option id="Abdomen" value="Abdomen">Abdomen</option>
+                <option id="Oblicuos" value="Oblicuos">Oblicuos</option>
+                <option id="Antebrazos" value="Antebrazos">Antebrazos</option>
                 <option id="Biceps" value="Biceps">Biceps</option>
                 <option id="Triceps" value="Triceps">Triceps</option>
-                <option id="Pecho" value="Pecho">Pecho</option>
                 <option id="Hombros" value="Hombros">Hombros</option>
-                <option id="Espalda Superior" value="Espalda Superior">Espalda Superior</option>
-                <option id="Antebrazos" value="Antebrazos">Antebrazos</option>
+                <option id="Trapecio" value="Trapecio">Trapecio</option>
+                <option id="Trapecio Medio" value="Trapecio Medio">Trapecio Medio</option>
+                <option id="Pecho" value="Pecho">Pecho</option>
                 <option id="Cuadriceps" value="Cuadriceps">Cuadriceps</option>
+                <option id="Pantorrillas" value="Pantorrillas">Pantorrillas</option>
+                <option id="Isquiotibiales" value="Isquiotibiales">Isquiotibiales</option>
+                <option id="Dorsales" value="Dorsales">Dorsales</option>
+                <option id="Gluteos" value="Gluteos">Gluteos</option>
+                <option id="Espalda Baja" value="Espalda Baja">Espalda Baja</option>
               </select>
               <label className="label">
                 <span className="label-text">SELECT GRUPO MUSCULAR</span>
