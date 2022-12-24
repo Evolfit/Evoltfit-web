@@ -8,13 +8,20 @@ import supabase from "../config/supabaseClient";
 
 export default function Home() {
   const router = useRouter();
+  let musculoIndex = router.query.name;
+  (musculoIndex ? "" : musculoIndex = "Todos")
+
+  if (!musculoIndex) {
+    musculoIndex = "Todos"
+  }
+
   const [sesion, setSesion] = useState(null);
   const [paginacion, setPaginacion] = useState(1);
   const [ejercicios, setEjercicios] = useState(null);
   const [cantidad, setCantidad] = useState(null);
-  const [formInput, setFormInput] = useState({musculo: "Todos"});
-  const [equipo, setEquipo] = useState(["Mancuernas", "Barra", "Bandas de resistencia", "Banca plano"]);
-  const musculoIndex = router.query.name;
+  const [formInput, setFormInput] = useState({musculo: musculoIndex});
+  const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
+  
 
   useEffect(() => {
     getEjercicios();
@@ -51,7 +58,6 @@ export default function Home() {
           [name]: temp,
         });
       }
-
       //console.log(name + " | " + id + ": " + value + " -> " + checked);
       //console.log(formInput.equipo)
     },
@@ -84,7 +90,7 @@ export default function Home() {
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
     //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
 
-    if (filtrarEquipo)  { query = query.overlaps('herramienta', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
     //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
 
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
@@ -102,7 +108,7 @@ export default function Home() {
     .select('*', { count: 'exact', head: true })
 
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    if (filtrarEquipo)  { query = query.overlaps('herramienta', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
 
     const count = await query
@@ -147,34 +153,26 @@ export default function Home() {
         
         <div>
           <div className="w-9/12 mx-auto">
-            <h2 className="text-4xl text-left text-secondary font-semibold">Biblioteca de Ejercicios</h2>
+            <h2 className="text-5xl text-left text-secondary font-semibold my-4">Biblioteca de Ejercicios</h2>
             <br/>
-            <h2>{musculoIndex ? "TENEMOS QUE BUSCAR: " + musculoIndex : ""}</h2>
 
-            <h2 className="text-lg text-left text-secondary font-light">Filtros:</h2>
-
-            <div className="flex flex-col lg:flex-row items-center p-4 bg-white rounded-xl shadow-lg w-max">
-              <div className="flex bg-gray-100driceps p-4 space-x-4 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input name="search" className="bg-gray-100 outline-none w-max" type="text" placeholder="Busque algún ejercicio..." value={formInput.search || ""} onChange={handleOnInputChange}/>
+            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
+            <div className="relative flex flex-row">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
-              <div className="flex rounded-lg text-gray-500 font-semibold cursor-pointer my-4 lg:my-0">
-                <div className="bg-gray-800 px-2 text-white font-semibold rounded-lg cursor-pointer">
-                  <button className="btn btn-ghost" onClick={getEjercicios}>Buscar</button>
-                </div>
-              </div>
+              <input name="search" id="search" className="input input-secondary border-0 block w-full p-8 pl-11 text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
+              <button type="submit" onClick={getEjercicios} className="btn text-white absolute right-3 bottom-2 btn-secondary rounded-lg px-6 py-2">BUSCAR</button>
             </div>
 
-
+            <br/>
+            <div className="divider m-0"></div>
+            
             {/* SELECT GRUPO MUSCULAR */}
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text text-md">Grupo Muscular Primario</span>
-              </label>
-              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-bordered select-secondary" defaultValue="Todos">
-                <option id="Todos" value="Todos">TODOS</option>
+            <div className="form-control mt-4 mb-4 lg:mb-7">
+              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary text-xl py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue={formInput.musculo}>
+                <option id="Todos" value="Todos" hidden>Grupo Muscular</option>
+                <option id="Todos" value="Todos">Todos</option>
                 <option id="Abdomen" value="Abdomen">Abdomen</option>
                 <option id="Oblicuos" value="Oblicuos">Oblicuos</option>
                 <option id="Antebrazos" value="Antebrazos">Antebrazos</option>
@@ -191,88 +189,167 @@ export default function Home() {
                 <option id="Gluteos" value="Gluteos">Gluteos</option>
                 <option id="Espalda Baja" value="Espalda Baja">Espalda Baja</option>
               </select>
-              <label className="label">
-                <span className="label-text">SELECT GRUPO MUSCULAR</span>
-              </label>
             </div>
 
-            {/* CHECKBOX TOGGLE EQUIPO */}
-            <div className="flex flex-col">
-              <div className="form-control w-0">
-                <label className="cursor-pointer label">
-                  <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Mancuernas") : true} className="toggle toggle-secondary" value="Mancuernas" id="equipo" name="equipo" onChange={handleOnInputChange} />
-                  <span className="label-text mx-4">Mancuernas</span> 
-                </label>
-                <label className="cursor-pointer label">
-                  <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Barra") : true} className="toggle toggle-secondary" value="Barra" id="equipo" name="equipo" onChange={handleOnInputChange} />
-                  <span className="label-text mx-4">Barra</span> 
-                </label>
-                <label className="cursor-pointer label">
-                  <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Bandas de resistencia") : true} className="toggle toggle-secondary" value="Bandas de resistencia" id="equipo" name="equipo" onChange={handleOnInputChange} />
-                  <span className="label-text mx-4">Bandas de resistencia</span> 
-                </label>
-                <label className="cursor-pointer label">
-                  <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banca plano") : true} className="toggle toggle-secondary" value="Banca plano" id="equipo" name="equipo" onChange={handleOnInputChange} />
-                  <span className="label-text mx-4">Banca plano</span> 
-                </label>
+            <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow-md">
+              <input type="checkbox" /> 
+              <div className="collapse-title text-xl text-left text-secondary">
+                Equipo
+              </div>
+              <div className="collapse-content"> 
+              <div className="divider m-0"></div>
+
+                {/* CHECKBOX TOGGLE EQUIPO */}
+                <div className="flex flex-row flex-wrap form-control">
+                  <div className="w-full lg:w-1/3 lg:m-auto">
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Ninguno</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Ninguno") : true} className="toggle toggle-secondary" value="Ninguno" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Banda de resistencia</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banda de resistencia") : true} className="toggle toggle-secondary" value="Banda de resistencia" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Banda de suspensión</span>
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banda de suspension") : true} className="toggle toggle-secondary" value="Banda de suspension" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Barra</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Barra") : true} className="toggle toggle-secondary" value="Barra" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Barra Z</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Barra Z") : true} className="toggle toggle-secondary" value="Barra Z" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Barras (dominadas, paralelas)</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Barras (dominadas, paralelas)") : true} className="toggle toggle-secondary" value="Barras (dominadas, paralelas)" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Mancuernas</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Mancuernas") : true} className="toggle toggle-secondary" value="Mancuernas" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                  </div>
+
+                  <div className="w-full lg:w-1/3 lg:m-auto">
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Pesa rusa</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Pesa rusa") : true} className="toggle toggle-secondary" value="Pesa rusa" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Placa de peso</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Placa de peso") : true} className="toggle toggle-secondary" value="Placa de peso" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Máquinas en GYM</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Maquinas en GYM") : true} className="toggle toggle-secondary" value="Maquinas en GYM" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Banco plano</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banco plano") : true} className="toggle toggle-secondary" value="Banco plano" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Banco declinado</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banco declinado") : true} className="toggle toggle-secondary" value="Banco declinado" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Banco inclinado</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Banco inclinado") : true} className="toggle toggle-secondary" value="Banco inclinado" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                    <label className="cursor-pointer label">
+                      <span className="label-text mx-4">Cuerda</span> 
+                      <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Cuerda") : true} className="toggle toggle-secondary" value="Cuerda" id="equipo" name="equipo" onChange={handleOnInputChange} />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center mb-3 mt-5">
+                  <div className="flex flex-row flex-wrap items-center">
+                    <button
+                    onClick={() => {
+                      var temp = ["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]
+                      setEquipo(temp);
+                      setFormInput({equipo: temp})}} 
+                      className="btn btn-secondary w-3/4 mx-auto">Activar todos
+                    </button>
+                    <button
+                    onClick={() => {
+                      var temp = []
+                      setEquipo(temp);
+                      setFormInput({equipo: temp})}} 
+                      className="btn mt-4 w-3/4 mx-auto">Desactivar todos
+                    </button>
+                  </div>
+                </div>
+
+                <div className="divider m-0"></div>
+
+                <div className="flex flex-col items-center mb-3 mt-5">
+                  <button type="submit" onClick={getEjercicios} className="btn btn-lg btn-secondary px-6 w-3/4 lg:w-3/12">FILTRAR</button>
+                </div>
               </div>
             </div>
-
-            <button className="btn btn-secondary btn-sm m-6" onClick={getEjercicios}>Filtrar</button>
-
           </div>
           
           {
             ejercicios ? 
-            <div className="w-9/12 mx-auto">
+            <div className="w-9/12 mx-auto mt-6">
               <h2 className="text-lg">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
-              {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
-              {
-                ejercicios.map((ejercicio) =>(
-                <div key={ejercicio.id} className="max-w-sm w-full lg:max-w-full lg:flex drop-shadow-md my-6">
-                  <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
-                  </div>
-                  <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div className="mb-8">
-                      <p className="text-sm text-gray-600 flex items-center">
-                        <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                        </svg>
-                        {ejercicio.musculo_primario}
-                      </p>
-                      <div className="text-gray-900 font-bold text-xl mb-2">{ejercicio.nombre}</div>
-                      <p className="text-gray-700 text-base">{ejercicio.recomendaciones}</p>
+              <div className="flex flex-col items-center">
+                {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
+                {
+                  ejercicios.map((ejercicio) =>(
+                  <div key={ejercicio.id} className="max-w-lg w-full lg:max-w-full lg:flex drop-shadow-md my-6">
+                    <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
                     </div>
-                    <div className="flex items-center">
-                      <div className="text-sm mr-4">
-                        <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
-                        <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
+                    <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                      <div className="mb-8">
+                        <p className="text-sm text-gray-600 flex items-center">
+                          <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+                          </svg>
+                          {ejercicio.musculo_primario}
+                        </p>
+                        <div className="text-gray-900 font-bold text-xl mb-2">{ejercicio.nombre}</div>
+                        <p className="text-gray-700 text-base">{ejercicio.recomendaciones}</p>
                       </div>
-                      <div className="text-sm">
-                        <p className="text-gray-900 leading-none font-semibold">Equipo:</p>
-                        <p className="text-gray-600">{ejercicio.herramienta.join(", ")}</p>
+                      <div className="flex items-center">
+                        <div className="text-sm mr-4">
+                          <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
+                          <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
+                        </div>
+                        <div className="text-sm">
+                          <p className="text-gray-900 leading-none font-semibold">Equipo:</p>
+                          <p className="text-gray-600">{ejercicio.equipo.join(", ")}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))
-              }
+                ))
+                }
+              </div>
               {/* PAGINACIÓN */}
-              <div className="btn-group">
-                {(paginacion == 1) ? "" : <button className="btn" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                {((paginacion - 2) <= 0) ? "" : <button className="btn" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                {((paginacion - 1) <= 0) ? "" : <button className="btn" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
-                <button className="btn btn-secondary">{paginacion}</button>
-                {(paginacion + 1 >= (cantidad/10))? "" : <button className="btn" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button>}
-                {(paginacion + 2 >= (cantidad/10))? "" : <button className="btn" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button>}
-                {(paginacion >= (cantidad/10))? "" : <button className="btn" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+              <div className="flex flex-col items-center mb-2 mt-12">
+                <div className="btn-group">
+                  {(paginacion == 1) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
+                  {((paginacion - 2) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
+                  {((paginacion - 1) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                  <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
+                  {(paginacion + 1 >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button>}
+                  {(paginacion + 2 >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button>}
+                  {(paginacion >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                </div>
               </div>
             </div> 
             : 
-            <div>
+            <div className="flex flex-col items-center mt-10 mb-2">
               <button className="btn btn-outline btn-lg btn-secondary loading"> Cargando</button>
             </div>
           }
+          <div className="flex flex-col items-center mb-10">
+            <button className="btn btn-outline rounded-full btn-secondary btn-lg w-1/2 m-8" onClick={() => {router.push("/agregarEjercicio")}}>Agregar Ejercicio</button>
+          </div>
         </div>
         <br />
       </main>
