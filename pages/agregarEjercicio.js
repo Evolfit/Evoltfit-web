@@ -17,34 +17,79 @@ export default function Home() {
   const [errorDatosInput, setErrorDatosInput] = useState({});
   const [otroMusculo, setOtroMusculo] = useState([]);
   const [equipo, setEquipo] = useState([]);
+  const [imagenNombre, setImagenNombre] = useState();
   
   const handleSubmit = async (e) => {
-    
-    e.preventDefault();
 
-      const result = await supabase.from("formulario").insert([{
-        nombre: nombre,
-        correo: correo,
-        mensaje: mensaje,
-      },])
+    if((formInput.nombre == undefined || formInput.nombre == "") 
+    || (formInput.musculo == undefined || formInput.musculo == "") 
+    || (formInput.equipo == undefined || formInput.equipo == "")
+    || (formInput.recomendaciones == undefined || formInput.recomendaciones == "")
+    || (formInput.errores == undefined || formInput.errores == "")
+    || (formInput.imagen == undefined || formInput.imagen == "")){
+      alert("Llena todos los campos.")
+    }
+    else{
+      var nombre = formInput.nombre.toString().split(' ').join('_') + '.' + imagenNombre.toString().split('.').pop()
 
-      console.log(nombre);
-      console.log(correo);
-      console.log(mensaje);
-      
-      console.log(result);
-     
-      e.target.reset()
+      const { data, error } = await supabase.storage
+      .from('img')
+      .upload('ejercicios/' + nombre, formInput.imagen)
+
+      if (error) {
+        //console.log("Hubo un error al cargar la imagen.")
+        alert("ERROR: Hubo un error al cargar la imagen.")
+        console.log(error)
+      }
+
+      if (data) {
+        //console.log("Imagen cargada.")
+        console.log(data.path)
+
+        const { error } = await supabase
+        .from('ejercicios')
+        .insert({
+          nombre: formInput.nombre, 
+          musculo_primario: formInput.musculo,
+          musculo_otros: formInput.musculoOtro,
+          equipo: formInput.equipo,
+          recomendaciones: formInput.recomendaciones,
+          errores: formInput.errores,
+          img: 'https://ichwtlkazihzvtpmxbnw.supabase.co/storage/v1/object/public/img/' + data.path
+          })
+
+        if (error) {
+          alert("ERROR: Hubo un error al generar el registro.")
+          console.log(error)
+        }
+        else{
+          if(!alert(
+            "            ⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠛⣿⣿⡄\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣍⣀⣈⣙⣿⣿⣿⣿⡿⠟⣀⣠⣤⣄⡄⠻⣿⣇\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⣿⡿⠛⠛⠛⢻⣿⣿⣧⣾⣏⣀⣀⠀⢁⣠⣼⣿\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣿⣿⣿⡧\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⢿⣿⣿⣿⣟⣙⢻⣿⣿⣿⡿⠿⠗\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⠏⣼⠿⣿⠿⠟⠋⠀⠘⣿⠏⠀⠀⠀⢀⠀⠁\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣴⣿⣶⣷⣶⣶⣶⡆⢠⣿⣷⣾⡟⠀⠈\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⠛⠉⠁⠀⠀⠀⠀⠿⣿⠟⠁\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣷⣦⣽⣓⡠⠝⠀⠠⠘⠋\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⣠⣤⡀⠀⠀⠀⢹⣿⣿⣿⣤⣍⣀⣀⣀⡴⠁⠀⠀⠀⢀\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠙⢄⠙⠛⠛⠉⠀⠈\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠈⠐⠠⠤\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣀⡀⠀⠀⣀⣀⡀\n"
+            + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡄\n"
+            + "⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷\n"
+            + "⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣴⣿⣿⣟⡉⡁\n"
+            + "⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠏\n"
+            + "⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠥⡆\n\n"
+            + "--- Ejercicio cargado. --- "
+            )){window.location.reload();}
+        }
+      }
+    }
   };
-
-  const subirImgEjercicio = async () => {
-
-    const { data, error } = await supabase.storage
-    .from('avatars')
-    .upload('public/img/ejercicios/avatar1.png', avatarFile)
-  }
-
-  
 
   const handleOnInputChange = useCallback(
     (event) => {
@@ -73,11 +118,12 @@ export default function Home() {
         setOtroMusculo(temp);
 
         setFormInput({
-          ...setFormInput,
+          ...formInput,
           [name]: temp,
         });
       }
 
+      //VALIDACIÓN INPUT EQUIPO
       if (name == "equipo"){     
         var temp = equipo;
         
@@ -95,13 +141,24 @@ export default function Home() {
         setEquipo(temp);
 
         setFormInput({
-          ...setFormInput,
+          ...formInput,
           [name]: temp,
         });
       }
 
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
+      //VALIDACIÓN INPUT IMAGEN
+      if (name == "imagen"){           
+        setFormInput({
+          ...formInput,
+          [name]: event.target.files[0],
+        });
+
+        setImagenNombre(value)
+      }
+
+      console.log(name + " | " + id + ": " + value + " -> " + checked);
       //console.log(formInput.musculoOtro)
+
 
     },
     [formInput, setFormInput]
@@ -376,21 +433,21 @@ export default function Home() {
           <div className="divider m-0 mb-6"></div>
 
           {/*CAMPO recomendaciones ---------------------------- */}   
-          <textarea name="recomendaciones" value={formInput.recomendaciones || ""} onChange={handleOnInputChange} placeholder="Recomendaciones" className={"textarea textarea-success text-lg border-2 mb-2 " +  (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error")  ? "input-error" : "input-success") : " ")}></textarea>
+          <textarea name="recomendaciones" value={formInput.recomendaciones || ""} onChange={handleOnInputChange} placeholder="Recomendaciones" className={"textarea textarea-success  rounded-xl shadow-md text-lg border-2 mb-2 " +  (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error")  ? "input-error" : "input-success") : " ")}></textarea>
 
           <label className="label">
             <span className="label-text-alt text-red-500">{incluye(errorDatosInput.correo, "error")  ? "Use un correo válido." : ""}</span>
           </label>
 
           {/*CAMPO errores ---------------------------- */}
-          <textarea name="errores" value={formInput.errores || ""} onChange={handleOnInputChange} placeholder="Errores comunes" className={"textarea textarea-warning text-lg border-2 mb-2 " +  (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error")  ? "input-error" : "input-success") : " ")}></textarea>
+          <textarea name="errores" value={formInput.errores || ""} onChange={handleOnInputChange} placeholder="Errores comunes" className={"textarea textarea-warning  rounded-xl shadow-md  text-lg border-2 mb-2 " +  (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error")  ? "input-error" : "input-success") : " ")}></textarea>
 
           <label className="label">
             <span className="label-text-alt text-red-500">{incluye(errorDatosInput.correo, "error")  ? "Use un correo válido." : ""}</span>
           </label>
 
           {/*CAMPO imagen ---------------------------- */}
-          <input name="imagen" type="file" className="w-full bg-fuchsia-600 text-white rounded-xl p-4 mb-4"/>
+          <input name="imagen" id="imagen" type="file" accept="image/*" onChange={handleOnInputChange}  className="w-full bg-fuchsia-600  rounded-xl shadow-md text-white p-4 mb-4"/>
 
           {
             (datos) ? 
@@ -411,7 +468,7 @@ export default function Home() {
             (
               <div className="alert alert-error font-bold text-white">
                 <div>
-                  <span>
+                  <span> 
                     Ocurrió un error.
                   </span>
                 </div>
@@ -423,7 +480,7 @@ export default function Home() {
           <div className="divider m-0"></div>
           
           {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
-          <button className={"btn btn-secondary btn-lg m-6 " + (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error") || incluye(errorDatosInput.password, "error") || incluye(errorDatosInput.confirmarPassword, "error") ? "btn-disabled" : " ") : " ")} onClick={() => {}}>
+          <button className={"btn btn-secondary btn-lg m-6 " + (incluye(errorDatosInput.correo, "control")  ? (incluye(errorDatosInput.correo, "error") || incluye(errorDatosInput.password, "error") || incluye(errorDatosInput.confirmarPassword, "error") ? "btn-disabled" : " ") : " ")} onClick={handleSubmit}>
             Guardar
           </button>
         </div>

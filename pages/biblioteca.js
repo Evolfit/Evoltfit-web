@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     getEjercicios();
-  }, []);
+  }, [formInput]);
 
   const handleOnInputChange = useCallback(
     (event) => {
@@ -53,7 +53,7 @@ export default function Home() {
         setEquipo(temp);
 
         setFormInput({
-          ...setFormInput,
+          ...formInput,
           [name]: temp,
         });
       }
@@ -83,7 +83,7 @@ export default function Home() {
     }
 
     let query = supabase
-    .from('prueba_ejercicios')
+    .from('ejercicios')
     .select('*')
   
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
@@ -103,7 +103,7 @@ export default function Home() {
     //CONTEO TOTAL DE REGISTROS
 
     query = supabase
-    .from('prueba_ejercicios')
+    .from('ejercicios')
     .select('*', { count: 'exact', head: true })
 
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
-              <input name="search" id="search" className="input input-secondary border-0 block w-full p-8 pl-11 text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
+              <input name="search" id="search" onBlur={getEjercicios} className="input input-secondary border-0 block w-full p-8 pl-11 text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
               <button type="submit" onClick={getEjercicios} className="btn text-white absolute right-3 bottom-2 btn-secondary rounded-lg px-6 py-2">BUSCAR</button>
             </div>
 
@@ -313,11 +313,14 @@ export default function Home() {
                         <div className="text-gray-900 font-bold text-xl mb-2">{ejercicio.nombre}</div>
                         <p className="text-gray-700 text-base">{ejercicio.recomendaciones}</p>
                       </div>
+                      
                       <div className="flex items-center">
-                        <div className="text-sm mr-4">
-                          <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
-                          <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
-                        </div>
+                      {ejercicio.musculo_otros != "" ? 
+                      <div className="text-sm mr-4">
+                        <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
+                        <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
+                      </div>
+                      : ""}
                         <div className="text-sm">
                           <p className="text-gray-900 leading-none font-semibold">Equipo:</p>
                           <p className="text-gray-600">{ejercicio.equipo.join(", ")}</p>
