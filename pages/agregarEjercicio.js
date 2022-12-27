@@ -18,6 +18,33 @@ export default function Home() {
   const [otroMusculo, setOtroMusculo] = useState([]);
   const [equipo, setEquipo] = useState([]);
   
+  const handleSubmit = async (e) => {
+    
+    e.preventDefault();
+
+      const result = await supabase.from("formulario").insert([{
+        nombre: nombre,
+        correo: correo,
+        mensaje: mensaje,
+      },])
+
+      console.log(nombre);
+      console.log(correo);
+      console.log(mensaje);
+      
+      console.log(result);
+     
+      e.target.reset()
+  };
+
+  const subirImgEjercicio = async () => {
+
+    const { data, error } = await supabase.storage
+    .from('avatars')
+    .upload('public/img/ejercicios/avatar1.png', avatarFile)
+  }
+
+  
 
   const handleOnInputChange = useCallback(
     (event) => {
