@@ -1,11 +1,14 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { CheckIcon } from "@heroicons/react/solid";
+import { CheckIcon } from "@heroicons/react/solid"; 
+import { checkout } from  "../validacionPago";
+import Link from "next/link";
 
 
 const CardsPrecios = ({
   nombre = "",
   precio = 0,
+  precio_id = "",
   signo = "$",
   frecuencia = "month",
   caracteristicas = [],
@@ -13,9 +16,8 @@ const CardsPrecios = ({
 }) => {
 
   const router = useRouter();
-
+  
   return (
-
     <div className = {`bg-white border-blue-700 rounded-md shadow-xl cursor-pointer relative ${popular ? "border-2" : "border border-opacity-10"}`}>
         {
             popular ? (
@@ -46,9 +48,21 @@ const CardsPrecios = ({
           ))}
         </ul>
         {/* Boton del plan*/}
-        <button onClick={() => {router.push("/registro")}} className={`font-source mt-12 w-full py-4 px-8 rounded-lg text-lg whitespace-nowrap focus:outline-none focus:ring-4 focus:ring-blue-700 focus:ring-opacity-50 transition-all ${popular ? "text-white bg-blue-600 hover:bg-blue-700 hover:scale-105 transform" : "bg-white text-blue-700 hover:bg-gray-50"}`}>
+        
+        <button onClick = {(() => {
+          checkout({
+            lineItems:[
+              {
+                price: precio_id,
+                quantity: 1
+              }
+            ]
+          },
+          nombre)
+        })} className={`font-source mt-12 w-full py-4 px-8 rounded-lg text-lg whitespace-nowrap focus:outline-none focus:ring-4 focus:ring-blue-700 focus:ring-opacity-50 transition-all ${popular ? "text-white bg-blue-600 hover:bg-blue-700 hover:scale-105 transform" : "bg-white text-blue-700 hover:bg-gray-50"}`}>
           Obtenlo ya
         </button>
+       
       </div>
     </div>
   );

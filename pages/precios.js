@@ -3,14 +3,27 @@ import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import Precios from "./Componentes/CardsPrecios";
+import PreciosSesion from "./Componentes/CardsPrecioSesion";
 import { useRouter } from "next/router";
 import { Link } from "react-scroll";
-import { Fade, Flip, Rotate, Zoom, Bounce, Roll, Slide, LightSpeed } from "react-reveal";
+import {
+  Fade,
+  Flip,
+  Rotate,
+  Zoom,
+  Bounce,
+  Roll,
+  Slide,
+  LightSpeed,
+} from "react-reveal";
+import supabase from "/config/supabaseClient";
+import { useState, useEffect } from "react";
 
 const plans = [
   {
     nombre: "1 mes",
     precio: 149,
+    precio_id: "price_1MJc4MCFYlDxDHBcOayU4Cf8",
     frecuencia: "mes",
     popular: false,
     caracteristicas: [
@@ -23,6 +36,7 @@ const plans = [
   {
     nombre: "6 meses",
     precio: 126.65,
+    precio_id: "price_1MJc5BCFYlDxDHBcewGPvKFx",
     frecuencia: "mes",
     popular: true,
     caracteristicas: [
@@ -35,6 +49,7 @@ const plans = [
   {
     nombre: "12 meses",
     precio: 104.3,
+    precio_id: "price_1MJc5yCFYlDxDHBcgNs8o5rF",
     frecuencia: "mes",
     popular: false,
     caracteristicas: [
@@ -46,10 +61,33 @@ const plans = [
   },
 ];
 
+
+
 export default function Home() {
+
+  const [sesion, setSesion] = useState(null);
+
+  useEffect(() => {
+    handleSesion();
+  }, []);
+
+  const handleSesion = async () => {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (data.session) {
+      setSesion(data.session);
+      console.log(data);
+    } else {
+      setSesion(null);
+      console.log("No hay Sesión " + error);
+      console.log(data);
+    }
+  };
+
   const router = useRouter();
 
   return (
+    
     <div className="bg-blue-50 w-full">
       <Head>
         <title>EvoltFit - Precios</title>
@@ -70,122 +108,174 @@ export default function Home() {
         <h1 className="absolute top-32 text-lg text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-4xl xl:top-64 ">
           Precios diseñados para tus objetivos
         </h1>
-        <Link to = "seccionPaquetes" spy = {true} smooth = {true} offset = {50} duration = {800}>
-        <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-36 py-3 px-6  xl:w-64 xl:py-4 xl:px-8   xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
-          Pruébalos
-        </button>
+        <Link
+          to="seccionPaquetes"
+          spy={true}
+          smooth={true}
+          offset={50}
+          duration={800}
+        >
+          <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-36 py-3 px-6  xl:w-64 xl:py-4 xl:px-8   xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
+            Pruébalos
+          </button>
         </Link>
       </div>
 
       <br />
       <br />
-      
-      
-      <div className = "grid place-items-center">
-      <div className = "xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
-       
-        <div className="w-64 p-8">
-        <center>
-        <Fade duration={700} top>
-          <div className="h-16 w-16">
-              <img src = "intuitivo.png"></img>
+
+      <div className="grid place-items-center">
+        <div className="xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
+          <div className="w-64 p-8">
+            <center>
+              <Fade duration={700} top>
+                <div className="h-16 w-16">
+                  <img src="intuitivo.png"></img>
+                </div>
+              </Fade>
+            </center>
+            <Fade duration={700} bottom>
+              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+                Intuitivo
+              </h1>
+            </Fade>
+            <div className="text-center">
+              <Slide duration={700} left>
+                <h2 className="font-catamaran">
+                  No necesitas ser un experto, en EvoltFit te guiaremos paso a
+                  paso para que tengas los resultados que quieres.
+                </h2>
+              </Slide>
+            </div>
           </div>
-          </Fade>
-        </center>
-        <Fade duration={700} bottom>
-          <h1 className = "text-center mb-4 mt-4 text-2xl font-medium text-blue-600">Intuitivo</h1>
-          </Fade>
-          <div className = "text-center">
-          <Slide duration={700} left>
-          <h2 className = "font-catamaran">No necesitas ser un experto, en EvoltFit te guiaremos paso a paso para que tengas los resultados que quieres.</h2>
-          </Slide>
+
+          <div className="w-64 p-9">
+            <center>
+              <Fade duration={700} top>
+                <div className="h-16 w-16">
+                  <img src="centralizado.png"></img>
+                </div>
+              </Fade>
+            </center>
+            <Fade duration={700} bottom>
+              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+                Centralizado
+              </h1>
+            </Fade>
+            <div className="text-center">
+              <Slide duration={700} bottom>
+                <h2 className="font-catamaran">
+                  Encuentra las herramientas más importantes que necesitaras en
+                  tu camino fitness en un solo lugar.
+                </h2>
+              </Slide>
+            </div>
           </div>
-        </div>
-        
-        <div className="w-64 p-9">
-        <center>
-        <Fade duration={700} top>
-          <div className="h-16 w-16">
-              <img src = "centralizado.png"></img>
-          </div>
-          </Fade>
-        </center>
-        <Fade duration={700} bottom>
-          <h1 className = "text-center mb-4 mt-4 text-2xl font-medium text-blue-600">Centralizado</h1>
-          </Fade>
-          <div className = "text-center">
-          <Slide duration={700} bottom>
-          <h2 className = "font-catamaran">Encuentra las herramientas más importantes que necesitaras en tu camino fitness en un solo lugar.</h2>
-          </Slide>
-          </div>
-        </div>
-        <div className="w-64 p-9">
-        <center>
-        <Fade duration={700} top>
-          <div className="h-16 w-16">
-              <img src = "barato.png"></img>
-          </div>
-          </Fade>
-        </center>
-        <Fade duration={700} bottom>
-          <h1 className = "text-center mb-4 mt-4 text-2xl font-medium text-blue-600">Accesible</h1>
-          </Fade>
-          <div className = "text-center">
-          <Slide duration={700} right>
-          <h2 className = "font-catamaran text-base">Accede a una gran cantidad de herramientas y ejercicios sin la necesidad de pagar una alta tarifa.</h2>
-          </Slide>
+          <div className="w-64 p-9">
+            <center>
+              <Fade duration={700} top>
+                <div className="h-16 w-16">
+                  <img src="barato.png"></img>
+                </div>
+              </Fade>
+            </center>
+            <Fade duration={700} bottom>
+              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+                Accesible
+              </h1>
+            </Fade>
+            <div className="text-center">
+              <Slide duration={700} right>
+                <h2 className="font-catamaran text-base">
+                  Accede a una gran cantidad de herramientas y ejercicios sin la
+                  necesidad de pagar una alta tarifa.
+                </h2>
+              </Slide>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-      
 
       <br />
       <br />
       <br />
       <br />
-      <div id = "seccionPaquetes"></div>
+      <div id="seccionPaquetes"></div>
       <Fade top>
-      <h1 className = "text-center text-5xl text-zinc-700 font-catamaran">Descubre el plan perfecto para ti</h1>
+        <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
+          Descubre el plan perfecto para ti
+        </h1>
       </Fade>
       <br />
       <br />
       <br />
-      
-      <Fade duration = {700} top>
-      <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
-        <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
-          {plans.map((plan) => (
-            <div
-              className={`w-full max-w-md mx-auto ${
-                plan.popular
-                  ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
-                  : "lg:transform lg:scale-90"
-              }`}
-            >
-              <Precios {...plan} key={plan.nombre} />
-            </div>
-          ))}
+
+      <Fade duration={700} top>
+      {sesion ? (
+        <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
+            {plans.map((plan) => (
+              <div
+                className={`w-full max-w-md mx-auto ${
+                  plan.popular
+                    ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
+                    : "lg:transform lg:scale-90"
+                }`}
+              >
+                <PreciosSesion {...plan} key={plan.nombre} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+         ) : (
+          <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
+            {plans.map((plan) => (
+              <div
+                className={`w-full max-w-md mx-auto ${
+                  plan.popular
+                    ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
+                    : "lg:transform lg:scale-90"
+                }`}
+              >
+                <Precios  {...plan} key={plan.nombre} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+          )}
+
       </Fade>
-      <h1 className = "text-center mt-1 text-sm text-gray-500">* Sujeto a una política de uso razonable</h1>
+      <h1 className="text-center mt-1 text-sm text-gray-500">
+        * Sujeto a una política de uso razonable
+      </h1>
       <br />
       <br />
       <br />
       <br />
       <Fade top>
-      <h1 className = "text-center text-5xl text-zinc-700 font-catamaran">¿Te gustaría probar EvoltFit?</h1>
+        <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
+          ¿Te gustaría probar EvoltFit?
+        </h1>
       </Fade>
+      <br/>
       <Slide bottom>
-      <div className = "grid place-items-center">
-        <button onClick={() => router.push("../registro")} className=" mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-36 py-3 px-6  xl:w-64 xl:py-4 xl:px-8   xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white">
-          Registrate
-        </button>
-      </div>
+        <div className="grid place-items-center">
+            <button onClick={() => router.push("../registro")} className = "button">
+              <span>Registrate</span>
+            </button>
+          
+        </div>
       </Slide>
       <br />
       <br />
+      {/*Botones God */}
+      {/*<button className="bottonraro2"> HOVER ME</button> */}
+      {/*<button className="bottonraro"> Button</button> */}
+      <br />
+      <br />
+      <br></br>
       <br />
       <br />
       <br />
