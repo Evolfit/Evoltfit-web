@@ -30,6 +30,12 @@ export default function Home() {
       alert("Llena todos los campos.")
     }
     else{
+      var musculoSecundario = [];
+
+      if (formInput.musculoOtro != undefined){
+        musculoSecundario = formInput.musculoOtro;
+      }
+
       var nombre = formInput.nombre.toString().split(' ').join('_') + '.' + imagenNombre.toString().split('.').pop()
 
       const { data, error } = await supabase.storage
@@ -51,7 +57,7 @@ export default function Home() {
         .insert({
           nombre: formInput.nombre, 
           musculo_primario: formInput.musculo,
-          musculo_otros: formInput.musculoOtro,
+          musculo_otros: musculoSecundario,
           equipo: formInput.equipo,
           recomendaciones: formInput.recomendaciones,
           errores: formInput.errores,
@@ -320,14 +326,30 @@ export default function Home() {
                   onClick={() => {
                     var temp = ["Abdomen","Oblicuos","Antebrazos","Biceps","Triceps","Hombros","Trapecio","Trapecio Medio","Pecho","Cuadriceps","Pantorrillas","Isquiotibiales","Dorsales","Gluteos","Espalda Baja"]
                     setOtroMusculo(temp);
-                    setFormInput({musculoOtro: temp})}} 
+                    setFormInput({
+                      equipo: formInput.equipo,
+                      nombre: formInput.nombre,
+                      musculo: formInput.musculo,
+                      musculoOtro: temp,
+                      recomendaciones: formInput.recomendaciones,
+                      errores: formInput.errores,
+                      imagen: formInput.imagen
+                    })}} 
                     className="btn btn-secondary w-3/4 mx-auto mt-2">Activar todos
                   </button>
                   <button
                   onClick={() => {
                     var temp = []
                     setOtroMusculo(temp);
-                    setFormInput({musculoOtro: temp})}} 
+                    setFormInput({
+                      equipo: formInput.equipo,
+                      nombre: formInput.nombre,
+                      musculo: formInput.musculo,
+                      musculoOtro: temp,
+                      recomendaciones: formInput.recomendaciones,
+                      errores: formInput.errores,
+                      imagen: formInput.imagen
+                    })}} 
                     className="btn mt-4 w-3/4 mx-auto mb-2">Desactivar todos
                   </button>
                 </div>
@@ -415,14 +437,30 @@ export default function Home() {
                   onClick={() => {
                     var temp = ["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]
                     setEquipo(temp);
-                    setFormInput({equipo: temp})}} 
+                    setFormInput({
+                      equipo: temp,
+                      nombre: formInput.nombre,
+                      musculo: formInput.musculo,
+                      musculoOtro: formInput.musculoOtro,
+                      recomendaciones: formInput.recomendaciones,
+                      errores: formInput.errores,
+                      imagen: formInput.imagen
+                    })}} 
                     className="btn btn-secondary w-3/4 mx-auto mt-2">Activar todos
                   </button>
                   <button
                   onClick={() => {
                     var temp = []
                     setEquipo(temp);
-                    setFormInput({equipo: temp})}} 
+                    setFormInput({
+                      equipo: temp,
+                      nombre: formInput.nombre,
+                      musculo: formInput.musculo,
+                      musculoOtro: formInput.musculoOtro,
+                      recomendaciones: formInput.recomendaciones,
+                      errores: formInput.errores,
+                      imagen: formInput.imagen
+                    })}} 
                     className="btn mt-4 w-3/4 mx-auto mb-2">Desactivar todos
                   </button>
                 </div>

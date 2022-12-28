@@ -85,6 +85,7 @@ export default function Home() {
     let query = supabase
     .from('ejercicios')
     .select('*')
+    .range(rango-10, rango-1)
   
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
     //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
@@ -104,7 +105,7 @@ export default function Home() {
 
     query = supabase
     .from('ejercicios')
-    .select('*', { count: 'exact', head: true })
+    .select('id', { count: 'exact', head: true })
 
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
     if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
@@ -269,14 +270,22 @@ export default function Home() {
                     onClick={() => {
                       var temp = ["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]
                       setEquipo(temp);
-                      setFormInput({equipo: temp})}} 
+                      setFormInput({
+                        equipo: temp,
+                        musculo: formInput.musculo,
+                        search: formInput.search
+                      })}} 
                       className="btn btn-secondary w-3/4 mx-auto mt-2">Activar todos
                     </button>
                     <button
                     onClick={() => {
                       var temp = []
                       setEquipo(temp);
-                      setFormInput({equipo: temp})}} 
+                      setFormInput({
+                        equipo: temp,
+                        musculo: formInput.musculo,
+                        search: formInput.search
+                      })}} 
                       className="btn mt-4 w-3/4 mx-auto mb-2">Desactivar todos
                     </button>
                   </div>
@@ -293,16 +302,18 @@ export default function Home() {
           
           {
             ejercicios ? 
-            <div className="w-9/12 mx-auto mt-6">
-              <h2 className="text-lg">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
-              <div className="flex flex-col items-center">
+            <div className="mx-auto mt-6">
+              <div className="w-9/12 mx-auto">
+                <h2 className="text-lg">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
+              </div>
+              <div className="flex flex-col items-center w-full">
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
-                  <div key={ejercicio.id} className="max-w-lg w-full lg:max-w-full lg:flex drop-shadow-md my-6">
+                  <div key={ejercicio.id} className="w-9/12 lg:flex drop-shadow-md my-6">
                     <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
                     </div>
-                    <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
                       <div className="mb-8">
                         <p className="text-sm text-gray-600 flex items-center">
                           <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
