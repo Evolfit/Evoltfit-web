@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     getEjercicios();
-  }, [formInput]);
+  }, [formInput, paginacion]);
 
   const handleOnInputChange = useCallback(
     (event) => {
@@ -57,6 +57,9 @@ export default function Home() {
           [name]: temp,
         });
       }
+
+      setPaginacion(1)
+
       //console.log(name + " | " + id + ": " + value + " -> " + checked);
       //console.log(formInput.equipo)
     },
@@ -303,8 +306,20 @@ export default function Home() {
           {
             ejercicios ? 
             <div className="mx-auto mt-6">
-              <div className="w-9/12 mx-auto">
-                <h2 className="text-lg">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
+              <div className="flex w-9/12 mx-auto">
+                <h2 className="text-lg w-1/2">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
+                {/* PAGINACIÓN */}
+                <div className="flex flex-col w-1/2 items-end">
+                  <div className="btn-group">
+                    {(paginacion == 1) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
+                    {((paginacion - 2) <= 0) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
+                    {((paginacion - 1) <= 0) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                    <button className="btn btn-sm btn-secondary">{paginacion}</button>
+                    {(cantidad > (paginacion * 10))? <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
+                    {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
+                    {(paginacion >= (cantidad/10))? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                  </div>
+                </div>
               </div>
               <div className="flex flex-col items-center w-full">
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
@@ -349,14 +364,16 @@ export default function Home() {
                   {((paginacion - 2) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
                   {((paginacion - 1) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
                   <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
-                  {(paginacion + 1 >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button>}
-                  {(paginacion + 2 >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button>}
+                  {(cantidad > (paginacion * 10))? <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
+                  {(cantidad > ((paginacion+1) * 10))? <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
                   {(paginacion >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
                 </div>
               </div>
             </div> 
             : 
-            <div class="loader"></div>
+            <div className="mt-12">
+              <div className="loader mt-6"></div>
+            </div>
           }
           <div className="flex flex-col items-center">
             <button className="btn btn-outline rounded-full btn-secondary btn-lg w-1/2 m-8" onClick={() => {router.push("/agregarEjercicio")}}>Agregar Ejercicio</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image'
 
 const Footer = () => {
 
@@ -8,7 +9,17 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="../" className="flex items-center">
-              <img src="evologo.png" className="mr-3 h-8" alt="Evolfit Logo" />
+              <img src="/evologo.png" className="mr-3 h-8" alt="Evolfit Logo" />
+              {/*
+                <div className="mr-3 h-8">
+                  <Image
+                    src="/evologo.png"
+                    alt='user profile picture'
+                    height={40}
+                    width={40}
+                  />
+                </div>
+              */}
               <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white">
                 EvoltFit
               </span>
