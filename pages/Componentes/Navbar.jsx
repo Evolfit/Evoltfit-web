@@ -4,6 +4,7 @@ import { useState, useEffect} from 'react';
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
 import Script from 'next/script';
+import Link from 'next/link'
 
 const Navbar = () => {
     const [sesion, setSesion] = useState(null);
@@ -64,9 +65,9 @@ const Navbar = () => {
 
             <div className = "md:flex items-center justify-between bg-white py-4 md:px-10 px-7 ">
                 <div>
-                    <a href="/">
-                    <img  src = "evologo.png" className='h-16 ml-6' onClick={() => router.push("/")}/>
-                    </a>
+                    <Link href="/">
+                        <img  src = "evologo.png" className='h-16 ml-6 cursor-pointer' onClick={() => router.push("/")}/>
+                    </Link>
                 </div>
                 <div onClick={() => setOpen(!open)} className = "text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
                     <ion-icon name={open ? 'close':'menu'}></ion-icon>
@@ -75,7 +76,11 @@ const Navbar = () => {
                 {
                     Links.map((link) =>(
                         <li key = {link.name} className = "md:ml-8 text-x1 md:my-0 my-7"> 
-                            <a href = {link.link} className = "text-gray-800 hover:text-blue-500 duration-500 text-xl">{link.name}</a>
+                            <Link href = {link.link} className = "text-gray-800 hover:text-blue-500 duration-500 text-xl">
+                                <span className = "text-gray-800 hover:text-blue-500 duration-500 text-xl cursor-pointer">
+                                    {link.name}
+                                </span>
+                            </Link>
                         </li>
                     ))
                 }

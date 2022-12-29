@@ -391,8 +391,12 @@ export default function Home() {
             la página de inicio
           </span>
           <br></br><br></br><br></br>
-          <a href = "/sistemaexperto" ><button className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
-                            duration-500'>Pal sistema experto pai</button></a>
+          <button 
+          className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white duration-500'
+          onClick={() => {router.push("/sistemaexperto")}}
+          >
+            Pal sistema experto pai
+          </button>
           <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={() => {router.push("/biblioteca")}}>Ir a Biblioteca de Ejercicios</button>
         </h1>
       <br />

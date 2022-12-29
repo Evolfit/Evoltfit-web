@@ -14,6 +14,7 @@ import {
   Slide,
   LightSpeed,
 } from "react-reveal";
+import Link from "next/link";
 
 export default function Home() {
   const [sesion, setSesion] = useState(null);
@@ -66,7 +67,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -77,11 +78,11 @@ export default function Home() {
                         Generador de rutinas automático
                       </h2>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -92,11 +93,11 @@ export default function Home() {
                         Contador de calorías
                       </h2>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -107,11 +108,11 @@ export default function Home() {
                         Registro de series y repeticiones
                       </h2>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -122,11 +123,11 @@ export default function Home() {
                         Visualizador de progreso
                       </h2>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -141,11 +142,11 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -160,11 +161,11 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="/">
+                  <Link href="/">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -179,7 +180,7 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -201,7 +202,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -215,11 +216,11 @@ export default function Home() {
                         Necesitas una cuenta para poder utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -233,11 +234,11 @@ export default function Home() {
                         Acceso directo
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -251,11 +252,11 @@ export default function Home() {
                         Necesitas una cuenta para poder utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -269,11 +270,11 @@ export default function Home() {
                         Necesitas una cuenta para poder utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -292,11 +293,11 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -314,11 +315,11 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <a href="../registro">
+                  <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -337,7 +338,7 @@ export default function Home() {
                         utilizarla
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
