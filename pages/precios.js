@@ -6,16 +6,6 @@ import Precios from "./Componentes/CardsPrecios";
 import PreciosSesion from "./Componentes/CardsPrecioSesion";
 import { useRouter } from "next/router";
 import { Link } from "react-scroll";
-import {
-  Fade,
-  Flip,
-  Rotate,
-  Zoom,
-  Bounce,
-  Roll,
-  Slide,
-  LightSpeed,
-} from "react-reveal";
 import supabase from "/config/supabaseClient";
 import { useState, useEffect } from "react";
 
@@ -128,69 +118,69 @@ export default function Home() {
         <div className="xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
           <div className="w-64 p-8">
             <center>
-              <Fade duration={700} top>
+              
                 <div className="h-16 w-16">
                   <img src="intuitivo.png"></img>
                 </div>
-              </Fade>
+              
             </center>
-            <Fade duration={700} bottom>
+            
               <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
                 Intuitivo
               </h1>
-            </Fade>
+           
             <div className="text-center">
-              <Slide duration={700} left>
+              
                 <h2 className="font-catamaran">
                   No necesitas ser un experto, en EvoltFit te guiaremos paso a
                   paso para que tengas los resultados que quieres.
                 </h2>
-              </Slide>
+             
             </div>
           </div>
 
           <div className="w-64 p-9">
             <center>
-              <Fade duration={700} top>
+              
                 <div className="h-16 w-16">
                   <img src="centralizado.png"></img>
                 </div>
-              </Fade>
+             
             </center>
-            <Fade duration={700} bottom>
+           
               <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
                 Centralizado
               </h1>
-            </Fade>
+            
             <div className="text-center">
-              <Slide duration={700} bottom>
+              
                 <h2 className="font-catamaran">
                   Encuentra las herramientas más importantes que necesitaras en
                   tu camino fitness en un solo lugar.
                 </h2>
-              </Slide>
+              
             </div>
           </div>
           <div className="w-64 p-9">
             <center>
-              <Fade duration={700} top>
+             
                 <div className="h-16 w-16">
                   <img src="barato.png"></img>
                 </div>
-              </Fade>
+              
             </center>
-            <Fade duration={700} bottom>
+            
               <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
                 Accesible
               </h1>
-            </Fade>
+            
             <div className="text-center">
-              <Slide duration={700} right>
+             
                 <h2 className="font-catamaran text-base">
                   Accede a una gran cantidad de herramientas y ejercicios sin la
                   necesidad de pagar una alta tarifa.
                 </h2>
-              </Slide>
+              
             </div>
           </div>
         </div>
@@ -201,21 +191,21 @@ export default function Home() {
       <br />
       <br />
       <div id="seccionPaquetes"></div>
-      <Fade top>
+      
         <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
           Descubre el plan perfecto para ti
         </h1>
-      </Fade>
+      
       <br />
       <br />
       <br />
 
-      <Fade duration={700} top>
+      
       {sesion ? (
         <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
             {plans.map((plan) => (
-              <div key={plan.id}
+              <div
                 className={`w-full max-w-md mx-auto ${
                   plan.popular
                     ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
@@ -231,7 +221,7 @@ export default function Home() {
           <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
             {plans.map((plan) => (
-              <div key={plan.id}
+              <div
                 className={`w-full max-w-md mx-auto ${
                   plan.popular
                     ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
@@ -246,7 +236,7 @@ export default function Home() {
 
           )}
 
-      </Fade>
+      
       <h1 className="text-center mt-1 text-sm text-gray-500">
         * Sujeto a una política de uso razonable
       </h1>
@@ -254,20 +244,20 @@ export default function Home() {
       <br />
       <br />
       <br />
-      <Fade top>
+      
         <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
           ¿Te gustaría probar EvoltFit?
         </h1>
-      </Fade>
+      
       <br/>
-      <Slide bottom>
+     
         <div className="grid place-items-center">
             <button onClick={() => router.push("../registro")} className = "button">
               <span>Registrate</span>
             </button>
           
         </div>
-      </Slide>
+      
       <br />
       <br />
       {/*Botones God */}

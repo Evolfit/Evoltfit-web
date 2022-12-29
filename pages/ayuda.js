@@ -2,16 +2,6 @@ import Head from "next/head";
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
-import {
-  Fade,
-  Flip,
-  Rotate,
-  Zoom,
-  Bounce,
-  Roll,
-  Slide,
-  LightSpeed,
-} from "react-reveal";
 import {useState} from 'react';
 import { useRouter} from "next/router";
 
@@ -58,14 +48,14 @@ export default function Home() {
 
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-12 mx-auto">
-            <Fade left>
+           
               <h1 className="text-3xl font-semibold text-gray-800 lg:text-4xl dark:text-white">
                 Preguntas frecuentes.
               </h1>
-            </Fade>
+            
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
               <div>
-                <Fade top>
+                
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -82,15 +72,15 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+                
                 <div>
-                  <Fade top>
+                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 1
                     </h1>
-                  </Fade>
+                  
 
-                  <Fade bottom>
+                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -98,12 +88,12 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                  
                 </div>
               </div>
 
               <div>
-                <Fade top>
+                
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -120,16 +110,16 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+                
 
                 <div>
-                  <Fade top>
+                 
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 2
                     </h1>
-                  </Fade>
+                 
 
-                  <Fade bottom>
+                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -137,12 +127,12 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                 
                 </div>
               </div>
 
               <div>
-                <Fade top>
+                
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -159,15 +149,15 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+                
 
                 <div>
-                  <Fade top>
+                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 3
                     </h1>
-                  </Fade>
-                  <Fade bottom>
+                  
+                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -175,12 +165,12 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                  
                 </div>
               </div>
 
               <div>
-                <Fade top>
+               
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -197,15 +187,15 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+               
 
                 <div>
-                  <Fade top>
+                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 4
                     </h1>
-                  </Fade>
-                  <Fade bottom>
+                  
+                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -213,12 +203,12 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                  
                 </div>
               </div>
 
               <div>
-                <Fade top>
+               
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -235,15 +225,15 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+               
 
                 <div>
-                  <Fade top>
+                 
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 5
                     </h1>
-                  </Fade>
-                  <Fade bottom>
+                 
+                 
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -251,12 +241,12 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                 
                 </div>
               </div>
 
               <div>
-                <Fade top>
+              
                   <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -273,15 +263,15 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                </Fade>
+                
 
                 <div>
-                  <Fade top>
+                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
                       Pregunta 6
                     </h1>
-                  </Fade>
-                  <Fade bottom>
+                  
+                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Provident placeat, consequatur eveniet veritatis quos
@@ -289,7 +279,7 @@ export default function Home() {
                       officia magnam atque blanditiis illum doloremque magni ex
                       corrupti tempora quis.
                     </p>
-                  </Fade>
+                  
                 </div>
               </div>
             </div>

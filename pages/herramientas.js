@@ -4,16 +4,6 @@ import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "/config/supabaseClient";
-import {
-  Fade,
-  Flip,
-  Rotate,
-  Zoom,
-  Bounce,
-  Roll,
-  Slide,
-  LightSpeed,
-} from "react-reveal";
 import Link from "next/link";
 
 export default function Home() {
@@ -53,17 +43,17 @@ export default function Home() {
         {sesion ? (
           <section className="bg-blue-50">
             <div className="container px-6 py-10 mx-auto">
-              <Fade top>
+              
                 <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
                   Todo lo que necesitas en un solo lugar
                 </h1>
-              </Fade>
-              <Slide bottom>
+             
+              
                 <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
                   Te ofrecemos un repertorio de herramientas que te serviran
                   para hacer un seguimiento de tu progreso.
                 </p>
-              </Slide>
+              
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
@@ -188,17 +178,17 @@ export default function Home() {
         ) : (
           <section className="bg-blue-50">
             <div className="container px-6 py-10 mx-auto">
-              <Fade top>
+              
                 <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
                   Todo lo que necesitas en un solo lugar
                 </h1>
-              </Fade>
-              <Slide bottom>
+             
+              
                 <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
                   Te ofrecemos un repertorio de herramientas que te serviran
                   para hacer un seguimiento de tu progreso.
                 </p>
-              </Slide>
+              
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
