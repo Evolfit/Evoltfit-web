@@ -1,6 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 
-export async function checkout({lineItems}, nombre){
+export default async function checkout({lineItems}, nombre){
 
     localStorage.setItem('Meses', nombre);
 

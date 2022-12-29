@@ -206,6 +206,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
             {plans.map((plan) => (
               <div
+                key={plan.nombre}
                 className={`w-full max-w-md mx-auto ${
                   plan.popular
                     ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
@@ -222,6 +223,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
             {plans.map((plan) => (
               <div
+                key={plan.nombre}
                 className={`w-full max-w-md mx-auto ${
                   plan.popular
                     ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"

@@ -2,16 +2,6 @@ import Head from "next/head";
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
-import {
-  Fade,
-  Flip,
-  Rotate,
-  Zoom,
-  Bounce,
-  Roll,
-  Slide,
-  LightSpeed,
-} from "react-reveal";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
