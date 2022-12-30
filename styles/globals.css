@@ -5,11 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
-
 .button {
   display: inline-block;
   border-radius: 7px;
