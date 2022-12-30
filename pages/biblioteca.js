@@ -156,24 +156,24 @@ export default function Home() {
         
         <div>
           <div className="w-9/12 mx-auto">
-            <h2 className="text-5xl text-left text-secondary font-semibold my-4">Biblioteca de Ejercicios</h2>
+            <h2 className="text-2xl lg:text-5xl text-left text-secondary font-semibold lg:my-4">Biblioteca de Ejercicios</h2>
             <br/>
 
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
             <div className="relative flex flex-row">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <svg aria-hidden="true" className="w-3 h-3  lg:w-5 lg:h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
-              <input name="search" id="search" onBlur={getEjercicios} className="input input-secondary border-0 block w-full p-8 pl-11 text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
-              <button type="submit" onClick={getEjercicios} className="btn text-white absolute right-3 bottom-2 btn-secondary rounded-lg px-6 py-2">BUSCAR</button>
+              <input name="search" id="search" onBlur={getEjercicios} className="input input-secondary border-0 block w-full pl-8 lg:p-8 lg:pl-11 text-sm lg:text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
+              <button type="submit" onClick={getEjercicios} className="btn text-white absolute right-2 lg:right-3 lg:bottom-2 btn-secondary rounded-lg btn-sm lg:btn-md top-2 lg:px-6 lg:py-2">BUSCAR</button>
             </div>
 
             <br/>
             <div className="divider m-0"></div>
             
             {/* SELECT GRUPO MUSCULAR */}
-            <div className="form-control mt-4 mb-4 lg:mb-7">
-              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary text-xl py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue={formInput.musculo}>
+            <div className="form-control mt-4 mb-4">
+              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary lg:text-xl lg:py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue={formInput.musculo}>
                 <option id="Todos" value="Todos" hidden>Grupo Muscular</option>
                 <option id="Todos" value="Todos">Todos</option>
                 <option id="Abdomen" value="Abdomen">Abdomen</option>
@@ -194,12 +194,12 @@ export default function Home() {
               </select>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow-md">
-              <input type="checkbox" /> 
-              <div className="collapse-title text-xl text-left text-secondary">
-                Equipo
-              </div>
-              <div className="collapse-content lg:px-10"> 
+            <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow-md text-sm lg:text-xl">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-secondary">
+                  Equipo
+                </div>
+              <div className="collapse-content  lg:px-10"> 
               <div className="divider m-0"></div>
 
                 {/* CHECKBOX TOGGLE EQUIPO */}
@@ -307,17 +307,17 @@ export default function Home() {
             ejercicios ? 
             <div className="mx-auto mt-6">
               <div className="flex w-9/12 mx-auto">
-                <h2 className="text-lg w-1/2">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
+                <h2 className="text-sm lg:text-lg w-1/4 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</h2>
                 {/* PAGINACIÓN */}
-                <div className="flex flex-col w-1/2 items-end">
+                <div className="flex flex-col my-auto w-3/4 items-end">
                   <div className="btn-group">
-                    {(paginacion == 1) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                    {((paginacion - 2) <= 0) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                    {((paginacion - 1) <= 0) ? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
-                    <button className="btn btn-sm btn-secondary">{paginacion}</button>
-                    {(cantidad > (paginacion * 10))? <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
-                    {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
-                    {(paginacion >= (cantidad/10))? "" : <button className="btn btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                    {(paginacion == 1) ? "" : <button className="btn btn-xs btn-outline btn-secondary lg:btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
+                    {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary btn-xs first-letter:btn-xs lg:btn-sm" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
+                    {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary btn-xs lg:btn-sm" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                    <button className="btn btn-xs lg:btn-sm btn-secondary">{paginacion}</button>
+                    {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary btn-xs lg:btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
+                    {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary btn-xs lg:btn-sm" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
+                    {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary btn-xs lg:btn-sm" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
                   </div>
                 </div>
               </div>
@@ -358,15 +358,15 @@ export default function Home() {
                 }
               </div>
               {/* PAGINACIÓN */}
-              <div className="flex flex-col items-center mb-2 mt-12">
+              <div className="flex flex-col items-center mb-2 mt-4">
                 <div className="btn-group">
-                  {(paginacion == 1) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                  {((paginacion - 2) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                  {((paginacion - 1) <= 0) ? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                  {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
+                  {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
+                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
                   <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
-                  {(cantidad > (paginacion * 10))? <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
-                  {(cantidad > ((paginacion+1) * 10))? <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
-                  {(paginacion >= (cantidad/10))? "" : <button className="btn lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                  {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
+                  {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
+                  {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
                 </div>
               </div>
             </div> 

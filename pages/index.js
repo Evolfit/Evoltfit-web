@@ -397,7 +397,8 @@ export default function Home() {
           >
             Pal sistema experto pai
           </button>
-          <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={() => {router.push("/biblioteca")}}>Ir a Biblioteca de Ejercicios</button>
+          <button className="btn btn-outline rounded-full btn-secondary btn-lg m-2" onClick={() => {router.push("/biblioteca")}}>Ir a Biblioteca de Ejercicios</button>
+          <button className="btn btn-outline rounded-full btn-secondary btn-lg m-2" onClick={() => {router.push("/rutinas")}}>Pa las rutinas pai</button>
         </h1>
       <br />
       <br />

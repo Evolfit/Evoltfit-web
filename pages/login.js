@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from '../config/supabaseClient';
+import Image from 'next/image'
 
 export default function Home() {
   const router = useRouter();
@@ -92,82 +93,67 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
 
-      <main className='flex flex-col content-center items-center'>
-        <div className="form-control py-10 px-16 bg-white rounded-2xl shadow-lg w-1/2">
-          <h2 className="text-3xl font-bold mb-10">
-            Ingreso
-          </h2>
+      <main>
+        <div className='relative overflow-hidden mt-20 pb-10'>
+          <br/>
+          <br/>
+          <Image className="opacity-80 blur-sm object-cover z-10 shadow-xl" src="/bcprice.jpg" width={1} height={1} layout='fill'/>
+          <div className='flex justify-center items-center'>
+            <div className="form-control p-8 w-80 lg:py-12 lg:px-12 bg-white rounded-2xl shadow-lg lg:w-1/2 z-10">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-10">
+                Ingreso
+              </h2>
 
-          {/*CAMPO CORREO ------------------------ */}
-          <input name="correo" value={formInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Correo" className={"input input-lg input-secondary border-0 text-xl py-6 h-full font-normal rounded-xl shadow-md mb-4 " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
-          <label className="label">
-            <span className="label-text-alt text-red-500 m-0"></span>
-          </label>
+              {/*CAMPO CORREO ------------------------ */}
+              <input name="correo" value={formInput.correo || ""} onChange={handleOnInputChange} type="text" placeholder="Correo" className={"input input-lg input-secondary border-0 text-xl py-6 h-full font-normal rounded-xl shadow-md mb-4 " + (incluye(errorDatosInput.correo, "error")  ? "input-error" : " ")}/>
+              <label className="label">
+                <span className="label-text-alt text-red-500 m-0"></span>
+              </label>
 
-          {/*CAMPO CONTRASEÑA ------------------------ */}
-          <input name="password" value={formInput.password || ""} onChange={handleOnInputChange} type="password" placeholder="Contraseña" className={"input input-lg input-secondary border-0 text-xl py-6 h-full font-normal rounded-xl shadow-md " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
-          <label className="label">
-            <a className="link link-secondary text-lg font-light no-underline mt-2 mb-4" onClick={() => router.push('/passwordOlvidada')}>¿Olvidaste tu constraseña?</a>
-          </label>
+              {/*CAMPO CONTRASEÑA ------------------------ */}
+              <input name="password" value={formInput.password || ""} onChange={handleOnInputChange} type="password" placeholder="Contraseña" className={"input input-lg input-secondary border-0 text-xl py-6 h-full font-normal rounded-xl shadow-md " + (incluye(errorDatosInput.password, "error")  ? "input-error" : " ")}/>
+              <label className="label">
+                <a className="link link-secondary text-lg font-light no-underline mt-2 mb-4" onClick={() => router.push('/passwordOlvidada')}>¿Olvidaste tu constraseña?</a>
+              </label>
 
-          {
-            (datos) ? 
-            (
-              <div className="alert alert-success font-bold text-white">
-                <div>
-                  <span>
-                    {"¡Login existoso!"}
-                    {datos.user.email}
-                  </span>
-                </div>
+              {
+                (datos) ? 
+                (
+                  <div className="alert alert-success font-bold text-white">
+                    <div>
+                      <span>
+                        {"¡Login existoso!"}
+                        {datos.user.email}
+                      </span>
+                    </div>
+                  </div>
+                )
+                : ""
+              }
+
+              {
+                (fetchError) ? 
+                (
+                  <div className="alert alert-error font-bold text-white">
+                    <div>
+                      <span>
+                        Correo o contraseña incorrectos.
+                      </span>
+                    </div>
+                  </div>
+                )
+                : ""
+              }
+                
+              <div className="divider mb-8 mt-2"></div>
+                {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
+                <button className={"btn btn-secondary btn-lg " + (formInput.correo == null ? "" : (formInput.correo != "" && formInput.password ?  "" : "btn-disabled"))} onClick={handleLogin}>Iniciar Sesión</button>
+                <a className="link link-secondary self-end mt-8 text-xl font-light" onClick={() => router.push('/registro')}>¿No tienes cuenta? Registrate</a>
               </div>
-            )
-            : ""
-          }
-
-          {
-            (fetchError) ? 
-            (
-              <div className="alert alert-error font-bold text-white">
-                <div>
-                  <span>
-                    Correo o contraseña incorrectos.
-                  </span>
-                </div>
-              </div>
-            )
-            : ""
-          }
-          
-          <div className="divider mb-8 mt-2"></div>
-          
-          {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
-          <button className={"btn btn-secondary btn-lg " + (formInput.correo == null ? "" : (formInput.correo != "" && formInput.password ?  "" : "btn-disabled"))} onClick={handleLogin}>Iniciar Sesión</button>
-
-          <a className="link link-secondary self-end mt-8 text-xl font-light" onClick={() => router.push('/registro')}>¿No tienes cuenta? Registrate</a>
+            </div>
         </div>
-
-        <button
-          onClick={() => router.push('/')}
-          className="btn btn-ghost text-2xl font-normal p-10 mt-10 content-center"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
-          &nbsp;Volver al Inicio
-        </button>
-
       </main>
-
-      <br/>
-      <br/>
       <Footer/>
     </div>
   );
