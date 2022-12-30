@@ -36,9 +36,9 @@ const Footer = () => {
             </h2>
             <ul className="text-gray-600 dark:text-gray-400">
               <li className="mb-4">
-                <a className="hover:underline">
-                  <Link href="../">Inicio</Link>
-                </a>
+                <Link href="../">
+                  <a className="hover:underline">Inicio</a>
+                </Link>
               </li>
               <li className="mb-4">
                 <Link href="../herramientas">
