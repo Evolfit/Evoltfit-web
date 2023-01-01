@@ -58,8 +58,6 @@ const Navbar = () => {
             <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></Script>
             <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></Script>
               <Head>
-               
-                
               </Head>
               
 
