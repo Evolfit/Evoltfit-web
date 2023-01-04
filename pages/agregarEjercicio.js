@@ -240,6 +240,7 @@ export default function Home() {
                 <option id="Dorsales" value="Dorsales">Dorsales</option>
                 <option id="Gluteos" value="Gluteos">Gluteos</option>
                 <option id="Espalda Baja" value="Espalda Baja">Espalda Baja</option>
+                <option id="Espalda Superior" value="Espalda Superior">Espalda Superior</option>
               </select>
             </div>
 
@@ -316,6 +317,10 @@ export default function Home() {
                   <label className="cursor-pointer label">
                     <span className="label-text mx-4">Espalda Baja</span> 
                     <input type="checkbox" checked={formInput.musculoOtro ? incluye(formInput.musculoOtro, "Espalda Baja") : false} className="toggle toggle-secondary" value="Espalda Baja" id="musculoOtro" name="musculoOtro" onChange={handleOnInputChange} />
+                  </label>
+                  <label className="cursor-pointer label">
+                    <span className="label-text mx-4">Espalda Superior</span> 
+                    <input type="checkbox" checked={formInput.musculoOtro ? incluye(formInput.musculoOtro, "Espalda Superior") : false} className="toggle toggle-secondary" value="Espalda Superior" id="musculoOtro" name="musculoOtro" onChange={handleOnInputChange} />
                   </label>
                 </div>
               </div>
