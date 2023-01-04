@@ -9,32 +9,25 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const router = useRouter();
   const { formData2, checkboxes, arreglo } = router.query;
-  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-  const [columnOrder, setColumnOrder] = useState(daysOfWeek);
+  //contenidos de puede llegar a contener cada dia
+  const contenido1 = ['1', '1', '1', '1', '1'];
+  const contenido2 = ['2', '2', '2', '2', '2', '2'];
+  const contenido3 = ['3', '3', '3', '3'];
+  const contenido4 = ['4', '4', '4', '4', '4', '4'];
+  const contenido5 = ['5', '5', '5', '5', '5'];
+  const contenido6 = ['6', '6', '6', '6', '6', '6'];
 
-  const moveColumn = (direction, index) => {
-    const newColumnOrder = [...columnOrder];
-    if (direction === 'left') {
-      if (index === 0) return; // no se puede mover la primera columna a la izquierda
-      const previousColumn = newColumnOrder[index - 1];
-      newColumnOrder[index - 1] = newColumnOrder[index];
-      newColumnOrder[index] = previousColumn;
-    } else {
-      if (index === columnOrder.length - 1) return; // no se puede mover la última columna a la derecha
-      const nextColumn = newColumnOrder[index + 1];
-      newColumnOrder[index + 1] = newColumnOrder[index];
-      newColumnOrder[index] = nextColumn;
-    }
-    setColumnOrder(newColumnOrder);
-  };
+  //una vez lleno el contenido se une todo para mostrarlo en la tabla
+  const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6];
+  const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
   const handleClick = () => {
     console.log(JSON.parse(formData2));
     console.log(JSON.parse(checkboxes));
     console.log(JSON.parse(arreglo));
   };
-  //Para mover las columnas de las tablas.
+
 
   return (
     <div className="bg-blue-100 w-full h-screen">
@@ -48,27 +41,26 @@ export default function Home() {
       <main className={styles.main}>
 
 
-        <div className="overflow-x-auto relative">
-          <table>
-            <thead>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                {columnOrder.map((column, index) => (
-                  <th key={column}>
-                    {index !== 0 && <span onClick={() => moveColumn('left', index)}>&lt;</span>}
-                    {column}
-                    {index !== columnOrder.length - 1 && <span onClick={() => moveColumn('right', index)}>&gt;</span>}
-                  </th>
-                ))}
+                <th className="px-6 py-3">Lunes</th>
+                <th className="px-6 py-3">Martes</th>
+                <th className="px-6 py-3">Miércoles</th>
+                <th className="px-6 py-3">Jueves</th>
+                <th className="px-6 py-3">Viernes</th>
+                <th className="px-6 py-3">Sábado</th>
+                <th className="px-6 py-3">Domingo</th>
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5].map((row) => (
-                <tr key={row}>
-                  {columnOrder.map((day, index) => (
-                    <td key={day}>
-                      Hola{index + 1}
-                    </td>
+              {longestArray.map((_, index) => (
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  {arrays.map((array) => (
+                    <td className="px-6 py-4">{array[index]}</td>
                   ))}
+                <td className="px-6 py-4"></td>
                 </tr>
               ))}
             </tbody>
