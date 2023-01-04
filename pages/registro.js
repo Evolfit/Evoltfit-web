@@ -222,19 +222,7 @@ export default function Home() {
                 </div>
                 <label className="label">
             <span className="label-text-alt">
-              {
-                (fetchError) ? 
-                (
-                  <div className="alert alert-error font-bold text-white">
-                    <div>
-                      <span>
-                        Ocurrió un error.
-                      </span>
-                    </div>
-                  </div>
-                )
-                : ""
-              }
+            
             </span>
             <span className="label-text-alt text-sm font-light text-red-500">
               {incluye(errorDatosInput.confirmarPassword, "error")
@@ -280,7 +268,7 @@ export default function Home() {
                      clip-rule="evenodd"
                    ></path>
                  </svg>
-                 <span className="sr-only">Icono de error</span>
+                 <span className="sr-only">Icono de todo correcto</span>
                </div>
                <div className="ml-3 text-sm font-normal">
                  ¡Se envío un corre de verificación!

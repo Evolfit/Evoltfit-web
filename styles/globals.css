@@ -1,9 +1,15 @@
+/*Fuentes importadas de Google Fonts*/
+
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Catamaran&display=swap");
+
+/*Librerías de Tailwind*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*CSS del botón "Registrase gratis" de precios*/
 
 .button {
   display: inline-block;
@@ -46,12 +52,7 @@
   right: 0;
  }
 
-
-
-
-
-
-
+/*CSS para el botón del en successPay*/
 
 .bottonraro2 {
   text-decoration: none;
@@ -108,12 +109,7 @@
  }
 
 
-
-
-
-
-
-
+/*CSS para la animacion de carga de la biblioteca*/
 
 .loader {
   width: 48px;
@@ -181,15 +177,9 @@
   }
 }
 
+/*CSS para el botón siguiente del SE*/
 
-
-
-
-
-
-
-
-.bottonraro {
+.bottonSig-1{
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -205,16 +195,78 @@
   outline: none;
 }
 
-.bottonraro:hover {
+.bottonSig-1:hover [disabled]{
   background-color: #174FFF;
   box-shadow: 0px 15px 20px rgba(0, 49, 200, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 
-.bottonraro:active {
+.bottonSig-1:active {
   transform: translateY(-1px);
 }
+
+
+.bottonSig-2{
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.bottonSig-2:hover{
+  background-color: #174FFF;
+  box-shadow: 0px 15px 20px rgba(0, 49, 200, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.bottonSig-2:active {
+  transform: translateY(-1px);
+}
+
+
+/*CSS para el contenedor de los input*/
+
+.seccion{
+  margin-top: 8%;
+  height: 440px;
+}
+
+.seccion2{
+  margin-top: 8%;
+  height: 600px;
+}
+
+@media screen and (max-width: 380px) {
+  .seccion {
+    margin-top: 30%;
+    height: 80%;
+  }
+  .seccion2{
+    margin-top: 30%;
+    height: 85%;
+  }
+}
+
+/*CSS para los input radio del SE*/
+
+input:checked + label {
+	border-color: #2563eb;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+/*Imagenes para background*/
 
 .bg-internal-img {
   background-image: url('../public/bcprice.jpg');
@@ -227,6 +279,8 @@
 .textform{
   resize: none;
 }
+
+/*CSS del modelo de los musculos*/
 
 .body-map {
   padding: 24px 0;

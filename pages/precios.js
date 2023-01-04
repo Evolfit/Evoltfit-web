@@ -118,11 +118,9 @@ export default function Home() {
         <div className="xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
           <div className="w-64 p-8">
             <center>
-              
                 <div className="h-16 w-16">
                   <img src="intuitivo.png"></img>
-                </div>
-              
+                </div>  
             </center>
             
               <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
@@ -262,12 +260,9 @@ export default function Home() {
       
       <br />
       <br />
-      {/*Botones God */}
-      {/*<button className="bottonraro2"> HOVER ME</button> */}
-      {/*<button className="bottonraro"> Button</button> */}
+      
       <br />
       <br />
-      <br></br>
       <br />
       <br />
       <br />

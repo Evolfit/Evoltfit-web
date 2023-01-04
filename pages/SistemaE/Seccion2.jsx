@@ -1,73 +1,103 @@
-import styled from 'daisyui/dist/styled';
-import React from 'react'
+import styled from "daisyui/dist/styled";
+import React from "react";
 import styles from "../../styles/Home.module.css";
 
 function Seccion2(props) {
-
   const handleChange = (event) => {
     //const name = event.target.name;
     const value = event.target.value;
-    //si quiero el name lo mando aqui 
+    //si quiero el name lo mando aqui
     props.onChange(value);
-  }
-  
+  };
+
   return (
-    <div className="s">
-    <div className={styles.texto}>
-    <h1>¿Cual es tu objetivo principal?</h1>
+    <div>
+      <div className="grid place-items-center">
+        <div className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+          <h1>¿Cuál es tu objetivo principal?</h1>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+
+      <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-4 gap-x-5 xl:m-10 xl:max-w-4xl xl:mx-auto">
+        <li className = "relative">
+          <input
+            className="sr-only peer"
+            type="radio"
+            value="masamuscular"
+            name="objetivo"
+            onChange={handleChange}
+            id="mas"
+          />
+          <label
+            className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
+            htmlFor="mas"
+          >
+            Ganar Masa Muscular 
+           
+          </label>
+        </li>
+
+        <li className="relative">
+          <input
+            className="sr-only peer"
+            type="radio"
+            value="resistencia"
+            name="objetivo"
+            onChange={handleChange}
+            id="res"
+          />
+          <label
+            className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
+            htmlFor="res"
+          >
+            Ganar Resistencia
+          </label>
+        </li>
+
+        <li className="relative">
+          <input
+            className="sr-only peer"
+            type="radio"
+            value="fuerza"
+            name="objetivo"
+            onChange={handleChange}
+            id="fuer"
+          />
+          <label
+            className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
+            htmlFor="fuer"
+          >
+            Ganar Fuerza
+          </label>
+        </li>
+
+        <li className="relative">
+          <input
+            className="sr-only peer"
+            type="radio"
+            value="deporte"
+            name="objetivo"
+            onChange={handleChange}
+            id="dep"
+          />
+          <label
+            className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
+            htmlFor="dep"
+          >
+            Deporte
+          </label>
+        </li>
+      </ul>
+      
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
-    <br /><br /><br />
-
-
-    <div className={styles.inputs2}>
-
-    <div className={styles.radiu2}>
-    <input
-      type="radio"
-      name="objetivo"
-      value="masamuscular"
-      onChange={handleChange}
-    /> Ganar Masa Muscular
-    </div>
-
-   <div className={styles.radiu2}>
-    <input
-      type="radio"
-      name="objetivo"
-      value="resistencia"
-      onChange={handleChange}
-    /> Ganar Resistencia
-    </div>
-
-    <div className={styles.radiu2}>
-    <input
-      type="radio"
-      name="objetivo"
-      value="fuerza"
-      onChange={handleChange}
-    /> Ganar Fuerza
-    </div>
-
-    <br/><br/><br/><br/>
-    <div className={styles.radiuD}>
-    <input type="radio" name="read" value="none" disabled /> Yoga
-    </div>
-
-    <div className={styles.radiu2}>
-    <input
-      type="radio"
-      name="objetivo"
-      value="deporte"
-      onChange={handleChange}
-    /> Deporte
-    </div>
-
-    </div>
-
-
-    <br/><br/><br/><br/>
-  </div>
-  )
+  );
 }
 
-export default Seccion2
+export default Seccion2;

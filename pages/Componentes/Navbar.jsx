@@ -42,7 +42,7 @@ const Navbar = () => {
     let Links = [
         {name:"Inicio", link:"../"},
         {name:"Herramientas", link:"../herramientas"},
-        {name:"Nosotros", link:"/"},
+        {name:"Nosotros", link:"/nosotros"},
         {name:"Ayuda", link:"../ayuda"},
         {name:"Precios", link:"../precios"},
     ];
