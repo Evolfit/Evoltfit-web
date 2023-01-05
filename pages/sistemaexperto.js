@@ -46,7 +46,7 @@ export default function Home() {
       const { value: valor } = formData;
       setArreglo([...arreglo, valor]);
     }
-    if (value === 5) {
+    if (value === 4) {
       setFinalizar(true);
     }
     setValue(value + 1);
