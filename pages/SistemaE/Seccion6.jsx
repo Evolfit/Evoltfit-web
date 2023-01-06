@@ -3,7 +3,55 @@ import styles from "../../styles/Home.module.css";
 
 function Seccion6(props) {
   const { onCheckboxChange } = props;
-
+  const [ch1, setCh1] = useState(false);
+  const [ch2, setCh2] = useState(false);
+  const [ch3, setCh3] = useState(false);
+  const [ch4, setCh4] = useState(false);
+  const [ch5, setCh5] = useState(false);
+  const [ch6, setCh6] = useState(false);
+  const [ch7, setCh7] = useState(false);
+  const [ch8, setCh8] = useState(false);
+  const [ch9, setCh9] = useState(false);
+  const [ch10, setCh10] = useState(false);
+  const [ch11, setCh11] = useState(false);
+  const [ch12, setCh12] = useState(false);
+  const [ch13, setCh13] = useState(false);
+  const [Ninguno, setNinguno] = useState(false);
+  
+    function handleNoneClick() {
+      setNinguno(!Ninguno);
+      if (!Ninguno) {
+        setCh1(false);
+        setCh2(false);
+        setCh3(false);
+        setCh4(false);
+        setCh5(false);
+        setCh6(false);
+        setCh7(false);
+        setCh8(false);
+        setCh9(false);
+        setCh10(false);
+        setCh11(false);
+        setCh12(false);
+        setCh13(false);
+      }
+    }
+    function handleChClick(name) {
+      setNinguno(false);
+      if (name === "Bandaresistencia") setCh1(!ch1);
+      if (name === "Bandasuspension") setCh2(!ch2);
+      if (name === "Barra") setCh3(!ch3);
+      if (name === "BarraZ") setCh4(!ch4);
+      if (name === "Barras") setCh5(!ch5);
+      if (name === "Mancuernas") setCh6(!ch6);
+      if (name === "PesaRusa") setCh7(!ch7);
+      if (name === "PlacaPeso") setCh8(!ch8);
+      if (name === "MaquinasGYM") setCh9(!ch9);
+      if (name === "BancoPlano") setCh10(!ch10);
+      if (name === "BancoDeclinado") setCh11(!ch11);
+      if (name === "BancoInclinado") setCh12(!ch12);
+      if (name === "Cuerda") setCh13(!ch13);
+    }
   return (
     <div>
       <div className="grid place-items-center">
@@ -22,6 +70,7 @@ function Seccion6(props) {
               type="checkbox"
               name="Ninguno"
               onChange={onCheckboxChange}
+              checked={Ninguno} onClick={handleNoneClick}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
             <label
@@ -38,6 +87,7 @@ function Seccion6(props) {
               id="ch2"
               type="checkbox"
               name="Bandaresistencia"
+              checked={ch1} onClick={() => handleChClick("Bandaresistencia")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -56,6 +106,7 @@ function Seccion6(props) {
               type="checkbox"
               name="Bandasuspension"
               onChange={onCheckboxChange}
+              checked={ch2} onClick={() => handleChClick("Bandasuspension")}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
             <label
@@ -72,6 +123,7 @@ function Seccion6(props) {
               id="ch4"
               type="checkbox"
               name="Barra"
+              checked={ch3} onClick={() => handleChClick("Barra")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -92,6 +144,7 @@ function Seccion6(props) {
               id="ch5"
               type="checkbox"
               name="BarraZ"
+              checked={ch4} onClick={() => handleChClick("BarraZ")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -109,6 +162,7 @@ function Seccion6(props) {
               id="ch6"
               type="checkbox"
               name="Barras"
+              checked={ch5} onClick={() => handleChClick("Barras")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -120,29 +174,13 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-          <div className="flex items-center pl-3">
-            <input
-              id="ch7"
-              type="checkbox"
-              name="Mancuerna"
-              onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
-            />
-            <label
-              htmlFor="ch7"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Mancuerna
-            </label>
-          </div>
-        </li>
         <li className="w-full dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
               id="ch8"
               type="checkbox"
               name="Mancuernas"
+              checked={ch6} onClick={() => handleChClick("Mancuernas")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -163,6 +201,7 @@ function Seccion6(props) {
               id="ch9"
               type="checkbox"
               name="PesaRusa"
+              checked={ch7} onClick={() => handleChClick("PesaRusa")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -180,6 +219,7 @@ function Seccion6(props) {
               id="ch10"
               type="checkbox"
               name="PlacaPeso"
+              checked={ch8} onClick={() => handleChClick("PlacaPeso")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -196,7 +236,8 @@ function Seccion6(props) {
             <input
               id="ch11"
               type="checkbox"
-              name="MáquinasGYM"
+              name="MaquinasGYM"
+              checked={ch9} onClick={() => handleChClick("MaquinasGYM")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -214,6 +255,7 @@ function Seccion6(props) {
               id="ch12"
               type="checkbox"
               name="BancoPlano"
+              checked={ch10} onClick={() => handleChClick("BancoPlano")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -234,6 +276,7 @@ function Seccion6(props) {
               id="ch13"
               type="checkbox"
               name="BancoDeclinado"
+              checked={ch11} onClick={() => handleChClick("BancoDeclinado")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -251,6 +294,7 @@ function Seccion6(props) {
               id="ch14"
               type="checkbox"
               name=" BancoInclinado"
+              checked={ch12} onClick={() => handleChClick("BancoInclinado")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
@@ -268,6 +312,7 @@ function Seccion6(props) {
               id="ch15"
               type="checkbox"
               name="Cuerda"
+              checked={ch13} onClick={() => handleChClick("Cuerda")}
               onChange={onCheckboxChange}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />

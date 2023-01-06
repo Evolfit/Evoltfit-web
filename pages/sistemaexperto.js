@@ -22,7 +22,6 @@ export default function Home() {
     Barra: false,
     BarraZ: false,
     Barras: false,
-    Mancuerna: false,
     Mancuernas: false,
     PesaRusa: false,
     PlacaPeso: false,
@@ -35,7 +34,8 @@ export default function Home() {
   const [arreglo, setArreglo] = useState([]);
   const [showButton, setShowButton] = useState(false);
   const [showFinalizar, setFinalizar] = useState(false);
-
+  const [showFinalizar2, setFinalizar2] = useState(false);
+  let algunoEsVerdadero = false;
   let element;
   let element2;
 
@@ -83,10 +83,31 @@ export default function Home() {
   //Funcion para las herramientas
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    setCheckboxes({
-      ...checkboxes,
-      [name]: checked,
-    });
+    if (name === "Ninguno") {
+      setCheckboxes({
+        Ninguno: checked,
+        Bandaresistencia: false,
+        Bandasuspension: false,
+        Barra: false,
+        BarraZ: false,
+        Barras: false,
+        Mancuernas: false,
+        PesaRusa: false,
+        PlacaPeso: false,
+        MaquinasGYM: false,
+        BancoPlano: false,
+        BancoDeclinado: false,
+        BancoInclinado: false,
+        Cuerda: false,
+      });
+    } else {
+      setCheckboxes({
+        ...checkboxes,
+        [name]: checked,
+        Ninguno: false,
+      });
+    }
+    
   };
   //cambiar de componentes
   if (value === 0) {
@@ -113,6 +134,12 @@ export default function Home() {
     console.log(formData2);
     //console.log(formHerra);
     //console.log(value);
+    //para el botonfinal
+    if (Object.entries(checkboxes).find(entry => entry[1] === true)) {
+      setFinalizar2(true);
+    }else{
+      setFinalizar2(false);
+    }
   }, [formData, formData2, arreglo, checkboxes]);
 
   return (
@@ -139,6 +166,7 @@ export default function Home() {
           <br />
           {/*<button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>*/}
           {showFinalizar ? (
+            showFinalizar2 ?(
             <Link
               href={{
                 pathname: "../rutinaSE",
@@ -151,6 +179,10 @@ export default function Home() {
             >
               <button className="bottonSig-2">Finalizar</button>
             </Link>
+            ) : (
+              <button className="bottonSig-1">Finalizar</button>
+            )
+
           ) : showButton ? (
             <button onClick={handleNext} className="bottonSig-2">
               Siguiente

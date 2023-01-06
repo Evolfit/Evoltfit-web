@@ -56,7 +56,7 @@ export default function Home() {
             </thead>
             <tbody>
               {longestArray.map((_, index) => (
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   {arrays.map((array) => (
                     <td className="px-6 py-4">{array[index]}</td>
                   ))}
