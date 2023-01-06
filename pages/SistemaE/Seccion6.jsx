@@ -192,9 +192,6 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
-      </ul>
-
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
@@ -213,6 +210,9 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
+      </ul>
+
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
@@ -267,9 +267,6 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
-      </ul>
-
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
@@ -288,6 +285,9 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
+      </ul>
+
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
@@ -322,6 +322,13 @@ function Seccion6(props) {
             >
               Cuerda
             </label>
+          </div>
+        </li>
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+          <div className="flex items-center pl-3">
+            <label
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            ></label>
           </div>
         </li>
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">

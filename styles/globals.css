@@ -305,7 +305,7 @@ input:checked + label {
   transition: color 25ms ease-in-out;
 }
 .body-map__muscle:hover {
-  color: #fe5b7f;
+  color: #2563eb;
   cursor: pointer;
 }
 

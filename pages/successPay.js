@@ -12,8 +12,13 @@ export default function Home() {
   useEffect(() => {
     const meses = localStorage.getItem('Meses');
     console.log(meses);
+    registrarPago();
   }, [])
 
+  const registrarPago = async (e) => {
+    
+    console.log("Hola")
+  };
 
   return (
     <div className="bg-stone-100 w-full">

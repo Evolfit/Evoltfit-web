@@ -56,7 +56,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="rutina.png"></img>
@@ -71,7 +71,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="cal.png"></img>
@@ -86,7 +86,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="registro.png"></img>
@@ -101,7 +101,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="progreso.png"></img>
@@ -116,7 +116,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
@@ -135,7 +135,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
@@ -154,7 +154,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
@@ -189,7 +189,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="rutina.png"></img>
@@ -207,7 +207,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="cal.png"></img>
@@ -225,7 +225,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="registro.png"></img>
@@ -243,7 +243,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="progreso.png"></img>
@@ -261,7 +261,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
@@ -284,7 +284,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
@@ -306,7 +306,7 @@ export default function Home() {
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
