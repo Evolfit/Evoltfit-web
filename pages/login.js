@@ -207,12 +207,12 @@ export default function Home() {
               )}
 
               <p className="mt-8">
-                ¿No tienes una cuenta?
+                {"¿No tienes una cuenta? "}
                 <a
                   onClick={() => router.push("/registro")}
                   className="link link-secondary text-blue-500 hover:text-blue-700 font-semibold"
                 >
-                  Crear cuenta
+                  {"Crear cuenta"}
                 </a>
               </p>
             </div>

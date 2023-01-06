@@ -185,7 +185,7 @@ export default function Home() {
             sesion ? 
             <div className="mx-auto mt-6">
               <div className="flex w-9/12 mx-auto">
-                <h2 className="text-2xl text-secondary">{"Rutinas de " + sesion.user.email}</h2>
+                <h2 className="text-2xl text-secondary">{"Rutinas de " + sesion.user.user_metadata.nombre}</h2>
               </div>
               <div className="flex flex-col items-center w-full">
                 {/* Aqui se muestran las rutinas */}

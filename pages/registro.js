@@ -69,16 +69,45 @@ export default function Home() {
           [name]: error,
         });
       }
+
+      //VALIDACION INPUT NOMBRE
+      if (name == "nombre") {
+        var error = ["control"];
+
+        if (value == '') {
+          error.push("error");
+        }
+
+        setErrorDatosInput({
+          ...errorDatosInput,
+          [name]: error,
+        });
+      }
     },
     [formInput, setFormInput]
   );
 
   //----------------------------------------------------------------
   const handleRegistro = async () => {
-    if (formInput.correo != null) {
+    if (
+      formInput.correo != undefined &&
+      formInput.correo != '' &&
+      formInput.nombre != undefined &&
+      formInput.nombre != '' &&
+      formInput.password != undefined &&
+      formInput.password != '' &&
+      formInput.confirmarPassword != undefined &&
+      formInput.confirmarPassword != ''
+      ) 
+      {
       const { data, error } = await supabase.auth.signUp({
         email: formInput.correo,
         password: formInput.password,
+        options: {
+          data: {
+            nombre: formInput.nombre,
+          }
+        }
       });
 
       if (error) {
@@ -88,7 +117,21 @@ export default function Home() {
       } else {
         setDatos(data);
         setFetchError(null);
-        console.log("Registro exitoso :)");
+        
+        const { error } = await supabase
+        .from('perfiles')
+        .insert({
+          id: data.user.id, 
+          nombre: formInput.nombre,
+          })
+
+          if(error) {
+            alert("ERROR: Hubo un error al generar el registro.")
+            console.log(error)
+          }
+          else{
+            console.log("Registro exitoso :)");
+          }
       }
     }
   };
@@ -133,7 +176,29 @@ export default function Home() {
               </h1>
 
               <div className="mt-6">
-                <div>
+              <div>
+                  <label className="block text-gray-700">
+                    Nombre
+                  </label>
+                  {/*CAMPO CORREO ---------------------------- */}
+                  <input
+                    name="nombre"
+                    value={formInput.nombre || ""}
+                    onChange={handleOnInputChange}
+                    type="text"
+                    className={
+                      "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white " +
+                      (incluye(errorDatosInput.nombre, "control")
+                        ? incluye(errorDatosInput.nombre, "error")
+                          ? "input-error"
+                          : "input-success"
+                        : " ")
+                    }
+                    placeholder="Ingresar su nombre"
+                  />
+                </div>
+          
+                <div className="mt-8">
                   <label className="block text-gray-700">
                     Correo electrónico
                   </label>
@@ -144,7 +209,7 @@ export default function Home() {
                     onChange={handleOnInputChange}
                     type="text"
                     className={
-                      "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" +
+                      "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white " +
                       (incluye(errorDatosInput.correo, "control")
                         ? incluye(errorDatosInput.correo, "error")
                           ? "input-error"
@@ -167,7 +232,9 @@ export default function Home() {
                   </span>
                 </label>
 
-                <div className="mt-4">
+                <div className={incluye(errorDatosInput.correo, "error")
+                      ? "mt-0"
+                      : "mt-4"}>
                   <label className="block text-gray-700">Contraseña</label>
                   {/*CAMPO CONTRASEÑA ------------------------ */}
                   <input
@@ -176,7 +243,7 @@ export default function Home() {
                     onChange={handleOnInputChange}
                     type="password"
                     className={
-                      "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" +
+                      "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white " +
                       (incluye(errorDatosInput.password, "control")
                         ? incluye(errorDatosInput.password, "error")
                           ? "input-error"
@@ -199,7 +266,9 @@ export default function Home() {
                   </span>
                 </label>
 
-                <div className="mt-4">
+                <div className={incluye(errorDatosInput.password, "error")
+                      ? "mt-0"
+                      : "mt-4"}>
                   <label className="block text-gray-700">
                     Confirmar contraseña
                   </label>
@@ -210,7 +279,7 @@ export default function Home() {
                   onChange={handleOnInputChange}
                   type="password"
                   className={
-                    "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" +
+                    "w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white " +
                     (incluye(errorDatosInput.confirmarPassword, "control")
                       ? incluye(errorDatosInput.confirmarPassword, "error")
                         ? "input-error"
@@ -221,22 +290,24 @@ export default function Home() {
                   />
                 </div>
                 <label className="label">
-            <span className="label-text-alt">
-            
-            </span>
-            <span className="label-text-alt text-sm font-light text-red-500">
-              {incluye(errorDatosInput.confirmarPassword, "error")
-                ? "Las contraseñas no coinciden."
-                : ""}
-            </span>
-          </label>
+                  <span className="label-text-alt">
+                  
+                  </span>
+                  <span className="label-text-alt text-sm font-light text-red-500">
+                    {incluye(errorDatosInput.confirmarPassword, "error")
+                      ? "Las contraseñas no coinciden."
+                      : ""}
+                  </span>
+                </label>
                 <button
                   className={
-                    "w-full block bg-blue-600 hover:bg-blue-500 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6" +
+                    "w-full block btn-secondary hover:bg-blue-500 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6 " +
                     (incluye(errorDatosInput.correo, "control")
                       ? incluye(errorDatosInput.correo, "error") ||
                         incluye(errorDatosInput.password, "error") ||
-                        incluye(errorDatosInput.confirmarPassword, "error")
+                        incluye(errorDatosInput.confirmarPassword, "error") ||
+                        incluye(errorDatosInput.nombre, "error") ||
+                        (formInput.confirmarPassword == '' || formInput.confirmarPassword == undefined)
                         ? "btn-disabled"
                         : " "
                       : " ")
@@ -310,12 +381,12 @@ export default function Home() {
           )}
 
               <p className="">
-                ¿Ya tienes una cuenta?
+                {"¿Ya tienes una cuenta? " }
                 <a
                   onClick={() => router.push("/login")}
                   className="link link-secondary text-blue-500 hover:text-blue-700 font-semibold"
                 >
-                  Inicia sesión
+                  {"Inicia sesión"}
                 </a>
               </p>
             </div>
