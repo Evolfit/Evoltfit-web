@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
 import supabase from '/config/supabaseClient';
@@ -83,10 +83,23 @@ const Navbar = () => {
                     ))
                 }
                     {sesion ? 
-                        <div className="mx-6">
-                            <span className="font-medium text-secondary">{sesion.user.email}</span>
-                            <button className="btn btn-error btn-sm mx-6" onClick={handleLogout}>Cerrar Sesión</button>
-                        </div>
+                        <Fragment>
+                            <li className = "md:ml-8 text-x1 md:my-0 my-7"> 
+                                <Link href = "../perfil" className = "">
+                                    <span className = "hover:underline text-blue-500 duration-500 text-xl cursor-pointer">
+                                        {sesion.user.user_metadata.nombre}
+                                    </span>
+                                </Link>
+                            </li>
+                            <li className = "md:ml-8 md:my-0 my-7"> 
+                                <button className="btn btn-ghost m-0 px-2 text-error text-lg" onClick={handleLogout}>
+                                    <div className='text-3xl mt-auto'>
+                                        <ion-icon name='log-out-outline'></ion-icon>
+                                    </div>
+                                    <span className="ml-2">{"Cerrar Sesión"}</span>
+                                </button>
+                            </li>
+                        </Fragment>
                      : 
                         <div>
                             <button onClick={() => router.push("../login")} className='bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white
