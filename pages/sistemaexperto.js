@@ -9,6 +9,7 @@ import Seccion3 from "./SistemaE/Seccion3";
 import Seccion4 from "./SistemaE/Seccion4";
 import Seccion5 from "./SistemaE/Seccion5";
 import Seccion6 from "./SistemaE/Seccion6";
+import Seccion41 from "./SistemaE/Seccion41";
 import Link from "next/link";
 
 export default function Home() {
@@ -42,11 +43,11 @@ export default function Home() {
   //Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
   //y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
-    if (value < 4) {
+    if (value < 5) {
       const { value: valor } = formData;
       setArreglo([...arreglo, valor]);
     }
-    if (value === 4) {
+    if (value === 5) {
       setFinalizar(true);
     }
     setValue(value + 1);
@@ -118,10 +119,15 @@ export default function Home() {
     element = <Seccion3 onChange={handleChange} />;
   } else if (value === 3) {
     element = <Seccion4 onChange={handleChange} />;
-  } else if (value === 4) {
+  } else if (value === 4 && arreglo[2]!="principiante") {
+    element = <Seccion41 onChange={handleChange} />;
+  }else if (value === 5) {
     element = <Seccion5 onSubmit={handleFormSubmit} />;
-  } else {
+  } else if (value === 6) {
     element = <Seccion6 onCheckboxChange={handleCheckboxChange} />;
+  }else {
+    setValue(value + 1);
+    setArreglo([...arreglo, "completo"]);
   }
   //actualizador solo para visualizar el funcionamiento de datos
   useEffect(() => {
@@ -132,6 +138,7 @@ export default function Home() {
     console.log(checkboxes);
     console.log("Imputs: ");
     console.log(formData2);
+    //console.log(arreglo[2]);
     //console.log(formHerra);
     //console.log(value);
     //para el botonfinal

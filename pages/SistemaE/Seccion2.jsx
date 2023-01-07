@@ -78,7 +78,24 @@ function Seccion2(props) {
           <input
             className="sr-only peer"
             type="radio"
-            value="deporte"
+            value="perdergrasa"
+            name="objetivo"
+            onChange={handleChange}
+            id="grasa"
+          />
+          <label
+            className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
+            htmlFor="grasa"
+          >
+            Perder Grasa
+          </label>
+        </li>
+
+        <li className="relative">
+          <input
+            className="sr-only peer"
+            type="radio"
+            value="salud"
             name="objetivo"
             onChange={handleChange}
             id="dep"
@@ -87,7 +104,7 @@ function Seccion2(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="dep"
           >
-            Deporte
+            Mejorar la Salud en General
           </label>
         </li>
       </ul>
