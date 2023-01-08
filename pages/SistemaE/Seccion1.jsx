@@ -34,7 +34,7 @@ function Seccion1(props) {
             />
             <label
               className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded"
-              for="radio_1"
+              htmlFor="radio_1"
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-16 w-16">
@@ -58,7 +58,7 @@ function Seccion1(props) {
             />
             <label
               className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded"
-              for="radio_2"
+              htmlFor="radio_2"
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-16 w-16">
@@ -82,7 +82,7 @@ function Seccion1(props) {
             />
             <label
               className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded"
-              for="radio_3"
+              htmlFor="radio_3"
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-16 w-16">

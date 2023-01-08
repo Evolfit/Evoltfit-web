@@ -185,23 +185,11 @@ export default function Home() {
             sesion ? 
             <div className="mx-auto mt-6">
               <div className="flex flex-col w-9/12 mx-auto">
-                <h2 className="text-2xl text-secondary">{"Rutinas de " + sesion.user.user_metadata.nombre}</h2>
-                <button type="submit" onClick={() => {router.push("/nuevaRutina")}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Nueva Rutina</button>
+                <h2 className="text-2xl text-secondary">{"Nueva rutina"}</h2>
+                <button type="submit" onClick={() => {}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
               </div>
               <div className="flex flex-col items-center w-full">
                 {/* Aqui se muestran las rutinas */}
-              </div>
-              {/* PAGINACIÓN */}
-              <div className="flex flex-col items-center mb-2 mt-4">
-                <div className="btn-group">
-                  {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                  {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
-                  <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
-                  {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
-                  {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
-                  {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
-                </div>
               </div>
             </div> 
             : 

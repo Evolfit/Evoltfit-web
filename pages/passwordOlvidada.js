@@ -121,16 +121,16 @@ export default function Home() {
 
       <main>
 
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
-            class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img class="w-8 h-8 mr-2" src="evologo.png" alt="logo" />
+            <img className="w-8 h-8 mr-2" src="evologo.png" alt="logo" />
             EvoltFit
           </a>
-          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl md:text-2xl font-bold leading-tight">
                 Ingresa a tu cuenta
               </h1>
@@ -200,9 +200,9 @@ export default function Home() {
                         viewBox="0 0 20 20"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="sr-only">Icono de error</span>
@@ -230,9 +230,9 @@ export default function Home() {
                         viewBox="0 0 20 20"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="sr-only">Icono de error</span>
@@ -245,11 +245,11 @@ export default function Home() {
               ) : (
                 ""
               )}
-              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 ¿Ya tienes una cuenta?{" "}
                 <a
                   onClick={() => router.push("/login")}
-                  class="link link-secondary font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="link link-secondary font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Inicia sesión
                 </a>
