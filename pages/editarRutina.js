@@ -57,6 +57,22 @@ export default function Home() {
     }
   }
 
+  async function eliminarRutina() {
+    const { error } = await supabase
+    .from('rutinas')
+    .delete()
+    .match({id: rutinaIndex, usuario: sesion.user.id})
+
+    if (error) {
+      console.log('ERROR: Error al eliminar la rutina.')
+      console.log(error)
+    }
+    else{
+      console.log('Se eliminó ' + rutina.nombre)
+      router.push('/rutinas')
+    }
+  }
+
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name, id, checked} = event.target;
@@ -139,7 +155,8 @@ export default function Home() {
                 <div>
                   <h2 className="text-2xl text-secondary">{rutina.nombre}</h2>
                   <br/>
-                  <button type="submit" onClick={() => {}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
+                  <button onClick={() => {}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
+                  <button onClick={eliminarRutina} className="btn text-white btn-error rounded-lg btn-md w-fit">Eliminar Rutina</button>
                 </div>
               </div>
               <div className="flex flex-col items-center w-full">
