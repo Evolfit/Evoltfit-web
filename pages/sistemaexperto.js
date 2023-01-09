@@ -55,9 +55,45 @@ export default function Home() {
   }
   //Funcion para retroceder entre componentes posiblemente no será implementada
   function handlePrevious() {
-    if (value > 0) {
+    if (value > 0 && value <= 5) {
+      console.log("entró1");
       setValue(value - 1);
+      arreglo.pop();
+      setArreglo(arreglo);
+
+      if(arreglo[2]==="principiante"){
+        console.log("entró");
+        setValue(3);
+        arreglo.pop();
+        setArreglo(arreglo);
+      }
+
+
+
+    }else{
+      if(value>0){
+      setValue(value - 1);
+      setFinalizar(false);
+      setFinalizar2(false);
+      setShowButton(false);
+      setCheckboxes({
+        Ninguno: false,
+        Bandaresistencia: false,
+        Bandasuspension: false,
+        Barra: false,
+        BarraZ: false,
+        Barras: false,
+        Mancuernas: false,
+        PesaRusa: false,
+        PlacaPeso: false,
+        MaquinasGYM: false,
+        BancoPlano: false,
+        BancoDeclinado: false,
+        BancoInclinado: false,
+        Cuerda: false,
+      });
     }
+  }
   }
   //funcion que recibe solo un valor por componente
   const handleChange = (value) => {
@@ -140,7 +176,7 @@ export default function Home() {
     console.log(formData2);
     //console.log(arreglo[2]);
     //console.log(formHerra);
-    //console.log(value);
+    console.log(value);
     //para el botonfinal
     if (Object.entries(checkboxes).find(entry => entry[1] === true)) {
       setFinalizar2(true);
@@ -171,7 +207,8 @@ export default function Home() {
           )}
 
           <br />
-          {/*<button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>*/}
+          {/*Boton retroceder*/}
+          <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>
           {showFinalizar ? (
             showFinalizar2 ?(
             <Link

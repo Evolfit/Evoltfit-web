@@ -60,7 +60,7 @@ export default function Home() {
                   {arrays.map((array) => (
                     <td key={array[index]} className="px-6 py-4">{array[index]}</td>
                   ))}
-                <td className="px-6 py-4"></td>
+                <td key={index} className="px-6 py-4"></td>
                 </tr>
               ))}
             </tbody>
