@@ -40,7 +40,6 @@ const CardsPrecios = ({
   async function checkout({ lineItems }, nombre, no_mes) {
     localStorage.setItem("NombrePaquete", nombre);
     localStorage.setItem("Meses", no_mes);
-    localStorage.setItem("UUID", sesion.user.id);
 
     let stripePromise = null;
 

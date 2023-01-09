@@ -217,7 +217,8 @@ export default function Home() {
 
           <br />
           {/*Boton retroceder*/}
-          <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>
+          <div className = "flex">
+          <button className="bottonAnt" onClick={handlePrevious}>Anterior</button>
           {showFinalizar ? (
             showFinalizar2 ? (
               <Link
@@ -242,6 +243,7 @@ export default function Home() {
           ) : (
             <button className="bottonSig-1">Siguiente</button>
           )}
+          </div>
         </div>
         <br />
         <br />

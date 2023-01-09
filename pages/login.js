@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
-import { Image } from "next/image";
 
 export default function Home() {
   const router = useRouter();
