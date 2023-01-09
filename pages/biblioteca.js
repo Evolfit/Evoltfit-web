@@ -24,6 +24,8 @@ export default function Home() {
   useEffect(() => {
     //console.log("useEffect")
     getEjercicios();
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
   }, [formInput, paginacion]);
 
   const handleOnInputChange = useCallback(

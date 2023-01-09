@@ -247,6 +247,11 @@
   height: 600px;
 }
 
+.seccion3{
+  margin-top: 8%;
+  height: 700px;
+}
+
 @media screen and (max-width: 380px) {
   .seccion {
     margin-top: 30%;
@@ -256,6 +261,12 @@
     margin-top: 30%;
     height: 85%;
   }
+  .seccion3{
+    margin-top: 30%;
+    height: 85%;
+  }
+  
+
 }
 
 /*CSS para los input radio del SE*/

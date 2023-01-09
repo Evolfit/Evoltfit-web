@@ -2,12 +2,21 @@ import Head from "next/head";
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Home() {
 
   const router = useRouter();
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+    setTimeout(function(){
+      console.log("Redirigiendo...");
+      router.push("/");
+  }, 4000);
+  }, [])
 
   return (
     <div className="bg-stone-100 w-full">
@@ -42,12 +51,10 @@ export default function Home() {
                 Error
               </h3>
               <p className="text-gray-600 my-2">
-                Desafortunadamente ocurrió un error al realizar el pago.
+                Desafortunadamente ocurrió un error al realizar el pago ó cancelaste la compra.
               </p>
-              <p> Verifica tu forma de pago. </p>
-              <div className="py-10 grid place-items-center">
-                <button onClick={() => {router.push("/index")}} className="bottonraro2">Ir a inicio</button> 
-              </div>
+              <p> ¡Te redirigiremos a la página de inicio! </p>
+              
             </div>
           </div>
         </div>

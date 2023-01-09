@@ -16,6 +16,8 @@ export default function Home() {
   
   useEffect(() => {
     //console.log("useEffect")
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
     handleSesion()
   }, [])
 

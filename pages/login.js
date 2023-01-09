@@ -29,6 +29,17 @@ export default function Home() {
     [formInput, setFormInput]
   );
 
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Cambió la sesión: " + event);
+      if (session) {
+        router.push("/");
+      }
+    });
+  }, []);
+
   //----------------------------------------------------------------
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -45,8 +56,7 @@ export default function Home() {
       setDatos(data);
       setFetchError(null);
       console.log("Login exitoso");
-      console.log(data);
-      router.push('/')
+      //router.push('/')
     }
   };
 

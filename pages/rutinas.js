@@ -23,6 +23,8 @@ export default function Home() {
   
   useEffect(() => {
     handleSesion()
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
   }, [])
 
   const handleSesion = async () => {

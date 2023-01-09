@@ -2,7 +2,7 @@ import Head from "next/head";
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter} from "next/router";
 
 export default function Home() {
@@ -12,6 +12,11 @@ export default function Home() {
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [mensaje, setMensaje] = useState('');
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
 
   const handleSubmit = async (e) => {
     

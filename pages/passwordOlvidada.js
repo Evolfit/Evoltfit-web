@@ -15,6 +15,11 @@ export default function Home() {
   const [formInput, setFormInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
 
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
+
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name } = event.target;

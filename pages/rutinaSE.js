@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useRouter } from "next/router";
 import Navbar from './Componentes/Navbar';
@@ -27,6 +27,11 @@ export default function Home() {
     console.log(JSON.parse(checkboxes));
     console.log(JSON.parse(arreglo));
   };
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
 
 
   return (

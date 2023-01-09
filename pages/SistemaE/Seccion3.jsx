@@ -35,7 +35,7 @@ function Seccion3(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="pri"
           >
-            Principiante: Actualmente no me ejercitó, llevo más de 6 meses sin
+            Principiante: Actualmente no me ejercito, llevo más de 6 meses sin
             realizar alguna actividad física constante. Tengo poco conocimiento
             respecto a ejercicios y entrenamiento.
           </label>

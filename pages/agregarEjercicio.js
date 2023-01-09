@@ -18,6 +18,11 @@ export default function Home() {
   const [otroMusculo, setOtroMusculo] = useState([]);
   const [equipo, setEquipo] = useState([]);
   const [imagenNombre, setImagenNombre] = useState();
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
   
   const handleSubmit = async (e) => {
 

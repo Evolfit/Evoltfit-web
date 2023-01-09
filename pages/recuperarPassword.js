@@ -57,6 +57,8 @@ export default function Home() {
   );
 
   useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
     supabase.auth.onAuthStateChange(async (event, session) => {
       if (event != "PASSWORD_RECOVERY") {
         router.push('/')

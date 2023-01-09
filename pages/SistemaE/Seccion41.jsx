@@ -22,7 +22,7 @@ function Seccion41(props) {
       <br />
 
       <div className="flex justify-center">
-        <div className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-3 xl:gap-2 xl:w-full xl:max-w-screen-sm">
+        <div className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 xl:gap-2 xl:w-full xl:max-w-screen-sm">
           <div>
             <input
               className="hidden"
@@ -37,7 +37,7 @@ function Seccion41(props) {
               htmlFor="radio_1"
             >
               <div className="xl:grid xl:place-items-center">
-                <div className="h-16 w-16">
+                <div className="h-36 w-36">
                   <img src="img/torsoS.png"></img>
                 </div>
               </div>
@@ -61,7 +61,7 @@ function Seccion41(props) {
               htmlFor="radio_2"
             >
               <div className="xl:grid xl:place-items-center">
-                <div className="h-16 w-16">
+                <div className="h-36 w-36">
                   <img src="img/brazo.png"></img>
                 </div>
               </div>
@@ -85,7 +85,7 @@ function Seccion41(props) {
               htmlFor="radio_3"
             >
               <div className="xl:grid xl:place-items-center">
-                <div className="h-16 w-16">
+                <div className="h-36 w-36">
                   <img src="img/pierna.png"></img>
                 </div>
               </div>
@@ -108,7 +108,7 @@ function Seccion41(props) {
               htmlFor="radio_4"
             >
               <div className="xl:grid xl:place-items-center">
-                <div className="h-16 w-16">
+                <div className="h-36 w-36">
                   <img src="img/completo2.png"></img>
                 </div>
               </div>

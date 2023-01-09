@@ -19,9 +19,8 @@ function Seccion2(props) {
       </div>
       <br />
       <br />
-      <br />
 
-      <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-4 gap-x-5 xl:m-10 xl:max-w-4xl xl:mx-auto">
+      <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 gap-x-5 xl:m-10 xl:max-w-4xl xl:mx-auto">
         <li className = "relative">
           <input
             className="sr-only peer"
@@ -108,6 +107,7 @@ function Seccion2(props) {
           </label>
         </li>
       </ul>
+      
       
       <br />
       <br />

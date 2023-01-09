@@ -40,6 +40,11 @@ export default function Home() {
   let element;
   let element2;
 
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
+
   //Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
   //y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
@@ -144,7 +149,6 @@ export default function Home() {
         Ninguno: false,
       });
     }
-    
   };
   //cambiar de componentes
   if (value === 0) {
@@ -155,13 +159,13 @@ export default function Home() {
     element = <Seccion3 onChange={handleChange} />;
   } else if (value === 3) {
     element = <Seccion4 onChange={handleChange} />;
-  } else if (value === 4 && arreglo[2]!="principiante") {
+  } else if (value === 4 && arreglo[2] != "principiante") {
     element = <Seccion41 onChange={handleChange} />;
-  }else if (value === 5) {
+  } else if (value === 5) {
     element = <Seccion5 onSubmit={handleFormSubmit} />;
   } else if (value === 6) {
     element = <Seccion6 onCheckboxChange={handleCheckboxChange} />;
-  }else {
+  } else {
     setValue(value + 1);
     setArreglo([...arreglo, "completo"]);
   }
@@ -178,9 +182,9 @@ export default function Home() {
     //console.log(formHerra);
     console.log(value);
     //para el botonfinal
-    if (Object.entries(checkboxes).find(entry => entry[1] === true)) {
+    if (Object.entries(checkboxes).find((entry) => entry[1] === true)) {
       setFinalizar2(true);
-    }else{
+    } else {
       setFinalizar2(false);
     }
   }, [formData, formData2, arreglo, checkboxes]);
@@ -196,13 +200,18 @@ export default function Home() {
 
       <main>
         <div className="grid place-items-center">
+
           {value == 2 ? (
             <div className="bg-gray-100 w-5/6 p-3 shadow-lg shadow-zinc-300 seccion2">
-              <h1>{element}</h1>
+            <h1>{element}</h1>
+          </div>
+          ) : value === 4 && arreglo[2] != "principiante" ? (
+            <div className="bg-gray-100 w-5/6 p-3 shadow-lg shadow-zinc-300 seccion3 ">
+                  <h1>{element}</h1>
             </div>
           ) : (
             <div className="bg-gray-100 w-5/6 p-3 shadow-lg shadow-zinc-300 seccion ">
-              <h1>{element}</h1>
+                  <h1>{element}</h1>
             </div>
           )}
 
@@ -210,23 +219,22 @@ export default function Home() {
           {/*Boton retroceder*/}
           <button className="btn btn-outline rounded-full btn-secondary btn-lg m-8" onClick={handlePrevious}>Anterior</button>
           {showFinalizar ? (
-            showFinalizar2 ?(
-            <Link
-              href={{
-                pathname: "../rutinaSE",
-                query: {
-                  formData2: JSON.stringify(formData2),
-                  checkboxes: JSON.stringify(checkboxes),
-                  arreglo: JSON.stringify(arreglo),
-                },
-              }}
-            >
-              <button className="bottonSig-2">Finalizar</button>
-            </Link>
+            showFinalizar2 ? (
+              <Link
+                href={{
+                  pathname: "../rutinaSE",
+                  query: {
+                    formData2: JSON.stringify(formData2),
+                    checkboxes: JSON.stringify(checkboxes),
+                    arreglo: JSON.stringify(arreglo),
+                  },
+                }}
+              >
+                <button className="bottonSig-2">Finalizar</button>
+              </Link>
             ) : (
               <button className="bottonSig-1">Finalizar</button>
             )
-
           ) : showButton ? (
             <button onClick={handleNext} className="bottonSig-2">
               Siguiente

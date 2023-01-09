@@ -4,6 +4,7 @@ import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import Precios from "./Componentes/CardsPrecios";
 import PreciosSesion from "./Componentes/CardsPrecioSesion";
+import PreciosComprado from "./Componentes/CardsPrecioComprado";
 import { useRouter } from "next/router";
 import { Link } from "react-scroll";
 import supabase from "/config/supabaseClient";
@@ -13,6 +14,7 @@ const plans = [
   {
     nombre: "1 mes",
     precio: 149,
+    no_mes: 1,
     precio_id: "price_1MJc4MCFYlDxDHBcOayU4Cf8",
     frecuencia: "mes",
     popular: false,
@@ -26,7 +28,8 @@ const plans = [
   {
     nombre: "6 meses",
     precio: 126.65,
-    precio_id: "price_1MJc5BCFYlDxDHBcewGPvKFx",
+    no_mes: 6,
+    precio_id: "price_1MNMx1CFYlDxDHBcU95LVJIv",
     frecuencia: "mes",
     popular: true,
     caracteristicas: [
@@ -39,7 +42,8 @@ const plans = [
   {
     nombre: "12 meses",
     precio: 104.3,
-    precio_id: "price_1MJc5yCFYlDxDHBcgNs8o5rF",
+    no_mes: 12,
+    precio_id: "price_1MNN07CFYlDxDHBcaBx7emqd",
     frecuencia: "mes",
     popular: false,
     caracteristicas: [
@@ -51,15 +55,47 @@ const plans = [
   },
 ];
 
-
-
 export default function Home() {
 
   const [sesion, setSesion] = useState(null);
+  const [flag, setFlag] = useState(false);
+  const [resultado, setResultado] = useState(null);
 
   useEffect(() => {
     handleSesion();
-  }, []);
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+    if (flag == true) {
+
+      setFlag(false);
+
+      if (sesion) {
+        //console.log("El usuario conectado es:" + sesion.user.id);
+
+        async function getPlan() {
+          console.log("Entramos a getPlan");
+          let { data: sus_pagos, error } = await supabase
+            .from("sus_pagos")
+            .select("activo")
+            .eq("id_usuario", sesion.user.id);
+
+            if(sus_pagos.length == 0){
+              console.log("Este usuario no tiene plan")
+              setResultado(0)
+            }else{
+              console.log("Este usuario si tiene un plan")
+              console.log(sus_pagos[0].activo)
+              setResultado(sus_pagos[0].activo)
+            }
+        }
+
+        getPlan();
+      } else {
+        console.log("No hay una sesion iniciada");
+      }
+    }
+    setFlag(true);
+  }, [flag]);
 
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
@@ -77,7 +113,6 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    
     <div className="bg-blue-50 w-full">
       <Head>
         <title>EvoltFit - Precios</title>
@@ -118,88 +153,114 @@ export default function Home() {
         <div className="xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
           <div className="w-64 p-8">
             <center>
-                <div className="h-16 w-16">
-                  <img src="intuitivo.png"></img>
-                </div>  
+              <div className="h-16 w-16">
+                <img src="intuitivo.png"></img>
+              </div>
             </center>
-            
-              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
-                Intuitivo
-              </h1>
-           
+
+            <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+              Intuitivo
+            </h1>
+
             <div className="text-center">
-              
-                <h2 className="font-catamaran">
-                  No necesitas ser un experto, en EvoltFit te guiaremos paso a
-                  paso para que tengas los resultados que quieres.
-                </h2>
-             
+              <h2 className="font-catamaran">
+                No necesitas ser un experto, en EvoltFit te guiaremos paso a
+                paso para que tengas los resultados que quieres.
+              </h2>
             </div>
           </div>
 
           <div className="w-64 p-9">
             <center>
-              
-                <div className="h-16 w-16">
-                  <img src="centralizado.png"></img>
-                </div>
-             
+              <div className="h-16 w-16">
+                <img src="centralizado.png"></img>
+              </div>
             </center>
-           
-              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
-                Centralizado
-              </h1>
-            
+
+            <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+              Centralizado
+            </h1>
+
             <div className="text-center">
-              
-                <h2 className="font-catamaran">
-                  Encuentra las herramientas más importantes que necesitaras en
-                  tu camino fitness en un solo lugar.
-                </h2>
-              
+              <h2 className="font-catamaran">
+                Encuentra las herramientas más importantes que necesitaras en tu
+                camino fitness en un solo lugar.
+              </h2>
             </div>
           </div>
           <div className="w-64 p-9">
             <center>
-             
-                <div className="h-16 w-16">
-                  <img src="barato.png"></img>
-                </div>
-              
+              <div className="h-16 w-16">
+                <img src="barato.png"></img>
+              </div>
             </center>
-            
-              <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
-                Accesible
-              </h1>
-            
+
+            <h1 className="text-center mb-4 mt-4 text-2xl font-medium text-blue-600">
+              Accesible
+            </h1>
+
             <div className="text-center">
-             
-                <h2 className="font-catamaran text-base">
-                  Accede a una gran cantidad de herramientas y ejercicios sin la
-                  necesidad de pagar una alta tarifa.
-                </h2>
-              
+              <h2 className="font-catamaran text-base">
+                Accede a una gran cantidad de herramientas y ejercicios sin la
+                necesidad de pagar una alta tarifa.
+              </h2>
             </div>
           </div>
         </div>
       </div>
-
       <br />
       <br />
       <br />
       <br />
+      
       <div id="seccionPaquetes"></div>
-      
-        <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
-          Descubre el plan perfecto para ti
+      {resultado == 0 ? (
+        <div><h1 className="text-center text-5xl text-zinc-700 font-catamaran mb-16">
+        Descubre el plan perfecto para ti
         </h1>
-      
-      <br />
-      <br />
-      <br />
 
-      
-      {sesion ? (
+        <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
+        <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
+          {plans.map((plan) => (
+            <div
+              key={plan.nombre}
+              className={`w-full max-w-md mx-auto ${
+                plan.popular
+                  ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
+                  : "lg:transform lg:scale-90"
+              }`}
+            >
+              <PreciosSesion {...plan} key={plan.nombre} />
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+      ) : resultado == 1 ? (
+        <div><h1 className="text-center text-5xl text-blue-600 font-catamaran mb-16 animate-pulse">
+        Actualmente tu cuenta ya tiene registrado un plan. ¡Gracias por confiar  en nosotros!
+        </h1>
+        <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
+        <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
+          {plans.map((plan) => (
+            <div
+              key={plan.nombre}
+              className={`w-full max-w-md mx-auto ${
+                plan.popular
+                  ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
+                  : "lg:transform lg:scale-90"
+              }`}
+            >
+              <PreciosComprado {...plan} key={plan.nombre} />
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+      ) : (
+        <div><h1 className="text-center text-5xl text-zinc-700 font-catamaran mb-16">
+        Descubre el plan perfecto para ti
+        </h1>
         <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
             {plans.map((plan) => (
@@ -211,31 +272,13 @@ export default function Home() {
                     : "lg:transform lg:scale-90"
                 }`}
               >
-                <PreciosSesion {...plan} key={plan.nombre} />
+                <Precios {...plan} key={plan.nombre} />
               </div>
             ))}
           </div>
         </div>
-         ) : (
-          <div className="h-full px-6 py-12 lg:flex lg:justify-center lg:items-center">
-          <div className="grid lg:grid-cols-3 gap-12 lg:gap-0">
-            {plans.map((plan) => (
-              <div
-                key={plan.nombre}
-                className={`w-full max-w-md mx-auto ${
-                  plan.popular
-                    ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
-                    : "lg:transform lg:scale-90"
-                }`}
-              >
-                <Precios  {...plan} key={plan.nombre} />
-              </div>
-            ))}
-          </div>
         </div>
-
-          )}
-
+      )}
       
       <h1 className="text-center mt-1 text-sm text-gray-500">
         * Sujeto a una política de uso razonable
@@ -244,23 +287,19 @@ export default function Home() {
       <br />
       <br />
       <br />
-      
-        <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
-          ¿Te gustaría probar EvoltFit?
-        </h1>
-      
-      <br/>
-     
-        <div className="grid place-items-center">
-            <button onClick={() => router.push("../registro")} className = "button">
-              <span>Registrate</span>
-            </button>
-          
-        </div>
-      
+
+      <h1 className="text-center text-5xl text-zinc-700 font-catamaran">
+        ¿Te gustaría probar EvoltFit?
+      </h1>
+
       <br />
-      <br />
-      
+
+      <div className="grid place-items-center">
+        <button onClick={() => router.push("../registro")} className="button">
+          <span>Registrate</span>
+        </button>
+      </div>
+
       <br />
       <br />
       <br />
