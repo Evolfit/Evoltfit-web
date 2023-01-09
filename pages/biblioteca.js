@@ -21,8 +21,8 @@ export default function Home() {
   const [formInput, setFormInput] = useState({musculo: musculoIndex});
   const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
   
-
   useEffect(() => {
+    //console.log("useEffect")
     getEjercicios();
   }, [formInput, paginacion]);
 
@@ -102,7 +102,7 @@ export default function Home() {
     const data = await query
 
     setEjercicios(data.data);
-    console.log(ejercicios)
+    console.log(data.data)
 
     //CONTEO TOTAL DE REGISTROS
 
@@ -117,7 +117,7 @@ export default function Home() {
     const count = await query
 
     setCantidad(count.count);
-    console.log(cantidad);
+    console.log(count.count);
   }
 
   function incluye(arreglo, buscar) {

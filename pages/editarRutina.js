@@ -7,48 +7,53 @@ import supabase from "../config/supabaseClient";
 
 export default function Home() {
   const router = useRouter();
-  let musculoIndex = router.query.name;
-  (musculoIndex ? "" : musculoIndex = "Todos")
-
-  if (!musculoIndex) {
-    musculoIndex = "Todos"
-  }
+  let rutinaIndex = router.query.rutina;
 
   const [sesion, setSesion] = useState(null);
-  const [paginacion, setPaginacion] = useState(1);
-  const [ejercicios, setEjercicios] = useState(null);
-  const [cantidad, setCantidad] = useState(null);
-  const [formInput, setFormInput] = useState({musculo: musculoIndex});
+  const [rutina, setRutina] = useState(null);
+  const [formInput, setFormInput] = useState();
   const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
   
   useEffect(() => {
+    //console.log("useEffect")
     handleSesion()
   }, [])
 
   const handleSesion = async () => {
 
+    if (!rutinaIndex) {
+      router.push('/rutinas')
+    }
+
     const { data, error } = await supabase.auth.getSession()
 
     if(data.session){
       setSesion(data.session);
-      console.log(data);
+      getRutina();
+      //console.log(data);
     } 
     else {
       setSesion(null);
-      console.log("No hay Sesión " + error);
-      console.log(data);
+      //console.log("No hay Sesión " + error);
       router.push('/login')
     }
   }
 
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    
-    if(error){
-      console.log(error);
+  async function getRutina() {
+    //console.log(rutinaIndex)
+
+    const { data, error } = await supabase
+    .from('rutinas')
+    .select('*')
+    .eq('id', rutinaIndex)
+
+    if (error) {
+      console.log('ERROR: No se encontró la rutina.')
+      console.log(error)
     }
     else{
-      router.reload(window.location.pathname);
+      setRutina(data[0]);
+      //console.log(data[0])
     }
   }
 
@@ -92,60 +97,6 @@ export default function Home() {
     [formInput, setFormInput]
   );
 
-  async function getEjercicios() {
-    var rango = paginacion*10;
-   
-    let filtrarMusculo = null;
-    let filtrarEquipo = null;
-    let filtrarSearch = null;
-
-    if(formInput.musculo != undefined && formInput.musculo != "Todos"){
-      filtrarMusculo = formInput.musculo
-    }
-
-    if (formInput.equipo != undefined && formInput.musculo != []){
-      filtrarEquipo = formInput.equipo
-    }
-    
-    if(formInput.search != undefined && formInput.search != ""){
-      filtrarSearch = "%" + formInput.search + "%"
-    }
-
-    let query = supabase
-    .from('ejercicios')
-    .select('*')
-    .range(rango-10, rango-1)
-  
-    if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
-
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
-    //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
-
-    if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
-    //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
-    
-    const data = await query
-
-    setEjercicios(data.data);
-    console.log(ejercicios)
-
-    //CONTEO TOTAL DE REGISTROS
-
-    query = supabase
-    .from('ejercicios')
-    .select('id', { count: 'exact', head: true })
-
-    if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
-    if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
-
-    const count = await query
-
-    setCantidad(count.count);
-    console.log(cantidad);
-  }
-
   function incluye(arreglo, buscar) {
     if (arreglo != undefined){
       var encontrado = false;
@@ -182,11 +133,14 @@ export default function Home() {
         
         <div>          
           {
-            sesion ? 
+            rutina ? 
             <div className="mx-auto mt-6">
               <div className="flex flex-col w-9/12 mx-auto">
-                <h2 className="text-2xl text-secondary">{"Nueva rutina"}</h2>
-                <button type="submit" onClick={() => {}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
+                <div>
+                  <h2 className="text-2xl text-secondary">{rutina.nombre}</h2>
+                  <br/>
+                  <button type="submit" onClick={() => {}} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
+                </div>
               </div>
               <div className="flex flex-col items-center w-full">
                 {/* Aqui se muestran las rutinas */}
