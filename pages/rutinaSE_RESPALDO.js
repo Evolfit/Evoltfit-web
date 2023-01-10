@@ -49,7 +49,7 @@ export default function Home() {
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
   const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6];
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
-
+  
   const handleClick = () => {
     console.log(formulario);
     console.log("posicion 2" + opciones[2]);
@@ -92,17 +92,17 @@ export default function Home() {
               {longestArray.map((_, index) => (
                 <tr key={`${arrays[index]}-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   {arrays.map((array) => (
-
+                    
                     <td key={array[index]} className="px-6 py-4">
-                      {index < array.length ?
-                        <p>
-                          {array[index]} <br />
-                          <img src="img/completo2.png" alt='hola' style={{ width: '50px', height: '50px' }}></img>
-                          <br />{series}x{repeticiones} <br />
-                          Descanso: {descanso}
-                        </p>
-                        : ''} <br />
-                    </td>
+                      {index < array.length ? 
+                      <p>
+                      {array[index]} <br/> 
+                      <img src="img/completo2.png" alt='hola' style={{ width: '50px', height: '50px' }}></img>
+                      <br/>{series}x{repeticiones} <br/> 
+                      Descanso: {descanso}
+                      </p>
+                      : ''} <br />
+</td>
 
                   ))}
                   <td key={index} className="px-6 py-4"></td>
@@ -114,7 +114,7 @@ export default function Home() {
 
 
         <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
-        <br /><br /> <br /> <br /> <br /> <br /> <br />
+      <br/><br/> <br/> <br/> <br/> <br/> <br/>          
       </main>
       <Footer></Footer>
     </div>
