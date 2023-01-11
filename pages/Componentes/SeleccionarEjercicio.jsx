@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
 import supabase from "/config/supabaseClient";
 
-const SeleccionarEjercicio = ({ agregarEjercicio }) => {
+const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
   const router = useRouter();
   let musculoIndex = router.query.name;
   (musculoIndex ? "" : musculoIndex = "Todos")
@@ -135,9 +135,12 @@ const SeleccionarEjercicio = ({ agregarEjercicio }) => {
   }
 
   return (
-    <div className="absolute top-60 left-1/2 transform -translate-x-1/2 mx-auto w-9/12 h-full bg-pink-200 overflow-auto h-1/2 shadow-lg rounded-2xl pt-12" data-theme="emerald"> 
+    <div className="absolute top-60 left-1/2 transform -translate-x-1/2 mx-auto w-9/12 h-full overflow-auto h-2/3 shadow-lg rounded-2xl pt-12" data-theme="emerald"> 
         <div>
           <div className="w-9/12 mx-auto">
+           <button onClick={() => {setToggleSeleccionar(false)}} className="absolute btn btn-lg btn-ghost right-6 top-6 text-5xl">
+              <ion-icon name='close-outline'></ion-icon>
+           </button>
             <h2 className="text-3xl text-left text-secondary font-semibold ">Selecciona un ejercicio</h2>
             <br/>
 
@@ -347,7 +350,7 @@ const SeleccionarEjercicio = ({ agregarEjercicio }) => {
                 <div className="btn-group">
                   {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
                   {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondar" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
                   <button className="btn btn-secondary">{paginacion}</button>
                   {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
                   {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}

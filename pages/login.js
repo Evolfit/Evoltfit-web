@@ -31,12 +31,6 @@ export default function Home() {
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Cambió la sesión: " + event);
-      if (session) {
-        router.push("/");
-      }
-    });
   }, []);
 
   //----------------------------------------------------------------
@@ -55,7 +49,7 @@ export default function Home() {
       setDatos(data);
       setFetchError(null);
       console.log("Login exitoso");
-      //router.push('/')
+      router.push('/')
     }
   };
 

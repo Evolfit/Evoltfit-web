@@ -59,6 +59,9 @@ export default function Home() {
     }
     else{
       setRutina(data[0]);
+      setFormInput({
+        nombre: data[0].nombre
+      })
       getEjerciciosRutina();
       //console.log(data[0])
     }
@@ -147,33 +150,7 @@ export default function Home() {
         [name]: value,
       });
 
-      //VALIDACIÓN INPUT EQUIPO
-      if (name == "equipo"){     
-        var temp = equipo;
-        
-        if (checked == true){
-          temp.push(value);
-        }
-        
-        if (checked == false){
-          const indice = temp.indexOf(value);
-          if (indice > -1) {
-            temp.splice(indice, 1);
-          }
-        }
-        
-        setEquipo(temp);
-
-        setFormInput({
-          ...formInput,
-          [name]: temp,
-        });
-      }
-
-      setPaginacion(1)
-
       //console.log(name + " | " + id + ": " + value + " -> " + checked);
-      //console.log(formInput.equipo)
     },
     [formInput, setFormInput]
   );
@@ -216,10 +193,17 @@ export default function Home() {
           {
             rutina ? 
             <Fragment>
-              <div className="mx-auto mt-6">
+              <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
                 <div className="flex flex-col w-9/12 mx-auto">
                   <div>
-                    <h2 className="text-2xl text-secondary">{rutina.nombre}</h2>
+                    <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
+                      <div className='text-3xl mt-auto'>
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </div>
+                      <span className="ml-2">{"Volver a Rutinas"}</span>
+                    </button>
+                    <br/>
+                    <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
                     <br/>
                     { ejerciciosRutina.length === 0 ? 
                         <h2>{'Ups, no hay ejercicios. 🥵'}</h2>
@@ -232,8 +216,8 @@ export default function Home() {
                           ))
                         )
                     }
-                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="btn text-white btn-secondary rounded-lg btn-md w-fit">Agregar ejercicio</button>
-                    <button onClick={eliminarRutina} className="btn text-white btn-error rounded-lg btn-md w-fit">Eliminar Rutina</button>
+                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="btn text-white btn-secondary mx-1 rounded-lg btn-md w-fit">Agregar ejercicio</button>
+                    <button onClick={eliminarRutina} className="btn text-white mx-1 btn-error rounded-lg btn-md w-fit">Eliminar Rutina</button>
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full">
@@ -244,6 +228,7 @@ export default function Home() {
                 toggleSeleccionar ? 
                 <SeleccionarEjercicio
                 agregarEjercicio={agregarEjercicio}
+                setToggleSeleccionar={setToggleSeleccionar}
                 /> 
                 : '' }
             </Fragment>
