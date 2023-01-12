@@ -47,7 +47,7 @@ export default function Home() {
 
   async function getRutina() {
     //console.log(rutinaIndex)
-
+    
     const { data, error } = await supabase
     .from('rutinas')
     .select('*')
@@ -62,7 +62,34 @@ export default function Home() {
       setFormInput({
         nombre: data[0].nombre
       })
+      
       getEjerciciosRutina();
+      //console.log(data[0])
+    }
+  }
+
+  async function updateRutina(nombre) {
+    //console.log(rutinaIndex)
+    let temp;
+
+    if (nombre == ''){
+      temp = 'Rutina sin nombre'
+    }
+    else{
+      temp = nombre
+    }
+
+    const { error } = await supabase
+    .from('rutinas')
+    .update({ nombre: temp})
+    .eq('id', rutinaIndex)
+
+    if (error) {
+      console.log('ERROR: No se pudo actualizar la rutina.')
+      console.log(error)
+    }
+    else{
+      console.log('Rutina Actualizada.')
       //console.log(data[0])
     }
   }
@@ -150,6 +177,8 @@ export default function Home() {
         [name]: value,
       });
 
+      updateRutina(value)
+
       //console.log(name + " | " + id + ": " + value + " -> " + checked);
     },
     [formInput, setFormInput]
@@ -210,6 +239,7 @@ export default function Home() {
                       :
                         (ejerciciosRutina.map((ejercicio) => (
                             <CardEjercicio 
+                            key={ejercicio.id}
                             rutinaEjercicio={ejercicio} 
                             getEjerciciosRutina={getEjerciciosRutina}
                             />
