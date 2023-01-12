@@ -14,7 +14,7 @@ const plans = [
   {
     nombre: "1 mes",
     precio: 149,
-    no_mes: 1,
+    no_mes: 2,
     precio_id: "price_1MJc4MCFYlDxDHBcOayU4Cf8",
     frecuencia: "mes",
     popular: false,
@@ -28,7 +28,7 @@ const plans = [
   {
     nombre: "6 meses",
     precio: 126.65,
-    no_mes: 6,
+    no_mes: 7,
     precio_id: "price_1MNMx1CFYlDxDHBcU95LVJIv",
     frecuencia: "mes",
     popular: true,
@@ -42,7 +42,7 @@ const plans = [
   {
     nombre: "12 meses",
     precio: 104.3,
-    no_mes: 12,
+    no_mes: 13,
     precio_id: "price_1MNN07CFYlDxDHBcaBx7emqd",
     frecuencia: "mes",
     popular: false,
@@ -73,7 +73,7 @@ export default function Home() {
         //console.log("El usuario conectado es:" + sesion.user.id);
 
         async function getPlan() {
-          console.log("Entramos a getPlan");
+          
           let { data: sus_pagos, error } = await supabase
             .from("sus_pagos")
             .select("activo")
@@ -84,7 +84,6 @@ export default function Home() {
               setResultado(0)
             }else{
               console.log("Este usuario si tiene un plan")
-              console.log(sus_pagos[0].activo)
               setResultado(sus_pagos[0].activo)
             }
         }

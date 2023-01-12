@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     handleSesion();
-    //console.log("Se ejecuto el useEffect")
+
     if (flag == true) {
       setFlag(false);
 
@@ -60,20 +60,44 @@ export default function Home() {
       "-" +
       current.getDate();
 
-    const { error } = await supabase.from("sus_pagos").insert({
-      fecha_compra: fecha_com,
-      fecha_termino: fecha_ter,
-      id_usuario: sesion.user.id,
-      plan_name: nombrePaquete,
-      no_meses: meses,
-      activo: 1,
-    });
+    let { data: sus_pagos, err } = await supabase
+      .from("sus_pagos")
+      .select("id_usuario")
+      .eq("id_usuario", sesion.user.id);
 
-    if (error) {
-      console.log("ERROR: Hubo un error al registrar el plan.");
-      console.log(error);
+    if (sus_pagos.length == 0) {
+      const { error } = await supabase.from("sus_pagos").insert({
+        fecha_compra: fecha_com,
+        fecha_termino: fecha_ter,
+        id_usuario: sesion.user.id,
+        plan_name: nombrePaquete,
+        no_meses: meses,
+        activo: 1,
+      });
+
+      if (error) {
+        console.log("ERROR: Hubo un error al registrar el plan.");
+        console.log(error);
+      } else {
+        console.log("Plan registrado");
+      }
     } else {
-      console.log("Plan registrado");
+      let { data, error } = await supabase
+        .from("sus_pagos")
+        .update({
+          fecha_compra: fecha_com,  
+          fecha_termino: fecha_ter,
+          plan_name:nombrePaquete,
+          no_meses: meses,
+          activo: 1 , })
+        .eq("id_usuario", sesion.user.id);
+
+        if (error) {
+          console.log("ERROR: Surgió un error al actualizar el plan");
+          console.log(error);
+        } else {
+          console.log("Plan actualizado");
+        }
     }
 
     localStorage.removeItem("NombrePaquete");
