@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dicebear/collection": "^5.0.2",
+    "@dicebear/core": "^5.0.2",
     "@heroicons/react": "^1.0.6",
     "@ionic/react": "^6.4.0",
     "@stripe/react-stripe-js": "^1.16.1",

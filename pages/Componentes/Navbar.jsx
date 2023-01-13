@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
+import PerfilDropdown from "../Componentes/PerfilDropdown";
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
 import Script from 'next/script';
@@ -8,6 +9,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
     const [sesion, setSesion] = useState(null);
+    const [perfil, setPerfil] = useState(null);
 
     useEffect(() => {
         handleSesion()
@@ -18,13 +20,31 @@ const Navbar = () => {
         const { data, error } = await supabase.auth.getSession()
 
         if(data.session){
+            //console.log(data.session)
             setSesion(data.session);
-            //console.log(data);
+            getPerfil(data.session.user.id);
         } 
         else {
             setSesion(null);
             //console.log("No hay Sesión " + error);
         }
+    }
+
+    const getPerfil = async (idUsuario) => {
+        //console.log(idUsuario)
+
+        const { data, error } = await supabase
+            .from('perfiles')
+            .select('*')
+            .eq('id', idUsuario)
+
+            if(error){
+                console.log('ERROR: No se pudo conseguir el perfil.')
+            }
+            else{
+                console.log(data[0])
+                setPerfil(data[0])
+            }
     }
 
     const handleLogout = async () => {
@@ -81,22 +101,10 @@ const Navbar = () => {
                         </li>
                     ))
                 }
-                    {sesion ? 
+                    {perfil ? 
                         <Fragment>
-                            <li className = "md:ml-8 text-x1 md:my-0 my-7"> 
-                                <Link href = "../perfil" className = "">
-                                    <span className = "hover:underline text-blue-500 duration-500 text-xl cursor-pointer">
-                                        {sesion.user.user_metadata.nombre}
-                                    </span>
-                                </Link>
-                            </li>
-                            <li className = "md:ml-8 md:my-0 my-7"> 
-                                <button className="btn btn-ghost m-0 px-2 text-error text-lg" onClick={handleLogout}>
-                                    <div className='text-3xl mt-auto'>
-                                        <ion-icon name='log-out-outline'></ion-icon>
-                                    </div>
-                                    <span className="ml-2">{"Cerrar Sesión"}</span>
-                                </button>
+                            <li className = "flex md:ml-8 text-xl md:my-0 my-7"> 
+                                <PerfilDropdown sesion={sesion} perfil={perfil}/>
                             </li>
                         </Fragment>
                      : 

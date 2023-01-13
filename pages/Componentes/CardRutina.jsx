@@ -53,9 +53,9 @@ const CardRutina = ({ rutina }) => {
                 :
                 (ejerciciosRutina.map((ejercicio) => (
                     <div key={ejercicio.id}>
-                        <p className="font-medium mt-2">{ejercicio.ejercicio.nombre}</p>
+                        <p className="font-bold">{ejercicio.ejercicio.nombre}</p>
                         <p>{'Sets: ' + ejercicio.sets}</p>
-                        <p>{'Reps: ' + ejercicio.reps}</p>
+                        <p className="mb-2">{'Reps: ' + ejercicio.reps}</p>
                     </div>
                 ))
                 )

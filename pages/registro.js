@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
+import { createAvatar } from '@dicebear/core';
+import { micah } from '@dicebear/collection';
 import Navbar from "./Componentes/Navbar";
 import Footer from "./Componentes/Footer";
 import supabase from "../config/supabaseClient";
@@ -105,40 +107,49 @@ export default function Home() {
       formInput.confirmarPassword != ''
       ) 
       {
-      const { data, error } = await supabase.auth.signUp({
-        email: formInput.correo,
-        password: formInput.password,
-        options: {
-          data: {
-            nombre: formInput.nombre,
-          }
-        }
-      });
-
-      if (error) {
-        setDatos(null);
-        setFetchError("Error al conseguir datos");
-        console.log("Error: " + error);
-      } else {
-        setDatos(data);
-        setFetchError(null);
+      
+        const avatar = createAvatar(micah, {
+          seed: formInput.nombre,
+        });
         
-        const { error } = await supabase
-        .from('perfiles')
-        .insert({
-          id: data.user.id, 
-          nombre: formInput.nombre,
-          })
+        const avatarSvg = await avatar.toDataUri();
+        console.log(avatarSvg);
 
-          if(error) {
-            alert("ERROR: Hubo un error al generar el registro.")
-            console.log(error)
+        const { data, error } = await supabase.auth.signUp({
+          email: formInput.correo,
+          password: formInput.password,
+          options: {
+            data: {
+              nombre: formInput.nombre,
+            }
           }
-          else{
-            console.log("Registro exitoso :)");
-          }
+        });
+
+        if (error) {
+          setDatos(null);
+          setFetchError("Error al conseguir datos");
+          console.log("Error: " + error);
+        } else {
+          setDatos(data);
+          setFetchError(null);
+          
+          const { error } = await supabase
+          .from('perfiles')
+          .insert({
+            id: data.user.id, 
+            nombre: formInput.nombre,
+            avatar: avatarSvg
+            })
+
+            if(error) {
+              alert("ERROR: Hubo un error al generar el registro.")
+              console.log(error)
+            }
+            else{
+              console.log("Registro exitoso :)");
+            }
+        }
       }
-    }
   };
 
   function incluye(arreglo, buscar) {
