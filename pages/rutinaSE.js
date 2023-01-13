@@ -29,7 +29,70 @@ export default function Home() {
 
 
   //INICIO DEL SE
+  
 
+
+   //____________________________________________pregunta de objetivo
+  if (opciones[1]==='masamuscular') {
+    console.log("masamuscular");
+  } else if (opciones[1]==='resistencia') {
+    console.log("resistencia");
+  } else if (opciones[1]==='fuerza') {
+    console.log("fuerza");
+  } else if (opciones[1]==='perdergrasa') {
+    console.log("perdergrasa");
+  }  else if (opciones[1]==='salud') {
+    console.log("salud");
+  } else {
+    console.log("Error en el SE P:OBJETIVO");
+  }
+
+     //____________________________________________pregunta de experiencia
+     if (opciones[2]==='principiante') {
+      console.log("principiante");
+    } else if (opciones[2]==='intermedio') {
+      console.log("intermedio");
+    } else if (opciones[2]==='avanzado') {
+      console.log("avanzado");
+    } else if (opciones[2]==='experimentado') {
+      console.log("experimentado");
+    } else {
+      console.log("Error en el SE P:OBJETIVO");
+    }
+
+
+  //____________________________________________pregunta de tiempo
+  if (opciones[2]==='30min') {
+    console.log("30min");
+  } else if (opciones[2]==='1hr') {
+    console.log("1hr");
+  } else if (opciones[2]==='1hr 30') {
+    console.log("1hr 30");
+  } else if (opciones[2]==='2hr') {
+    console.log("2hr");
+  } else {
+    console.log("Error en el SE P:TIEMPO");
+  }
+
+  //____________________________________________pregunta de enfoque.
+  if (opciones[4]==='superior') {
+    //push pull leg
+    console.log("1");
+  } else if (opciones[4]==='brazos') {
+    //pecho espalda brazo pierna
+    console.log("2");
+  } else if (opciones[4]==='pierna') {
+    //pierna push pull intensidad
+    console.log("3");
+  } else if (opciones[4]==='completo') {
+    //push pull leg intensidad equilibrada ejercicios compuestos
+    console.log("4");
+  } else {
+    console.log("Error en el SE P:ENFOQUE");
+  }
+
+
+  //llenar temporal
   for (let i = 0; i < 5; i++) {
     contenido1.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
     contenido2.push({ valor: 1, series: seriesG - 1, repeticiones: repeticionesG });
@@ -38,21 +101,6 @@ export default function Home() {
     contenido5.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
     contenido6.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
   }
-
-  if (opciones[4]==='superior') {
-    console.log("1");
-  } else if (opciones[4]==='brazos') {
-    console.log("2");
-  } else if (opciones[4]==='pierna') {
-    console.log("3");
-  } else if (opciones[4]==='completo') {
-    console.log("4");
-  } else {
-    console.log("Error en el SE P:ENFOQUE");
-  }
-
-
-
 
 
 
