@@ -5,11 +5,12 @@ import Navbar from './Componentes/Navbar';
 import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import shortid from 'shortid';
 
 export default function Home() {
   //Variables generales
-  const [series, setSeries] = useState("3");
-  const [repeticiones, setRepeticiones] = useState("12");
+  const [seriesG, setSeriesG] = useState("5");
+  const [repeticionesG, setRepeticionesG] = useState("12");
   const [descanso, setDescanso] = useState("3m");
   //Recuperar valores
   const router = useRouter();
@@ -19,19 +20,36 @@ export default function Home() {
   const herramientas = JSON.parse(checkboxes);
   const opciones = JSON.parse(arreglo);
   //contenidos de puede llegar a contener cada dia
-  const contenido1 = ['1', '1', '1', '1', '1'];//lUNES
-  const contenido2 = ['2', '2', '2', '2', '2', '2'];//MARTES
-  const contenido3 = ['3', '3', '3', '3'];//MIERCOLES
-  const contenido4 = ['4', '4', '4', '4', '4', '4'];//JUEVES
-  const contenido5 = ['5', '5', '5', '5', '5'];//VIERNES
-  const contenido6 = ['6', '6', '6', '6', '6', '6'];//SABADO
+  const contenido1 = [];//lUNES
+  const contenido2 = [];//MARTES
+  const contenido3 = [];//MIERCOLES
+  const contenido4 = [];//JUEVES
+  const contenido5 = [];//VIERNES
+  const contenido6 = [];//SABADO
 
 
   //INICIO DEL SE
 
+  for (let i = 0; i < 5; i++) {
+    contenido1.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido2.push({ valor: 1, series: seriesG - 1, repeticiones: repeticionesG });
+    contenido3.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido4.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido5.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido6.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+  }
 
-
-
+  if (opciones[4]==='superior') {
+    console.log("1");
+  } else if (opciones[4]==='brazos') {
+    console.log("2");
+  } else if (opciones[4]==='pierna') {
+    console.log("3");
+  } else if (opciones[4]==='completo') {
+    console.log("4");
+  } else {
+    console.log("Error en el SE P:ENFOQUE");
+  }
 
 
 
@@ -52,7 +70,7 @@ export default function Home() {
 
   const handleClick = () => {
     console.log(formulario);
-    console.log("posicion 2" + opciones[2]);
+    console.log("posicion 5" + opciones[4]);
     console.log(herramientas);
     console.log(opciones);
   };
@@ -93,12 +111,12 @@ export default function Home() {
                 <tr key={`${arrays[index]}-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   {arrays.map((array) => (
 
-                    <td key={array[index]} className="px-6 py-4">
+                    <td key={shortid.generate()} className="px-6 py-4">
                       {index < array.length ?
                         <p>
-                          {array[index]} <br />
-                          <img src="img/completo2.png" alt='hola' style={{ width: '50px', height: '50px' }}></img>
-                          <br />{series}x{repeticiones} <br />
+                          {array[index].valor} <br />
+                          <img src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+                          <br />{array[index].series}x{array[index].repeticiones} <br />
                           Descanso: {descanso}
                         </p>
                         : ''} <br />

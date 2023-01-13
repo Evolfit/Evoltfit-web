@@ -24,6 +24,7 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.5.0",
     "react-scroll": "^1.8.9",
+    "shortid": "^2.2.16",
     "stripe": "^11.5.0",
     "styled-components": "^5.3.6"
   },
