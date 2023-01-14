@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { useRouter } from "next/router";
-import Navbar from '/Componentes/Navbar';
-import Footer from "/Componentes/Footer";
+import Navbar from './Componentes/Navbar';
+import Footer from "./Componentes/Footer";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import shortid from 'shortid';

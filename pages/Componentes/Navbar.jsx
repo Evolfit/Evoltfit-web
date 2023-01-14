@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useRouter } from "next/router";
 import { useState, useEffect} from 'react';
-import PerfilDropdown from "./PerfilDropdown";
+import PerfilDropdown from "../Componentes/PerfilDropdown";
 import supabase from '/config/supabaseClient';
 import Head from 'next/head';
 import Script from 'next/script';
