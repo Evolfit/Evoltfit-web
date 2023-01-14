@@ -34,13 +34,13 @@ export default function Nosotros() {
           />
           <Typed
             strings={[
-              "Plataforma accesible",
-              "Plataforma centralizada",
-              "Plataforma intuitiva",
+              "Accesible",
+              "Centralizado",
+              "Intuitivo",
             ]}
             typeSpeed={150}
             backSpeed={100}
-            className="absolute top-32 text-lg text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-7xl xl:top-64 "
+            className="absolute top-32 text-2xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-7xl xl:top-64 "
             loop={true}
           />
         </div>
