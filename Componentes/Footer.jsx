@@ -10,7 +10,7 @@ const Footer = () => {
           <Link href="../">
             <div className="flex items-center cursor-pointer">
               <img src="/evologo.png" className="mr-3 h-8" alt="Evolfit Logo" />
-              <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap">
                 EvoltFit
               </span>
             </div>
@@ -19,7 +19,7 @@ const Footer = () => {
 
         <div className="mb-6 md:mb-0 box-border h-36 w-72">
           <div href="#" className="flex items-center">
-            <p className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap dark:text-white mb-4">
+            <p className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap mb-4">
               Sobre nosotros
             </p>
           </div>
@@ -31,10 +31,10 @@ const Footer = () => {
 
         <div className="grid grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-2">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
               Navegación
             </h2>
-            <ul className="text-gray-600 dark:text-gray-400">
+            <ul className="text-gray-600">
               <li className="mb-4">
                 <Link href="../">
                   <a className="hover:underline">Inicio</a>
@@ -65,10 +65,10 @@ const Footer = () => {
 
           
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
               Legal
             </h2>
-            <ul className="text-gray-600 dark:text-gray-400">
+            <ul className="text-gray-600">
               <li className="mb-4">
                 <Link href="#">
                   <a className="hover:underline">Politica de Privacidad</a>
@@ -84,9 +84,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+        <span className="text-sm text-gray-500 sm:text-center ">
           © 2022{" "}
           <Link href="../" className="hover:underline">
             Evoltfit™
@@ -97,7 +97,7 @@ const Footer = () => {
           <Link href="#">
             <div>
               <svg
-                className="w-5 h-5 text-gray-500 hover:text-blue-900 dark:hover:text-white cursor-pointer"
+                className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -114,7 +114,7 @@ const Footer = () => {
           <Link href="#">
             <div>
               <svg
-                className="w-5 h-5 text-gray-500 hover:text-blue-900 dark:hover:text-white cursor-pointer"
+                className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -131,7 +131,7 @@ const Footer = () => {
           <Link href="#">
             <div>
               <svg
-                className="w-5 h-5 text-gray-500 hover:text-blue-900 dark:hover:text-white cursor-pointer"
+                className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
