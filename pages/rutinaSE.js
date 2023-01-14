@@ -163,7 +163,7 @@ export default function Home() {
                       {index < array.length ?
                         <p>
                           {array[index].valor} <br />
-                          <img src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+                          <Image src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></Image>
                           <br />{array[index].series}x{array[index].repeticiones} <br />
                           Descanso: {descanso}
                         </p>
