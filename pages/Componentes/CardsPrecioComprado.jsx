@@ -73,9 +73,6 @@ const CardsPrecios = ({
             </li>
           ))}
         </ul>
-        {/* Boton del plan*/}
-
-        
       </div>
     </div>
   );

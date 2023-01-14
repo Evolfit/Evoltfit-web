@@ -29,7 +29,7 @@ export default function Home() {
         registrarPago();
         setTimeout(function () {
           router.push("/herramientas");
-        }, 4000);
+        }, 3000);
       } else {
         console.log("No hay nada en localStorage, no se registrará nada");
         setTimeout(function () {

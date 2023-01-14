@@ -15,7 +15,7 @@ export default function Home() {
     setTimeout(function(){
       console.log("Redirigiendo...");
       router.push("/");
-  }, 4000);
+  }, 3000);
   }, [])
 
   return (
