@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Componentes/Navbar";
-import Footer from "./Componentes/Footer";
+import Navbar from "/Components/Navbar";
+import Footer from "/Components/Footer";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "/config/supabaseClient";

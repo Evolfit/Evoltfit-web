@@ -135,7 +135,7 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
   }
 
   return (
-    <div className="absolute top-60 left-1/2 transform -translate-x-1/2 mx-auto w-9/12 h-full overflow-auto h-2/3 shadow-lg rounded-2xl pt-12" data-theme="emerald"> 
+    <div className="absolute top-32 left-1/2 transform -translate-x-1/2 mx-auto w-9/12 h-full overflow-auto h-2/3 shadow-lg rounded-2xl pt-12" data-theme="emerald"> 
         <div>
           <div className="w-9/12 mx-auto">
            <button onClick={() => {setToggleSeleccionar(false)}} className="absolute btn btn-lg btn-ghost right-6 top-6 text-5xl">

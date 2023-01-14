@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import Navbar from "./Componentes/Navbar";
+import Navbar from "/Components/Navbar";
 import supabase from "../config/supabaseClient";
-import Footer from "./Componentes/Footer";
+import Footer from "/Components/Footer";
 import Link from "next/link";
 
 export default function Home() {
