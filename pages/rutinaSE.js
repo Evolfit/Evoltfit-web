@@ -16,9 +16,17 @@ export default function Home() {
   const router = useRouter();
   const { formData2, checkboxes, arreglo } = router.query;
   //JSON
-  const formulario = JSON.parse(formData2);
-  const herramientas = JSON.parse(checkboxes);
-  const opciones = JSON.parse(arreglo);
+  if (typeof formData2 !== "undefined" && formData2 !== "") {
+    const formulario = JSON.parse(formData2);
+  }
+  
+  if (typeof checkboxes !== "undefined" && checkboxes !== "") {
+    const herramientas = JSON.parse(checkboxes);
+  }
+  
+  if (typeof arreglo !== "undefined" && arreglo !== "") {
+    const opciones = JSON.parse(arreglo);
+  }
   //contenidos de puede llegar a contener cada dia
   const contenido1 = [];//lUNES
   const contenido2 = [];//MARTES
