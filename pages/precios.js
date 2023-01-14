@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "/Components/Navbar";
-import Footer from "/Components/Footer";
+import Navbar from "/components/Navbar";
+import Footer from "/components/Footer";
 import Head from "next/head";
-import Precios from "/Components/CardsPrecios";
-import PreciosSesion from "/Components/CardsPrecioSesion";
-import PreciosComprado from "/Components/CardsPrecioComprado";
+import Precios from "/components/CardsPrecios";
+import PreciosSesion from "/components/CardsPrecioSesion";
+import PreciosComprado from "/components/CardsPrecioComprado";
 import { useRouter } from "next/router";
 import { Link } from "react-scroll";
 import supabase from "/config/supabaseClient";
