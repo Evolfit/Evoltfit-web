@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Navbar from "./Componentes/Navbar";
-import Footer from "./Componentes/Footer";
+import Navbar from "/Componentes/Navbar";
+import Footer from "/Componentes/Footer";
 import supabase from "../config/supabaseClient";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
