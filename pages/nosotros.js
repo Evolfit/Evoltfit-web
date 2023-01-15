@@ -103,9 +103,9 @@ export default function Nosotros() {
         <br />
         <br />
         <br />
-        <section id="about-us" className="py-16">
+        <section className="py-16">
           <div className="container mx-auto py-2 flex">
-            <div className="w-1/2 flex flex-col justify-center text-center px-16">
+            <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Misión</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -118,21 +118,21 @@ export default function Nosotros() {
             </div>
 
             <div className="w-1/2 relative">
-              <img className="w-full relative z-10" src="bcmision.jpg" />
-              <div className="bg-blue-600 h-full w-full absolute top-6 -left-6"></div>
+              <img className="invisible xl:w-full xl:relative xl:z-10 xl:visible" src="bcmision.jpg" />
+              <div className="invisible xl:bg-blue-600 xl:h-full xl:w-full xl:absolute xl:top-6 xl:-left-6 xl:visible"></div>
             </div>
           </div>
         </section>
 
-        <section id="about-us" className="py-16">
+        <section className="py-16">
           <div className="container mx-auto py-2 flex">
             <div className="w-1/2 relative">
-              <img className="w-full relative z-10" src="bcvision.jpg" />
-              <div className="bg-blue-600 h-full w-full absolute bottom-6 -right-6"></div>
+              <img className="invisible xl:w-full xl:relative xl:z-10 xl:visible" src="bcvision.jpg" />
+              <div className="invisible xl:bg-blue-600 xl:h-full xl:w-full xl:absolute xl:bottom-6 xl:-right-6 xl:visible"></div>
             </div>
 
-            <div className="w-1/2 flex flex-col justify-center text-center px-16">
-              <h2 className="text-3xl font-bold mb-5">Misión</h2>
+            <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
+              <h2 className="text-3xl font-bold mb-5">Visión</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Maecenas nec vestibulum lectus. Aliquam quis ultricies leo.
