@@ -115,11 +115,11 @@ export default function Home() {
   //llenar temporal
   for (let i = 0; i < 5; i++) {
     contenido1.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
-    contenido2.push({ valor: 1, series: seriesG - 1, repeticiones: repeticionesG });
-    contenido3.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
-    contenido4.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
-    contenido5.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
-    contenido6.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido2.push({ valor: 2, series: seriesG - 1, repeticiones: repeticionesG });
+    contenido3.push({ valor: 3, series: seriesG, repeticiones: repeticionesG });
+    contenido4.push({ valor: 4, series: seriesG, repeticiones: repeticionesG });
+    contenido5.push({ valor: 5, series: seriesG, repeticiones: repeticionesG });
+    contenido6.push({ valor: 6, series: seriesG, repeticiones: repeticionesG });
   }
 
 
