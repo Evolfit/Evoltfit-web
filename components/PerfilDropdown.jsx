@@ -28,7 +28,7 @@ const PerfilDropdown = ({ sesion, perfil }) => {
         <div className="">
             <img src={perfil.avatar} className='hidden md:inline w-16 bg-blue-500 rounded-full border-blue-700 cursor-pointer hover:border-2 duration-75' alt="avatar" onClick={() => {setToggleDropdown(!toggleDropdown)}}/>
             <div className="flex flex-row md:hidden">
-                <img src={perfil.avatar} className='md: w-16 bg-blue-500 rounded-full border-blue-700 cursor-pointer hover:border-2 duration-75' alt="avatar" onClick={() => {router.push('/perfil')}}/>
+                <img src={perfil.avatar} className='md: w-12 bg-blue-500 rounded-full border-blue-700 cursor-pointer hover:border-2 duration-75' alt="avatar" onClick={() => {router.push('/perfil')}}/>
                 <span className="my-auto ml-3 text-secondary text-xl cursor-pointer hover:underline whitespace-nowrap text-ellipsis overflow-hidden w-36" onClick={() => {router.push('/perfil')}}>{perfil.nombre}</span>
             </div>
             
@@ -42,6 +42,9 @@ const PerfilDropdown = ({ sesion, perfil }) => {
                         </div>  
                     </div>
                     <div className="py-2 px-3 hover:bg-gray-200 border-t-2 border-gray-200 duration-150 cursor-pointer">
+                        <span className="text-base" onClick={() => {router.push('/perfil')}}>Mi Perfil</span>
+                    </div>
+                    <div className="py-2 px-3 hover:bg-gray-200 duration-150 cursor-pointer">
                         <span className="text-base" onClick={handleLogout}>Cerrar Sesion</span>
                     </div>
                 </div>
