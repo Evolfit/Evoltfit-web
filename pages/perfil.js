@@ -76,7 +76,7 @@ export default function Perfil() {
         <br/>
         {
             perfil ?  
-            <div className="flex flex-col justify-center items-center mx-12 my-6 bg-white rounded-xl py-8">
+            <div className="flex flex-col justify-center items-center lg:mx-12 my-6 bg-white rounded-xl py-8">
                 <img src={perfil.avatar} className='w-36 bg-blue-500 rounded-full border-blue-700 cursor-pointer hover:border-4 duration-75' alt="avatar" />
                 <h2 className="font-semibold text-2xl mt-4">{perfil.nombre}</h2>
                 <h3 className="font-light text-lg">{sesion.user.email}</h3>

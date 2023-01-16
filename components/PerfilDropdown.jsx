@@ -41,11 +41,11 @@ const PerfilDropdown = ({ sesion, perfil }) => {
                             <span className="text-sm whitespace-nowrap text-ellipsis overflow-hidden w-60">{sesion.user.email}</span>
                         </div>  
                     </div>
-                    <div className="py-2 px-3 hover:bg-gray-200 border-t-2 border-gray-200 duration-150 cursor-pointer">
-                        <span className="text-base" onClick={() => {router.push('/perfil')}}>Mi Perfil</span>
+                    <div className="py-2 px-3 hover:bg-gray-200 border-t-2 border-gray-200 duration-150 cursor-pointer" onClick={() => {router.push('/perfil')}}>
+                        <span className="text-base">Mi Perfil</span>
                     </div>
-                    <div className="py-2 px-3 hover:bg-gray-200 duration-150 cursor-pointer">
-                        <span className="text-base" onClick={handleLogout}>Cerrar Sesion</span>
+                    <div className="py-2 px-3 hover:bg-gray-200 duration-150 cursor-pointer" onClick={handleLogout}>
+                        <span className="text-base" >Cerrar Sesion</span>
                     </div>
                 </div>
             : ''}
