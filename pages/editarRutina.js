@@ -184,24 +184,6 @@ export default function Home() {
     [formInput, setFormInput]
   );
 
-  function incluye(arreglo, buscar) {
-    if (arreglo != undefined){
-      var encontrado = false;
-      var arreglo_temp = Array.from(arreglo);
-
-      for (let i = 0; i < arreglo_temp.length; i++) {
-        if (arreglo_temp[i] == buscar){
-          encontrado = true;
-          break;
-        }
-      }  
-      return encontrado;
-    }
-    else{
-      return false;
-    }
-  }
-
   return (
     <div className="bg-stone-100 w-full z-0" data-theme="emerald">
       <Head>

@@ -315,6 +315,10 @@ input:checked + label {
   background-image: url('../public/bcgym.jpg');
 }
 
+.bg-internal-img3 {
+  background-image: url('../public/bannerindex.jpg');
+}
+
 .textform{
   resize: none;
 }
@@ -334,34 +338,34 @@ input:checked + label {
   flex-wrap: wrap;
 }
 .body-map__body {
-  height: 540px;
+  height: 500px;
 }
 .body-map__model {
   color: #000;
 }
 .body-map__muscle {
-  color: #ebebeb;
+  color: #CDCDCD;
   transition: color 25ms ease-in-out;
 }
 .body-map__muscle:hover {
-  color: #2563eb;
+  color: #3A65EE;
   cursor: pointer;
 }
 
 
 @media screen and (max-width: 600px) {
   .body-map__body {
-    height: 650px;
+    height: 450px;
   }
 }
 @media screen and (max-width: 500px) {
   .body-map__body {
-    height: 650px;
+    height: 400px;
   }
 }
 @media screen and (max-width: 360px) {
   .body-map__body {
-    height: 600px;
+    height: 350px;
   }
 }
 @media screen and (max-width: 320px) {

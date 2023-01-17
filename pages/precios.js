@@ -139,7 +139,7 @@ export default function Home() {
           offset={50}
           duration={800}
         >
-          <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-28 py-2 px-4 xl:w-64 xl:py-4 xl:px-8 xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
+          <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-28 py-2  px-4 xl:w-64 xl:py-4 xl:px-8 xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
             Pruébalos
           </button>
         </Link>
