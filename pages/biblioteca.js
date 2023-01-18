@@ -328,7 +328,14 @@ export default function Home() {
                 {
                   ejercicios.map((ejercicio) =>(
                   <div key={ejercicio.id} className="w-9/12 lg:flex drop-shadow-md my-6">
-                    <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
+                    <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer hover:opacity-70 duration-75" 
+                    style={{backgroundImage: 'url("'+ejercicio.img+'")'}}
+                    onClick={() => {
+                      router.push({
+                      pathname: '/detalleEjercicio',
+                      query: { ejercicio: ejercicio.id }
+                    })}}
+                    >
                     </div>
                     <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
                       <div className="mb-8">
@@ -338,7 +345,13 @@ export default function Home() {
                           </svg>
                           {ejercicio.musculo_primario}
                         </p>
-                        <div className="text-gray-900 font-bold text-xl mb-2">{ejercicio.nombre}</div>
+                        <p className="text-gray-900 font-bold text-xl mb-2 cursor-pointer hover:text-secondary duration-75"
+                          onClick={() => {
+                            router.push({
+                            pathname: '/detalleEjercicio',
+                            query: { ejercicio: ejercicio.id }
+                          })}}
+                        >{ejercicio.nombre}</p>
                         <p className="text-gray-700 text-base">{ejercicio.recomendaciones}</p>
                       </div>
                       
