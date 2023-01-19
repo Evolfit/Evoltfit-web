@@ -556,12 +556,12 @@ export default function Home() {
       <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
         <div className="w-full lg:w-1/2">
           <div className="lg:max-w-lg">
-            <h1 className="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
+            <h1 className="text-3xl font-semibold tracking-wide text-gray-800 lg:text-4xl">
               Encuentra la mejor forma de entrenar en EvoltFit
             </h1>
 
             <div className="grid gap-6 mt-8 sm:grid-cols-2">
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -580,7 +580,7 @@ export default function Home() {
                 <span className="mx-3">Rutinas personalizadas</span>
               </div>
 
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -599,7 +599,7 @@ export default function Home() {
                 <span className="mx-3">Rutinas automáticas</span>
               </div>
 
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -618,7 +618,7 @@ export default function Home() {
                 <span className="mx-3">Biblioteca de ejercicios</span>
               </div>
 
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -637,7 +637,7 @@ export default function Home() {
                 <span className="mx-3">Calculadora de calorías</span>
               </div>
 
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -656,7 +656,7 @@ export default function Home() {
                 <span className="mx-3">Planes accesibles</span>
               </div>
 
-              <div className="flex items-center text-gray-800 -px-3 dark:text-gray-200">
+              <div className="flex items-center text-gray-800 -px-3">
                 <svg
                   className="w-5 h-5 mx-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -688,7 +688,7 @@ export default function Home() {
 
       <div className="container px-6 py-10 mx-auto">
         <div className="max-w-6xl mx-auto">
-          <h1 className="mt-2 text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+          <h1 className="mt-2 text-3xl font-semibold text-gray-800 capitalize lg:text-4xl">
             Nuestros colaboradores
           </h1>
           <div className="mt-2">
@@ -698,25 +698,25 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="col1.png"
               alt=""
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
               Karina Villareal
             </h1>
 
-            <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
+            <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
               Licenciada en nutrición
             </p>
 
             <div className="flex mt-3 -mx-2">
               <Link href="/">
                 <a
-                  className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
+                  className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
                   aria-label="Facebook"
                 >
                   <svg
@@ -731,25 +731,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="col2.png"
               alt=""
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
               Jimena Cuevas
             </h1>
 
-            <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
+            <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
               Coach personalizado profesional
             </p>
 
             <div className="flex mt-3 -mx-2">
               <Link href="https://instagram.com/jimena.cuevasfit?igshid=OGQ2MjdiOTE=">
                 <a
-                  className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
+                  className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
                   aria-label="Facebook"
                 >
                   <svg
@@ -769,12 +769,12 @@ export default function Home() {
       <div className="mt-1 xl:mt-32 xl:flex">
         <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
           <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
+            <h2 className="text-3xl font-semibold text-gray-800 lg:text-4xl">
               Entrena y aprende con{" "}
-              <span className="text-blue-600 dark:text-blue-400">EvoltFit</span>
+              <span className="text-blue-600">EvoltFit</span>
             </h2>
 
-            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">
+            <p className="mt-4 text-sm text-gray-500 lg:text-base">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Blanditiis commodi cum cupiditate ducimus, fugit harum id
               necessitatibus odio quam quasi, quibusdam rem tempora voluptates.
