@@ -197,7 +197,7 @@ export default function Perfil() {
                             (
                                 correoVerificacion ? 
                                 <div className="w-fit my-auto">
-                                    <p className="text-lg text-green-600">{'¡Se envió un correo de verificación a ' + sesion.user.email + '!'}</p>
+                                    <p className="text-lg text-green-600">{'¡Se enviaron los correos de verificación!'}</p>
                                 </div>
                                 :
                                 <div className="w-fit my-auto">
@@ -215,7 +215,7 @@ export default function Perfil() {
                             <p className="text-base font-normal">**********</p>
                         </div>
                         <div className="w-fit my-auto">
-                            <button className="btn btn-sm">Cambiar Contraseña</button>
+                            <button className="btn btn-sm" onClick={() => {router.push('/passwordOlvidada')}}>Editar</button>
                         </div>
                     </div>
                     <div className="flex flex-row px-4 py-3 border-t border-gray-300">
@@ -224,7 +224,7 @@ export default function Perfil() {
                             <p className="text-base font-normal">EvoltFit Basic | Ayuda chats</p>
                         </div>
                         <div className="w-fit my-auto">
-                            <button className="btn btn-sm btn-secondary">Cambiar Plan</button>
+                            <button className="btn btn-sm btn-secondary" onClick={() => {router.push('/precios')}}>Cambiar Plan</button>
                         </div>
                     </div>
                     <div className="flex flex-row px-4 py-3 border-t border-gray-300">

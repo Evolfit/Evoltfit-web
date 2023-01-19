@@ -13,6 +13,8 @@ export default function detalleEjercicio() {
 
   const [sesion, setSesion] = useState(null);
   const [ejercicio, setEjercicio] = useState(null);
+  const [rutinas, setRutinas] = useState(null);
+  const [formInput, setFormInput] = useState({});
 
   useEffect(() => {
     handleSesion()
@@ -29,7 +31,8 @@ export default function detalleEjercicio() {
 
     if(data.session){
       setSesion(data.session);
-      //console.log(data);
+      getRutinas(data.session)
+      console.log(data.session);
     } 
     else {
       setSesion(null);
@@ -38,7 +41,6 @@ export default function detalleEjercicio() {
   }
 
   async function getEjercicio() {
-    
     const { data, error } = await supabase
     .from('ejercicios')
     .select('*')
@@ -55,21 +57,103 @@ export default function detalleEjercicio() {
     }
   }
 
-  async function eliminarRutina() {
-    const { error } = await supabase
+  async function getRutinas(session) {
+    const { data, error } = await supabase
     .from('rutinas')
-    .delete()
-    .match({id: rutina.id, usuario: sesion.user.id})
+    .select('*')
+    .eq('usuario', session.user.id)
 
     if (error) {
-      console.log('ERROR: Error al eliminar la rutina.')
+      console.log('ERROR: Hubo un error al recuperar la rutina.')
       console.log(error)
     }
     else{
-      console.log('Se eliminó ' + rutina.nombre)
-      router.push('/rutinas')
+      //console.log(data);
+      setRutinas(data);
     }
   }
+
+  async function nuevaRutina() {
+    let query = supabase
+    .from('rutinas')
+    .select('nombre', { count: 'exact', head: true })
+    .eq('usuario', sesion.user.id)
+
+    const count = await query
+    //console.log(count);
+
+    const { data, error } = await supabase
+      .from('rutinas')
+      .insert({
+        usuario: sesion.user.id, 
+        nombre: "Nueva rutina " + (count.count + 1)
+        })
+      .select()
+
+    if (error) {
+      console.log(error)
+      console.log("ERROR: Hubo un error al crear una nueva rutina.")
+    }
+    else{
+      //console.log(data);
+      //console.log("Se creó una nueva rutina.")
+      agregarEjercicio(data[0].id)
+      router.push({
+        pathname: '/editarRutina',
+        query: { rutina: data[0].id }
+      })
+    }
+  }
+
+  async function agregarEjercicio(idRutina) {
+    const { data, error } = await supabase
+      .from('rutinas_ejercicio')
+      .insert({
+        rutina: idRutina, 
+        ejercicio: ejercicio.id
+      })
+
+    if (error) {
+      console.log(error)
+      console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
+    }
+    else{
+      //console.log("Se agregó un nuevo ejercicio.")
+    }
+  }
+
+  const handleOnInputChange = useCallback(
+    (event) => {
+      const { value, name, id, checked } = event.target;
+
+      setFormInput({
+        ...formInput,
+        [name]: value,
+      });
+
+      if(name == 'agregarRutina'){
+        if (value == 'Nueva Rutina') {
+          if (sesion === null) {
+            router.push('/login')
+          }
+          else{
+            nuevaRutina()
+          }
+        }
+        else{
+          agregarEjercicio(value)
+          router.push({
+            pathname: '/editarRutina',
+            query: { rutina: value }
+          })
+        }
+      }
+
+      console.log(name + " | " + id + ": " + value + " -> " + checked);
+      //console.log(formInput.equipo)
+    },
+    [formInput, setFormInput, sesion, ejercicio]
+  );
 
   return (
     <div className="bg-stone-100 w-full z-0" data-theme="emerald">
@@ -105,6 +189,26 @@ export default function detalleEjercicio() {
                       <h2 className="text-2xl font-medium">{ejercicio.nombre}</h2>
                       <p className="text-xl font-light">{ejercicio.musculo_primario}</p>
                       <img src={ejercicio.img} alt={ejercicio.nombre} />
+                      
+                      {/* AGREGAR A RUTINA */}
+                      <div className="form-control mt-4 mb-4">
+                        <select name="agregarRutina" id="agregarRutina" onChange={handleOnInputChange} className="select select-secondary lg:text-xl lg:py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue='agregar'>
+                          <option id="agregar" value="agregar" hidden>Agregar a Rutina</option>
+                          { rutinas ? 
+                              (rutinas.length !== 0 ? 
+                                rutinas.map((rutina) => (
+                                  <option key={rutina.id} id={rutina.id} value={rutina.id}>{rutina.nombre}</option>
+                              ))
+                              :
+                                ''
+                              )
+                              :
+                                ''
+                          }
+                          <option id="Nueva Rutina" value="Nueva Rutina">Nueva Rutina</option>
+                        </select>
+                      </div>
+
                       <h3 className="mt-6 text-lg font-medium">Recomendaciones</h3>
                       <p className="my-2 text-lg">{ejercicio.recomendaciones}</p>
                       <h3 className="mt-6 text-lg font-medium">Errores comunes</h3>
