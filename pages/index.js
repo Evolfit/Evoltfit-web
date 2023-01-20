@@ -765,7 +765,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-  
+
       <div className="mt-1 xl:mt-32 xl:flex">
         <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
           <div className="max-w-xl">
@@ -781,11 +781,15 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-              <Link href="../registro">
-                <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">
-                  Registrarse
-                </a>
-              </Link>
+              {sesion ? (
+                <a></a>
+              ) : (
+                <Link href="../registro">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">
+                    Registrarse
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
         </div>

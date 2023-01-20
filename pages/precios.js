@@ -19,8 +19,8 @@ const plans = [
     frecuencia: "mes",
     popular: false,
     caracteristicas: [
-      "Facturado cada 3 meses",
-      "El paquete más económico",
+      "Duración de 1 mes",
+      "Perfecto para probar EFP",
       "Obten todos los beneficios",
       "Desbloquea funciones extras",
     ],
@@ -33,7 +33,7 @@ const plans = [
     frecuencia: "mes",
     popular: true,
     caracteristicas: [
-      "Facturado cada 6 meses",
+      "Duración de 6 meses",
       "Ahorra el 15%",
       "Obten todos los beneficios",
       "Desbloquea funciones extras",
@@ -47,7 +47,7 @@ const plans = [
     frecuencia: "mes",
     popular: false,
     caracteristicas: [
-      "Facturado cada 12 meses",
+      "Duración de 12 meses",
       "Ahorra el 30%",
       "Obten todos los beneficios",
       "Desbloquea funciones extras",
@@ -292,12 +292,19 @@ export default function Home() {
       </h1>
 
       <br />
-
+      {sesion ? (
+      <div className="grid place-items-center">
+        <button onClick={() => router.push("/herramientas")} className="mt-1 rounded-md hover:scale-110 transition-all font-catamaran top-28 py-2  px-4 xl:w-64 xl:py-4 xl:px-8 xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
+            Ir a herramientas
+          </button>
+      </div>
+      ) : (
       <div className="grid place-items-center">
         <button onClick={() => router.push("../registro")} className="button">
           <span>Registrate</span>
         </button>
       </div>
+      )}
 
       <br />
       <br />

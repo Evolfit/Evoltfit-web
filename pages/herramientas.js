@@ -84,7 +84,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/sistemaexperto">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -99,7 +99,7 @@ export default function Home() {
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/visualizadorCalorias">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -144,7 +144,7 @@ export default function Home() {
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/precios">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -163,7 +163,7 @@ export default function Home() {
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/precios">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -182,7 +182,7 @@ export default function Home() {
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/precios">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -231,7 +231,7 @@ export default function Home() {
                 </div>
 
                 <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                  <Link href="/">
+                  <Link href="/visualizadorCalorias">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
@@ -366,7 +366,7 @@ export default function Home() {
                         Contador de calorías
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
-                        Acceso directo
+                        Necesitas una cuenta para poder utilizarla
                       </p>
                     </div>
                   </Link>
