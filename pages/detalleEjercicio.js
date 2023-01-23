@@ -7,7 +7,7 @@ import CardEjercicio from "/components/CardEjercicio";
 import SeleccionarEjercicio from "/components/SeleccionarEjercicio";
 import supabase from "../config/supabaseClient";
 
-export default function detalleEjercicio() {
+export default function DetalleEjercicio() {
   const router = useRouter();
   let ejercicioIndex = router.query.ejercicio;
 
@@ -205,7 +205,7 @@ export default function detalleEjercicio() {
                               :
                                 ''
                           }
-                          <option id="Nueva Rutina" value="Nueva Rutina">Nueva Rutina</option>
+                          <option id="Nueva Rutina" value="Nueva Rutina">Crear Nueva Rutina</option>
                         </select>
                       </div>
 

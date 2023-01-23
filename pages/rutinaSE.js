@@ -37,6 +37,11 @@ export default function Home() {
   const objetivo = opciones[1];
   const tiempo = opciones[3];
 
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, [])
+
   const opcionesEjercicio = {
     masamuscular: {
       '30min': { seriesG: 4, repeticionesG: 6, descanso: "1min" },
@@ -142,12 +147,6 @@ export default function Home() {
     console.log(herramientas);
     console.log(opciones);
   };
-
-  useEffect(() => {
-    localStorage.removeItem("NombrePaquete");
-    localStorage.removeItem("Meses");
-  }, [])
-
 
   return (
     <div className="bg-blue-100 w-full h-screen">

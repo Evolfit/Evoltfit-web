@@ -5,7 +5,7 @@ import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "/config/supabaseClient";
 
-export default function visualizadorCalorias() {
+export default function VisualizadorCalorias() {
 
   const router = useRouter();
 
