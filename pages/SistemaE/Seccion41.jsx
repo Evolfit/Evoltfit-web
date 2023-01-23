@@ -9,7 +9,7 @@ function Seccion41(props) {
     //si quiero el name lo mando aqui
     props.onChange(value);
   };
-
+  const { valor } = props;
   return (
     <div>
       <div className="grid place-items-center">
@@ -38,11 +38,15 @@ function Seccion41(props) {
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-36 w-36">
-                  <img src="img/torsoS.png"></img>
+                  {valor === "hombre" ? (
+                    <img src="img/torsoS.png"></img>
+                  ) : (
+                    <img src="img/torsoSM.png"></img>
+                  )}
                 </div>
               </div>
               <span className="text-xs font-semibold uppercase text-center mt-6">
-              Tronco superior
+                Tronco superior
               </span>
             </label>
           </div>
@@ -62,7 +66,12 @@ function Seccion41(props) {
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-36 w-36">
-                  <img src="img/brazo.png"></img>
+                  {valor === "hombre" ? (
+                    <img src="img/brazo.png"></img>
+                  ) : (
+                    <img src="img/brazoM.png"></img>
+                  )}
+
                 </div>
               </div>
               <span className="text-xs font-semibold uppercase text-center mt-6">
@@ -86,11 +95,16 @@ function Seccion41(props) {
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-36 w-36">
-                  <img src="img/pierna.png"></img>
+                {valor === "hombre" ? (
+                    <img src="img/pierna.png"></img>
+                  ) : (
+                    <img src="img/piernaM.png"></img>
+                  )}
+                  
                 </div>
               </div>
               <span className="text-xs font-semibold uppercase text-center mt-6">
-              Tronco inferior
+                Tronco inferior
               </span>
             </label>
           </div>
@@ -109,7 +123,12 @@ function Seccion41(props) {
             >
               <div className="xl:grid xl:place-items-center">
                 <div className="h-36 w-36">
-                  <img src="img/completo2.png"></img>
+                {valor === "hombre" ? (
+                    <img src="img/completo2.png"></img>
+                  ) : (
+                    <img src="img/completo2M.png"></img>
+                  )}
+                  
                 </div>
               </div>
               <span className="text-xs font-semibold uppercase text-center mt-6">

@@ -142,6 +142,23 @@ export default function Home() {
         BancoInclinado: false,
         Cuerda: false,
       });
+    }else if (name === "Todos") {
+      setCheckboxes({
+        Ninguno: false,
+        Bandaresistencia: true,
+        Bandasuspension: true,
+        Barra: true,
+        BarraZ: true,
+        Barras: true,
+        Mancuernas: true,
+        PesaRusa: true,
+        PlacaPeso: true,
+        MaquinasGYM: true,
+        BancoPlano: true,
+        BancoDeclinado: true,
+        BancoInclinado: true,
+        Cuerda: true,
+      });
     } else {
       setCheckboxes({
         ...checkboxes,
@@ -160,7 +177,7 @@ export default function Home() {
   } else if (value === 3) {
     element = <Seccion4 onChange={handleChange} />;
   } else if (value === 4 && arreglo[2] != "principiante") {
-    element = <Seccion41 onChange={handleChange} />;
+    element = <Seccion41 onChange={handleChange} valor={arreglo[0]} />;
   } else if (value === 5) {
     element = <Seccion5 onSubmit={handleFormSubmit} />;
   } else if (value === 6) {

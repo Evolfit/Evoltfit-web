@@ -17,13 +17,13 @@ export default function Home() {
   const router = useRouter();
   const { formData2, checkboxes, arreglo } = router.query;
   //JSON
-  
-    const formulario = JSON.parse(formData2);
-  
-    const herramientas = JSON.parse(checkboxes);
-  
-    const opciones = JSON.parse(arreglo);
-  
+
+  const formulario = JSON.parse(formData2);
+
+  const herramientas = JSON.parse(checkboxes);
+
+  const opciones = JSON.parse(arreglo);
+
   //contenidos de puede llegar a contener cada dia
   const contenido1 = [];//lUNES
   const contenido2 = [];//MARTES
@@ -69,7 +69,7 @@ export default function Home() {
       '2hr': { seriesG: 5, repeticionesG: 5, descanso: "Mas de 3 min" },
     },
   };
-  
+
   if (!opcionesEjercicio[objetivo] || !opcionesEjercicio[objetivo][tiempo]) {
     console.log("Error en el objetivo o tiempo seleccionado.");
     return;
@@ -79,37 +79,38 @@ export default function Home() {
 
 
 
-  
-     //____________________________________________pregunta de experiencia
-     if (opciones[2]==='principiante') {
-      console.log("principiante");
-    } else if (opciones[2]==='intermedio') {
-      console.log("intermedio");
-    } else if (opciones[2]==='avanzado') {
-      console.log("avanzado");
-    } else if (opciones[2]==='experimentado') {
-      console.log("experimentado");
-    } else {
-      console.log("Error en el SE P:OBJETIVO");
-    }
+
+
 
   //____________________________________________pregunta de enfoque.
-  if (opciones[4]==='superior') {
+  if (opciones[4] === 'superior') {
     //push pull leg
     console.log("1");
-  } else if (opciones[4]==='brazos') {
+  } else if (opciones[4] === 'brazos') {
     //pecho espalda brazo pierna
     console.log("2");
-  } else if (opciones[4]==='pierna') {
+  } else if (opciones[4] === 'pierna') {
     //pierna push pull intensidad
     console.log("3");
-  } else if (opciones[4]==='completo') {
+  } else if (opciones[4] === 'completo') {
     //push pull leg intensidad equilibrada ejercicios compuestos
     console.log("4");
   } else {
     console.log("Error en el SE P:ENFOQUE");
   }
 
+  //____________________________________________pregunta de experiencia
+  if (opciones[2] === 'principiante') {
+    console.log("principiante");
+  } else if (opciones[2] === 'intermedio') {
+    console.log("intermedio");
+  } else if (opciones[2] === 'avanzado') {
+    console.log("avanzado");
+  } else if (opciones[2] === 'experimentado') {
+    console.log("experimentado");
+  } else {
+    console.log("Error en el SE P:OBJETIVO");
+  }
 
   //llenar temporal
   for (let i = 0; i < 5; i++) {

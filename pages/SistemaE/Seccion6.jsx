@@ -17,6 +17,7 @@ function Seccion6(props) {
   const [ch12, setCh12] = useState(false);
   const [ch13, setCh13] = useState(false);
   const [Ninguno, setNinguno] = useState(false);
+  const [Todos, setTodos] = useState(false);
   
     function handleNoneClick() {
       setNinguno(!Ninguno);
@@ -34,10 +35,32 @@ function Seccion6(props) {
         setCh11(false);
         setCh12(false);
         setCh13(false);
+        setTodos(false);
+      }
+    }
+    function handleAllClick() {
+      setTodos(!Todos);
+      if (!Todos) {
+        setNinguno(false);
+        setCh1(true);
+        setCh2(true);
+        setCh3(true);
+        setCh4(true);
+        setCh5(true);
+        setCh6(true);
+        setCh7(true);
+        setCh8(true);
+        setCh9(true);
+        setCh10(true);
+        setCh11(true);
+        setCh12(true);
+        setCh13(true);
+        setTodos(true);
       }
     }
     function handleChClick(name) {
       setNinguno(false);
+      setTodos(false);
       if (name === "Bandaresistencia") setCh1(!ch1);
       if (name === "Bandasuspension") setCh2(!ch2);
       if (name === "Barra") setCh3(!ch3);
@@ -326,11 +349,23 @@ function Seccion6(props) {
         </li>
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
+            <input
+              id="ch1"
+              type="checkbox"
+              name="Todos"
+              onChange={onCheckboxChange}
+              checked={Todos} onClick={handleAllClick}
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+            />
             <label
+              htmlFor="ch1"
               className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            ></label>
+            >
+              Todos
+            </label>
           </div>
         </li>
+
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <label
