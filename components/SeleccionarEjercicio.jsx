@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import supabase from "/config/supabaseClient";
 
 const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
+  
   const router = useRouter();
   let musculoIndex = router.query.name;
   (musculoIndex ? "" : musculoIndex = "Todos")

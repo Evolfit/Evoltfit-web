@@ -714,7 +714,7 @@ export default function Home() {
             </p>
 
             <div className="flex mt-3 -mx-2">
-              <Link href="/">
+              <Link href="https://www.instagram.com/karivima/">
                 <a
                   className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
                   aria-label="Facebook"
