@@ -18,11 +18,21 @@ export default function Home() {
   const { formData2, checkboxes, arreglo } = router.query;
   //JSON
 
-  const formulario = JSON.parse(formData2);
+  let formulario = {};
+  if (formData2) {
+    formulario = JSON.parse(formData2);
+  }
 
-  const herramientas = JSON.parse(checkboxes);
+  let herramientas = {};
+  if (checkboxes) {
+    herramientas = JSON.parse(checkboxes);
+  }
 
-  const opciones = JSON.parse(arreglo);
+  let opciones = ['0','masamuscular','principiante','30min','superior']
+  if(arreglo){
+    opciones = JSON.parse(arreglo);
+  }
+  
 
   //contenidos de puede llegar a contener cada dia
   const contenido1 = [];//lUNES
@@ -34,8 +44,8 @@ export default function Home() {
 
 
   //INICIO DEL SE
-  const objetivo = opciones[1];
-  const tiempo = opciones[3];
+  const objetivo = opciones[1]
+  const tiempo = opciones[3]
 
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
@@ -77,7 +87,7 @@ export default function Home() {
 
   if (!opcionesEjercicio[objetivo] || !opcionesEjercicio[objetivo][tiempo]) {
     console.log("Error en el objetivo o tiempo seleccionado.");
-    return;
+    //return;
   }
   //Aqui se asignan los valores de repeticion, series y descanso.
   const { seriesG, repeticionesG, descanso } = opcionesEjercicio[objetivo][tiempo];
