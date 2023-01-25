@@ -28,7 +28,7 @@ export default function Home() {
     herramientas = JSON.parse(checkboxes);
   }
 
-  let opciones = ['0','masamuscular','principiante','30min','superior']
+  let opciones = ['hombre','masamuscular','principiante','30min','superior']
   if(arreglo){
     opciones = JSON.parse(arreglo);
   }
@@ -92,15 +92,48 @@ export default function Home() {
   //Aqui se asignan los valores de repeticion, series y descanso.
   const { seriesG, repeticionesG, descanso } = opcionesEjercicio[objetivo][tiempo];
 
+  //llenar temporal
+  for (let i = 0; i < 5; i++) {
+    contenido1.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
+    contenido2.push({ valor: 2, series: seriesG, repeticiones: repeticionesG });
+    contenido3.push({ valor: 3, series: seriesG, repeticiones: repeticionesG });
+    contenido4.push({ valor: 4, series: seriesG, repeticiones: repeticionesG });
+    contenido5.push({ valor: 5, series: seriesG, repeticiones: repeticionesG });
+    contenido6.push({ valor: 6, series: seriesG, repeticiones: repeticionesG });
+  }
 
 
+  let variables= {pecho:4};
+  let serie=0, temp=0;
+    //____________________________________________pregunta de tiempo
+    if (opciones[3]==='30min') {
+      temp=2;
+    } else if (opciones[3]==='1hr') {
+      temp=2;
+    } else if (opciones[3]==='1hr 30') {
+      temp=3;
+    } else if (opciones[3]==='2hr') {
+      temp=3;
+    } else {
+      console.log("Error en el SE P:TIEMPO");
+    }
 
-
-
+  //let pecho,espalda,hombro,bicep,tricep,dorsales,abs,antebrazo,cuadricep,gluteo,isquos,pantorrilla;
   //____________________________________________pregunta de enfoque.
   if (opciones[4] === 'superior') {
-    //push pull leg
-    console.log("1");
+    //Dia1
+    variables = {pecho:temp, hombro:temp, tricep:temp};
+    llenarArreglo(contenido1, variables, serie);
+    llenarArreglo(contenido4, variables, serie);
+    //Dia2
+    variables = {espalda:temp+1, bicep:temp};
+    llenarArreglo(contenido2, variables, serie);
+    llenarArreglo(contenido5, variables, serie);
+    //Dia3
+    variables = {cuadricep:temp, gluteo:temp, isquo:temp};
+    llenarArreglo(contenido3, variables, serie);
+    llenarArreglo(contenido6, variables, serie);
+
   } else if (opciones[4] === 'brazos') {
     //pecho espalda brazo pierna
     console.log("2");
@@ -113,6 +146,7 @@ export default function Home() {
   } else {
     console.log("Error en el SE P:ENFOQUE");
   }
+
 
   //____________________________________________pregunta de experiencia
   if (opciones[2] === 'principiante') {
@@ -127,18 +161,17 @@ export default function Home() {
     console.log("Error en el SE P:OBJETIVO");
   }
 
-  //llenar temporal
-  for (let i = 0; i < 5; i++) {
-    contenido1.push({ valor: 1, series: seriesG, repeticiones: repeticionesG });
-    contenido2.push({ valor: 2, series: seriesG, repeticiones: repeticionesG });
-    contenido3.push({ valor: 3, series: seriesG, repeticiones: repeticionesG });
-    contenido4.push({ valor: 4, series: seriesG, repeticiones: repeticionesG });
-    contenido5.push({ valor: 5, series: seriesG, repeticiones: repeticionesG });
-    contenido6.push({ valor: 6, series: seriesG, repeticiones: repeticionesG });
+  
+
+  //Funcion
+  function llenarArreglo(arreglo, variables,serieE) {
+    arreglo.length = 0;
+    Object.entries(variables).forEach(([name, cantidad]) => {
+      for (let i = 0; i < cantidad; i++) {
+        arreglo.push({ valor: name, series: seriesG+serieE, repeticiones: repeticionesG });
+      }
+    });
   }
-
-
-
 
 
 
