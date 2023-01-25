@@ -58,20 +58,24 @@ const CardRutina = ({ rutina }) => {
 
     return (
         <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md my-2">
-            <button onClick={() => {
+          <h5 className="mb-2 text-2xl font-bold text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden"
+          onClick={() => {
             router.push({
                 pathname: '/editarRutina',
                 query: { rutina: rutina.id }
             })
-            }} >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{rutina.nombre}</h5>
-            </button>
+            }}
+          >
+            {rutina.nombre}
+          </h5>
             { ejerciciosRutina.length === 0 ? 
                 <p>{'Ups, no hay ejercicios. 🥵'}</p>
                 :
                 (ejerciciosRutina.map((ejercicio) => (
                     <div key={ejercicio.id}>
-                        <p className="font-bold">{ejercicio.ejercicio.nombre}</p>
+                        <p className="font-bold">
+                          {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
+                        </p>
                         <p>{'Sets: ' + ejercicio.sets}</p>
                         <p className="mb-2">{'Reps: ' + ejercicio.reps}</p>
                     </div>

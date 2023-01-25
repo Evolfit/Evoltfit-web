@@ -270,13 +270,12 @@ export default function Home() {
                               {ejerciciosRutina.map((ejercicio, index) => (
                                 <Draggable key={ejercicio.id} draggableId={ejercicio.id.toString()} index={index}>
                                   {(provided) => (
-                                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-
+                                    <li className="my-2" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                         <CardEjercicio 
                                         rutinaEjercicio={ejercicio} 
                                         getEjerciciosRutina={getEjerciciosRutina}
+                                        index={index}
                                         />
-
                                     </li>
                                   )}
                                 </Draggable>

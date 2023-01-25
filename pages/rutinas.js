@@ -113,7 +113,9 @@ export default function Home() {
             rutinas ? 
             <div className="mx-auto mt-6">
               <div className="flex flex-col w-9/12 mx-auto">
-                <h2 className="text-2xl text-secondary">{"Rutinas de " + sesion.user.user_metadata.nombre}</h2>
+                <h2 className="text-2xl text-secondary  whitespace-nowrap text-ellipsis overflow-hidden">
+                  {"Rutinas de " + sesion.user.user_metadata.nombre}
+                </h2>
                 { rutinas.length === 0 ? 
                     <h2>{'Ups, aquí no hay rutinas. 🥵'}</h2>
                   :
