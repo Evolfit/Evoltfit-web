@@ -1,40 +1,13 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import supabase from "/config/supabaseClient";
 
-const CardProducto = ({ registroProducto, getProductosRegistro }) => {
+const CardProducto = ({ registroProducto, sesion, getProductosRegistro }) => {
     const producto = registroProducto.producto_id;
    
-    //console.log(rutinaEjercicio)
+    useEffect(() => {
+    }, [])
     
-    async function updateEjercicio(name, value) {
-        //console.log(rutinaIndex)
-        const query = supabase.from('rutinas_ejercicio');
-
-        if (name == 'sets'){
-            query = query.update({ sets: value}).eq('id', rutinaEjercicio.id)
-        }
-        else if (name == 'reps'){
-            query = query.update({ reps: value}).eq('id', rutinaEjercicio.id)
-        }
-        else if (name == 'orden'){
-            query = query.update({ orden: value}).eq('id', rutinaEjercicio.id)
-        }
-
-        const { error } = await query
-    
-        if (error) {
-          console.log('ERROR: No se pudo actualizar el ejercicio.')
-          console.log(error)
-        }
-        else{
-          console.log('Ejercicio Actualizado.')
-          //console.log(data[0])
-        }
-    }
-
     async function eliminarProducto() {
         const { error } = await supabase
         .from('calorias_registro_productos')
@@ -49,11 +22,62 @@ const CardProducto = ({ registroProducto, getProductosRegistro }) => {
             console.log('Se eliminó el producto')
             getProductosRegistro()
         }
+
+        //Para eliminar productos de la tabla totales
+        let {data: res, err} = await supabase
+        .from('calorias_productos_totales')
+        .select("*")
+        .match({producto_id: producto.id, usuario: sesion});
+
+        var conteoDuplicados = Object.keys(res).length;
+        //console.log(res)
+        //console.log("Duplicados totales: " + conteoDuplicados)
+
+        if(conteoDuplicados > 1){
+            const { data, error } = await supabase
+            .from('calorias_productos_totales')
+            .select('id')
+            .limit(1)
+            .single()
+            .match({producto_id: producto.id, usuario: sesion});
+            
+            var conteoDuplicados = Object.keys(data).length;
+            console.log(data.id)
+            console.log("Extrayendo un solo duplicado: " + conteoDuplicados)
+
+            const { error2 } = await supabase
+            .from('calorias_productos_totales')
+            .delete()
+            .match({id:data.id, producto_id: producto.id, usuario: sesion})
+        
+            if (error2) {
+                console.log('ERROR: Error al eliminar el producto.')
+                console.log(error2)
+            }
+            else{
+                console.log('Se eliminó un producto duplicado de la tabla totales')
+            }
+
+        }else{
+            const { error2 } = await supabase
+            .from('calorias_productos_totales')
+            .delete()
+            .match({producto_id: producto.id, usuario: sesion})
+        
+            if (error2) {
+                console.log('ERROR: Error al eliminar el producto.')
+                console.log(error2)
+            }
+            else{
+                console.log('Se eliminó el producto de la tabla totales')
+            }
+        }
+    
     }
 
 
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md my-2">
+    <div className="w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow-md my-2">
         {producto === null ? 
             "Selecciona un producto"
         : 

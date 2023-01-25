@@ -11,6 +11,15 @@ export default function Home() {
   const router = useRouter();
   let registroIndex = router.query.registro;
 
+  const currentDate = new Date();
+  const fecha_act =
+    currentDate.getFullYear() +
+    "-" +
+    currentDate.getMonth() +
+    1 +
+    "-" +
+    currentDate.getDate();
+
   const [sesion, setSesion] = useState(null);
   const [registro, setRegistro] = useState(null);
   const [formInput, setFormInput] = useState();
@@ -110,6 +119,7 @@ export default function Home() {
     .select(`
       id,
       producto_id (
+        id,
         nombre,
         calorias,
         proteinas,
@@ -124,7 +134,7 @@ export default function Home() {
       console.log(error)
     }
     else{
-      console.log(data);
+      //console.log(data);
       setProductosRegistro(data);
     }
   }
@@ -139,6 +149,7 @@ export default function Home() {
       .select(`
         id,
         producto_id (
+          id,
           nombre,
           calorias,
           proteinas,
@@ -147,17 +158,34 @@ export default function Home() {
         )
       `)
 
-    setToggleSeleccionar(false);
+      if(error) {
+        console.log(error)
+        console.log("ERROR: Hubo un error al agregar un nuevo producto.")
+      }
+      else{
+        console.log("Se agregó un nuevo producto.")
+        console.log(data[0])
+        setProductosRegistro(current => [...current, data[0]]);
+      }
 
-    if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al agregar un nuevo producto.")
+    const { data2, error2 } = await supabase
+    .from('calorias_productos_totales')
+    .insert({
+      producto_id: idProducto,
+      usuario: sesion.user.id,
+      fecha_agregado: fecha_act,
+      registro: registroIndex
+    })
+
+    if(error2) {
+      console.log(error2)
+      console.log("ERROR: Hubo un error al agregar un nuevo producto a la tabla total.")
     }
     else{
-      console.log("Se agregó un nuevo producto.")
-      console.log(data[0])
-      setProductosRegistro(current => [...current, data[0]]);
+      console.log("Se eliminó el producto a la tabla de productos totales.")
     }
+
+    setToggleSeleccionar(false);
   }
 
   const handleOnInputChange = useCallback(
@@ -196,7 +224,7 @@ export default function Home() {
             registro ? 
             <Fragment>
               <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
-                <div className="flex flex-col w-9/12 mx-auto">
+                <div className="flex flex-col w-7/12 mx-auto">
                   <div>
                     <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/visualizadorCalorias')}}>
                       <div className='text-3xl mt-auto'>
@@ -205,22 +233,26 @@ export default function Home() {
                       <span className="ml-2">{"Volver a registros"}</span>
                     </button>
                     <br/>
-                    <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
+                    <input name="nombre" id="nombre" type="text" className="px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring my-2 mr-52" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
+                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 ">Agregar producto</button>
+                    <button onClick={eliminarRegistro} className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 ">Eliminar registro</button>
                     <br/>
-                    { productosRegistro.length === 0 ? 
-                        <h2>No hay productos en el registro</h2>
+                    <div className = "grid place-items-center">
+                    { productosRegistro.length === 0 ?
+                        
+                        <h2><br/>No hay productos en el registro</h2>
                       :
                         (productosRegistro.map((registro) => (
                             <CardProducto
                             key={registro.id}
                             registroProducto={registro} 
+                            sesion = {sesion.user.id}
                             getProductosRegistro={getProductosRegistro}
                             />
                           ))
                         )
                     }
-                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="btn text-white btn-secondary mx-1 rounded-lg btn-md w-fit">Agregar producto</button>
-                    <button onClick={eliminarRegistro} className="btn text-white mx-1 btn-error rounded-lg btn-md w-fit">Eliminar registro</button>
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full">

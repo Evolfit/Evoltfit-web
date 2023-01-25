@@ -110,7 +110,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
         <button onClick={() => {setToggleSeleccionar(false)}} className="absolute btn btn-lg btn-ghost right-6 top-6 text-5xl">
               <ion-icon name='close-outline'></ion-icon>
            </button>
-            <h2 className="text-2xl lg:text-5xl text-left text-secondary text-blue-600 font-semibold lg:my-4">Selecciona un producto</h2>
+            <h2 className="text-2xl lg:text-5xl text-left text-blue-600 font-semibold lg:my-4">Selecciona un producto</h2>
             <br/>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
             <div className="relative flex flex-row">
