@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback, Fragment } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import CardEjercicio from "/components/CardEjercicio";
@@ -15,6 +16,7 @@ export default function Home() {
   const [rutina, setRutina] = useState(null);
   const [formInput, setFormInput] = useState();
   const [ejerciciosRutina, setEjerciciosRutina] = useState([])
+  const [ordenEjercicios, setOrdenEjercicios] = useState([])
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
   const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
 
@@ -94,6 +96,21 @@ export default function Home() {
     }
   }
 
+  async function updateOrdenEjercicios(ordenEjercicios) {
+    const { data, error } = await supabase
+    .from('rutinas_ejercicio')
+    .upsert(ordenEjercicios)
+
+    if (error) {
+      console.log('ERROR: No se pudo actualizar el orden de los ejercicios.')
+      console.log(error)
+    }
+    else{
+      console.log('Orden de los ejercicios actualizado.')
+      console.log(data)
+    }
+  }
+
   async function eliminarRutina() {
     const { error } = await supabase
     .from('rutinas')
@@ -125,6 +142,7 @@ export default function Home() {
       orden
     `)
     .eq('rutina', rutinaIndex)
+    .order('orden', { ascending: true })
 
     if (error) {
       console.log('ERROR: Hubo un error al recuperar los ejercicios.')
@@ -141,7 +159,8 @@ export default function Home() {
       .from('rutinas_ejercicio')
       .insert({
         rutina: rutinaIndex, 
-        ejercicio: idEjercicio
+        ejercicio: idEjercicio,
+        orden: ejerciciosRutina.length,
         })
       .select(`
         id,
@@ -184,6 +203,31 @@ export default function Home() {
     [formInput, setFormInput]
   );
 
+  function handleOnDragEnd(result) {
+    //console.log(result)
+
+    if (!result.destination) return;
+
+    const items = Array.from(ejerciciosRutina);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    //console.log(items)
+
+    const ordenEjercicios = [];
+    for (let index = 0; index < items.length; index++) {
+      const element = {
+        id: items[index].id,
+        rutina: rutinaIndex,
+        orden: index
+      };
+      ordenEjercicios.push(element)
+    }
+    //console.log(ordenEjercicios)
+
+    updateOrdenEjercicios(ordenEjercicios)
+    setEjerciciosRutina(items)
+  }
+
   return (
     <div className="bg-stone-100 w-full z-0" data-theme="emerald">
       <Head>
@@ -219,14 +263,30 @@ export default function Home() {
                     { ejerciciosRutina.length === 0 ? 
                         <h2>{'Ups, no hay ejercicios. 🥵'}</h2>
                       :
-                        (ejerciciosRutina.map((ejercicio) => (
-                            <CardEjercicio 
-                            key={ejercicio.id}
-                            rutinaEjercicio={ejercicio} 
-                            getEjerciciosRutina={getEjerciciosRutina}
-                            />
-                          ))
-                        )
+                      <DragDropContext onDragEnd={handleOnDragEnd}>
+                        <Droppable droppableId="ejercicios">
+                          {(provided) => (
+                            <ul className="ejercicios" {...provided.droppableProps} ref={provided.innerRef}>
+                              {ejerciciosRutina.map((ejercicio, index) => (
+                                <Draggable key={ejercicio.id} draggableId={ejercicio.id.toString()} index={index}>
+                                  {(provided) => (
+                                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+
+                                        <CardEjercicio 
+                                        rutinaEjercicio={ejercicio} 
+                                        getEjerciciosRutina={getEjerciciosRutina}
+                                        />
+
+                                    </li>
+                                  )}
+                                </Draggable>
+                                ))
+                              }
+                              {provided.placeholder}
+                            </ul>
+                          )}
+                        </Droppable>
+                      </DragDropContext>
                     }
                     <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="btn text-white btn-secondary mx-1 rounded-lg btn-md w-fit">Agregar ejercicio</button>
                     <button onClick={eliminarRutina} className="btn text-white mx-1 btn-error rounded-lg btn-md w-fit">Eliminar Rutina</button>

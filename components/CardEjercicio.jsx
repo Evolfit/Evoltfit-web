@@ -7,7 +7,6 @@ import supabase from "/config/supabaseClient";
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina }) => {
     const ejercicio = rutinaEjercicio.ejercicio;
     const [formInput, setFormInput] = useState({
-            orden: rutinaEjercicio.orden,
             reps: rutinaEjercicio.reps,
             sets: rutinaEjercicio.sets
         });
@@ -62,7 +61,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina }) => {
           const { value, name, id, checked} = event.target;
 
           if (name == 'sets' || name == 'reps'){
-            if (value < 1){
+            if (value < 0){
                 value = 1
             }
           }
@@ -84,7 +83,10 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina }) => {
         {ejercicio === null ? 
             "Selecciona un ejercicio"
         : 
-        <div>
+        <div className="relative">
+            <div className='absolute text-3xl right-0'>
+                <ion-icon name="reorder-three-outline"></ion-icon>
+            </div>
             <button onClick={() => {}} >
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{ejercicio.nombre}</h5>
             </button>
