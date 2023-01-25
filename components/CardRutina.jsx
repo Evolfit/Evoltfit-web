@@ -76,8 +76,16 @@ const CardRutina = ({ rutina }) => {
                         <p className="font-bold">
                           {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
                         </p>
-                        <p>{'Sets: ' + ejercicio.sets}</p>
-                        <p className="mb-2">{'Reps: ' + ejercicio.reps}</p>
+                        { ejercicio.ejercicio.nombre == 'Descanso' ?
+                          <p>{'Minutos: ' + ejercicio.sets}</p>
+                        :
+                          <p>{'Sets: ' + ejercicio.sets}</p>
+                        }
+                        { ejercicio.ejercicio.nombre == 'Descanso' ?
+                          <p className="mb-2">{'Segundos: ' + ejercicio.reps}</p>
+                        :
+                          <p className="mb-2">{'Reps: ' + ejercicio.reps}</p>
+                        }
                     </div>
                 ))
                 )

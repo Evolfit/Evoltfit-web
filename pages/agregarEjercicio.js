@@ -42,6 +42,7 @@ export default function Home() {
       }
 
       var nombre = formInput.nombre.toString().split(' ').join('_') + '.' + imagenNombre.toString().split('.').pop()
+      nombre = nombre.normalize("NFD").replace(/\p{Diacritic}/gu, "")
 
       const { data, error } = await supabase.storage
       .from('img')

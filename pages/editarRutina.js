@@ -106,8 +106,8 @@ export default function Home() {
       console.log(error)
     }
     else{
-      console.log('Orden de los ejercicios actualizado.')
-      console.log(data)
+      //console.log('Orden de los ejercicios actualizado.')
+      //console.log(data)
     }
   }
 
@@ -122,7 +122,7 @@ export default function Home() {
       console.log(error)
     }
     else{
-      console.log('Se eliminó ' + rutina.nombre)
+      //console.log('Se eliminó ' + rutina.nombre)
       router.push('/rutinas')
     }
   }
@@ -182,6 +182,39 @@ export default function Home() {
     }
     else{
       console.log("Se agregó un nuevo ejercicio.")
+      console.log(data[0])
+      setEjerciciosRutina(current => [...current, data[0]]);
+    }
+  }
+
+  async function agregarDescanso() {
+    const { data, error } = await supabase
+      .from('rutinas_ejercicio')
+      .insert({
+        rutina: rutinaIndex, 
+        ejercicio: 222,
+        orden: ejerciciosRutina.length,
+        })
+      .select(`
+        id,
+        ejercicio (
+          nombre,
+          musculo_primario,
+          img
+        ),
+        sets,
+        reps,
+        orden
+      `)
+
+    setToggleSeleccionar(false);
+
+    if (error) {
+      console.log(error)
+      console.log("ERROR: Hubo un error al agregar el descanso.")
+    }
+    else{
+      console.log("Se agregó el descanso.")
       console.log(data[0])
       setEjerciciosRutina(current => [...current, data[0]]);
     }
@@ -258,7 +291,8 @@ export default function Home() {
                       <span className="ml-2">{"Volver a Rutinas"}</span>
                     </button>
                     <br/>
-                    <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
+                    <h2 className="mt-2 text-xl text-gray-900">Nombre de la Rutina:</h2>
+                    <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2 w-full font-semibold" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
                     <br/>
                     { ejerciciosRutina.length === 0 ? 
                         <h2>{'Ups, no hay ejercicios. 🥵'}</h2>
@@ -287,8 +321,12 @@ export default function Home() {
                         </Droppable>
                       </DragDropContext>
                     }
-                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="btn text-white btn-secondary mx-1 rounded-lg btn-md w-fit">Agregar ejercicio</button>
-                    <button onClick={eliminarRutina} className="btn text-white mx-1 btn-error rounded-lg btn-md w-fit">Eliminar Rutina</button>
+                    <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
+                      <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="flex-auto btn text-white btn-secondary rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Agregar ejercicio</button>
+                      <button onClick={agregarDescanso} className="flex-auto  btn text-white btn-success rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Agregar descanso</button>
+                      <button onClick={eliminarRutina} className="flex-auto btn text-white btn-error rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Eliminar Rutina</button>
+                    </div>
+                    
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full">
