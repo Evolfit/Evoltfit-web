@@ -41,7 +41,7 @@ export default function Home() {
   const contenido4 = [];//JUEVES
   const contenido5 = [];//VIERNES
   const contenido6 = [];//SABADO
-
+  const contenido7 = [];//SABADO
 
   //INICIO DEL SE
   const objetivo = opciones[1]
@@ -54,19 +54,19 @@ export default function Home() {
 
   const opcionesEjercicio = {
     masamuscular: {
-      '30min': { seriesG: 4, repeticionesG: 6, descanso: "1min" },
+      '30min': { seriesG: 4, repeticionesG: 8, descanso: "1min" },
       '1hr': { seriesG: 4, repeticionesG: 8, descanso: "1min 30sec" },
       '1hr 30': { seriesG: 3, repeticionesG: 10, descanso: "2min" },
       '2hr': { seriesG: 3, repeticionesG: 12, descanso: "2min" },
     },
     perdergrasa: {
-      '30min': { seriesG: 4, repeticionesG: 6, descanso: "1min" },
+      '30min': { seriesG: 4, repeticionesG: 8, descanso: "1min" },
       '1hr': { seriesG: 4, repeticionesG: 8, descanso: "1min 30sec" },
       '1hr 30': { seriesG: 3, repeticionesG: 10, descanso: "2min" },
       '2hr': { seriesG: 3, repeticionesG: 12, descanso: "2min" },
     },
     salud: {
-      '30min': { seriesG: 4, repeticionesG: 6, descanso: "1min" },
+      '30min': { seriesG: 4, repeticionesG: 8, descanso: "1min" },
       '1hr': { seriesG: 4, repeticionesG: 8, descanso: "1min 30sec" },
       '1hr 30': { seriesG: 3, repeticionesG: 10, descanso: "2min" },
       '2hr': { seriesG: 3, repeticionesG: 12, descanso: "2min" },
@@ -106,13 +106,9 @@ export default function Home() {
   let variables= {pecho:4};
   let serie=0, temp=0;
     //____________________________________________pregunta de tiempo
-    if (opciones[3]==='30min') {
+    if (opciones[3]==='30min' || opciones[3]==='1hr') {
       temp=2;
-    } else if (opciones[3]==='1hr') {
-      temp=2;
-    } else if (opciones[3]==='1hr 30') {
-      temp=3;
-    } else if (opciones[3]==='2hr') {
+    } else if (opciones[3]==='1hr 30' || opciones[3]==='2hr') {
       temp=3;
     } else {
       console.log("Error en el SE P:TIEMPO");
@@ -121,28 +117,100 @@ export default function Home() {
   //let pecho,espalda,hombro,bicep,tricep,dorsales,abs,antebrazo,cuadricep,gluteo,isquos,pantorrilla;
   //____________________________________________pregunta de enfoque.
   if (opciones[4] === 'superior') {
+    
+    if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+    //Plantilla 1
     //Dia1
-    variables = {pecho:temp, hombro:temp, tricep:temp};
-    llenarArreglo(contenido1, variables, serie);
-    llenarArreglo(contenido4, variables, serie);
+    variables = {pecho:temp, hombro:temp-1, tricep:temp};
+    llenarArreglo(contenido1, variables);
+    llenarArreglo(contenido4, variables);
     //Dia2
-    variables = {espalda:temp+1, bicep:temp};
-    llenarArreglo(contenido2, variables, serie);
-    llenarArreglo(contenido5, variables, serie);
+    variables = {espalda:temp, dorsal:temp-1, bicep:temp};
+    llenarArreglo(contenido2, variables);
+    llenarArreglo(contenido5, variables);
     //Dia3
-    variables = {cuadricep:temp, gluteo:temp, isquo:temp};
-    llenarArreglo(contenido3, variables, serie);
-    llenarArreglo(contenido6, variables, serie);
-
+    variables = {cuadricep:temp, gluteo:temp-1, isquo:temp};
+    llenarArreglo(contenido3, variables);
+    llenarArreglo(contenido6, variables);
+    } else {
+    //Plantilla 2
+    //Dia1
+    variables = {pecho:temp, hombro:2, tricep:temp, antebrazo:temp-1};
+    llenarArreglo(contenido1, variables);
+    llenarArreglo(contenido4, variables);
+    //Dia2
+    variables = {espalda:temp, dorsal:temp-1, bicep:temp, antebrazo:temp-1};
+    llenarArreglo(contenido2, variables);
+    llenarArreglo(contenido5, variables,);
+    //Dia3
+    variables = {cuadricep:temp, gluteo:temp-1, isquo:temp, pantorrilla:temp-1};
+    llenarArreglo(contenido3, variables);
+    llenarArreglo(contenido6, variables);  
+    }
   } else if (opciones[4] === 'brazos') {
     //pecho espalda brazo pierna
-    console.log("2");
+    if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+      //Plantilla 1
+      //Dia1
+      variables = {pecho:temp, espalda:temp, antebrazo:temp-1};
+      llenarArreglo(contenido1, variables);
+      llenarArreglo(contenido4, variables);
+      //Dia2
+      variables = {hombro:temp-1, tricep:temp, bicep:temp};
+      llenarArreglo(contenido2, variables);
+      llenarArreglo(contenido5, variables);
+      //Dia3
+      variables = {cuadricep:temp, gluteo:temp-1, isquo:temp};
+      llenarArreglo(contenido3, variables);
+      llenarArreglo(contenido6, variables);
+      } else {
+      //Plantilla 2
+      //Dia1
+      variables = {pecho:temp, espalda:temp, dorsales:1, trapecio:1, antebrazo:temp-1};
+      llenarArreglo(contenido1, variables);
+      llenarArreglo(contenido4, variables);
+      //Dia2
+      variables = {hombro:temp, tricep:temp, bicep:temp, antebrazo:temp-1};
+      llenarArreglo(contenido2, variables);
+      llenarArreglo(contenido5, variables);
+      //Dia3
+      variables = {cuadricep:temp, gluteo:temp-1, isquo:temp, pantorrilla:temp-1};
+      llenarArreglo(contenido3, variables);
+      llenarArreglo(contenido6, variables);
+      }
   } else if (opciones[4] === 'pierna') {
     //pierna push pull intensidad
     console.log("3");
   } else if (opciones[4] === 'completo') {
-    //push pull leg intensidad equilibrada ejercicios compuestos
-    console.log("4");
+    if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+      //Plantilla 1
+      //Dia1
+      variables = {pecho:temp, hombro:temp-1, tricep:temp};
+      llenarArreglo(contenido1, variables);
+      llenarArreglo(contenido4, variables);
+      //Dia2
+      variables = {espalda:temp, dorsal:temp-1, bicep:temp};
+      llenarArreglo(contenido2, variables);
+      llenarArreglo(contenido5, variables);
+      //Dia3
+      variables = {cuadricep:temp, gluteo:temp-1, isquo:temp};
+      llenarArreglo(contenido3, variables);
+      llenarArreglo(contenido6, variables);
+      } else {
+      //Plantilla 2
+      //Dia1
+      variables = {pecho:temp, hombro:2, tricep:temp, antebrazo:temp-1};
+      llenarArreglo(contenido1, variables);
+      llenarArreglo(contenido4, variables);
+      //Dia2
+      variables = {espalda:temp, dorsal:temp-2, bicep:temp, antebrazo:temp-1};
+      llenarArreglo(contenido2, variables);
+      llenarArreglo(contenido5, variables,);
+      //Dia3
+      variables = {cuadricep:temp, gluteo:temp-1, isquo:temp, pantorrilla:temp-1};
+      llenarArreglo(contenido3, variables);
+      llenarArreglo(contenido6, variables);  
+      }
   } else {
     console.log("Error en el SE P:ENFOQUE");
   }
@@ -164,11 +232,15 @@ export default function Home() {
   
 
   //Funcion
-  function llenarArreglo(arreglo, variables,serieE) {
+  function llenarArreglo(arreglo, variables) {
     arreglo.length = 0;
     Object.entries(variables).forEach(([name, cantidad]) => {
       for (let i = 0; i < cantidad; i++) {
-        arreglo.push({ valor: name, series: seriesG+serieE, repeticiones: repeticionesG });
+        if(name==="hombro" || name==="antebrazo" || name==="pantorrilla"){
+          arreglo.push({ valor: name, series: 5, repeticiones: repeticionesG });
+        }else{
+          arreglo.push({ valor: name, series: seriesG, repeticiones: repeticionesG });
+        }
       }
     });
   }
@@ -181,7 +253,7 @@ export default function Home() {
 
 
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
-  const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6];
+  const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6, contenido7];
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
   const handleClick = () => {
@@ -233,7 +305,7 @@ export default function Home() {
                     </td>
 
                   ))}
-                  <td key={index} className="px-6 py-4"></td>
+                  
                 </tr>
               ))}
             </tbody>
