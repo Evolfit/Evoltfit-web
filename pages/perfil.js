@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import Navbar from "/components/Navbar";
 import supabase from "../config/supabaseClient";
 import Footer from "/components/Footer";
-import Link from "next/link";
 
 export default function Perfil() {
   const router = useRouter();
