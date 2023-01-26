@@ -5,7 +5,8 @@ import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "/config/supabaseClient";
 import CardCalorias from "../components/CardCalorias";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar } from "react-circular-progressbar";
+import AsignarMeta from "../components/AsignarMeta";
 
 export default function VisualizadorCalorias() {
   const router = useRouter();
@@ -19,11 +20,19 @@ export default function VisualizadorCalorias() {
     "-" +
     currentDate.getDate();
 
-  const fecha = currentDate.getDate() + "/" + currentDate.getMonth() + 1 + "/" + currentDate.getFullYear();
+  const fecha =
+    currentDate.getDate() +
+    "/" +
+    currentDate.getMonth() +
+    1 +
+    "/" +
+    currentDate.getFullYear();
 
   const [sesion, setSesion] = useState(null);
   const [registros, setRegistros] = useState(null);
   const [sumatoriaCalorias, setSumatoriaCalorias] = useState(null);
+  const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
+  const [metaCalorias, setMetaCalorias] = useState(null);
 
   var sumatoriaCal = 0;
   var caloriasAsignadas = 2000;
@@ -48,6 +57,7 @@ export default function VisualizadorCalorias() {
         usuario: sesion.user.id,
         nombre: "Registro caloríco " + (count.count + 1),
         fecha_creacion: fecha,
+        fecha_formato_orden: fecha_act
       })
       .select();
 
@@ -68,7 +78,9 @@ export default function VisualizadorCalorias() {
     const { data, error } = await supabase
       .from("calorias_registro")
       .select("*")
-      .eq("usuario", session.user.id);
+      .eq("usuario", session.user.id)
+      .order("fecha_formato_orden", {ascending: false})
+
 
     if (error) {
       console.log("ERROR: Hubo un error al recuperar el registro.");
@@ -102,12 +114,35 @@ export default function VisualizadorCalorias() {
     }
   }
 
+  async function obtenerMeta(session){
+    let { data: res, err } = await supabase
+    .from("calorias_metas")
+    .select("cals_meta")
+    .eq("usuario", session.user.id)
+
+    if(err){
+      console.log("ERROR: Hubo un error obteniendo la meta del ususario")
+      console.log(err)
+    }else{
+      if(res.length == 0){
+        console.log("El usuario no tiene una meta establecida")
+        console.log(res)
+      }else{
+        console.log("Meta obtenida exitosamente")
+        //console.log(res)
+        setMetaCalorias(res[0].cals_meta)
+      }
+      
+    }
+  }
+
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
 
     if (data.session) {
       setSesion(data.session);
       obtenerRegistros(data.session);
+      obtenerMeta(data.session);
       //console.log(data);
     } else {
       setSesion(null);
@@ -130,21 +165,26 @@ export default function VisualizadorCalorias() {
         <br />
         <br />
         <br />
-        <div className="grid grid-cols-2 gap-1 ml-10">
-        {registros ? (
-          <div className="mt-6 flex flex-col">
-            <h2 className="text-2xl">
-          {"Registros calorícos de " + sesion.user.user_metadata.nombre}
-        </h2>
-              <br/>
-              <div className = "flex flex-col w-8/12 mx-auto">
-              <button
-                type="submit"
-                onClick={nuevoRegistro}
-                className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 "
-              >
-                Nuevo registro
-              </button>
+        <div
+          className={
+            "grid grid-cols-2 gap-1 ml-10" +
+            (toggleSeleccionar ? "blur-sm" : "")
+          }
+        >
+          {registros ? (
+            <div className="mt-6 flex flex-col">
+              <h2 className="text-2xl">
+                {"Registros calorícos de " + sesion.user.user_metadata.nombre}
+              </h2>
+              <br />
+              <div className="flex flex-col w-8/12 mx-auto">
+                <button
+                  type="submit"
+                  onClick={nuevoRegistro}
+                  className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 "
+                >
+                  Nuevo registro
+                </button>
               </div>
               <br />
               {registros.length === 0 ? (
@@ -154,9 +194,9 @@ export default function VisualizadorCalorias() {
                   <CardCalorias key={registro.id} registro={registro} />
                 ))
               )}
-            
-            {/* PAGINACIÓN */}
-            {/* <div className="flex flex-col items-center mb-2 mt-4">
+
+              {/* PAGINACIÓN */}
+              {/* <div className="flex flex-col items-center mb-2 mt-4">
                 <div className="btn-group">
                   {(paginacion == 1) ? "" : <button className="bg-blue-600 text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
                   {((paginacion - 2) <= 0) ? "" : <button className="" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
@@ -167,32 +207,49 @@ export default function VisualizadorCalorias() {
                   {(paginacion >= (cantidad/10))? "" : <button className="" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
                 </div>
               </div> */}
+            </div>
+          ) : (
+            <div className="mt-12">
+              <div className="loader mt-6"></div>
+            </div>
+          )}
+          <div>
+            <div className="ml-10 mr-10 grid place-items-center border-blue-600 border-2 rounded-md shadow-2xl relative pt-16 pb-16">
+              <h5 className="text-2xl font-bold tracking-tight text-blue-600 mb-2">
+                Calorías consumidas - {fecha}
+              </h5>
+              <div style={{ width: 150, height: 150 }}>
+                <CircularProgressbar
+                  value={sumatoriaCalorias}
+                  maxValue={metaCalorias}
+                  text="Calorías"
+                />
+              </div>
+  
+              {metaCalorias ? (
+                <h5 className="text-2xl font-bold tracking-tight text-blue-600 mt-2">
+                {sumatoriaCalorias} / {metaCalorias}
+                </h5>
+              ) : (
+                ''
+              )}
+              
+              <button
+                onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mt-5"
+              >
+                Asignar meta
+              </button>
+            </div>
           </div>
+          <br />
+        </div>
+
+        {toggleSeleccionar ? (
+          <AsignarMeta setToggleSeleccionar={setToggleSeleccionar} />
         ) : (
-          <div className="mt-12">
-            <div className="loader mt-6"></div>
-          </div>
-        )} 
-        <div>
-        <div className="ml-10 mr-10 grid place-items-center border-blue-600 border-2 rounded-md shadow-2xl relative pt-16 pb-16">
-        <h5 className="text-2xl font-bold tracking-tight text-blue-600 mb-2">
-            Calorías consumidas - {fecha}
-          </h5>
-        <div style={{ width: 150, height: 150 }}>
-        <CircularProgressbar value={sumatoriaCalorias} maxValue={caloriasAsignadas} text ={`${(sumatoriaCalorias / caloriasAsignadas)*100}%`}/>
-        </div>
-          <h5 className="text-2xl font-bold tracking-tight text-blue-600 mt-2">
-            {sumatoriaCalorias} / {caloriasAsignadas}
-          </h5>
-        </div>
-        </div>
-        <br />
-
-
-        
-        </div>
-       
-
+          ""
+        )}
         <br />
         <br />
         <br />

@@ -218,7 +218,6 @@ export default function Home() {
         <br />
         <br />
         <br />
-        
         <div>          
           {
             registro ? 
@@ -239,7 +238,6 @@ export default function Home() {
                     <br/>
                     <div className = "grid place-items-center">
                     { productosRegistro.length === 0 ?
-                        
                         <h2><br/>No hay productos en el registro</h2>
                       :
                         (productosRegistro.map((registro) => (
@@ -255,9 +253,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-center w-full">
-                  {/* Aqui se muestran las rutinas */}
-                </div>
+                
               </div> 
               { 
                 toggleSeleccionar ? 
@@ -274,9 +270,18 @@ export default function Home() {
           }
         </div>
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </main>
 
-      <br />
+     
 
       <Footer></Footer>
     </div>
