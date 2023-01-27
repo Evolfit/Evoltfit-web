@@ -234,7 +234,7 @@ export default function VisualizadorCalorias() {
                 ''
               )}
               
-                { sumatoriaCalorias > metaCalorias ? (
+                { sumatoriaCalorias > metaCalorias && metaCalorias > 0 ? (
                   <div className = "grid place-items-center">
                      <br/>
                   <div
