@@ -1,34 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Repositorio de EvolFit
 
-## Getting Started
+Este es el repositorio en el que se esta desarrollando [EvoltFit](https://evoltfit-app.vercel.app), proyecto de titulación para obtener el grado de Ingeniero en Desarrollo de Software del Centro de Enseñanza Técnica Industrial Plantel Colomos.
 
-First, run the development server:
+## Estado del proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Actualmente EvoltFit aún se encuentra en desarrollo pero se puede encontrar una versión de prueba que esta en constante actualización en el siguiente enlace:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[https://evoltfit-app.vercel.app](https://evoltfit-app.vercel.app)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Miembros del equipo
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+EvoltFit esta siendo desarrollado actualmente por tres desarrolladores:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [José Daniel Vazquez Franco](https://github.com/JDaniVF) - learn about Next.js features and API.
+- [Juan Guillermo Uribe Parra](https://github.com/juan-uribe-p) 
+- [Carlos Alberto Conchas Montañez](https://github.com/IamSharls) - an interactive Next.js tutorial.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
