@@ -12,7 +12,7 @@ Actualmente EvoltFit aún se encuentra en desarrollo pero se puede encontrar una
 
 EvoltFit esta siendo desarrollado actualmente por tres desarrolladores:
 
-- [José Daniel Vazquez Franco](https://github.com/JDaniVF) - learn about Next.js features and API.
+- [José Daniel Vazquez Franco](https://github.com/JDaniVF)
 - [Juan Guillermo Uribe Parra](https://github.com/juan-uribe-p) 
-- [Carlos Alberto Conchas Montañez](https://github.com/IamSharls) - an interactive Next.js tutorial.
+- [Carlos Alberto Conchas Montañez](https://github.com/IamSharls)
 
