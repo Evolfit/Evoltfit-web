@@ -390,13 +390,12 @@ export default function Home() {
               <div className="loader mt-6"></div>
             </div>
           }
-          <div className="flex flex-col items-center">
+          {/* <div className="flex flex-col items-center">
             <button className="btn btn-outline rounded-full btn-secondary btn-lg w-1/2 m-8" onClick={() => {router.push("/agregarEjercicio")}}>Agregar Ejercicio</button>
-          </div>
+          </div> */}
         </div>
         <br />
       </main>
-
       <br />
 
       <Footer></Footer>
