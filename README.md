@@ -1,12 +1,12 @@
 ## Repositorio de EvoltFit
 
-Este es el repositorio en el que se esta desarrollando [EvoltFit](https://evoltfit-app.vercel.app), proyecto de titulación para obtener el grado de Ingeniero en Desarrollo de Software del Centro de Enseñanza Técnica Industrial Plantel Colomos.
+Este es el repositorio en el que se esta desarrollando [EvoltFit](), proyecto de titulación para obtener el grado de Ingeniero en Desarrollo de Software del Centro de Enseñanza Técnica Industrial Plantel Colomos.
 
 ## Estado del proyecto
 
 Actualmente EvoltFit aún se encuentra en desarrollo pero se puede encontrar una versión de prueba que esta en constante actualización en el siguiente enlace:
 
-[https://evoltfit-app.vercel.app](https://evoltfit-app.vercel.app)
+<!-- [https://evoltfit-app.vercel.app](https://evoltfit-app.vercel.app) -->
 
 ## Miembros del equipo
 
