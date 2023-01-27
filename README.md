@@ -1,6 +1,6 @@
 ## Repositorio de EvoltFit
 
-Este es el repositorio en el que se esta desarrollando [EvoltFit](), proyecto de titulación para obtener el grado de Ingeniero en Desarrollo de Software del Centro de Enseñanza Técnica Industrial Plantel Colomos.
+Este es el repositorio en el que se esta desarrollando EvoltFit, proyecto de titulación para obtener el grado de Ingeniero en Desarrollo de Software del Centro de Enseñanza Técnica Industrial Plantel Colomos.
 
 ## Estado del proyecto
 
