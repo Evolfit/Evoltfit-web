@@ -6,7 +6,7 @@ Este es el repositorio en el que se esta desarrollando EvoltFit, proyecto de tit
 
 Actualmente EvoltFit aún se encuentra en desarrollo pero se puede encontrar una versión de prueba que esta en constante actualización en el siguiente enlace:
 
-<!-- [https://evoltfit-app.vercel.app](https://evoltfit-app.vercel.app) -->
+[https://evoltfit-app.vercel.app](https://evoltfit-app.vercel.app)
 
 ## Miembros del equipo
 

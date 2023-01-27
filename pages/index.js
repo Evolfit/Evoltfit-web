@@ -803,15 +803,15 @@ export default function Home() {
       <br />
       <h1 className="font-thin text-2xl text-center">
         <button
-          className="bg-white text-black border-blue-800 border-2 font-family:Fira-Sans py-2 px-6 rounded-3xl md:ml-8 hover:bg-blue-800 hover:text-white duration-500"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           onClick={() => {
             router.push("/sistemaexperto");
           }}
         >
-          Pal sistema experto pai
+          Crear rutina inteligente
         </button>
         <button
-          className="btn btn-outline rounded-full btn-secondary btn-lg m-2"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           onClick={() => {
             router.push("/biblioteca");
           }}
@@ -819,12 +819,12 @@ export default function Home() {
           Ir a Biblioteca de Ejercicios
         </button>
         <button
-          className="btn btn-outline rounded-full btn-secondary btn-lg m-2"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           onClick={() => {
             router.push("/rutinas");
           }}
         >
-          Pa las rutinas pai
+          Crear rutina
         </button>
          {/* <button
             className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
