@@ -92,7 +92,7 @@ const CardRutina = ({ rutina }) => {
             }
             <button onClick={() => {
             router.push({
-                pathname: '/editarRutina',
+                pathname: '/comenzarRutina',
                 query: { rutina: rutina.id }
             })
             }} 
