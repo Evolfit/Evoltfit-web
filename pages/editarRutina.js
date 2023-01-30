@@ -137,8 +137,6 @@ export default function Home() {
         musculo_primario,
         img
       ),
-      sets,
-      reps,
       orden
     `)
     .eq('rutina', rutinaIndex)
@@ -169,8 +167,6 @@ export default function Home() {
           musculo_primario,
           img
         ),
-        sets,
-        reps,
         orden
       `)
 
@@ -183,7 +179,22 @@ export default function Home() {
     else{
       console.log("Se agregó un nuevo ejercicio.")
       console.log(data[0])
+
       setEjerciciosRutina(current => [...current, data[0]]);
+      
+      const { error } = await supabase
+      .from('rutinas_ejercicio_sets')
+      .insert({
+        ejercicio_rutina: data[0].id, 
+        })
+
+      if (error) {
+        console.log(error)
+        console.log("ERROR: Hubo un error al agregar un nuevo set.")
+      }
+      else{
+        console.log("Se agregó un nuevo set.")
+      }
     }
   }
 
@@ -295,7 +306,7 @@ export default function Home() {
                     <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2 w-full font-semibold" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
                     <br/>
                     { ejerciciosRutina.length === 0 ? 
-                        <h2>{'Ups, no hay ejercicios. 🥵'}</h2>
+                        ''
                       :
                       <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="ejercicios">

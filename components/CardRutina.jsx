@@ -22,8 +22,6 @@ const CardRutina = ({ rutina }) => {
           ejercicio (
             nombre
           ),
-          sets,
-          reps,
           orden
         `)
         .eq('rutina', rutina.id)
@@ -76,30 +74,27 @@ const CardRutina = ({ rutina }) => {
                         <p className="font-bold">
                           {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
                         </p>
-                        { ejercicio.ejercicio.nombre == 'Descanso' ?
-                          <p>{'Minutos: ' + ejercicio.sets}</p>
-                        :
                           <p>{'Sets: ' + ejercicio.sets}</p>
-                        }
-                        { ejercicio.ejercicio.nombre == 'Descanso' ?
-                          <p className="mb-2">{'Segundos: ' + ejercicio.reps}</p>
-                        :
-                          <p className="mb-2">{'Reps: ' + ejercicio.reps}</p>
-                        }
                     </div>
                 ))
                 )
             }
-            <button onClick={() => {
-            router.push({
-                pathname: '/comenzarRutina',
-                query: { rutina: rutina.id }
-            })
-            }} 
-            className="inline-flex mx-1 items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
-                Comenzar Entrenamiento
-                <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-            </button>
+            {
+              ejerciciosRutina.length === 0 ?
+                ''
+              :
+              <button onClick={() => {
+                router.push({
+                    pathname: '/comenzarRutina',
+                    query: { rutina: rutina.id }
+                })
+                }} 
+                className="inline-flex mx-1 items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                    Comenzar Entrenamiento
+                    <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+              </button>
+            }
+            
             <button onClick={() => {
             router.push({
                 pathname: '/editarRutina',

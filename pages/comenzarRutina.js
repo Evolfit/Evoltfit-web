@@ -352,7 +352,7 @@ export default function ComenzarRutina() {
                       </div>
                     </div>
                     { ejerciciosRutina.length === 0 ? 
-                        <h2>{'Ups, no hay ejercicios. 🥵'}</h2>
+                        ''
                       :
                         !pausaTiempo ? 
                           <div className="my-12">

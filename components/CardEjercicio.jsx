@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import supabase from "/config/supabaseClient";
 
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     const ejercicio = rutinaEjercicio.ejercicio;
+    const [setsEjercicio, setSetsEjercicio] = useState([])
     const [formInput, setFormInput] = useState({
             reps: rutinaEjercicio.reps,
             sets: rutinaEjercicio.sets
@@ -13,6 +14,27 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
 
     //console.log(rutinaEjercicio)
     
+    useEffect(() => {
+        getSets()
+    }, [])
+
+    async function getSets() {
+        const { data, error } = await supabase
+        .from('rutinas_ejercicio_sets')
+        .select('*')
+        .eq('ejercicio_rutina', rutinaEjercicio.id)
+
+        if (error) {
+            console.log('ERROR: No se consiguieron los sets.')
+            console.log(error)
+        }
+        else{
+            console.log(data)
+            setSetsEjercicio(data);
+            //setFormInput()
+        }
+    }
+
     async function updateEjercicio(name, value) {
         //console.log(rutinaIndex)
         
@@ -56,6 +78,26 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         }
     }
 
+    async function agregarSet() {
+        
+        const { data, error } = await supabase
+        .from('rutinas_ejercicio_sets')
+        .insert({
+            ejercicio_rutina: rutinaEjercicio.id, 
+        })
+        .select('*')
+
+        if (error) {
+            console.log(error)
+            console.log("ERROR: Hubo un error al agregar un nuevo set.")
+        }
+        else{
+            console.log("Se agregó un nuevo set.")
+            setSetsEjercicio(current => [...current, data[0]]);
+        }
+    
+    }
+
     const handleOnInputChange = useCallback(
         (event) => {
           const { value, name, id, checked} = event.target;
@@ -97,23 +139,30 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
             }
             <div className="flex flex-row">
                 <div className="w-1/2">
-                    <span className="text-lg font-semibold">
-                        {ejercicio.nombre == 'Descanso' ? 
-                        'Minutos: '
-                        :
-                        'Sets: '
+                    <table className="table-auto">
+                        <thead className="border-b-2">
+                            <tr>
+                                <th className="p-2">Tipo</th>
+                                <th className="p-2 border-l-2 border-r-2">Set</th>
+                                <th className="p-2">Reps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {setsEjercicio.map((set, index) => (
+                            <tr>
+                                <td className="p-2">{set.tipo}</td>
+                                <td className="p-2 border-l-2 border-r-2">{index + 1}</td>
+                                <td className="p-2">{set.reps}</td>
+                            </tr>
+                        ))
                         }
-                    </span>
-                    <input name="sets" id="sets" type="number" className="input input-secondary w-full text-lg font-normal mt-2 mb-4" value={formInput.sets || ""} onChange={handleOnInputChange}/>
-                    <br/>
-                    <span className="text-lg font-semibold">
-                    {ejercicio.nombre == 'Descanso' ? 
-                        'Segundos: '
-                        :
-                        'Reps: '
-                        }
-                    </span>
-                    <input name="reps" id="reps" type="number" className="input input-secondary w-full text-lg font-normal mt-2 mb-4" value={formInput.reps || ""} onChange={handleOnInputChange}/>
+                        </tbody>
+                    </table>
+                    <div className="flex items-end, justify-center my-2">
+                        <button className="btn btn-secondary btn-sm" onClick ={agregarSet}>
+                            + Set
+                        </button>
+                    </div>
                 </div>
                 <div className="flex flex w-1/2 items-center justify-center p-6">
                     {ejercicio.nombre == 'Descanso' ? 
