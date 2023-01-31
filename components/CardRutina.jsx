@@ -15,17 +15,8 @@ const CardRutina = ({ rutina }) => {
       }, [])
 
     async function getEjerciciosRutina() {
-        const { data, error } = await supabase
-        .from('rutinas_ejercicio')
-        .select(`
-          id,
-          ejercicio (
-            nombre
-          ),
-          orden
-        `)
-        .eq('rutina', rutina.id)
-        .order('orden', { ascending: true })
+      const { data, error } = await supabase.rpc('getRutina_EjerciciosSets', { rutina_id: rutina.id })
+        //.order('orden', { ascending: true })
     
         if (error) {
           console.log('ERROR: Hubo un error al recuperar los ejercicios.')

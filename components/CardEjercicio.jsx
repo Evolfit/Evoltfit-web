@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import supabase from "/config/supabaseClient";
+import RowSetsEjercicio from "/components/RowSetsEjercicio";
+
 
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     const ejercicio = rutinaEjercicio.ejercicio;
@@ -135,7 +137,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 <div className='relative rounded-full overflow-hidden h-16 w-16 border-2 mb-2 border-blue-400'>
                     <Image className='rounded-full' src={ejercicio.img} layout='fill' objectFit="cover"/>
                 </div>
-                <div className="flex-auto sm:w-0 ml-0 sm:ml-2">
+                <div className="flex-auto sm:w-0 ml-0 sm:ml-4">
                     <p className="mb-2 mr-8 text-xl font-bold tracking-tight text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden">
                         {(index+1) + ' - ' + ejercicio.nombre}
                     </p>
@@ -158,28 +160,37 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                     })
                 }
             </p>
-            <div className="w-1/2">
-                <table className="table-auto">
+            <div className="w-full">
+                <table className="table-auto w-full mt-4">
                     <thead className="border-b-2">
                         <tr>
                             <th className="p-2">Tipo</th>
                             <th className="p-2 border-l-2 border-r-2">Set</th>
-                            <th className="p-2">Reps</th>
+                            <th className="p-2 border-l-2 border-r-2">Reps</th>
+                            <th className="p-2"></th>
                         </tr>
                     </thead>
                     <tbody>
                     {setsEjercicio.map((set, index) => (
-                        <tr>
-                            <td className="p-2">{set.tipo}</td>
-                            <td className="p-2 border-l-2 border-r-2">{index + 1}</td>
-                            <td className="p-2">{set.reps}</td>
-                        </tr>
+                        <RowSetsEjercicio
+                            key={index}
+                            set={set}
+                            index={index}
+                            getSets={getSets}
+                        />
                     ))
                     }
+                    <tr>
+                        <td className="p-2"></td>
+                        <td className="p-2"></td>
+                        <td className="p-2"></td>
+                        <td className="p-2 border-l-2">
+                            <button className="btn btn-secondary btn-xs" onClick={agregarSet}>
+                                +
+                            </button>
+                        </td>
+                    </tr>
                     </tbody>
-                    <button className="btn btn-secondary btn-sm" onClick ={agregarSet}>
-                        + Set
-                    </button>
                 </table>
                 
             </div>
