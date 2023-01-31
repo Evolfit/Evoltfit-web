@@ -6,16 +6,18 @@ import supabase from "/config/supabaseClient";
 
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     const ejercicio = rutinaEjercicio.ejercicio;
+    let descansoMinutos = Math.floor(rutinaEjercicio.descanso / 60)
+
     const [setsEjercicio, setSetsEjercicio] = useState([])
     const [formInput, setFormInput] = useState({
-            reps: rutinaEjercicio.reps,
-            sets: rutinaEjercicio.sets
-        });
+        minutos: descansoMinutos,
+        segundos: rutinaEjercicio.descanso - (descansoMinutos * 60)
+    });
 
-    //console.log(rutinaEjercicio)
+    console.log(rutinaEjercicio)
     
     useEffect(() => {
-        getSets()
+        getSets();
     }, [])
 
     async function getSets() {
@@ -129,48 +131,57 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
             <div className='absolute text-3xl right-0'>
                 <ion-icon name="reorder-three-outline"></ion-icon>
             </div>
-            <p className="mb-2 mr-8 text-xl font-bold tracking-tight text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden">
-                {(index+1) + ' - ' + ejercicio.nombre}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
+                <div className='relative rounded-full overflow-hidden h-16 w-16 border-2 mb-2 border-blue-400'>
+                    <Image className='rounded-full' src={ejercicio.img} layout='fill' objectFit="cover"/>
+                </div>
+                <div className="flex-auto sm:w-0 ml-0 sm:ml-2">
+                    <p className="mb-2 mr-8 text-xl font-bold tracking-tight text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden">
+                        {(index+1) + ' - ' + ejercicio.nombre}
+                    </p>
+                    <p className="mb-3 font-normal text-lg text-gray-700">{ejercicio.musculo_primario}</p>
+                </div>
+            </div>
+            <p>
+                {
+                    'Descanso: '
+                    + 
+                    formInput.minutos.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    })
+                    + ':'
+                    +
+                    formInput.segundos.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    })
+                }
             </p>
-            {ejercicio.nombre == 'Descanso' ? 
-                ''
-                :
-                <p className="mb-3 font-normal text-lg text-gray-700">{ejercicio.musculo_primario}</p>
-            }
-            <div className="flex flex-row">
-                <div className="w-1/2">
-                    <table className="table-auto">
-                        <thead className="border-b-2">
-                            <tr>
-                                <th className="p-2">Tipo</th>
-                                <th className="p-2 border-l-2 border-r-2">Set</th>
-                                <th className="p-2">Reps</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {setsEjercicio.map((set, index) => (
-                            <tr>
-                                <td className="p-2">{set.tipo}</td>
-                                <td className="p-2 border-l-2 border-r-2">{index + 1}</td>
-                                <td className="p-2">{set.reps}</td>
-                            </tr>
-                        ))
-                        }
-                        </tbody>
-                    </table>
-                    <div className="flex items-end, justify-center my-2">
-                        <button className="btn btn-secondary btn-sm" onClick ={agregarSet}>
-                            + Set
-                        </button>
-                    </div>
-                </div>
-                <div className="flex flex w-1/2 items-center justify-center p-6">
-                    {ejercicio.nombre == 'Descanso' ? 
-                        ''
-                        :
-                        <img src={ejercicio.img} alt=""/>
+            <div className="w-1/2">
+                <table className="table-auto">
+                    <thead className="border-b-2">
+                        <tr>
+                            <th className="p-2">Tipo</th>
+                            <th className="p-2 border-l-2 border-r-2">Set</th>
+                            <th className="p-2">Reps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {setsEjercicio.map((set, index) => (
+                        <tr>
+                            <td className="p-2">{set.tipo}</td>
+                            <td className="p-2 border-l-2 border-r-2">{index + 1}</td>
+                            <td className="p-2">{set.reps}</td>
+                        </tr>
+                    ))
                     }
-                </div>
+                    </tbody>
+                    <button className="btn btn-secondary btn-sm" onClick ={agregarSet}>
+                        + Set
+                    </button>
+                </table>
+                
             </div>
             <button onClick={eliminarEjercicio} className="inline-flex items-center my-2 mx-1 px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300">
                 Eliminar

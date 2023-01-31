@@ -137,7 +137,8 @@ export default function Home() {
         musculo_primario,
         img
       ),
-      orden
+      orden,
+      descanso
     `)
     .eq('rutina', rutinaIndex)
     .order('orden', { ascending: true })
@@ -167,7 +168,8 @@ export default function Home() {
           musculo_primario,
           img
         ),
-        orden
+        orden,
+        descanso
       `)
 
     setToggleSeleccionar(false);
@@ -195,39 +197,6 @@ export default function Home() {
       else{
         console.log("Se agregó un nuevo set.")
       }
-    }
-  }
-
-  async function agregarDescanso() {
-    const { data, error } = await supabase
-      .from('rutinas_ejercicio')
-      .insert({
-        rutina: rutinaIndex, 
-        ejercicio: 222,
-        orden: ejerciciosRutina.length,
-        })
-      .select(`
-        id,
-        ejercicio (
-          nombre,
-          musculo_primario,
-          img
-        ),
-        sets,
-        reps,
-        orden
-      `)
-
-    setToggleSeleccionar(false);
-
-    if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al agregar el descanso.")
-    }
-    else{
-      console.log("Se agregó el descanso.")
-      console.log(data[0])
-      setEjerciciosRutina(current => [...current, data[0]]);
     }
   }
 
@@ -334,7 +303,6 @@ export default function Home() {
                     }
                     <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
                       <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="flex-auto btn text-white btn-secondary rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Agregar ejercicio</button>
-                      <button onClick={agregarDescanso} className="flex-auto  btn text-white btn-success rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Agregar descanso</button>
                       <button onClick={eliminarRutina} className="flex-auto btn text-white btn-error rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Eliminar Rutina</button>
                     </div>
                     

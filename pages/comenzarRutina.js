@@ -19,7 +19,6 @@ export default function ComenzarRutina() {
   const [comenzarEntrenamiento, setComenzarEntrenamiento] = useState(false);
   const [formInput, setFormInput] = useState();
   const [ejerciciosRutina, setEjerciciosRutina] = useState([])
-  const [ordenEjercicios, setOrdenEjercicios] = useState([])
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(0)
 
