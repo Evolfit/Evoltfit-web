@@ -15,8 +15,21 @@ const CardRutina = ({ rutina }) => {
       }, [])
 
     async function getEjerciciosRutina() {
-      const { data, error } = await supabase.rpc('getRutina_EjerciciosSets', { rutina_id: rutina.id })
-        //.order('orden', { ascending: true })
+      //const { data, error } = await supabase.rpc('getEjerciciosRutina', { rutina_id: rutina.id })
+      const { data, error } = await supabase
+        .from('rutinas_ejercicio')
+        .select(`
+          id,
+          ejercicio(
+            nombre
+          ),
+          rutinas_ejercicio_sets (
+            id
+          ),
+          orden
+        `)
+        .eq('rutina', rutina.id)
+        .order('orden', { ascending: true })
     
         if (error) {
           console.log('ERROR: Hubo un error al recuperar los ejercicios.')
@@ -61,11 +74,13 @@ const CardRutina = ({ rutina }) => {
                 <p>{'Ups, no hay ejercicios. 🥵'}</p>
                 :
                 (ejerciciosRutina.map((ejercicio) => (
-                    <div key={ejercicio.id}>
-                        <p className="font-bold">
+                    <div className="flex flex-col sm:flex-row mt-2" key={ejercicio.id}>
+                        <span className="font-semibold">
                           {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
-                        </p>
-                          <p>{'Sets: ' + ejercicio.sets}</p>
+                        </span>
+                        <span className="font-normal sm:ml-1">
+                          {'| ' + ejercicio.rutinas_ejercicio_sets.length + ' Sets'}
+                        </span>
                     </div>
                 ))
                 )

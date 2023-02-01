@@ -29,9 +29,15 @@ const RowSetsEjercicio = ({ set, index, getSets }) => {
 
     return (
       <tr className="border-b-2">
-        <td className="p-2">{set.tipo}</td>
-        <td className="p-2 border-l-2 border-r-2">{index + 1}</td>
-        <td className="p-2 border-l-2 border-r-2">{set.reps}</td>
+        <td className="p-2">
+          <input type="text" placeholder={set.tipo}/>
+        </td>
+        <td className="p-2 border-l-2 border-r-2">
+          {index + 1}
+        </td>
+        <td className="p-2 border-l-2 border-r-2">
+          <input type="text" placeholder={set.reps}/>
+        </td>
         <td className="p-2">
           <button 
             className="btn btn-xs"

@@ -144,22 +144,21 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                     <p className="mb-3 font-normal text-lg text-gray-700">{ejercicio.musculo_primario}</p>
                 </div>
             </div>
-            <p>
-                {
-                    'Descanso: '
-                    + 
-                    formInput.minutos.toLocaleString('en-US', {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false
-                    })
-                    + ':'
-                    +
-                    formInput.segundos.toLocaleString('en-US', {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false
-                    })
-                }
-            </p>
+            <span className="font-bold">
+                {'Descanso: '}
+            </span>
+            <input type="text" value={
+                formInput.minutos.toLocaleString('en-US', {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
+                })
+                + ':'
+                +
+                formInput.segundos.toLocaleString('en-US', {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
+                })
+            }/>
             <div className="w-full">
                 <table className="table-auto w-full mt-4">
                     <thead className="border-b-2">
