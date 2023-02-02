@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import styles from "../../styles/Home.module.css";
 
-function Seccion5({ onSubmit }) {
+function Seccion5({ formData2, onSubmit }) {
   const [formValues, setFormValues] = useState({});
-
+  const edadA = formData2.edad;
+  // Acceder a la altura
+  const alturaA = formData2.altura;
+  // Acceder al peso
+  const pesoA = formData2.peso;
+  
   //funcion para guardar los datos del formulario
   function handleChange(event) {
     setFormValues({
@@ -43,6 +48,7 @@ function Seccion5({ onSubmit }) {
               <input
                 type="number"
                 name="edad"
+                placeholder={edadA}
                 onChange={handleChange}
                 onBlur={enviarauto}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -56,6 +62,7 @@ function Seccion5({ onSubmit }) {
               <input
                 type="number"
                 name="altura"
+                placeholder={alturaA}
                 onChange={handleChange}
                 onBlur={enviarauto}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -69,6 +76,7 @@ function Seccion5({ onSubmit }) {
               <input
                 type="number"
                 name="peso"
+                placeholder={pesoA}
                 onChange={handleChange}
                 onBlur={enviarauto}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

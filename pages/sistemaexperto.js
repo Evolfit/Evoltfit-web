@@ -16,7 +16,7 @@ import Link from "next/link";
 export default function Home() {
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({});
-  const [formData2, setFormData2] = useState({});
+  const [formData2, setFormData2] = useState({ edad: 0, altura: 0, peso: 0 });
   const [checkboxes, setCheckboxes] = useState({
     Ninguno: false,
     Bandaresistencia: false,
@@ -62,7 +62,7 @@ export default function Home() {
       const { value: valor } = formData;
       setArreglo([...arreglo, valor]);
     }
-    if (value === 5) {
+    if (value === 6) {
       setFinalizar(true);
     }
     setValue(value + 1);
@@ -70,7 +70,20 @@ export default function Home() {
   }
   //Funcion para retroceder entre componentes 
   function handlePrevious() {
+    if(value===6){
+      setCheckboxes2({
+        Lunes: false,
+        Martes: false,
+        Miercoles: false,
+        Jueves: false,
+        Viernes: false,
+        Sabado: false,
+        Domingo: false,
+      });
+      
+    }
     if (value > 0 && value <= 5) {
+
       setValue(value - 1);
       arreglo.pop();
       setArreglo(arreglo);
@@ -115,6 +128,7 @@ export default function Home() {
         });
         
       }
+      
     }
   }
   //funcion que recibe solo un valor por componente
@@ -208,7 +222,7 @@ export default function Home() {
   } else if (value === 5) {
     element = <Seccion51 onCheckboxChange={handleCheckboxChange2} />;
   } else if (value === 6) {
-    element = <Seccion5 onSubmit={handleFormSubmit} />;
+    element = <Seccion5 onSubmit={handleFormSubmit} formData2={formData2}/>;
   } else if (value === 7) {
     element = <Seccion6 onCheckboxChange={handleCheckboxChange} />;
   } else {
