@@ -26,7 +26,7 @@ const Navbar = () => {
         } 
         else {
             setSesion(null);
-            //console.log("No hay Sesión " + error);
+            console.log("No hay Sesión " + error);
         }
     }
 
@@ -40,9 +40,10 @@ const Navbar = () => {
 
             if(error){
                 console.log('ERROR: No se pudo conseguir el perfil.')
+                console.log(error)
             }
             else{
-                console.log(data[0])
+                //console.log(data[0])
                 setPerfil(data[0])
             }
     }

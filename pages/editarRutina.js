@@ -133,6 +133,7 @@ export default function Home() {
     .select(`
       id,
       ejercicio (
+        id,
         nombre,
         musculo_primario,
         img
@@ -164,6 +165,7 @@ export default function Home() {
       .select(`
         id,
         ejercicio (
+          id,
           nombre,
           musculo_primario,
           img
@@ -262,7 +264,7 @@ export default function Home() {
             rutina ? 
             <Fragment>
               <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
-                <div className="flex flex-col w-9/12 mx-auto max-w-5xl">
+                <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
                   <div>
                     <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
                       <div className='text-3xl mt-auto'>
@@ -277,7 +279,7 @@ export default function Home() {
                       id="nombre" 
                       type="text" 
                       className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b
-                      outline-none border-blue-500 focus:border-b-2 duration-75" 
+                      outline-none border-blue-500 focus:border-b-2 duration-75  whitespace-nowrap text-ellipsis overflow-hidden" 
                       value={formInput.nombre || ""} 
                       onChange={handleOnInputChange}
                     />
@@ -310,8 +312,17 @@ export default function Home() {
                       </DragDropContext>
                     }
                     <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
-                      <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="flex-auto btn text-white btn-secondary rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Agregar ejercicio</button>
-                      <button onClick={eliminarRutina} className="flex-auto btn text-white btn-error rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Eliminar Rutina</button>
+                      <button onClick={() => {
+                          setToggleSeleccionar(!toggleSeleccionar)
+                          window.scrollTo(0, 0)
+                          }
+                        } 
+                        className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-blue-500 hover:bg-blue-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
+                        Agregar ejercicio
+                      </button>
+                      <button onClick={eliminarRutina} className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-red-500 hover:bg-red-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
+                        Eliminar Rutina
+                      </button>
                     </div>
                     
                   </div>

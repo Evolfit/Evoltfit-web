@@ -112,8 +112,8 @@ export default function Home() {
           {
             rutinas ? 
             <div className="mx-auto mt-6">
-              <div className="flex flex-col w-9/12 mx-auto">
-                <h2 className="text-2xl text-secondary  whitespace-nowrap text-ellipsis overflow-hidden">
+              <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
+                <h2 className="text-3xl sm:text-4xl p-2 text-secondary my-2 w-full font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                   {"Rutinas de " + sesion.user.user_metadata.nombre}
                 </h2>
                 { rutinas.length === 0 ? 

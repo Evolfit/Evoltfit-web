@@ -91,7 +91,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
           <select 
           name='tipo' 
           onChange={handleOnInputChange} 
-          className="text-lg text-center h-12 w-full font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
+          className="text-lg text-center h-12 w-full font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit appearance-none cursor-pointer" 
           defaultValue='default'
           >
             <option id="default" value={formInput.tipo} hidden>{formInput.tipo}</option>

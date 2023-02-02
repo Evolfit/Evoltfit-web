@@ -75,7 +75,7 @@ const CardRutina = ({ rutina }) => {
                 :
                 (ejerciciosRutina.map((ejercicio) => (
                     <div className="flex flex-col sm:flex-row mt-2" key={ejercicio.id}>
-                        <span className="font-semibold">
+                        <span className="font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                           {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
                         </span>
                         <span className="font-normal sm:ml-1">

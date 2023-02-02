@@ -136,13 +136,15 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
   }
 
   return (
-    <div className="absolute top-32 left-1/2 transform -translate-x-1/2 mx-auto w-9/12 h-full overflow-auto h-2/3 shadow-lg rounded-2xl pt-12" data-theme="emerald"> 
-        <div>
-          <div className="w-9/12 mx-auto">
-           <button onClick={() => {setToggleSeleccionar(false)}} className="absolute btn btn-lg btn-ghost right-6 top-6 text-5xl">
-              <ion-icon name='close-outline'></ion-icon>
-           </button>
-            <h2 className="text-3xl text-left text-secondary font-semibold ">Selecciona un ejercicio</h2>
+    <div className="absolute top-32 left-1/2 transform -translate-x-1/2 overflow-auto max-h-full h-5/6 shadow-lg rounded-2xl pt-12 w-11/12 sm:w-9/12 mx-auto max-w-5xl" data-theme="emerald"> 
+        <div className="relative w-11/12 sm:w-9/12 mx-auto max-w-5xl">
+          <div className='flex justify-end sticky top-0 z-20 px-2 h-0'>
+            <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow-md p-2">
+                  <ion-icon name='close-outline'></ion-icon>
+            </button>
+          </div>
+          <div className="w-full">
+            <h2 className="text-3xl text-left text-secondary font-semibold w-9/12">Selecciona un ejercicio</h2>
             <br/>
 
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
@@ -292,7 +294,7 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
           {
             ejercicios ? 
             <div className="mx-auto mt-6">
-              <div className="flex w-9/12 mx-auto">
+              <div className="flex w-11/12 sm:w-9/12 mx-auto max-w-5xl">
                 <span className="text-sm w-1/4 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
                 {/* PAGINACIÓN */}
                 <div className="flex flex-col my-auto w-3/4 items-end">
@@ -311,7 +313,7 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
-                  <div key={ejercicio.id} className="w-9/12 lg:flex drop-shadow-md my-6">
+                  <div key={ejercicio.id} className="w-full lg:flex drop-shadow-md my-6">
                     <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
                     </div>
                     <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">

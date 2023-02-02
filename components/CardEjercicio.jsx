@@ -1,17 +1,19 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
 import supabase from "/config/supabaseClient";
 import RowSetsEjercicio from "/components/RowSetsEjercicio";
 
 
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
+    const router = useRouter();
     const ejercicio = rutinaEjercicio.ejercicio;
-    let descansoMinutos = Math.floor(rutinaEjercicio.descanso / 60)
 
     const [setsEjercicio, setSetsEjercicio] = useState([])
     const [eliminarSet, setEliminarSet] = useState(false)
+
+    let descansoMinutos = Math.floor(rutinaEjercicio.descanso / 60)
     const [formInput, setFormInput] = useState({
         minutos: descansoMinutos,
         segundos: rutinaEjercicio.descanso - (descansoMinutos * 60)
@@ -152,11 +154,27 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 <ion-icon name="reorder-three-outline"></ion-icon>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
-                <div className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-400'>
+                <div 
+                className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
+                onClick={() => {
+                    router.push({
+                    pathname: '/detalleEjercicio',
+                    query: { ejercicio: ejercicio.id }
+                  })}}
+                >
                     <Image className='rounded-full' src={ejercicio.img} layout='fill' objectFit="cover"/>
                 </div>
-                <div className="flex-auto sm:w-0 ml-0 sm:ml-4">
-                    <p className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden">
+                <div className="flex-auto sm:w-0 ml-0 sm:ml-4 w-full">
+                    <p 
+                    className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer 
+                    hover:text-blue-800 duration-150
+                    whitespace-nowrap text-ellipsis overflow-hidden"
+                    onClick={() => {
+                        router.push({
+                        pathname: '/detalleEjercicio',
+                        query: { ejercicio: ejercicio.id }
+                      })}}
+                    >
                         {(index+1) + ' - ' + ejercicio.nombre}
                     </p>
                     <p className="mb-2 font-normal text-lg sm:text-xl text-gray-700">{ejercicio.musculo_primario}</p>
@@ -241,9 +259,8 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 :
                 <div className="loader"></div>
             }
-            <button onClick={eliminarEjercicio} className="inline-flex items-center my-2 mx-1 px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300">
-                Eliminar
-                <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+            <button onClick={eliminarEjercicio} className="inline-flex items-center my-2 mx-1 p-2 text-2xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 duration-75">
+                <ion-icon name="trash-outline"></ion-icon>
             </button>   
         </div>
         }
