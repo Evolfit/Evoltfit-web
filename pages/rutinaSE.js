@@ -43,14 +43,14 @@ export default function Home() {
   //////////////////////////////////////////////////////////
   Cambios a variables para no regresarme a las preguntas (borras despues)
 
-  */
+  
   dias.Lunes = true;
-  dias.Martes = true;
-  dias.Miercoles = true;
-  dias.Jueves = true;
-  dias.Viernes = true;
+  dias.Martes = false;
+  dias.Miercoles = false;
+  dias.Jueves = false;
+  dias.Viernes = false;
   dias.Sabado = false;
-  dias.Domingo = true;
+  dias.Domingo = false;
 
   opciones[4] = 'superior';
   //opciones[4] = 'brazos';
@@ -59,9 +59,9 @@ export default function Home() {
 
 
   opciones[3] = '30min';
-  //opciones[3] = '1hr 30';
+  opciones[3] = '1hr 30';
   opciones[2] = 'principiante';
-  //opciones[2] = 'experimentado';
+  opciones[2] = 'experimentado';
   opciones[1] = 'masamuscular';
 
 
@@ -169,7 +169,7 @@ export default function Home() {
 
 
 
-  function casoSuperior(diasActivos) {
+  function casoSuperiorYC(diasActivos) {
     if (diasActivos === 3) {
 
       if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
@@ -247,13 +247,114 @@ export default function Home() {
   }
 
   function casoBrazos(diasActivos) {
+
     if (diasActivos === 3) {
+
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables1 = { pecho: temp, espaldaSuperior: temp };
+        else
+          variables1 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2 };
+
+        variables2 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+      }
+      else {
+        //Plantilla 2
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables1 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+        else
+          variables1 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2, antebrazo: temp - 1 };
+
+        variables2 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+      }
 
     } else if (diasActivos === 4) {
 
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables2 = { pecho: temp, espaldaSuperior: temp };
+        else
+          variables2 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2 };
+
+        variables1 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+        variables4 = { hombro: temp - 1, tricep: temp, biceps: temp };
+      }
+      else {
+        //Plantilla 2
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables2 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+        else
+          variables2 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+
+        variables1 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+        variables4 = { hombro: temp - 1, tricep: temp, biceps: temp };
+      }
+
     } else if (diasActivos === 5) {
 
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables3 = { pecho: temp, espaldaSuperior: temp };
+        else
+          variables3 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2 };
+
+        variables1 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables2 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+        variables4 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables5 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+      }
+      else {
+        //Plantilla 2
+        if (opciones[3] === '30min' || opciones[3] === '1hr')
+          variables3 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+        else
+          variables3 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+
+        variables1 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables2 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+        variables4 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables5 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+      }
+
     } else if (diasActivos === 6 || diasActivos === 7) {
+
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        if (opciones[3] === '30min' || opciones[3] === '1hr') {
+          variables1 = { pecho: temp, espaldaSuperior: temp };
+          variables4 = { pecho: temp, espaldaSuperior: temp };
+        }
+        else {
+          variables1 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2 };
+          variables4 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2 };
+        }
+        variables2 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+        variables5 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables6 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+      }
+      else {
+        //Plantilla 2
+        if (opciones[3] === '30min' || opciones[3] === '1hr') {
+          variables1 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+          variables4 = { pecho: temp, espaldaSuperior: temp, antebrazo: temp - 1 };
+        }
+        else {
+          variables1 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2, antebrazo: temp - 1 };
+          variables4 = { pecho: temp, espaldaSuperior: temp - 1, Dorsal: temp - 2, antebrazo: temp - 1 };
+        }
+        variables2 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables3 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+        variables5 = { hombro: temp - 1, tricep: temp, biceps: temp };
+        variables6 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1, Abs: temp - 1 };
+      }
 
     }
   }
@@ -261,26 +362,79 @@ export default function Home() {
   function casoPierna(diasActivos) {
     if (diasActivos === 3) {
 
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        variables1 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+        variables2 = { hombro: temp - 1, tricep: temp };
+        variables3 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1 };
+
+      }
+      else {
+        //Plantilla 2
+        variables1 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1, pantorilla: temp - 1 };
+        variables2 = { hombro: temp - 1, tricep: temp, pecho: temp - 1 };
+        variables3 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1, Abs: temp - 1 };
+
+      }
+
     } else if (diasActivos === 4) {
+
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        variables1 = { cuadriceps: temp, gluteos: temp };
+        variables2 = { hombro: temp - 1, tricep: temp };
+        variables3 = { isquos: temp, gluteos: temp };
+        variables4 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1 };
+      }
+      else {
+        //Plantilla 2
+        variables1 = { cuadriceps: temp, gluteos: temp, pantorilla: temp - 1 };
+        variables2 = { hombro: temp - 1, tricep: temp, pecho: temp - 1 };
+        variables3 = { isquos: temp, gluteos: temp, Abs: temp - 1 };
+        variables4 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1, Abs: temp - 1 };
+      }
 
     } else if (diasActivos === 5) {
 
-    } else if (diasActivos === 6 || diasActivos === 7) {
-
-    }
-  }
-
-  function casoCompleto(diasActivos) {
-    if (diasActivos === 3) {
-
-    } else if (diasActivos === 4) {
-
-    } else if (diasActivos === 5) {
+      //Plantilla 1
+      variables1 = { cuadriceps: temp, gluteos: temp, pantorilla: temp - 1 };
+      variables2 = { hombro: temp - 1, tricep: temp, pecho: temp - 1 };
+      variables3 = { isquos: temp, gluteos: temp, pantorilla: temp - 1 };
+      variables4 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1, Abs: temp - 1 };
+      variables5 = { cuadriceps: temp, isquos: temp, pantorilla: temp - 1 };
 
     } else if (diasActivos === 6 || diasActivos === 7) {
 
+      if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
+        //Plantilla 1
+        variables1 = { cuadriceps: temp, gluteos: temp };
+        variables2 = { hombro: temp - 1, tricep: temp, pecho: temp - 1 };
+        variables3 = { isquos: temp, gluteos: temp };
+        variables4 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp - 1 };
+        variables5 = { cuadriceps: temp, isquos: temp };
+        variables6 = { Abs: temp - 1, pantorilla: temp - 1 };
+      }
+      else {
+        //Plantilla 2
+        variables2 = { pecho: temp, hombro: temp - 1, tricep: temp };
+        variables3 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp, antebrazo: temp - 1 };
+        variables1 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1, Abs: temp - 1 };
+        variables5 = { pecho: temp, hombro: temp - 1, tricep: temp };
+        variables6 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp, antebrazo: temp - 1 };
+        variables4 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1, Abs: temp - 1 };
+      }
+
     }
   }
+  function dosdias(diasActivos) {
+    variables2 = { cuadriceps: temp, gluteos: temp - 1, isquos: temp - 1 };
+    variables1 = { pecho: temp - 1, espaldaSuperior: temp - 1, biceps: temp - 1, tricep: temp - 1 };
+  }
+
+  function undia(diasActivos) {
+    variables1 = { pecho: temp - 1, espaldaSuperior: temp - 1, biceps: temp - 1, tricep: temp - 1, cuadriceps: temp - 1, isquos: temp - 1 };
+  }
+
 
 
 
@@ -346,17 +500,17 @@ export default function Home() {
 
   //____________________________________________pregunta de enfoque.
   if (opciones[4] === 'superior' && diasActivos > 2) {
-    casoSuperior(diasActivos);
+    casoSuperiorYC(diasActivos);
   } else if (opciones[4] === 'brazos' && diasActivos > 2) {
     casoBrazos(diasActivos);
   } else if (opciones[4] === 'pierna' && diasActivos > 2) {
-
+    casoPierna(diasActivos);
   } else if (opciones[4] === 'completo' && diasActivos > 2) {
-
+    casoSuperiorYC(diasActivos);
   } else if (diasActivos === 2) {
-
+    dosdias(diasActivos);
   } else if (diasActivos === 1) {
-
+    undia(diasActivos);
   } else {
     console.log("Error en el SE P:ENFOQUE");
   }
