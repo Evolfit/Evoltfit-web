@@ -73,7 +73,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
       }
     
     return (
-        <div className="absolute top-32 left-1/2 transform -translate-x-1/2 mx-auto w-5/12 h-full overflow-auto h-2/3 shadow-lg rounded-2xl pt-12 bg-white border-blue-600 border-2">
+        <div className="absolute top-40  left-1/2 transform -translate-x-1/2 mx-auto w-11/12 h-3/6 shadow-lg rounded-lg pt-12 bg-white border-blue-600 border-2 xl:w-5/12 xl:top-32 xl:h-2/3">
             <button onClick={() => {setToggleSeleccionar(false)}} className="absolute btn btn-lg btn-ghost right-6 top-6 text-5xl">
               <ion-icon name='close-outline'></ion-icon>
            </button>
@@ -82,7 +82,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
                       <div className="flex-1">
                         
                         <div className = "grid place-items-center">
-                        <label className="mb-2 text-base font-bold text-gray-600 dark:text-gray-200">
+                        <label className="mb-2 text-base xl:text-xl font-bold text-gray-600 dark:text-gray-200">
                           Ingresa las calorías
                         </label>
                         <input
@@ -93,7 +93,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
                           className="w-7/12 px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                         />
                          <button className="w-7/12 px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
-                        Enviar
+                        Guardar
                       </button>
                         </div>
                       </div>

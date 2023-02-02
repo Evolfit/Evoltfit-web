@@ -13,9 +13,6 @@ export default function Home() {
 
   //----------------------------------------------------------------
   const [formInput, setFormInput] = useState({});
-  const [errorDatosInput, setErrorDatosInput] = useState({});
-  const [otroMusculo, setOtroMusculo] = useState([]);
-  const [equipo, setEquipo] = useState([]);
   const [imagenNombre, setImagenNombre] = useState();
 
   useEffect(() => {
@@ -26,9 +23,12 @@ export default function Home() {
   const handleSubmit = async (e) => {
 
     if((formInput.nombre == undefined || formInput.nombre == "") 
-    || (formInput.calorias == undefined || formInput.calorias == "") 
-    || (formInput.proteinas == undefined || formInput.proteinas == "")
-    || (formInput.grasas == undefined || formInput.grasas == "")
+    || (formInput.caloriasGramos == undefined || formInput.caloriasGramos == "") 
+    || (formInput.proteinasGramos == undefined || formInput.proteinasGramos == "")
+    || (formInput.grasasGramos == undefined || formInput.grasasGramos == "")
+    || (formInput.caloriasPieza == undefined || formInput.caloriasPieza == "")
+    || (formInput.proteinasPieza == undefined || formInput.proteinasPieza == "") 
+    || (formInput.grasasPieza == undefined || formInput.grasasPieza == "")
     || (formInput.clasificacion == undefined || formInput.clasificacion == "")
     || (formInput.imagen == undefined || formInput.imagen == "")){
       alert("Llena todos los campos.")
@@ -54,9 +54,12 @@ export default function Home() {
         .from('calorias_productos')
         .insert({
           nombre: formInput.nombre, 
-          calorias: formInput.calorias, 
-          proteinas: formInput.proteinas,
-          grasas: formInput.grasas,
+          calorias_gramos: formInput.caloriasGramos, 
+          proteinas_gramos: formInput.proteinasGramos,
+          grasas_gramos: formInput.grasasGramos,
+          calorias_pieza: formInput.caloriasPieza,
+          proteinas_pieza: formInput.proteinasPieza,
+          grasas_pieza: formInput.grasasPieza,
           tipo: formInput.clasificacion,
           cantidad: "c/100gr.",
           img: 'https://ichwtlkazihzvtpmxbnw.supabase.co/storage/v1/object/public/img/' + data.path
@@ -145,14 +148,23 @@ export default function Home() {
 
           <div className="divider m-0"></div>
 
-           {/*CAMPO Calorias ---------------------------- */}
-          <input name="calorias" value={formInput.calorias || ""} onChange={handleOnInputChange} type="text" placeholder="Calorias" className="input input-lg mt-2 "/>
+           {/*CAMPO Calorias por 100 gramos ---------------------------- */}
+          <input name="caloriasGramos" value={formInput.caloriasGramos || ""} onChange={handleOnInputChange} type="text" placeholder="Calorias por 100 gramos" className="input input-lg mt-2 "/>
 
-          {/*CAMPO Proteinas ---------------------------- */}
-          <input name="proteinas" value={formInput.proteinas || ""} onChange={handleOnInputChange} type="text" placeholder="Proteinas" className="input input-lg mt-2"/>
+          {/*CAMPO Proteinas por 100 gramos---------------------------- */}
+          <input name="proteinasGramos" value={formInput.proteinasGramos || ""} onChange={handleOnInputChange} type="text" placeholder="Proteinas por 100 gramos" className="input input-lg mt-2"/>
 
-          {/*CAMPO Grasas ---------------------------- */}
-          <input name="grasas" value={formInput.grasas || ""} onChange={handleOnInputChange} type="text" placeholder="Grasas" className="input input-lg mt-2"/>
+          {/*CAMPO Grasas por 100 gramos---------------------------- */}
+          <input name="grasasGramos" value={formInput.grasasGramos || ""} onChange={handleOnInputChange} type="text" placeholder="Grasas por 100 gramos" className="input input-lg mt-2"/>
+
+          {/*CAMPO Calorias por una pieza ---------------------------- */}
+          <input name="caloriasPieza" value={formInput.caloriasPieza || ""} onChange={handleOnInputChange} type="text" placeholder="Calorias por una pieza" className="input input-lg mt-2 "/>
+
+          {/*CAMPO Proteinas por una pieza---------------------------- */}
+          <input name="proteinasPieza" value={formInput.proteinasPieza || ""} onChange={handleOnInputChange} type="text" placeholder="Proteinas por una pieza" className="input input-lg mt-2"/>
+
+          {/*CAMPO Grasas por una pieza---------------------------- */}
+          <input name="grasasPieza" value={formInput.grasasPieza || ""} onChange={handleOnInputChange} type="text" placeholder="Grasas por una pieza" className="input input-lg mt-2"/>
 
           {/* SELECT Clasifiación */}
           <div className="form-control mt-4 mb-4 lg:mb-7">

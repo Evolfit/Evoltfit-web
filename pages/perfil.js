@@ -69,7 +69,6 @@ export default function Perfil() {
     }
   }
   
-
   const handleLogout = async () => {
       const { error } = await supabase.auth.signOut()
       
