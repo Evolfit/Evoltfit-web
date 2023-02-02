@@ -140,7 +140,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
             </div>
           </div>
           <br/>
-          
+        <br/>
         {toggleMedicion ? (
         <div className="grid place-items-center">
           <button

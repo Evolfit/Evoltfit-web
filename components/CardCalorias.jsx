@@ -55,7 +55,7 @@ const CardCalorias = ({ registro }) => {
 
   return (
     <div className="grid place-items-center">
-      <div className="w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-md my-2 flex">
+      <div className="w-11/12 p-6 bg-white rounded-lg shadow-md my-2 flex border-blue-600 border-2">
         <div>
         <h5 className="text-sm mb-1 tracking-tighter text-zync-600 xl:mb-2 xl:text-base xl:tracking-tight ">
           Creación: {registro.fecha_creacion}

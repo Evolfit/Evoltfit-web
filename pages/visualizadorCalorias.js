@@ -54,7 +54,7 @@ export default function VisualizadorCalorias() {
       .from("calorias_registro")
       .insert({
         usuario: sesion.user.id,
-        nombre: "Registro caloríco " + (count.count + 1),
+        nombre: "Registro calórico " + (count.count + 1),
         fecha_creacion: fecha,
         fecha_formato_orden: fecha_act
       })
@@ -168,7 +168,7 @@ export default function VisualizadorCalorias() {
           {registros ? (
             <div className="mt-6 flex flex-col order-2 xl:order-none">
               <h2 className="text-xl xl:text-2xl text-center">
-                {"Registros calorícos de " + sesion.user.user_metadata.nombre}
+                {"Registros calóricos de " + sesion.user.user_metadata.nombre}
               </h2>
               <br />
               <div className="flex flex-col w-8/12 mx-auto">
