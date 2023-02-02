@@ -19,9 +19,16 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
         const { value, name } = event.target;
 
         if (name == 'reps'){
-          if (value < 0){
-            value = 1
+          let check = value.replace(/\D/g, '');
+
+          if (check < 0){
+            check = 1
           }
+          else if(check > 99){
+            check = 99
+          }
+
+          value = check;
         }
 
         setFormInput({
