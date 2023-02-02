@@ -262,7 +262,7 @@ export default function Home() {
             rutina ? 
             <Fragment>
               <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
-                <div className="flex flex-col w-9/12 mx-auto">
+                <div className="flex flex-col w-9/12 mx-auto max-w-5xl">
                   <div>
                     <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
                       <div className='text-3xl mt-auto'>
@@ -272,7 +272,15 @@ export default function Home() {
                     </button>
                     <br/>
                     <h2 className="mt-2 text-xl text-gray-900">Nombre de la Rutina:</h2>
-                    <input name="nombre" id="nombre" type="text" className="input input-secondary input-lg text-2xl text-secondary my-2 w-full font-semibold" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
+                    <input 
+                      name="nombre" 
+                      id="nombre" 
+                      type="text" 
+                      className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b
+                      outline-none border-blue-500 focus:border-b-2 duration-75" 
+                      value={formInput.nombre || ""} 
+                      onChange={handleOnInputChange}
+                    />
                     <br/>
                     { ejerciciosRutina.length === 0 ? 
                         ''

@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
 
-const RowSetsEjercicio = ({ set, index, getSets }) => {
+const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
     //console.log(set);
 
     const [ejerciciosRutina, setEjerciciosRutina] = useState([])
@@ -77,26 +77,50 @@ const RowSetsEjercicio = ({ set, index, getSets }) => {
 
     return (
       <tr className="border-b-2">
-        <td className="p-2">
-          <input type="text" name='tipo' value={formInput.tipo} onChange={handleOnInputChange}/>
-        </td>
-        <td className="p-2 border-l-2 border-r-2">
+        <th scope="row"  className="text-lg text-center">
           {index + 1}
+        </th>
+        <td className="border-l-2 border-r-2 hover:bg-blue-50 duration-100">
+          <select 
+          name='tipo' 
+          onChange={handleOnInputChange} 
+          className="text-lg text-center h-12 w-full font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
+          defaultValue='default'
+          >
+            <option id="default" value={formInput.tipo} hidden>{formInput.tipo}</option>
+            <option id="Calentamiento" value="Calentamiento">Calentamiento</option>
+            <option id="Normal" value="Normal">Normal</option>
+            <option id="Drop set" value="Drop set">Drop set</option>
+            <option id="Al fallo" value="Al fallo">Al fallo</option>
+          </select>
         </td>
-        <td className="p-2 border-l-2 border-r-2">
-          <input type="number" name='reps' value={formInput.reps} onChange={handleOnInputChange}/>
+        <td className="text-center text-lg border-l-2 hover:bg-blue-50 duration-100">
+          <input 
+          type="number" 
+          name='reps' 
+          value={formInput.reps} 
+          onChange={handleOnInputChange}
+          className="h-12 w-12 sm:w-full py-3 text-center font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
+          />
         </td>
-        <td className="p-2">
-          {index == 0 ? 
+        {eliminar ? 
             ''
           :
-            <button 
-            className="btn btn-xs"
-            onClick={eliminarSet}
-            >
-              X
-            </button>
+          <td 
+          className="text-center"
+          onClick={eliminarSet}
+          >
+            <div className="flex items-center justify-center f-full w-full">
+              <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-gray-700
+              hover:bg-gray-800 duration-100">
+                  <ion-icon name="close-outline"></ion-icon>
+              </div>
+            </div>
+          </td>
           }
+        
+        <td className="text-center">
+          
         </td>
       </tr>
     );
