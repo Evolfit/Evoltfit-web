@@ -27,6 +27,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         .from('rutinas_ejercicio_sets')
         .select('*')
         .eq('ejercicio_rutina', rutinaEjercicio.id)
+        .order('created_at', { ascending: true })
 
         if (error) {
             console.log('ERROR: No se consiguieron los sets.')

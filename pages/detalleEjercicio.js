@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useCallback, Fragment } from "react";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
-import CardEjercicio from "/components/CardEjercicio";
-import SeleccionarEjercicio from "/components/SeleccionarEjercicio";
 import supabase from "../config/supabaseClient";
 
 export default function DetalleEjercicio() {
@@ -106,19 +104,48 @@ export default function DetalleEjercicio() {
   }
 
   async function agregarEjercicio(idRutina) {
+    
+    const query = supabase
+    .from('rutinas_ejercicio')
+    .select('id', { count: 'exact', head: true })
+    .eq('rutina', idRutina)
+
+    const count = await query
+    
     const { data, error } = await supabase
       .from('rutinas_ejercicio')
       .insert({
         rutina: idRutina, 
-        ejercicio: ejercicio.id
+        ejercicio: ejercicio.id,
+        orden: count.count
       })
+      .select(`
+        id,
+        orden,
+        descanso
+      `)
 
     if (error) {
       console.log(error)
       console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
     }
     else{
-      //console.log("Se agregó un nuevo ejercicio.")
+      console.log("Se agregó un nuevo ejercicio.")
+      //console.log(data[0])
+      
+      const { error } = await supabase
+      .from('rutinas_ejercicio_sets')
+      .insert({
+        ejercicio_rutina: data[0].id, 
+        })
+
+      if (error) {
+        console.log(error)
+        console.log("ERROR: Hubo un error al agregar un nuevo set.")
+      }
+      else{
+        console.log("Se agregó un nuevo set.")
+      }
     }
   }
 
