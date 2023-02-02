@@ -103,8 +103,8 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
         </td>
         <td className="text-center text-lg border-l-2 hover:bg-blue-50 duration-100">
           <input 
-          type="number" 
           name='reps' 
+          maxLength={2}
           value={formInput.reps} 
           onChange={handleOnInputChange}
           className="h-12 w-12 sm:w-full py-3 text-center font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
