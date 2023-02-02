@@ -9,11 +9,11 @@ function Seccion5({ formData2, onSubmit }) {
   // Acceder al peso
   let pesoA = 0;
 
-   edadA = formData2.edad;
+  //edadA = formData2.edad;
   // Acceder a la altura
-  alturaA = formData2.altura;
+  //alturaA = formData2.altura;
   // Acceder al peso
-  pesoA = formData2.peso;
+  //pesoA = formData2.peso;
   
   //funcion para guardar los datos del formulario
   function handleChange(event) {
