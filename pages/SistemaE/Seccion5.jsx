@@ -3,11 +3,11 @@ import styles from "../../styles/Home.module.css";
 
 function Seccion5({ formData2, onSubmit }) {
   const [formValues, setFormValues] = useState({});
-  const edadA = 0;
+  let edadA = 0;
   // Acceder a la altura
-  const alturaA = 0;
+  let alturaA = 0;
   // Acceder al peso
-  const pesoA = 0;
+  let pesoA = 0;
 
    edadA = formData2.edad;
   // Acceder a la altura
