@@ -23,50 +23,46 @@ export default function Home() {
   const [sesion, setSesion] = useState(null);
   const [registro, setRegistro] = useState(null);
   const [formInput, setFormInput] = useState();
-  const [productosRegistro, setProductosRegistro] = useState([])
+  const [productosRegistro, setProductosRegistro] = useState([]);
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
-    handleSesion()
-  }, [])
+    handleSesion();
+  }, []);
 
   const handleSesion = async () => {
-
     if (!registroIndex) {
-      router.push('/visualizadorCalorias')
+      router.push("/visualizadorCalorias");
     }
 
-    const { data, error } = await supabase.auth.getSession()
+    const { data, error } = await supabase.auth.getSession();
 
-    if(data.session){
+    if (data.session) {
       setSesion(data.session);
       getRegistro();
-    } 
-    else {
+    } else {
       setSesion(null);
-      router.push('/login')
+      router.push("/login");
     }
-  }
+  };
 
   async function getRegistro() {
-    
     const { data, error } = await supabase
-    .from('calorias_registro')
-    .select('*')
-    .eq('id', registroIndex)
+      .from("calorias_registro")
+      .select("*")
+      .eq("id", registroIndex);
 
     if (error) {
-      console.log('ERROR: No se encontró el registro de calorias.')
-      console.log(error)
-    }
-    else{
+      console.log("ERROR: No se encontró el registro de calorias.");
+      console.log(error);
+    } else {
       setRegistro(data[0]);
       setFormInput({
-        nombre: data[0].nombre
-      })
-      
+        nombre: data[0].nombre,
+      });
+
       getProductosRegistro();
     }
   }
@@ -75,138 +71,255 @@ export default function Home() {
     //console.log(rutinaIndex)
     let temp;
 
-    if (nombre == ''){
-      temp = 'Registro calorico sin nombre'
-    }
-    else{
-      temp = nombre
+    if (nombre == "") {
+      temp = "Registro calorico sin nombre";
+    } else {
+      temp = nombre;
     }
 
     const { error } = await supabase
-    .from('calorias_registro')
-    .update({ nombre: temp})
-    .eq('id', registroIndex)
+      .from("calorias_registro")
+      .update({ nombre: temp })
+      .eq("id", registroIndex);
 
     if (error) {
-      console.log('ERROR: No se pudo actualizar el registro.')
-      console.log(error)
-    }
-    else{
-      console.log('Registro actualizado')
+      console.log("ERROR: No se pudo actualizar el registro.");
+      console.log(error);
+    } else {
+      console.log("Registro actualizado");
       //console.log(data[0])
     }
   }
 
   async function eliminarRegistro() {
     const { error } = await supabase
-    .from('calorias_registro')
-    .delete()
-    .match({id: registro.id, usuario: sesion.user.id})
+      .from("calorias_registro")
+      .delete()
+      .match({ id: registro.id, usuario: sesion.user.id });
 
     if (error) {
-      console.log('ERROR: Error al eliminar el registro calorico.')
-      console.log(error)
-    }
-    else{
-      console.log('Se eliminó ' + registro.nombre)
-      router.push('/visualizadorCalorias')
+      console.log("ERROR: Error al eliminar el registro calorico.");
+      console.log(error);
+    } else {
+      console.log("Se eliminó " + registro.nombre);
+      router.push("/visualizadorCalorias");
     }
   }
 
   async function getProductosRegistro() {
     const { data, error } = await supabase
-    .from('calorias_registro_productos')
-    .select(`
+      .from("calorias_registro_productos")
+      .select(
+        `
       id,
       producto_id (
         id,
         nombre,
-        calorias,
-        proteinas,
-        grasas,
         tipo
+      ),
+      calorias,
+      proteinas, 
+      grasas,
+      tipo_medicion,
+      cantidad_elegida
+    `
       )
-    `)
-    .eq('registro', registroIndex)
+      .eq("registro", registroIndex);
 
     if (error) {
-      console.log('ERROR: Hubo un error al recuperar los productos.')
-      console.log(error)
-    }
-    else{
+      console.log("ERROR: Hubo un error al recuperar los productos.");
+      console.log(error);
+    } else {
       //console.log(data);
       setProductosRegistro(data);
     }
   }
 
-  async function agregarProducto(idProducto) {
-    const { data, error } = await supabase
-      .from('calorias_registro_productos')
-      .insert({
-        registro: registroIndex, 
-        producto_id: idProducto
-        })
-      .select(`
+  async function agregarProducto(
+    idProducto,
+    cantidadSeleccionada,
+    tipoMedicion
+  ) {
+    if (tipoMedicion == false) {
+      console.log("El usuario seleccionó " + cantidadSeleccionada + " gramos");
+
+      let { data: res, err } = await supabase
+        .from("calorias_productos")
+        .select("calorias_gramos, proteinas_gramos, grasas_gramos")
+        .eq("id", idProducto);
+
+      let conversionCaloriasGramos = (
+        (cantidadSeleccionada * res[0].calorias_gramos) /
+        100
+      ).toFixed(2);
+      let conversioProteinasGramos = (
+        (cantidadSeleccionada * res[0].proteinas_gramos) /
+        100
+      ).toFixed(2);
+      let conversionGrasasGramos = (
+        (cantidadSeleccionada * res[0].grasas_gramos) /
+        100
+      ).toFixed(2);
+
+      // console.log(conversionCaloriasGramos)
+      // console.log(conversioProteinasGramos)
+      // console.log(conversionGrasasGramos)
+
+      const { data, error } = await supabase
+        .from("calorias_registro_productos")
+        .insert({
+          registro: registroIndex,
+          producto_id: idProducto,
+          calorias: conversionCaloriasGramos,
+          proteinas: conversioProteinasGramos,
+          grasas: conversionGrasasGramos,
+          tipo_medicion: "Cada 100 gramos",
+          cantidad_elegida: cantidadSeleccionada,
+        }).select(`
         id,
         producto_id (
           id,
           nombre,
-          calorias,
-          proteinas,
-          grasas,
           tipo
-        )
-      `)
+        ),
+        calorias,
+        proteinas, 
+        grasas,
+        tipo_medicion,
+        cantidad_elegida
+      `);
 
-      if(error) {
-        console.log(error)
-        console.log("ERROR: Hubo un error al agregar un nuevo producto.")
+      if (error) {
+        console.log(error);
+        console.log("ERROR: Hubo un error al agregar un nuevo producto.");
+      } else {
+        console.log("Se agregó un nuevo producto.");
+        console.log(data[0]);
+        console.log(data[0].id);
+        setProductosRegistro((current) => [...current, data[0]]);
       }
-      else{
-        console.log("Se agregó un nuevo producto.")
-        console.log(data[0])
-        setProductosRegistro(current => [...current, data[0]]);
+
+      const { data2, error2 } = await supabase
+        .from("calorias_productos_totales")
+        .insert({
+          producto_id: idProducto,
+          usuario: sesion.user.id,
+          fecha_agregado: fecha_act,
+          registro: registroIndex,
+          calorias: conversionCaloriasGramos,
+          proteinas: conversioProteinasGramos,
+          grasas: conversionGrasasGramos,
+          calorias_registro_productos_id: data[0].id,
+        });
+
+      if (error2) {
+        console.log(error2);
+        console.log(
+          "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
+        );
+      } else {
+        console.log("Se agregó el producto a la tabla de productos totales.");
       }
 
-    const { data2, error2 } = await supabase
-    .from('calorias_productos_totales')
-    .insert({
-      producto_id: idProducto,
-      usuario: sesion.user.id,
-      fecha_agregado: fecha_act,
-      registro: registroIndex
-    })
+      setToggleSeleccionar(false);
+    } else if (tipoMedicion) {
+      console.log("El usuario seleccionó " + cantidadSeleccionada + " piezas");
+      let { data: res, err } = await supabase
+        .from("calorias_productos")
+        .select("calorias_pieza, proteinas_pieza, grasas_pieza")
+        .eq("id", idProducto);
 
-    if(error2) {
-      console.log(error2)
-      console.log("ERROR: Hubo un error al agregar un nuevo producto a la tabla total.")
-    }
-    else{
-      console.log("Se eliminó el producto a la tabla de productos totales.")
-    }
+      let conversionCaloriasPieza = (
+        res[0].calorias_pieza * cantidadSeleccionada
+      ).toFixed(2);
+      let conversioProteinasPieza = (
+        res[0].proteinas_pieza * cantidadSeleccionada
+      ).toFixed(2);
+      let conversionGrasasPieza = (
+        res[0].grasas_pieza * cantidadSeleccionada
+      ).toFixed(2);
 
-    setToggleSeleccionar(false);
+      // console.log(conversionCaloriasPieza);
+      // console.log(conversioProteinasPieza);
+      // console.log(conversionGrasasPieza);
+
+      const { data, error } = await supabase
+        .from("calorias_registro_productos")
+        .insert({
+          registro: registroIndex,
+          producto_id: idProducto,
+          calorias: conversionCaloriasPieza,
+          proteinas: conversioProteinasPieza,
+          grasas: conversionGrasasPieza,
+          tipo_medicion: "Por pieza / vaso",
+          cantidad_elegida: cantidadSeleccionada,
+        }).select(`
+        id,
+        producto_id (
+          id,
+          nombre,
+          tipo
+        ),
+        calorias,
+        proteinas, 
+        grasas,
+        tipo_medicion,
+        cantidad_elegida
+      `);
+
+      if (error) {
+        console.log(error);
+        console.log("ERROR: Hubo un error al agregar un nuevo producto.");
+      } else {
+        console.log("Se agregó un nuevo producto.");
+        console.log(data[0]);
+        setProductosRegistro((current) => [...current, data[0]]);
+      }
+
+      const { data2, error2 } = await supabase
+        .from("calorias_productos_totales")
+        .insert({
+          producto_id: idProducto,
+          usuario: sesion.user.id,
+          fecha_agregado: fecha_act,
+          registro: registroIndex,
+          calorias: conversionCaloriasPieza,
+          proteinas: conversioProteinasPieza,
+          grasas: conversionGrasasPieza,
+          calorias_registro_productos_id: data[0].id,
+        });
+
+      if (error2) {
+        console.log(error2);
+        console.log(
+          "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
+        );
+      } else {
+        console.log("Se agregó el producto a la tabla de productos totales.");
+      }
+
+      setToggleSeleccionar(false);
+    }
   }
 
   const handleOnInputChange = useCallback(
     (event) => {
-      const { value, name, id, checked} = event.target;
+      const { value, name, id, checked } = event.target;
 
       setFormInput({
         ...formInput,
         [name]: value,
       });
 
-      updateRegistro(value)
-
+      updateRegistro(value);
     },
     [formInput, setFormInput]
   );
 
   return (
-    <div className="bg-stone-100 w-full z-0" data-theme="emerald">
+    <div className="bg-blue-50 z-0">
       <Head>
-        <title>EvoltFit</title>
+        <title>EvoltFit - Registro de calorías</title>
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -218,56 +331,95 @@ export default function Home() {
         <br />
         <br />
         <br />
-        <div>          
-          {
-            registro ? 
+        <div>
+          {registro ? (
             <Fragment>
-              <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
-                <div className="flex flex-col w-7/12 mx-auto">
-                  <div>
-                    <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/visualizadorCalorias')}}>
-                      <div className='text-3xl mt-auto'>
+              <div
+                className={
+                  "mx-auto mt-2 w-11/12" + (toggleSeleccionar ? "blur-sm" : "")
+                }
+              >
+                <div className="flex">
+                  <div className="w-1/2 flex">
+                    <button
+                      className="btn btn-ghost m-0 px-2 text-xs xl:text-lg mb-2"
+                      onClick={() => {
+                        router.push("/visualizadorCalorias");
+                      }}
+                    >
+                      <div className="text-base mt-1.5 xl:text-3xl xl:mt-auto ">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                       </div>
                       <span className="ml-2">{"Volver a registros"}</span>
                     </button>
-                    <br/>
-                    <input name="nombre" id="nombre" type="text" className="px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring my-2 mr-52" value={formInput.nombre || ""} onChange={handleOnInputChange}/>
-                    <button onClick={() => setToggleSeleccionar(!toggleSeleccionar)} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 ">Agregar producto</button>
-                    <button onClick={eliminarRegistro} className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 ">Eliminar registro</button>
-                    <br/>
-                    <div className = "grid place-items-center">
-                    { productosRegistro.length === 0 ?
-                        <h2><br/>No hay productos en el registro</h2>
-                      :
-                        (productosRegistro.map((registro) => (
-                            <CardProducto
-                            key={registro.id}
-                            registroProducto={registro} 
-                            sesion = {sesion.user.id}
-                            getProductosRegistro={getProductosRegistro}
-                            />
-                          ))
-                        )
-                    }
-                    </div>
+                  </div>
+                  <div className="w-1/2 p-2 flex flex-row-reverse">
+                    <h1 className="font-semibold text-sm xl:text-xl">
+                      Registro creado el: {registro.fecha_creacion}
+                    </h1>
                   </div>
                 </div>
-                
-              </div> 
-              { 
-                toggleSeleccionar ? 
+                <br />
+                <div className="px-6 w-full">
+                  <input
+                    name="nombre"
+                    id="nombre"
+                    type="text"
+                    className="px-5 py-3 mt-2 w-full xl:w-52 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring my-2"
+                    value={formInput.nombre || ""}
+                    onChange={handleOnInputChange}
+                  />
+                  <div className="flex xl:float-right mt-2">
+                    <button
+                      onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
+                      className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mr-2 mb-2 "
+                    >
+                      Agregar producto
+                    </button>
+                    <button
+                      onClick={eliminarRegistro}
+                      className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mr-2 mb-2 "
+                    >
+                      Eliminar registro
+                    </button>
+                  </div>
+                  <br />
+                </div>
+                {productosRegistro.length === 0 ? (
+                  <div className="grid place-items-center">
+                    <br />
+                    <h2>No hay productos en el registro</h2>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <div className="grid grid-cols-1 xl:grid-cols-2 place-items-center">
+                  {productosRegistro.length === 0
+                    ? ""
+                    : productosRegistro.map((registro) => (
+                        <CardProducto
+                          key={registro.id}
+                          registroProducto={registro}
+                          sesion={sesion.user.id}
+                          getProductosRegistro={getProductosRegistro}
+                        />
+                      ))}
+                </div>
+              </div>
+              {toggleSeleccionar ? (
                 <SeleccionarProducto
-                agregarProducto={agregarProducto}
-                setToggleSeleccionar={setToggleSeleccionar}
-                /> 
-                : '' }
+                  agregarProducto={agregarProducto}
+                  setToggleSeleccionar={setToggleSeleccionar}
+                />
+              ) : (
+                ""
+              )}
             </Fragment>
-            : 
+          ) : (
             <div className="mt-12">
               <div className="loader mt-6"></div>
             </div>
-          }
+          )}
         </div>
         <br />
         <br />
@@ -277,13 +429,8 @@ export default function Home() {
         <br />
         <br />
         <br />
-        <br />
-        <br />
       </main>
-
-     
-
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

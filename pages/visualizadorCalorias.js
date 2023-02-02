@@ -35,7 +35,6 @@ export default function VisualizadorCalorias() {
   const [metaCalorias, setMetaCalorias] = useState(null);
 
   var sumatoriaCal = 0;
-  var caloriasAsignadas = 2000;
 
   useEffect(() => {
     handleSesion();
@@ -92,12 +91,7 @@ export default function VisualizadorCalorias() {
 
     let { data: res, err } = await supabase
       .from("calorias_productos_totales")
-      .select(
-        `
-      producto_id (
-      calorias
-    )`
-      )
+      .select("calorias")
       .match({ usuario: session.user.id, fecha_agregado: fecha_act });
 
     if (err) {
@@ -108,9 +102,9 @@ export default function VisualizadorCalorias() {
     } else {
       //console.log(res);
       for (var i = 0; i <= res.length - 1; i++) {
-        sumatoriaCal = sumatoriaCal + res[i].producto_id.calorias;
+        sumatoriaCal = sumatoriaCal + res[i].calorias;
       }
-      setSumatoriaCalorias(sumatoriaCal);
+      setSumatoriaCalorias(sumatoriaCal.toFixed(1));
     }
   }
 
@@ -167,13 +161,13 @@ export default function VisualizadorCalorias() {
         <br />
         <div
           className={
-            "grid grid-cols-2 gap-1 ml-10" +
+            "grid grid-cols-1 gap-1 xl:grid xl:grid-cols-2 xl:gap-1 xl:ml-10" +
             (toggleSeleccionar ? "blur-sm" : "")
           }
         >
           {registros ? (
-            <div className="mt-6 flex flex-col">
-              <h2 className="text-2xl">
+            <div className="mt-6 flex flex-col order-2 xl:order-none">
+              <h2 className="text-xl xl:text-2xl text-center">
                 {"Registros calorícos de " + sesion.user.user_metadata.nombre}
               </h2>
               <br />
@@ -181,7 +175,7 @@ export default function VisualizadorCalorias() {
                 <button
                   type="submit"
                   onClick={nuevoRegistro}
-                  className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mr-2 mb-2 "
+                  className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm xl:text-base xl:px-5 py-2.5 text-center mr-2 mb-2 "
                 >
                   Nuevo registro
                 </button>
@@ -213,12 +207,12 @@ export default function VisualizadorCalorias() {
               <div className="loader mt-6"></div>
             </div>
           )}
-          <div>
-            <div className="ml-10 mr-10 grid place-items-center border-blue-600 border-2 rounded-md shadow-2xl relative pt-16 pb-16">
-              <h5 className="text-2xl font-bold tracking-tight text-blue-600 mb-2">
+          <div className = "order-1 xl:order-none">
+            <div className="bg-white ml-10 mr-10 grid place-items-center border-blue-600 border-2 rounded-md shadow-2xl relative pt-12 pb-12 xl:pt-16 xl:pb-16">
+              <h5 className="text-lg font-semibold text-center tracking-tighter text-blue-600 mb-2 xl:text-2xl xl:font-bold xl:tracking-tight ">
                 Calorías consumidas - {fecha}
               </h5>
-              <div style={{ width: 150, height: 150 }}>
+              <div className = "h-28 w-28 xl:h-36 xl:w-36">
                 <CircularProgressbar
                   value={sumatoriaCalorias}
                   maxValue={metaCalorias}
@@ -227,7 +221,7 @@ export default function VisualizadorCalorias() {
               </div>
   
               {metaCalorias ? (
-                <h5 className="text-2xl font-bold tracking-tight text-blue-600 mt-2">
+                <h5 className="text-xl font-semibold tracking-tighter xl:text-2xl xl:font-bold xl:tracking-tight text-blue-600 mt-2">
                 {sumatoriaCalorias} / {metaCalorias}
                 </h5>
               ) : (
@@ -239,7 +233,7 @@ export default function VisualizadorCalorias() {
                      <br/>
                   <div
                     id="toast-danger"
-                    className="flex items-center p-4 mb-4 w-full max-w-xs bg-red-200 rounded-lg shadow"
+                    className="flex items-center p-4 mb-4 w-10/12 xl:w-full max-w-xs bg-red-200 rounded-lg shadow"
                     role="alert"
                   >
                     <div className="ml-3 text-sm font-normal text-center">
@@ -254,7 +248,7 @@ export default function VisualizadorCalorias() {
 
               <button
                 onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 text-center mt-5"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mt-5"
               >
                 Asignar meta
               </button>
@@ -268,8 +262,6 @@ export default function VisualizadorCalorias() {
         ) : (
           ""
         )}
-        <br />
-        <br />
         <br />
         <br />
         <br />

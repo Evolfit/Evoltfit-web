@@ -25,11 +25,11 @@ const CardCalorias = ({ registro }) => {
         `
           id,
           producto_id (
-            nombre,
-            calorias,
-            proteinas,
-            grasas
-          )
+            nombre
+          ),
+          calorias,
+          proteinas,
+          grasas
         `
       )
       .eq("registro", registro.id);
@@ -43,12 +43,12 @@ const CardCalorias = ({ registro }) => {
 
       //console.log(data[0].producto_id.calorias);
       for (var i = 0; i <= data.length - 1; i++) {
-        sumatoriaCal = sumatoriaCal + data[i].producto_id.calorias;
-        sumatoriaPro = sumatoriaPro + data[i].producto_id.proteinas;
-        sumatoriaGra = sumatoriaGra + data[i].producto_id.grasas;
+        sumatoriaCal = sumatoriaCal + data[i].calorias;
+        sumatoriaPro = sumatoriaPro + data[i].proteinas;
+        sumatoriaGra = sumatoriaGra + data[i].grasas;
       }
-      setSumatoriaCalorias(sumatoriaCal);
-      setSumatoriaProteinas(sumatoriaPro);
+      setSumatoriaCalorias(sumatoriaCal.toFixed(1));
+      setSumatoriaProteinas(sumatoriaPro.toFixed(1));
       setSumatoriaGrasas(sumatoriaGra.toFixed(1));
     }
   }
@@ -57,7 +57,7 @@ const CardCalorias = ({ registro }) => {
     <div className="grid place-items-center">
       <div className="w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-md my-2 flex">
         <div>
-        <h5 className="mb-2 text-base  tracking-tight text-zync-600">
+        <h5 className="text-sm mb-1 tracking-tighter text-zync-600 xl:mb-2 xl:text-base xl:tracking-tight ">
           Creación: {registro.fecha_creacion}
           </h5>
 
@@ -69,7 +69,7 @@ const CardCalorias = ({ registro }) => {
             });
           }}
         >
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-blue-600">
+          <h5 className="text-lg text-blue-600 mb-1 font-semibold tracking-tighter xl:mb-2 xl:text-2xl xl:font-bold xl:tracking-tight ">
             {registro.nombre}
           </h5>
         </button>
@@ -78,7 +78,7 @@ const CardCalorias = ({ registro }) => {
         ) : (
           productosRutina.map((producto) => (
             <div key={producto.id}>
-              <p className="font-bold">{producto.producto_id.nombre}</p>
+              <p className="font-semibold text-sm xl:text-base">{producto.producto_id.nombre}</p>
             </div>
           ))
         )}
@@ -89,7 +89,7 @@ const CardCalorias = ({ registro }) => {
               query: { registro: registro.id },
             });
           }}
-          className="inline-flex items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="inline-flex items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Opciones
           <svg
@@ -107,9 +107,9 @@ const CardCalorias = ({ registro }) => {
           </svg>
         </button>
       </div>
-      <div className="ml-56 flex absolute left-64">
-          <div className="text-sm mr-5 xl:grid xl:place-items-center">
-            <div className="h-10 w-10">
+      <div className="flex absolute ml-40 xl:ml-56 xl:left-64">
+          <div className="text-sm mr-5 grid place-items-center">
+            <div className="h-8 w-8 xl:h-10 xl:w-10">
               <img src="calorias.png"></img>
             </div>
             {/* <p className="text-gray-900 leading-none font-semibold">
@@ -117,8 +117,8 @@ const CardCalorias = ({ registro }) => {
             </p> */}
             <p className="text-blue-500 mt-1">{sumatoriaCalorias}</p>
           </div>
-          <div className="text-sm mr-5 xl:grid xl:place-items-center">
-            <div className="h-10 w-10">
+          <div className="text-sm mr-5 grid place-items-center">
+            <div className="h-8 w-8 xl:h-10 xl:w-10">
               <img src="proteins.png"></img>
             </div>
             {/* <p className="text-gray-900 leading-none font-semibold">
@@ -126,8 +126,8 @@ const CardCalorias = ({ registro }) => {
             </p> */}
             <p className="text-blue-500 mt-1">{sumatoriaProteinas}</p>
           </div>
-          <div className="text-sm mr-5 xl:grid xl:place-items-center">
-            <div className="h-10 w-10">
+          <div className="text-sm mr-5 grid place-items-center">
+            <div className="h-8 w-8 xl:h-10 xl:w-10">
               <img src="grasas.png"></img>
             </div>
             {/* <p className="text-gray-900 leading-none font-semibold">
