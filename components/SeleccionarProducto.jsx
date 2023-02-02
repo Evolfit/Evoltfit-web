@@ -227,7 +227,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
                         </div>
                         <div className = "flex flex-col">
                         <h1 className="text-gray-900 leading-none font-semibold">Ingrese la cantidad</h1>
-                        <input name = "cantidadPieza" onChange={e => setNumero(e.target.value)} className = "mt-2 text-gray-700 bg-white border border-gray-500 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring xl:w-36" type="number"></input>
+                        <input type="number" name = "cantidadPieza" onChange={e => setNumero(e.target.value)} className = "mt-2 text-gray-700 bg-white border border-gray-500 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring xl:w-36"></input>
                         </div>
                       </div>
                     </div>
@@ -268,7 +268,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
                         </div>
                         <div className ="flex flex-col">
                         <h1 className="text-gray-900 leading-none font-semibold">Ingrese los gramos</h1>
-                        <input name = "cantidadGramos" onChange={e => setNumero(e.target.value)} className = "mt-2 text-gray-700 bg-white border border-gray-500 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring xl:w-36" type="number"></input>
+                        <input type="number"  name = "cantidadGramos" onChange={e => setNumero(e.target.value)} className = "mt-2 text-gray-700 bg-white border border-gray-500 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring xl:w-36"></input>
                         </div>
                       </div>
                     </div>

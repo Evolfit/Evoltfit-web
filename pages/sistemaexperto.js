@@ -272,7 +272,7 @@ export default function Home() {
 
           <br />
           {/*Boton retroceder*/}
-          <div className="flex">
+          <div className="grid grid-cols-2 gap-10">
             <button className="bottonAnt" onClick={handlePrevious}>Anterior</button>
             {showFinalizar ? (
               showFinalizar2 ? (

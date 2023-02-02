@@ -140,7 +140,9 @@ export default function Home() {
     cantidadSeleccionada,
     tipoMedicion
   ) {
-    if (tipoMedicion == false) {
+    if(cantidadSeleccionada == undefined || cantidadSeleccionada == ""){
+      alert("Ingrese la cantidad")
+    }else{if (tipoMedicion == false) {
       console.log("El usuario seleccionó " + cantidadSeleccionada + " gramos");
 
       let { data: res, err } = await supabase
@@ -299,7 +301,8 @@ export default function Home() {
       }
 
       setToggleSeleccionar(false);
-    }
+    }}
+    
   }
 
   const handleOnInputChange = useCallback(
