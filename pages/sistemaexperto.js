@@ -11,10 +11,11 @@ import Seccion5 from "./SistemaE/Seccion5";
 import Seccion6 from "./SistemaE/Seccion6";
 import Seccion41 from "./SistemaE/Seccion41";
 import Seccion51 from "./SistemaE/Seccion51";
+import Inicio from "./SistemaE/Inicio";
 import Link from "next/link";
 
 export default function Home() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(-1);
   const [formData, setFormData] = useState({});
   const [formData2, setFormData2] = useState({ edad: 0, altura: 0, peso: 0 });
   const [checkboxes, setCheckboxes] = useState({
@@ -46,6 +47,7 @@ export default function Home() {
   const [showButton, setShowButton] = useState(false);
   const [showFinalizar, setFinalizar] = useState(false);
   const [showFinalizar2, setFinalizar2] = useState(false);
+  const [inicioB, setinicioB] = useState(false);
   let algunoEsVerdadero = false;
   let element;
   let element2;
@@ -58,7 +60,10 @@ export default function Home() {
   //Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
   //y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
-    if (value < 5) {
+    if(value===-1){
+      setinicioB(true);
+    }
+    if (value < 5 && value >= 0) {
       const { value: valor } = formData;
       setArreglo([...arreglo, valor]);
     }
@@ -70,7 +75,7 @@ export default function Home() {
   }
   //Funcion para retroceder entre componentes 
   function handlePrevious() {
-    if(value===6){
+    if (value === 6) {
       setCheckboxes2({
         Lunes: false,
         Martes: false,
@@ -80,7 +85,7 @@ export default function Home() {
         Sabado: false,
         Domingo: false,
       });
-      
+
     }
     if (value > 0 && value <= 5) {
 
@@ -126,9 +131,9 @@ export default function Home() {
           BancoInclinado: false,
           Cuerda: false,
         });
-        
+
       }
-      
+
     }
   }
   //funcion que recibe solo un valor por componente
@@ -209,9 +214,11 @@ export default function Home() {
     }
   };
   //cambiar de componentes
-  if (value === 0) {
+  if (value === -1) {
+    element = <Inicio />;
+  } else if (value === 0) {
     element = <Seccion1 onChange={handleChange} />;
-  } else if (value === 1) {
+  }else if (value === 1) {
     element = <Seccion2 onChange={handleChange} />;
   } else if (value === 2) {
     element = <Seccion3 onChange={handleChange} />;
@@ -222,14 +229,14 @@ export default function Home() {
   } else if (value === 5) {
     element = <Seccion51 onCheckboxChange={handleCheckboxChange2} />;
   } else if (value === 6) {
-    element = <Seccion5 onSubmit={handleFormSubmit} formData2={formData2}/>;
+    element = <Seccion5 onSubmit={handleFormSubmit} formData2={formData2} />;
   } else if (value === 7) {
     element = <Seccion6 onCheckboxChange={handleCheckboxChange} />;
   } else {
     setValue(value + 1);
     setArreglo([...arreglo, "completo"]);
   }
-  //actualizador solo para visualizar el funcionamiento de datos
+  //actualizador para visualizar el funcionamiento de datos
   useEffect(() => {
     console.log("------------------");
     console.log(formData);
@@ -253,10 +260,11 @@ export default function Home() {
     if (Object.entries(checkboxes2).find((entry) => entry[1] === true)) {
       setShowButton(true);
     }
-    if (Object.values(checkboxes2).every(value => value === false) && value===5) {
+    if (Object.values(checkboxes2).every(value => value === false) && value === 5) {
       setShowButton(false);
-    } 
+    }
   }, [formData, formData2, arreglo, checkboxes, checkboxes2]);
+
 
   return (
     <div className="bg-blue-50 w-full">
@@ -287,32 +295,42 @@ export default function Home() {
           <br />
           {/*Boton retroceder*/}
           <div className="grid grid-cols-2 gap-10">
-            <button className="bottonAnt" onClick={handlePrevious}>Anterior</button>
-            {showFinalizar ? (
-              showFinalizar2 ? (
-                <Link
-                  href={{
-                    pathname: "../rutinaSE",
-                    query: {
-                      formData2: JSON.stringify(formData2),
-                      checkboxes: JSON.stringify(checkboxes),
-                      checkboxes2: JSON.stringify(checkboxes2),
-                      arreglo: JSON.stringify(arreglo),
-                    },
-                  }}
-                >
-                  <button className="bottonSig-2">Finalizar</button>
-                </Link>
-              ) : (
-                <button className="bottonSig-1">Finalizar</button>
-              )
-            ) : showButton ? (
-              <button onClick={handleNext} className="bottonSig-2">
-                Siguiente
-              </button>
-            ) : (
-              <button className="bottonSig-1">Siguiente</button>
-            )}
+
+
+          {inicioB ? (
+  <>
+    <button className="bottonAnt" onClick={handlePrevious}>Anterior</button>
+    {showFinalizar ? (
+      showFinalizar2 ? (
+        <Link
+          href={{
+            pathname: "../rutinaSE",
+            query: {
+              formData2: JSON.stringify(formData2),
+              checkboxes: JSON.stringify(checkboxes),
+              checkboxes2: JSON.stringify(checkboxes2),
+              arreglo: JSON.stringify(arreglo),
+            },
+          }}
+        >
+          <button className="bottonSig-2">Finalizar</button>
+        </Link>
+      ) : (
+        <button className="bottonSig-1">Finalizar</button>
+      )
+    ) : showButton ? (
+      <button onClick={handleNext} className="bottonSig-2">
+        Siguiente
+      </button>
+    ) : (
+      <button className="bottonSig-1">Siguiente</button>
+    )}
+  </>
+) : (
+  <button className="bottonSig-1" onClick={handleNext} >Comenzar</button>
+)}
+
+
           </div>
         </div>
         <br />
