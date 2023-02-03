@@ -156,8 +156,8 @@ export default function Home() {
         <br />
         <br />
         
-        <div>
-          <div className="w-9/12 mx-auto">
+        <div className="w-11/12 sm:w-9/12 mx-auto max-w-5xl">
+          <div>
             <h2 className="text-2xl lg:text-5xl text-left text-secondary font-semibold lg:my-4">Biblioteca de Ejercicios</h2>
             <br/>
 
@@ -308,7 +308,7 @@ export default function Home() {
           {
             ejercicios ? 
             <div className="mx-auto mt-6">
-              <div className="flex w-9/12 mx-auto">
+              <div className="flex mx-auto">
                 <span className="text-sm lg:text-lg w-1/4 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
                 {/* PAGINACIÓN */}
                 <div className="flex flex-col my-auto w-3/4 items-end">
@@ -327,7 +327,7 @@ export default function Home() {
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
-                  <div key={ejercicio.id} className="w-9/12 lg:flex drop-shadow-md my-6">
+                  <div key={ejercicio.id} className="lg:flex drop-shadow-md my-4">
                     <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer hover:opacity-70 duration-75" 
                     style={{backgroundImage: 'url("'+ejercicio.img+'")'}}
                     onClick={() => {

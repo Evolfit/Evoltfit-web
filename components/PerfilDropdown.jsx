@@ -44,7 +44,10 @@ const PerfilDropdown = ({ sesion, perfil }) => {
                     <div className="py-2 px-3 hover:bg-gray-200 border-t-2 border-gray-200 duration-150 cursor-pointer" onClick={() => {router.push('/perfil')}}>
                         <span className="text-base">Mi Perfil</span>
                     </div>
-                    <div className="py-2 px-3 hover:bg-gray-200 duration-150 cursor-pointer" onClick={handleLogout}>
+                    <div className="py-2 px-3 hover:bg-gray-200 duration-150 cursor-pointer" onClick={() => {router.push("/rutinas")}}>
+                        <span className="text-base" >Mis Rutinas</span>
+                    </div>
+                    <div className="py-2 px-3 hover:bg-gray-200 border-t-2 border-gray-200 duration-150 cursor-pointer" onClick={handleLogout}>
                         <span className="text-base" >Cerrar Sesion</span>
                     </div>
                 </div>
