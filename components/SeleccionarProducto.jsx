@@ -105,6 +105,9 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
     //console.log(count.count);
   }
 
+  function obtenerCantidad (){
+
+  }
 
   return (
 

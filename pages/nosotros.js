@@ -108,12 +108,7 @@ export default function Nosotros() {
             <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Misión</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas nec vestibulum lectus. Aliquam quis ultricies leo.
-                Fusce lobortis blandit nulla et vestibulum. Ut ut quam commodo,
-                cursus massa quis, finibus metus. In tempor cursus metus id
-                tempor. Donec blandit scelerisque risus, at vestibulum elit
-                commodo sed. Sed vitae dignissim mi.
+              Ofrecer oportunidades y herramientas para mejorar la salud de todas y todos de manera creativa, innovadora y responsable, pero sobre todo personalizada implementando un sistema innovador enfocado al entrenamiento en cualquier parte.
               </p>
             </div>
 
@@ -134,12 +129,7 @@ export default function Nosotros() {
             <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Visión</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas nec vestibulum lectus. Aliquam quis ultricies leo.
-                Fusce lobortis blandit nulla et vestibulum. Ut ut quam commodo,
-                cursus massa quis, finibus metus. In tempor cursus metus id
-                tempor. Donec blandit scelerisque risus, at vestibulum elit
-                commodo sed. Sed vitae dignissim mi.
+              Construimos un futuro en el cual, la salud sea una de las prioridades más importantes de la población. Alentando a las peresonas a que no solo es posible ejercitarse en un gimnasio, sino también en casa.
               </p>
             </div>
           </div>
@@ -182,9 +172,8 @@ export default function Nosotros() {
                   </h1>
 
                   <p className="text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Provident ab nulla quod dignissimos vel non corrupti
-                    doloribus voluptatum eveniet
+                    Las estadísticas y graficos que mostramos son de información generada por los ejercicios y
+                    rutinas que lleves a cabo a lo largo del tiempo.
                   </p>
                 </div>
 
@@ -217,9 +206,8 @@ export default function Nosotros() {
                   </h1>
 
                   <p className="text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Provident ab nulla quod dignissimos vel non corrupti
-                    doloribus voluptatum eveniet
+                    Estamos en constante evolución para poder entregarte una plataforma que cualquier persona pueda
+                    entender y usar.
                   </p>
                 </div>
 
@@ -246,9 +234,8 @@ export default function Nosotros() {
                   </h1>
 
                   <p className="text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Provident ab nulla quod dignissimos vel non corrupti
-                    doloribus voluptatum eveniet
+                    Con nuestras rutinas inteligentes puedes estar seguro que la rutina que te damos es la que mejorar
+                    se apega a tus objetivos y a tu nivel.
                   </p>
                 </div>
 
@@ -275,9 +262,8 @@ export default function Nosotros() {
                   </h1>
 
                   <p className="text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Provident ab nulla quod dignissimos vel non corrupti
-                    doloribus voluptatum eveniet
+                    No usamos interfaces complejas ni sistemas robustos, todo lo que necesitas lo encuentras
+                    de manera entendible, sin muchos botones y muy intuitivo.
                   </p>
                 </div>
               </div>

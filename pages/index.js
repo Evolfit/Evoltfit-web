@@ -775,9 +775,11 @@ export default function Home() {
             </h2>
 
             <p className="mt-4 text-sm text-gray-500 lg:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Blanditiis commodi cum cupiditate ducimus, fugit harum id
-              necessitatibus odio quam quasi, quibusdam rem tempora voluptates.
+              EvoltFit esta preparado para ayudar a todo tipo de usuarios. Si eres 
+              principiante te proporcionamos la guía perfecta para obtener la mejor rutina para ti
+              y así aprendas lo que le funciona a tu cuerpo; en cambio si eres alguien con conocimientos 
+              previos ponemos a tu disposición herramientas para que puedas organizar tu entrenamiento 
+              de la mejor forma posible.
             </p>
 
             <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
@@ -801,41 +803,6 @@ export default function Home() {
       </div>
       <br />
       <br />
-      <h1 className="font-thin text-2xl text-center">
-        <button
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={() => {
-            router.push("/sistemaexperto");
-          }}
-        >
-          Crear rutina inteligente
-        </button>
-        <button
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={() => {
-            router.push("/biblioteca");
-          }}
-        >
-          Ir a Biblioteca de Ejercicios
-        </button>
-        <button
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={() => {
-            router.push("/rutinas");
-          }}
-        >
-          Crear rutina
-        </button>
-         {/* <button
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={() => {
-              router.push("/agregarProducto");
-            }}
-          >
-            Agregar producto
-          </button> */}
-      </h1>
-      
       <br />
       <br />
 

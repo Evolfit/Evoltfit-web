@@ -22,15 +22,22 @@ export default function Home() {
     
     e.preventDefault();
 
-      const result = await supabase.from("formulario").insert([{
-        nombre: nombre,
-        correo: correo,
-        mensaje: mensaje,
-      },])
-      
-      console.log(result);
-     
+    const { data, error }  = await supabase
+    .from("formulario")
+    .insert({
+      nombre: nombre,
+      correo: correo,
+      mensaje: mensaje
+    })
+
+    if(error){
+      console.log("ERROR: Hubo un error al registrar algo del formulario")
+      console.log(error)
+    }else{
+      console.log("Se envío el formulario de ayuda correctamente")
+      alert("Enviado correctamente")
       e.target.reset()
+    }
 
   };
 

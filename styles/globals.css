@@ -319,6 +319,10 @@ input:checked + label {
   background-image: url('../public/bannerindex.jpg');
 }
 
+.bg-internal-herramientas {
+  background-image: url('../public/prueba6.png');
+}
+
 .textform{
   resize: none;
 }
