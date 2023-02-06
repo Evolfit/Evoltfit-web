@@ -16,7 +16,6 @@ export default function Home() {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
-    // create a new `Date` object
 
     if (flag == true) {
       if (sesion) {
