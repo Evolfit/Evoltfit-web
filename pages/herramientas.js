@@ -8,41 +8,42 @@ import Link from "next/link";
 
 export default function Home() {
   const [sesion, setSesion] = useState(null);
-  const [flag, setFlag] = useState(false);
-  const [resultado, setResultado] = useState(null);
+  // const [flag, setFlag] = useState(false);
+  // const [resultado, setResultado] = useState(null);
+  
 
   useEffect(() => {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
-    if (flag == true) {
-      setFlag(false);
+    // if (flag == true) {
+    //   setFlag(false);
 
-      if (sesion) {
-        console.log("El usuario conectado es:" + sesion.user.id);
-        async function getPlan() {
-          console.log("Entramos a getPlan");
-          let { data: sus_pagos, error } = await supabase
-            .from("sus_pagos")
-            .select("activo")
-            .eq("id_usuario", sesion.user.id);
+    //   if (sesion) {
+    //     console.log("El usuario conectado es:" + sesion.user.id);
+    //     async function getPlan() {
+    //       console.log("Entramos a getPlan");
+    //       let { data: sus_pagos, error } = await supabase
+    //         .from("sus_pagos")
+    //         .select("activo")
+    //         .eq("id_usuario", sesion.user.id);
 
-          if (sus_pagos.length == 0) {
-            console.log("Este usuario no tiene plan");
-            setResultado(0);
-          } else {
-            console.log("Este usuario si tiene un plan");
-            console.log(sus_pagos[0].activo);
-            setResultado(sus_pagos[0].activo);
-          }
-        }
-        getPlan();
-      } else {
-        console.log("No hay una sesion iniciada");
-      }
-    }
-    setFlag(true);
-  }, [flag]);
+    //       if (sus_pagos.length == 0) {
+    //         console.log("Este usuario no tiene plan");
+    //         setResultado(0);
+    //       } else {
+    //         console.log("Este usuario si tiene un plan");
+    //         console.log(sus_pagos[0].activo);
+    //         setResultado(sus_pagos[0].activo);
+    //       }
+    //     }
+    //     getPlan();
+    //   } else {
+    //     console.log("No hay una sesion iniciada");
+    //   }
+    // }
+    // setFlag(true);
+  }, []);
 
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
@@ -70,142 +71,7 @@ export default function Home() {
         <br />
         <br />
         <br />
-        {resultado == 0 ? (
-          <section className="bg-blue-50">
-          <div className="container px-6 py-10 mx-auto">
-            <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
-              Todo lo que necesitas en un solo lugar
-            </h1>
-
-            <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
-              Te ofrecemos un repertorio de herramientas que te serviran para
-              hacer un seguimiento de tu progreso.
-            </p>
-
-            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/sistemaexperto">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="rutina.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Crear rutina inteligente
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover bg-center rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/visualizadorCalorias">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="cal.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Contador de calorías
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/rutinas">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="registro.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Registro de rutinas, series y repeticiones
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/biblioteca">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="registro.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Biblioteca de ejercicios
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="progreso.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Visualizador de progreso
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="metodo.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Máximo peso para una repetición
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="metodo.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Sobrecarga progresiva
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="metodo.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Método Bilbo
-                    </h2>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-        ) : resultado == 1 ? (
+        {sesion ? (
           <section className="bg-blue-50">
             <div className="container px-6 py-10 mx-auto">
               <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
@@ -217,121 +83,121 @@ export default function Home() {
                 hacer un seguimiento de tu progreso.
               </p>
 
-              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-4">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/sistemaexperto">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="rutina.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Crear rutina inteligente
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/visualizadorCalorias">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="cal.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Contador de calorías
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/rutinas">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="registro.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
-                      Registro de rutinas, series y repeticiones
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
+                        Registro de rutinas, series y repeticiones
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
-                <Link href="/biblioteca">
-                  <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
-                    <center>
-                      <div className="h-20 w-20">
-                        <img src="registro.png"></img>
-                      </div>
-                    </center>
-                    <h2 className="mt-12 text-2xl text-white font-bold">
-                      Registro de rutinas, series y repeticiones
-                    </h2>
-                  </div>
-                </Link>
-              </div>
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
+                  <Link href="/biblioteca">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="registro.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
+                        Biblioteca de ejercicios
+                      </h2>
+                    </div>
+                  </Link>
+                </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="progreso.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Visualizador de progreso
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Máximo peso para una repetición
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Sobrecarga progresiva
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="/">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Método Bilbo
                       </h2>
                     </div>
@@ -353,17 +219,17 @@ export default function Home() {
                 hacer un seguimiento de tu progreso.
               </p>
 
-              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-4">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="rutina.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
-                        Generador de rutinas automático
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
+                        Crear rutina inteligente
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
                         Necesitas una cuenta para poder utilizarla
@@ -372,15 +238,15 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="cal.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Contador de calorías
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -390,16 +256,16 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="registro.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
-                        Registro de series y repeticiones
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
+                        Registro de rutinas, series y repeticiones
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
                         Necesitas una cuenta para poder utilizarla
@@ -408,15 +274,33 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="progreso.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
+                        Biblioteca de ejercicios
+                      </h2>
+                      <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
+                        Necesitas una cuenta para poder utilizarla
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
+                  <Link href="../registro">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                      <center>
+                        <div className="h-20 w-20">
+                          <img src="progreso.png"></img>
+                        </div>
+                      </center>
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Visualizador de progreso
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -426,15 +310,15 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Máximo peso para una repetición
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -444,15 +328,15 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Sobrecarga progresiva
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">
@@ -462,15 +346,15 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group bg-internal-img">
+                <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-80 group bg-internal-img">
                   <Link href="../registro">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 xl:opacity-0 xl:backdrop-blur-sm bg-blue-900/60 group-hover:opacity-100">
                       <center>
                         <div className="h-20 w-20">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-white font-bold">
+                      <h2 className="mt-12 text-2xl text-white font-bold text-center">
                         Método Bilbo
                       </h2>
                       <p className="mt-2 text-lg tracking-wider text-blue-400 font-catamaran">

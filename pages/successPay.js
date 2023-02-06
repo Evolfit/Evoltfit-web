@@ -14,6 +14,7 @@ export default function Home() {
 
   let nombrePaquete = "";
   let meses = 0;
+  let mesesConvertidos = 0;
 
   useEffect(() => {
     handleSesion();
@@ -23,9 +24,10 @@ export default function Home() {
 
       nombrePaquete = localStorage.getItem("NombrePaquete");
       meses = localStorage.getItem("Meses");
+      mesesConvertidos = parseInt(meses)
 
-      if (nombrePaquete) {
-        console.log("El usuario conectado es:" + sesion.user.id);
+      if (nombrePaquete && meses) {
+        //console.log("El usuario conectado es:" + sesion.user.id);
         registrarPago();
         setTimeout(function () {
           router.push("/herramientas");
@@ -42,23 +44,27 @@ export default function Home() {
   }, [flag]);
 
   async function registrarPago() {
-    const current = new Date();
 
-    const fecha_com =
-      current.getFullYear() +
-      "-" +
-      current.getMonth() +
-      1 +
-      "-" +
-      current.getDate();
+    var today = new Date();
+    // getDate() Regresa el día del mes (Desde 1 a 31)
+    var day_Actual = today.getDate();
+    // getMonth() Regresa el mes (Desde 0 a 11)
+    var month_Actual = today.getMonth() + 1;
+    var month_Termino = today.getMonth() + mesesConvertidos;
+    // getFullYear() Regresa el año actual
+    var year_Actual = today.getFullYear();
 
-    const fecha_ter =
-      current.getFullYear() +
-      "-" +
-      current.getMonth() +
-      meses +
-      "-" +
-      current.getDate();
+    var fecha_Actual = `${year_Actual}-${month_Actual}-${day_Actual}`
+
+    if(month_Termino > 12){
+      console.log("Rebasa los 12 meses")
+      var diferenciaMeses = month_Termino - 12
+      month_Termino = today.getMonth() + diferenciaMeses - 1;
+      var year_Actual2 = today.getFullYear() + 1;
+      var fecha_Terminacion = `${year_Actual2}-${month_Termino}-${day_Actual}`
+    }else{
+      var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
+    } 
 
     let { data: sus_pagos, err } = await supabase
       .from("sus_pagos")
@@ -67,8 +73,8 @@ export default function Home() {
 
     if (sus_pagos.length == 0) {
       const { error } = await supabase.from("sus_pagos").insert({
-        fecha_compra: fecha_com,
-        fecha_termino: fecha_ter,
+        fecha_compra: fecha_Actual,
+        fecha_termino: fecha_Terminacion,
         id_usuario: sesion.user.id,
         plan_name: nombrePaquete,
         no_meses: meses,
@@ -85,8 +91,8 @@ export default function Home() {
       let { data, error } = await supabase
         .from("sus_pagos")
         .update({
-          fecha_compra: fecha_com,  
-          fecha_termino: fecha_ter,
+          fecha_compra: fecha_Actual,  
+          fecha_termino: fecha_Terminacion,
           plan_name:nombrePaquete,
           no_meses: meses,
           activo: 1 , })
@@ -110,11 +116,11 @@ export default function Home() {
 
     if (data.session) {
       setSesion(data.session);
-      console.log(data);
+      //console.log(data);
     } else {
       setSesion(null);
-      console.log("No hay Sesión " + error);
-      console.log(data);
+      //console.log("No hay Sesión " + error);
+      //console.log(data);
     }
   };
 
