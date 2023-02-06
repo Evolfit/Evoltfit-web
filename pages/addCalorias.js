@@ -11,14 +11,16 @@ export default function Home() {
   const router = useRouter();
   let registroIndex = router.query.registro;
 
-  const currentDate = new Date();
-  const fecha_act =
-    currentDate.getFullYear() +
-    "-" +
-    currentDate.getMonth() +
-    1 +
-    "-" +
-    currentDate.getDate();
+  var today = new Date();
+
+  // getDate() Regresa el día del mes (Desde 1 a 31)
+  var day = today.getDate();
+  // getMonth() Regresa el mes (Desde 0 a 11)
+  var month = today.getMonth() + 1;
+  // getFullYear() Regresa el año actual
+  var year = today.getFullYear();
+
+  var fecha_baseDatos = `${year}-${month}-${day}`
 
   const [sesion, setSesion] = useState(null);
   const [registro, setRegistro] = useState(null);
@@ -206,7 +208,7 @@ export default function Home() {
         .insert({
           producto_id: idProducto,
           usuario: sesion.user.id,
-          fecha_agregado: fecha_act,
+          fecha_agregado: fecha_baseDatos,
           registro: registroIndex,
           calorias: conversionCaloriasGramos,
           proteinas: conversioProteinasGramos,
@@ -283,7 +285,7 @@ export default function Home() {
         .insert({
           producto_id: idProducto,
           usuario: sesion.user.id,
-          fecha_agregado: fecha_act,
+          fecha_agregado: fecha_baseDatos,
           registro: registroIndex,
           calorias: conversionCaloriasPieza,
           proteinas: conversioProteinasPieza,

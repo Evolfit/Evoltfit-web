@@ -16,6 +16,8 @@ export default function Home() {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+    // create a new `Date` object
+
     if (flag == true) {
       if (sesion) {
         async function checkPlanStatus() {
@@ -41,23 +43,23 @@ export default function Home() {
                 "La fecha de termino es: " + sus_pagos[0].fecha_termino
               );
 
-              const current = new Date();
+              var today = new Date();
+              // getDate() Regresa el día del mes (Desde 1 a 31)
+              var day_Actual = today.getDate();
+              // getMonth() Regresa el mes (Desde 0 a 11)
+              var month_Actual = today.getMonth() + 1;
+              // getFullYear() Regresa el año actual
+              var year_Actual = today.getFullYear();
 
-              const fecha_act =
-                current.getFullYear() +
-                "-" +
-                current.getMonth() +
-                1 +
-                "-" +
-                current.getDate();
+              var fecha_Actual = `${year_Actual}-${"0" + month_Actual}-${"0" + day_Actual}`
 
-              console.log("Fecha de hoy: " + fecha_act);
+              console.log("Fecha de hoy: " + fecha_Actual);
 
-              if (fecha_act == sus_pagos[0].fecha_termino) {
+              if ((fecha_Actual == sus_pagos[0].fecha_termino) || (sus_pagos[0].fecha_termino < fecha_Actual)) {
                 console.log("Ya se acabó el plan");
                 let { data, error } = await supabase
                   .from("sus_pagos")
-                  .update({ activo: 0 })
+                  .update({ activo: 0})
                   .eq("id_usuario", sesion.user.id);
 
                 if (error) {

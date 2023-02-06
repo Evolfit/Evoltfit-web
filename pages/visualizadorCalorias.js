@@ -11,22 +11,21 @@ import AsignarMeta from "../components/AsignarMeta";
 export default function VisualizadorCalorias() {
   const router = useRouter();
 
-  const currentDate = new Date();
-  const fecha_act =
-    currentDate.getFullYear() +
-    "-" +
-    currentDate.getMonth() +
-    1 +
-    "-" +
-    currentDate.getDate();
+  var today = new Date();
 
-  const fecha =
-    currentDate.getDate() +
-    "/" +
-    currentDate.getMonth() +
-    1 +
-    "/" +
-    currentDate.getFullYear();
+  // getDate() Regresa el día del mes (Desde 1 a 31)
+  var day = today.getDate();
+  // getMonth() Regresa el mes (Desde 0 a 11)
+  var month = today.getMonth() + 1;
+  // getFullYear() Regresa el año actual
+  var year = today.getFullYear();
+
+  // Formatos de las fechas
+  // console.log(`${year}-${month}-${day}`);
+  // console.log(`${day}/${month}/${year}`)
+
+  var fecha_baseDatos = `${year}-${month}-${day}`
+  var fecha_Visual = `${day}/${month}/${year}`
 
   const [sesion, setSesion] = useState(null);
   const [registros, setRegistros] = useState(null);
@@ -55,8 +54,8 @@ export default function VisualizadorCalorias() {
       .insert({
         usuario: sesion.user.id,
         nombre: "Registro calórico " + (count.count + 1),
-        fecha_creacion: fecha,
-        fecha_formato_orden: fecha_act
+        fecha_creacion: fecha_Visual,
+        fecha_formato_orden: fecha_baseDatos,
       })
       .select();
 
@@ -78,8 +77,7 @@ export default function VisualizadorCalorias() {
       .from("calorias_registro")
       .select("*")
       .eq("usuario", session.user.id)
-      .order("fecha_formato_orden", {ascending: false})
-
+      .order("fecha_formato_orden", { ascending: false });
 
     if (error) {
       console.log("ERROR: Hubo un error al recuperar el registro.");
@@ -92,7 +90,7 @@ export default function VisualizadorCalorias() {
     let { data: res, err } = await supabase
       .from("calorias_productos_totales")
       .select("calorias")
-      .match({ usuario: session.user.id, fecha_agregado: fecha_act });
+      .match({ usuario: session.user.id, fecha_agregado: fecha_baseDatos });
 
     if (err) {
       console.log(
@@ -108,25 +106,24 @@ export default function VisualizadorCalorias() {
     }
   }
 
-  async function obtenerMeta(session){
+  async function obtenerMeta(session) {
     let { data: res, err } = await supabase
-    .from("calorias_metas")
-    .select("cals_meta")
-    .eq("usuario", session.user.id)
+      .from("calorias_metas")
+      .select("cals_meta")
+      .eq("usuario", session.user.id);
 
-    if(err){
-      console.log("ERROR: Hubo un error obteniendo la meta del ususario")
-      console.log(err)
-    }else{
-      if(res.length == 0){
-        console.log("El usuario no tiene una meta establecida")
-        console.log(res)
-      }else{
-        console.log("Meta obtenida exitosamente")
+    if (err) {
+      console.log("ERROR: Hubo un error obteniendo la meta del ususario");
+      console.log(err);
+    } else {
+      if (res.length == 0) {
+        console.log("El usuario no tiene una meta establecida");
+        console.log(res);
+      } else {
+        console.log("Meta obtenida exitosamente");
         //console.log(res)
-        setMetaCalorias(res[0].cals_meta)
+        setMetaCalorias(res[0].cals_meta);
       }
-      
     }
   }
 
@@ -207,44 +204,44 @@ export default function VisualizadorCalorias() {
               <div className="loader mt-6"></div>
             </div>
           )}
-          <div className = "order-1 xl:order-none">
+          <div className="order-1 xl:order-none">
             <div className="bg-white ml-10 mr-10 grid place-items-center border-blue-600 border-2 rounded-md shadow-2xl relative pt-12 pb-12 xl:pt-16 xl:pb-16">
               <h5 className="text-lg font-semibold text-center tracking-tighter text-blue-600 mb-2 xl:text-2xl xl:font-bold xl:tracking-tight ">
-                Calorías consumidas - {fecha}
+                Calorías consumidas - {fecha_Visual}
               </h5>
-              <div className = "h-28 w-28 xl:h-36 xl:w-36">
+              <div className="h-28 w-28 xl:h-36 xl:w-36">
                 <CircularProgressbar
                   value={sumatoriaCalorias}
                   maxValue={metaCalorias}
                   text="Calorías"
                 />
               </div>
-  
+
               {metaCalorias ? (
                 <h5 className="text-xl font-semibold tracking-tighter xl:text-2xl xl:font-bold xl:tracking-tight text-blue-600 mt-2">
-                {sumatoriaCalorias} / {metaCalorias}
+                  {sumatoriaCalorias} / {metaCalorias}
                 </h5>
               ) : (
-                ''
+                ""
               )}
-              
-                { sumatoriaCalorias > metaCalorias && metaCalorias > 0 ? (
-                  <div className = "grid place-items-center">
-                     <br/>
+
+              {sumatoriaCalorias > metaCalorias && metaCalorias > 0 ? (
+                <div className="grid place-items-center">
+                  <br />
                   <div
                     id="toast-danger"
                     className="flex items-center p-4 mb-4 w-10/12 xl:w-full max-w-xs bg-red-200 rounded-lg shadow"
                     role="alert"
                   >
                     <div className="ml-3 text-sm font-normal text-center">
-                      Cuidado, tus calorías totales han sobrepasado tu meta del día.
+                      Cuidado, tus calorías totales han sobrepasado tu meta del
+                      día.
                     </div>
                   </div>
-                  </div>
-                ) : (
-                  ""
-                )
-                }
+                </div>
+              ) : (
+                ""
+              )}
 
               <button
                 onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
