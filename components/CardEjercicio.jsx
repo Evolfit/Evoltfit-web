@@ -145,7 +145,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
       );
 
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md active:scale-75 duration-150">
         {ejercicio === null ? 
             "Selecciona un ejercicio"
         : 
@@ -247,7 +247,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                             >
                                 <div className="flex items-center justify-center f-full w-full">
                                     <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-blue-500
-                                    hover:bg-blue-600 duration-100">
+                                    hover:bg-blue-600 duration-100 active:scale-95">
                                         <ion-icon name="add-outline"></ion-icon>
                                     </div>
                                 </div>
@@ -259,7 +259,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 :
                 <div className="loader"></div>
             }
-            <button onClick={eliminarEjercicio} className="inline-flex items-center my-2 mx-1 p-2 text-2xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 duration-75">
+            <button onClick={eliminarEjercicio} className="inline-flex items-center p-2 text-2xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 outline-none duration-75 active:scale-95">
                 <ion-icon name="trash-outline"></ion-icon>
             </button>   
         </div>

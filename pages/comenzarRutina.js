@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback, Fragment } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -7,6 +8,7 @@ import Footer from "/components/Footer";
 import CardEjercicio from "/components/CardEjercicio";
 import SeleccionarEjercicio from "/components/SeleccionarEjercicio";
 import supabase from "../config/supabaseClient";
+import RowSetsComenzar from "/components/RowSetsComenzar";
 
 export default function ComenzarRutina() {
   const router = useRouter();
@@ -14,6 +16,7 @@ export default function ComenzarRutina() {
 
   const [sesion, setSesion] = useState(null);
   const [rutina, setRutina] = useState(null);
+  const [eliminarSet, setEliminarSet] = useState(false)
   const [tiempo, setTiempo] = useState(0);
   const [pausaTiempo, setPausaTiempo] = useState(true);
   const [comenzarEntrenamiento, setComenzarEntrenamiento] = useState(false);
@@ -113,6 +116,48 @@ export default function ComenzarRutina() {
     }
   }
 
+  async function getSets() {
+    const { data, error } = await supabase
+    .from('rutinas_ejercicio_sets')
+    .select('*')
+    .eq('ejercicio_rutina', rutinaEjercicio.id)
+    .order('created_at', { ascending: true })
+
+    if (error) {
+        console.log('ERROR: No se consiguieron los sets.')
+        console.log(error)
+    }
+    else{
+        console.log(data)
+        if(data.length > 1) {
+            setEliminarSet(false)
+        }
+        else{
+            setEliminarSet(true)
+        }
+        setSetsEjercicio(data);
+        //setFormInput()
+    }
+  }
+  
+  async function agregarSet(indexEjercicio) {
+    //setSetsEjercicio(current => [...current, data[0]]);
+    let temp = {
+      id: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets.slice(-1)[0].id + 1,
+      ejercicio_rutina: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].ejercicio_rutina,
+      reps: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].reps,
+      tipo: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].tipo
+    }
+
+    let newState = [...ejerciciosRutina];
+    let array = newState[indexEjercicio].rutinas_ejercicio_sets;
+    array.push(temp);
+    
+    newState[indexEjercicio] = {... newState[indexEjercicio],
+      rutinas_ejercicio_sets: array
+    }
+  }
+
   async function eliminarRutina() {
     const { error } = await supabase
     .from('rutinas')
@@ -135,13 +180,16 @@ export default function ComenzarRutina() {
     .select(`
       id,
       ejercicio (
+        id,
         nombre,
         musculo_primario,
         img
       ),
-      sets,
-      reps,
-      orden
+      rutinas_ejercicio_sets (
+        *
+      ),
+      orden,
+      descanso
     `)
     .eq('rutina', rutinaIndex)
     .order('orden', { ascending: true })
@@ -153,72 +201,6 @@ export default function ComenzarRutina() {
     else{
       console.log(data);
       setEjerciciosRutina(data);
-    }
-  }
-
-  async function agregarEjercicio(idEjercicio) {
-    const { data, error } = await supabase
-      .from('rutinas_ejercicio')
-      .insert({
-        rutina: rutinaIndex, 
-        ejercicio: idEjercicio,
-        orden: ejerciciosRutina.length,
-        })
-      .select(`
-        id,
-        ejercicio (
-          nombre,
-          musculo_primario,
-          img
-        ),
-        sets,
-        reps,
-        orden
-      `)
-
-    setToggleSeleccionar(false);
-
-    if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
-    }
-    else{
-      console.log("Se agregó un nuevo ejercicio.")
-      console.log(data[0])
-      setEjerciciosRutina(current => [...current, data[0]]);
-    }
-  }
-
-  async function agregarDescanso() {
-    const { data, error } = await supabase
-      .from('rutinas_ejercicio')
-      .insert({
-        rutina: rutinaIndex, 
-        ejercicio: 222,
-        orden: ejerciciosRutina.length,
-        })
-      .select(`
-        id,
-        ejercicio (
-          nombre,
-          musculo_primario,
-          img
-        ),
-        sets,
-        reps,
-        orden
-      `)
-
-    setToggleSeleccionar(false);
-
-    if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al agregar el descanso.")
-    }
-    else{
-      console.log("Se agregó el descanso.")
-      console.log(data[0])
-      setEjerciciosRutina(current => [...current, data[0]]);
     }
   }
 
@@ -332,7 +314,7 @@ export default function ComenzarRutina() {
             rutina ? 
             <Fragment>
               <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
-                <div className="flex flex-col w-9/12 mx-auto">
+                <div className="flex flex-col w-11/12 xl:w-9/12 mx-auto">
                   <div>
                     <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
                       <div className='text-3xl mt-auto'>
@@ -357,18 +339,86 @@ export default function ComenzarRutina() {
                           <div className="my-12">
                             <div className="flex flex-row my-2">
                               <button 
-                              className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-100 duration-75 active:bg-blue-100 active:pl-3.5"
+                              className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
                               onClick={ejercicioAnterior}
                               >
                                 {'<'}
                               </button>
-                              <div className="flex-auto bg-white rounded-lg shadow-md my-2 p-4 mx-2">
-                                <p className="text-xl font-semibold">{ejerciciosRutina[ejercicioSeleccionado].ejercicio.nombre}</p>
-                                <p>{'Sets: ' + ejerciciosRutina[ejercicioSeleccionado].sets}</p>
-                                <p>{'Reps: ' + ejerciciosRutina[ejercicioSeleccionado].reps}</p>
+                              <div className="flex-auto bg-white rounded-lg shadow-md my-2 p-6 mx-2">
+                                
+                              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
+                                <div 
+                                className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
+                                onClick={() => {
+                                    router.push({
+                                    pathname: '/detalleEjercicio',
+                                    query: { ejercicio: ejerciciosRutina[ejercicioSeleccionado].ejercicio.id }
+                                  })}}
+                                >
+                                    <Image className='rounded-full' src={ejerciciosRutina[ejercicioSeleccionado].ejercicio.img} layout='fill' objectFit="cover"/>
+                                </div>
+                                <div className="flex-auto sm:w-0 ml-0 sm:ml-4 w-full">
+                                    <p 
+                                    className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer 
+                                    hover:text-blue-800 duration-150
+                                    whitespace-nowrap text-ellipsis overflow-hidden"
+                                    onClick={() => {
+                                        router.push({
+                                        pathname: '/detalleEjercicio',
+                                        query: { ejercicio: ejerciciosRutina[ejercicioSeleccionado].ejercicio.id }
+                                      })}}
+                                    >
+                                        {(ejercicioSeleccionado + 1) + ' - ' + ejerciciosRutina[ejercicioSeleccionado].ejercicio.nombre}
+                                    </p>
+                                    <p className="mb-2 font-normal text-lg sm:text-xl text-gray-700">{ejerciciosRutina[ejercicioSeleccionado].ejercicio.musculo_primario}</p>
+                                </div>
+                              </div>
+                                {/*Tabla de sets*/}
+                                <div className="relative overflow-x-auto">
+                                  <table className="w-full text-sm text-left my-4">
+                                      <thead className="border-b-2">
+                                          <tr>
+                                              <th scope="col" className="text-center text-lg p-2">Set</th>
+                                              <th scope="col" className="text-center text-lg p-2 border-l-2 border-r-2">Tipo</th>
+                                              <th scope="col" className="text-center text-lg p-2 border-l-2 border-r-2">Reps</th>
+                                              <th scope="col" className="text-center text-lg p-2 border-l-2">{'Peso (lbs)'}</th>
+                                              <th scope="col" className="text-lg p-2"></th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                      {ejerciciosRutina[ejercicioSeleccionado].rutinas_ejercicio_sets.map((set, index) => (
+                                          <RowSetsComenzar
+                                              key={set.id}
+                                              set={set}
+                                              index={index}
+                                              getSets={getSets}
+                                              eliminar={eliminarSet}
+                                          />
+                                      ))
+                                      }
+                                      <tr>
+                                        <td className="p-2"></td>
+                                        <td className="p-2"></td>
+                                        <td className="p-2"></td>
+                                        <td className="p-2"></td>
+                                        <td 
+                                        className="text-center py-2"
+                                        onClick={() => agregarSet(ejercicioSeleccionado)}
+                                        >
+                                            <div className="flex items-center justify-center f-full w-full">
+                                                <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-blue-500
+                                                hover:bg-blue-600 duration-100 active:scale-95">
+                                                    <ion-icon name="add-outline"></ion-icon>
+                                                </div>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                              </div>
                               </div>
                               <button 
-                              className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-100 duration-75 active:bg-blue-100 active:pr-3.5"
+                              className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
                               onClick={ejercicioSiguiente}
                               >
                                 {'>'}
