@@ -207,7 +207,7 @@ export default function ComenzarRutina() {
         <div>          
           {
             rutina ? 
-            <div className={"mx-auto mt-2 " + (toggleSeleccionar ? 'blur-sm' : '')}>
+            <div className={"mx-auto mt-2 "}>
               <div className="flex flex-col w-11/12 xl:w-9/12 mx-auto">
                 <div>
                   <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
