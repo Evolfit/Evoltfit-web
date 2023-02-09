@@ -78,7 +78,10 @@ export default function Home() {
   async function getRutinas(session) {
     const { data, error } = await supabase
     .from('rutinas')
-    .select('*')
+    .select(`
+    *,
+    rutina_en_progreso(count)
+    `)
     .eq('usuario', session.user.id)
 
     if (error) {

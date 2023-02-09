@@ -1,12 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState, useEffect, useCallback, Fragment } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useState, useEffect, Fragment } from "react";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
-import CardEjercicio from "/components/CardEjercicio";
-import SeleccionarEjercicio from "/components/SeleccionarEjercicio";
 import supabase from "../config/supabaseClient";
 import RowSetsComenzar from "/components/RowSetsComenzar";
 
@@ -16,17 +13,14 @@ export default function ComenzarRutina() {
 
   const [sesion, setSesion] = useState(null);
   const [rutina, setRutina] = useState(null);
-  const [eliminarSet, setEliminarSet] = useState(false)
   const [tiempo, setTiempo] = useState(0);
   const [pausaTiempo, setPausaTiempo] = useState(true);
   const [comenzarEntrenamiento, setComenzarEntrenamiento] = useState(false);
-  const [formInput, setFormInput] = useState();
   const [ejerciciosRutina, setEjerciciosRutina] = useState([])
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(0)
 
   useEffect(() => {
-    //console.log("useEffect")
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
     handleSesion()
@@ -57,7 +51,10 @@ export default function ComenzarRutina() {
     
     const { data, error } = await supabase
     .from('rutinas')
-    .select('*')
+    .select(`
+    *,
+    rutina_en_progreso(*)
+    `)
     .eq('id', rutinaIndex)
 
     if (error) {
@@ -66,112 +63,62 @@ export default function ComenzarRutina() {
     }
     else{
       setRutina(data[0]);
-      setFormInput({
-        nombre: data[0].nombre
-      })
-      
-      getEjerciciosRutina();
-      //console.log(data[0])
-    }
-  }
-
-  async function updateRutina(nombre) {
-    //console.log(rutinaIndex)
-    let temp;
-
-    if (nombre == ''){
-      temp = 'Rutina sin nombre'
-    }
-    else{
-      temp = nombre
-    }
-
-    const { error } = await supabase
-    .from('rutinas')
-    .update({ nombre: temp})
-    .eq('id', rutinaIndex)
-
-    if (error) {
-      console.log('ERROR: No se pudo actualizar la rutina.')
-      console.log(error)
-    }
-    else{
-      console.log('Rutina Actualizada.')
-      //console.log(data[0])
-    }
-  }
-
-  async function updateOrdenEjercicios(ordenEjercicios) {
-    const { data, error } = await supabase
-    .from('rutinas_ejercicio')
-    .upsert(ordenEjercicios)
-
-    if (error) {
-      console.log('ERROR: No se pudo actualizar el orden de los ejercicios.')
-      console.log(error)
-    }
-    else{
-      //console.log('Orden de los ejercicios actualizado.')
-      //console.log(data)
-    }
-  }
-
-  async function getSets() {
-    const { data, error } = await supabase
-    .from('rutinas_ejercicio_sets')
-    .select('*')
-    .eq('ejercicio_rutina', rutinaEjercicio.id)
-    .order('created_at', { ascending: true })
-
-    if (error) {
-        console.log('ERROR: No se consiguieron los sets.')
-        console.log(error)
-    }
-    else{
-        console.log(data)
-        if(data.length > 1) {
-            setEliminarSet(false)
-        }
-        else{
-            setEliminarSet(true)
-        }
-        setSetsEjercicio(data);
-        //setFormInput()
-    }
+      console.log(data[0])
+      if (data[0].rutina_en_progreso.length === 0) {
+        getEjerciciosRutina();
+      }
+      else{
+        setEjerciciosRutina(data[0].rutina_en_progreso[0].ejerciciosRutina);
+        setTiempo(data[0].rutina_en_progreso[0].tiempo)
+        setEjercicioSeleccionado(data[0].rutina_en_progreso[0].ejercicioSeleccionado)
+        setComenzarEntrenamiento(true)
+      }
+    } 
   }
   
   async function agregarSet(indexEjercicio) {
-    //setSetsEjercicio(current => [...current, data[0]]);
+    let query = supabase
+    .from('rutinas_ejercicio_sets')
+    .select('id')
+    .order('id', { ascending: false })
+    .limit(1)
+
+    const count = await query
+    
     let temp = {
-      id: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets.slice(-1)[0].id + 1,
+      id: (count.data[0].id * indexEjercicio) + ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets.length,
       ejercicio_rutina: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].ejercicio_rutina,
       reps: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].reps,
-      tipo: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].tipo
+      tipo: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].tipo,
+      estado: ''
     }
 
     let newState = [...ejerciciosRutina];
     let array = newState[indexEjercicio].rutinas_ejercicio_sets;
     array.push(temp);
-    
+
     newState[indexEjercicio] = {... newState[indexEjercicio],
       rutinas_ejercicio_sets: array
     }
+
+    updateRutinaEnProgreso()
   }
 
-  async function eliminarRutina() {
-    const { error } = await supabase
-    .from('rutinas')
-    .delete()
-    .match({id: rutina.id, usuario: sesion.user.id})
+  function updateSet(indexSet, indexEjercicio, set, estado) {
+    let newState = [...ejerciciosRutina];
+    let array = newState[indexEjercicio].rutinas_ejercicio_sets;
+    
+    array[indexSet].reps = set.reps;
+    array[indexSet].tipo = set.tipo;
+    array[indexSet].peso = set.peso;
+    array[indexSet].estado = estado;
 
-    if (error) {
-      console.log('ERROR: Error al eliminar la rutina.')
-      console.log(error)
+    newState[indexEjercicio] = {... newState[indexEjercicio],
+      rutinas_ejercicio_sets: array
     }
-    else{
-      //console.log('Se eliminó ' + rutina.nombre)
-      router.push('/rutinas')
-    }
+
+    updateRutinaEnProgreso()
+    console.log(newState);
   }
 
   async function getEjerciciosRutina() {
@@ -192,7 +139,7 @@ export default function ComenzarRutina() {
       descanso
     `)
     .eq('rutina', rutinaIndex)
-    .order('orden', { ascending: true })
+    .order('id', { foreignTable: 'rutinas_ejercicio_sets', ascending: true })
 
     if (error) {
       console.log('ERROR: Hubo un error al recuperar los ejercicios.')
@@ -204,45 +151,25 @@ export default function ComenzarRutina() {
     }
   }
 
-  const handleOnInputChange = useCallback(
-    (event) => {
-      const { value, name, id, checked} = event.target;
+  async function updateRutinaEnProgreso() {
+    const { data, error } = await supabase
+    .from('rutina_en_progreso')
+    .upsert({ 
+      rutina: rutinaIndex, 
+      ejerciciosRutina: ejerciciosRutina, 
+      tiempo: tiempo,
+      ejercicioSeleccionado: ejercicioSeleccionado,
+      last_update: ((new Date()).toISOString())
+    })
 
-      setFormInput({
-        ...formInput,
-        [name]: value,
-      });
-
-      updateRutina(value)
-
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
-    },
-    [formInput, setFormInput]
-  );
-
-  function handleOnDragEnd(result) {
-    //console.log(result)
-
-    if (!result.destination) return;
-
-    const items = Array.from(ejerciciosRutina);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    //console.log(items)
-
-    const ordenEjercicios = [];
-    for (let index = 0; index < items.length; index++) {
-      const element = {
-        id: items[index].id,
-        rutina: rutinaIndex,
-        orden: index
-      };
-      ordenEjercicios.push(element)
+    if (error) {
+      console.log('ERROR: No se pudo actualizar la rutina en progreso.')
+      console.log(error)
     }
-    //console.log(ordenEjercicios)
-
-    updateOrdenEjercicios(ordenEjercicios)
-    setEjerciciosRutina(items)
+    else{
+      console.log('Se actualizó la rutina en progreso.')
+      //console.log(data)
+    }
   }
 
   function ejercicioAnterior() {
@@ -252,6 +179,7 @@ export default function ComenzarRutina() {
     else{
       setEjercicioSeleccionado(ejerciciosRutina.length - 1)
     }
+    updateRutinaEnProgreso()
   }
 
   function ejercicioSiguiente() {
@@ -261,6 +189,7 @@ export default function ComenzarRutina() {
     else{
       setEjercicioSeleccionado(0)
     }
+    updateRutinaEnProgreso()
   }
 
   const Cronometro = () => {
@@ -391,8 +320,8 @@ export default function ComenzarRutina() {
                                               key={set.id}
                                               set={set}
                                               index={index}
-                                              getSets={getSets}
-                                              eliminar={eliminarSet}
+                                              updateSet={updateSet}
+                                              indexEjercicio={ejercicioSeleccionado}
                                           />
                                       ))
                                       }

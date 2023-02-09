@@ -145,7 +145,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
       );
 
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md active:scale-75 duration-150">
+    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md duration-150">
         {ejercicio === null ? 
             "Selecciona un ejercicio"
         : 

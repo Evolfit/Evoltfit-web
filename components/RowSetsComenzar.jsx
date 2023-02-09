@@ -5,16 +5,44 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
 
-const RowSetsEjercicio = ({ set, index  }) => {
+const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
     //console.log(set);
 
     const [ejerciciosRutina, setEjerciciosRutina] = useState([])
-    const [toggleTerminado, setToggleTerminado] = useState(false)
-    const [toggleCancelar, setToggleCancelar] = useState(false)
+    const [toggleTerminado, setToggleTerminado] = useState(
+      set.estado ?
+        set.estado == '' ?
+          false
+        :
+          set.estado == 'terminado' ?
+            true
+          :
+            set.estado == 'cancelado' ?
+              true
+            :
+              false
+      :
+      false
+    )
+    const [toggleCancelar, setToggleCancelar] = useState(
+      set.estado ?
+        set.estado == '' ?
+          false
+        :
+          set.estado == 'cancelado' ?
+            true
+          :
+            set.estado == 'terminado' ?
+              false
+            :
+              false
+      :
+      false
+    )
     const [formInput, setFormInput] = useState({
       reps: set.reps,
-      tipo: set.tipo,
-      peso: 0
+      tipo: set.tipo || '',
+      peso: set.peso || 0
     });
 
     const handleOnInputChange = useCallback(
@@ -62,10 +90,12 @@ const RowSetsEjercicio = ({ set, index  }) => {
       if (toggleTerminado){
         setToggleTerminado(false)
         setToggleCancelar(false)
+        updateSet(index, indexEjercicio, formInput, '')
       }
       else{
         setToggleTerminado(true)
         setToggleCancelar(false)
+        updateSet(index, indexEjercicio, formInput, 'terminado')
       }
     }
 
@@ -73,10 +103,12 @@ const RowSetsEjercicio = ({ set, index  }) => {
       if (toggleCancelar){
         setToggleCancelar(false)
         setToggleTerminado(false)
+        updateSet(index, indexEjercicio, formInput, '')
       }
       else{
         setToggleCancelar(true)
         setToggleTerminado(true)
+        updateSet(index, indexEjercicio, formInput, 'cancelado')
       }
     }
     
