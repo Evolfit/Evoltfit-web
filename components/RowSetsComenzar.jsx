@@ -227,10 +227,10 @@ const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
           />
         </td>
           <td 
-          className="text-center"
+          className=""
           onClick={() => {}}
           >
-            <div className="flex items-center justify-center f-full w-20">
+            <div className="flex items-center justify-center f-full w-20 mx-auto">
             {toggleTerminado ?
               toggleCancelar ?
                 <div 

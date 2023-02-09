@@ -5,7 +5,6 @@ import { useState, useCallback, useEffect } from "react";
 import supabase from "/config/supabaseClient";
 import RowSetsEjercicio from "/components/RowSetsEjercicio";
 
-
 const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     const router = useRouter();
     const ejercicio = rutinaEjercicio.ejercicio;

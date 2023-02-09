@@ -5,7 +5,8 @@ import { useState, useEffect, Fragment } from "react";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
-import RowSetsComenzar from "/components/RowSetsComenzar";
+import CardEjercicioEntrenamiento from "/components/CardEjercicioEntrenamiento";
+import Cronometro from "/components/Cronometro";
 
 export default function ComenzarRutina() {
   const router = useRouter();
@@ -63,7 +64,8 @@ export default function ComenzarRutina() {
     }
     else{
       setRutina(data[0]);
-      console.log(data[0])
+      //console.log(data[0])
+
       if (data[0].rutina_en_progreso.length === 0) {
         getEjerciciosRutina();
       }
@@ -77,21 +79,16 @@ export default function ComenzarRutina() {
   }
   
   async function agregarSet(indexEjercicio) {
-    let query = supabase
-    .from('rutinas_ejercicio_sets')
-    .select('id')
-    .order('id', { ascending: false })
-    .limit(1)
+    let cantSets = ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets.length;
 
-    const count = await query
-    
     let temp = {
-      id: (count.data[0].id * indexEjercicio) + ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets.length,
+      id: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[cantSets-1].id + 1,
       ejercicio_rutina: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].ejercicio_rutina,
       reps: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].reps,
       tipo: ejerciciosRutina[indexEjercicio].rutinas_ejercicio_sets[0].tipo,
       estado: ''
     }
+    console.log(temp.id)
 
     let newState = [...ejerciciosRutina];
     let array = newState[indexEjercicio].rutinas_ejercicio_sets;
@@ -146,7 +143,7 @@ export default function ComenzarRutina() {
       console.log(error)
     }
     else{
-      console.log(data);
+      //console.log(data);
       setEjerciciosRutina(data);
     }
   }
@@ -192,36 +189,6 @@ export default function ComenzarRutina() {
     updateRutinaEnProgreso()
   }
 
-  const Cronometro = () => {
-    useEffect(() => {
-      let interval;
-      if (!pausaTiempo) {
-        interval = setInterval(() => {
-          setTiempo((prevTime) => prevTime + 10);
-        }, 10);
-      } else if (!pausaTiempo) {
-        clearInterval(interval);
-      }
-      return () => clearInterval(interval);
-    }, [pausaTiempo]);
-    return (
-      <div className="stopwatch">
-        <div className="numbers text-2xl">
-          <span>{("0" + Math.floor((tiempo / 60000) % 60)).slice(-2)}:</span>
-          <span>{("0" + Math.floor((tiempo / 1000) % 60)).slice(-2)}:</span>
-          <span>{("0" + ((tiempo / 10) % 100)).slice(-2)}</span>
-        </div>
-        {/*
-        <div className="buttons">
-          <button onClick={() => setPausaTiempo(true)}>Start</button>
-          <button onClick={() => setPausaTiempo(false)}>Stop</button>
-          <button onClick={() => setTiempo(0)}>Reset</button>       
-        </div>
-        */}
-      </div>
-    );
-  };
-
   return (
     <div className="bg-stone-100 w-full z-0" data-theme="emerald">
       <Head>
@@ -257,7 +224,9 @@ export default function ComenzarRutina() {
                       <div className="w-28">
                         <span>Tiempo: </span>
                         <Cronometro
-
+                          pausaTiempo={pausaTiempo}
+                          setTiempo={setTiempo}
+                          tiempo={tiempo}
                         />
                       </div>
                     </div>
@@ -273,79 +242,13 @@ export default function ComenzarRutina() {
                               >
                                 {'<'}
                               </button>
-                              <div className="flex-auto bg-white rounded-lg shadow-md my-2 p-6 mx-2">
-                                
-                              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
-                                <div 
-                                className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
-                                onClick={() => {
-                                    router.push({
-                                    pathname: '/detalleEjercicio',
-                                    query: { ejercicio: ejerciciosRutina[ejercicioSeleccionado].ejercicio.id }
-                                  })}}
-                                >
-                                    <Image className='rounded-full' src={ejerciciosRutina[ejercicioSeleccionado].ejercicio.img} layout='fill' objectFit="cover"/>
-                                </div>
-                                <div className="flex-auto sm:w-0 ml-0 sm:ml-4 w-full">
-                                    <p 
-                                    className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer 
-                                    hover:text-blue-800 duration-150
-                                    whitespace-nowrap text-ellipsis overflow-hidden"
-                                    onClick={() => {
-                                        router.push({
-                                        pathname: '/detalleEjercicio',
-                                        query: { ejercicio: ejerciciosRutina[ejercicioSeleccionado].ejercicio.id }
-                                      })}}
-                                    >
-                                        {(ejercicioSeleccionado + 1) + ' - ' + ejerciciosRutina[ejercicioSeleccionado].ejercicio.nombre}
-                                    </p>
-                                    <p className="mb-2 font-normal text-lg sm:text-xl text-gray-700">{ejerciciosRutina[ejercicioSeleccionado].ejercicio.musculo_primario}</p>
-                                </div>
-                              </div>
-                                {/*Tabla de sets*/}
-                                <div className="relative overflow-x-auto">
-                                  <table className="w-full text-sm text-left my-4">
-                                      <thead className="border-b-2">
-                                          <tr>
-                                              <th scope="col" className="text-center text-lg p-2">Set</th>
-                                              <th scope="col" className="text-center text-lg p-2 border-l-2 border-r-2">Tipo</th>
-                                              <th scope="col" className="text-center text-lg p-2 border-l-2 border-r-2">Reps</th>
-                                              <th scope="col" className="text-center text-lg p-2 border-l-2">{'Peso (lbs)'}</th>
-                                              <th scope="col" className="text-lg p-2"></th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                      {ejerciciosRutina[ejercicioSeleccionado].rutinas_ejercicio_sets.map((set, index) => (
-                                          <RowSetsComenzar
-                                              key={set.id}
-                                              set={set}
-                                              index={index}
-                                              updateSet={updateSet}
-                                              indexEjercicio={ejercicioSeleccionado}
-                                          />
-                                      ))
-                                      }
-                                      <tr>
-                                        <td className="p-2"></td>
-                                        <td className="p-2"></td>
-                                        <td className="p-2"></td>
-                                        <td className="p-2"></td>
-                                        <td 
-                                        className="text-center py-2"
-                                        onClick={() => agregarSet(ejercicioSeleccionado)}
-                                        >
-                                            <div className="flex items-center justify-center f-full w-full">
-                                                <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-blue-500
-                                                hover:bg-blue-600 duration-100 active:scale-95">
-                                                    <ion-icon name="add-outline"></ion-icon>
-                                                </div>
-                                            </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                              </div>
-                              </div>
+                                <CardEjercicioEntrenamiento
+                                  key={ejerciciosRutina[ejercicioSeleccionado].id}
+                                  ejercicio={ejerciciosRutina[ejercicioSeleccionado]}
+                                  updateSet={updateSet}
+                                  ejercicioSeleccionado={ejercicioSeleccionado}
+                                  agregarSet={agregarSet}
+                                />
                               <button 
                               className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
                               onClick={ejercicioSiguiente}
