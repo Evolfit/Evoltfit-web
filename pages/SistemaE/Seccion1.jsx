@@ -13,7 +13,7 @@ function Seccion1(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <h1 className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <h1 className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-pink-600 to-blue-600 bg-clip-text text-transparent font-semibold mt-7 text-center">
           ¿Cuál de las siguientes opciones te describe mejor?
         </h1>
       </div>

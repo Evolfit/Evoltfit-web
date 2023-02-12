@@ -183,12 +183,12 @@
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.5px;
   font-weight: 500;
   color: #000;
   background-color: #fff;
   border: none;
-  border-radius: 45px;
+  border-radius: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -211,12 +211,12 @@
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.5px;
   font-weight: 500;
   color: #000;
   background-color: #fff;
   border: none;
-  border-radius: 45px;
+  border-radius: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -239,12 +239,12 @@
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.5px;
   font-weight: 500;
   color: #000;
   background-color: #fff;
   border: none;
-  border-radius: 45px;
+  border-radius: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -266,7 +266,7 @@
 /*CSS para el contenedor de los input*/
 
 .seccion{
-  margin-top: 8%;
+  margin-top: 9%;
   height: 440px;
 }
 
@@ -283,7 +283,7 @@
 @media screen and (max-width: 380px) {
   .seccion {
     margin-top: 30%;
-    height: 80%;
+    height: 85%;
   }
   .seccion2{
     margin-top: 30%;
@@ -374,6 +374,39 @@ input:checked + label {
   }
 }
 
+/*CSS del Tooltip (signos de interrogacion en las respuestas del SE)*/
+
+/* Tooltip contenedor */
+.tooltip-local {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip-local .tooltiptext-local {
+  visibility: hidden;
+  width: 120px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: small;
+  position:absolute;
+
+  /* Para posicionarlo arriba  */
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Hover para mostrarlo */
+.tooltip-local:hover .tooltiptext-local {
+  visibility: visible;
+}
+
+
 /*CSS del progress bar*/
 
 /*
@@ -442,4 +475,44 @@ input:checked + label {
   stroke: transparent;
 }
 
+/*CSS de los checkbox para seleccionar los dias en el SE */
 
+article {
+  position: relative;
+  width: 140px;
+  height: 100px;
+  margin: 5px;
+  float: left;
+  border: 2px solid #2563eb;
+  box-sizing: border-box;
+}
+
+article div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s ease;
+}
+
+article input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 100px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+input[type=checkbox]:checked ~ div {
+  background-color: #2563eb;
+  color:white;
+}
+
+@media screen and (max-width: 380px) {
+  article {
+    float:none;
+  }
+}

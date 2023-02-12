@@ -12,11 +12,10 @@ function Seccion4(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>¿Cuál es tu disponibilidad de tiempo?</h1>
         </div>
       </div>
-      <br />
       <br />
 
       <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 gap-x-5 xl:m-10 xl:max-w-4xl xl:mx-auto">

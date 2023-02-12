@@ -13,13 +13,13 @@ function Seccion3(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>En este momento, ¿Con cuál opción te identificas más?</h1>
         </div>
       </div>
       <br />
       <br />
-      <br />
+     
 
       <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-1 gap-x-5 xl:max-w-4xl xl:mx-auto">
         <li className="relative">
@@ -35,9 +35,12 @@ function Seccion3(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="pri"
           >
-            Principiante: Actualmente no me ejercito, llevo más de 6 meses sin
+            <h2>
+            <span className="text-blue-600 font-semibold">Principiante: </span>
+            Actualmente no me ejercito, llevo más de 6 meses sin
             realizar alguna actividad física constante. Tengo poco conocimiento
             respecto a ejercicios y entrenamiento.
+            </h2>
           </label>
         </li>
 
@@ -54,9 +57,12 @@ function Seccion3(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="inter"
           >
-            Intermedio: Actualmente realizo alguno que otro ejercicio, pero no
+            <h2>
+            <span className="text-blue-600 font-semibold">Intermedio:  </span>
+            Actualmente realizo alguno que otro ejercicio, pero no
             de manera constante, tengo pocos o conocimientos medios respecto a
             rutinas o ejercicio.
+            </h2>
           </label>
         </li>
 
@@ -73,9 +79,13 @@ function Seccion3(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="av"
           >
-            Avanzado: Realizo actividad física muy regular y por largos periodos
+            <h2>
+            <span className="text-blue-600 font-semibold">Avanzado: </span>
+            Realizo actividad física muy regular y por largos periodos
             de tiempo, tengo conocimiento básico o medio de mi alimentación y
             conocimientos necesarios para los ejercicios que hago.
+            </h2>
+            
           </label>
         </li>
 
@@ -92,10 +102,13 @@ function Seccion3(props) {
             className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-600 peer-checked:ring-2 peer-checked:border-transparent"
             htmlFor="ex"
           >
-            Experimentado: Hago ejercicio de manera constante, conozco varios
+            <h2>
+            <span className="text-blue-600 font-semibold">Experimentado: </span>
+            Hago ejercicio de manera constante, conozco varios
             tipos de ejercicios y rutinas. El ejercicio es algo dentro de mi
             vida cotidiana o en la mayoría de los días y tengo una buena
             alimentación de acuerdo con mi actividad.
+            </h2>
           </label>
         </li>
       </ul>

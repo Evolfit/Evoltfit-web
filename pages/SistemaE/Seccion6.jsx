@@ -78,7 +78,7 @@ function Seccion6(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>¿Qué herramientas tienes disponibles?</h1>
         </div>
       </div>
@@ -197,7 +197,7 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
-        <li className="w-full dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
               id="ch8"
@@ -272,7 +272,7 @@ function Seccion6(props) {
             </label>
           </div>
         </li>
-        <li className="w-full dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
               id="ch12"
@@ -350,7 +350,7 @@ function Seccion6(props) {
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center pl-3">
             <input
-              id="ch1"
+              id="ch16"
               type="checkbox"
               name="Todos"
               onChange={onCheckboxChange}
@@ -358,7 +358,7 @@ function Seccion6(props) {
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
             />
             <label
-              htmlFor="ch1"
+              htmlFor="ch16"
               className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Todos

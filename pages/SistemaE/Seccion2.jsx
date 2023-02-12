@@ -13,11 +13,10 @@ function Seccion2(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>¿Cuál es tu objetivo principal?</h1>
         </div>
       </div>
-      <br />
       <br />
 
       <ul className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 gap-x-5 xl:m-10 xl:max-w-4xl xl:mx-auto">
@@ -35,7 +34,12 @@ function Seccion2(props) {
             htmlFor="mas"
           >
             Ganar Masa Muscular 
-           
+            <div className = "mt-0.5 absolute left-56 xl:left-96">
+            <div className = "tooltip-local">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            </div>
+            </div>
           </label>
         </li>
 
@@ -53,6 +57,12 @@ function Seccion2(props) {
             htmlFor="res"
           >
             Ganar Resistencia
+            <div className = "mt-0.5 absolute left-56 xl:left-96">
+            <div className = "tooltip-local">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            </div>
+            </div>
           </label>
         </li>
 
@@ -70,6 +80,12 @@ function Seccion2(props) {
             htmlFor="fuer"
           >
             Ganar Fuerza
+            <div className = "mt-0.5 absolute left-56 xl:left-96">
+            <div className = "tooltip-local">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            </div>
+            </div>
           </label>
         </li>
 
@@ -87,6 +103,12 @@ function Seccion2(props) {
             htmlFor="grasa"
           >
             Perder Grasa
+            <div className = "mt-0.5 absolute left-56 xl:left-96">
+            <div className = "tooltip-local">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            </div>
+            </div>
           </label>
         </li>
 
@@ -104,11 +126,15 @@ function Seccion2(props) {
             htmlFor="dep"
           >
             Mejorar la Salud en General
+            <div className = "mt-0.5 absolute left-56 xl:left-96">
+            <div className = "tooltip-local">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            </div>
+            </div>
           </label>
         </li>
       </ul>
-      
-      
       <br />
       <br />
       <br />
