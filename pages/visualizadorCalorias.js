@@ -235,11 +235,22 @@ export default function VisualizadorCalorias() {
                   value={sumatoriaCalorias}
                   maxValue={metaCalorias}
                 >
+                  {metaCalorias == 0 ? (
+                     <img
+                     style={{ width: 40, marginTop: -5 }}
+                     src="calorias_icon_black.png"
+                     alt="doge"
+                    />
+                  )  : (
+                  
                   <img
                     style={{ width: 40, marginTop: -5 }}
-                    src="calorias_icon.png"
+                    src="calorias_icon_color.png"
                     alt="doge"
                   />
+                  
+                  )}
+                  
                 </CircularProgressbarWithChildren>
               </div>
 

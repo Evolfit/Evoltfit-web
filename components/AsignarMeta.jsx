@@ -30,6 +30,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
     
         e.preventDefault();
 
+        if(calorias >= 0){
         const { data, error } = await supabase
         .from("calorias_metas")
         .select("*")
@@ -69,6 +70,9 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
                 router.reload()
             }
         }
+      }else{
+        alert("El valor tiene que ser mayor que cero")
+      }
           e.target.reset()
       }
     
