@@ -55,14 +55,16 @@ export default function Home() {
     var year_Actual = today.getFullYear();
 
     var fecha_Actual = `${year_Actual}-${month_Actual}-${day_Actual}`
+    var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
+
+    //console.log(fecha_Actual)
+    //console.log(fecha_Terminacion)
 
     if(month_Termino > 12){
-      console.log("Rebasa los 12 meses")
-      var diferenciaMeses = month_Termino - 12
-      month_Termino = today.getMonth() + diferenciaMeses - 1;
-      var year_Actual2 = today.getFullYear() + 1;
-      var fecha_Terminacion = `${year_Actual2}-${month_Termino}-${day_Actual}`
+      //console.log("Rebasa los 12 meses")
+       var fecha_Terminacion = `${year_Actual + 1}-${month_Actual}-${day_Actual}`
     }else{
+      //console.log("No rebasa los 12 meses")
       var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
     } 
 

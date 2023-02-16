@@ -8,7 +8,7 @@ function Inicio() {
   return (
     <div>
       <div className="grid place-items-center">
-        <h1 className="font-catamaran text-2xl text-zinc-700 mt-4 font-bold text-center">
+        <h1 className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent font-semibold mt-7 text-center">
           Banner
         </h1>
       </div>
