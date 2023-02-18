@@ -72,7 +72,7 @@ export default function Home() {
         <br />
         <br />
         {sesion ? (
-          <section className="bg-blue-50">
+          <section className="bg-stone-100">
             <div className="container px-6 py-10 mx-auto">
               <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
                 Todo lo que necesitas en un solo lugar
