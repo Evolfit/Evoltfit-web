@@ -6,6 +6,7 @@ import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
 import CardEjercicioEntrenamiento from "/components/CardEjercicioEntrenamiento";
+import Aviso from "/components/Aviso";
 import Cronometro from "/components/Cronometro";
 
 export default function ComenzarRutina() {
@@ -13,6 +14,9 @@ export default function ComenzarRutina() {
   let rutinaIndex = router.query.rutina;
 
   const [sesion, setSesion] = useState(null);
+  const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [mensajeAviso, setMensajeAviso] = useState('');
+  const [colorAviso, setColorAviso] = useState('red');
   const [rutina, setRutina] = useState(null);
   const [tiempo, setTiempo] = useState(0);
   const [pausaTiempo, setPausaTiempo] = useState(true);
@@ -203,8 +207,9 @@ export default function ComenzarRutina() {
 
     if (bounce){
       console.log('No has marcado todos tus sets,')
-      console.log("bounce3")
-      alert('No has marcado todos tus sets,')
+      setMensajeAviso('No has marcado todos tus sets.');
+      setColorAviso('red');
+      setMostrarAviso(true)
       return 0;
     }
 
@@ -221,7 +226,9 @@ export default function ComenzarRutina() {
     }
     else{
       console.log('Se finalizó la rutina y se registró el progreso.')
-      alert('Se guardó tu progreso :)')
+      setMensajeAviso('Se guardó tu progreso.');
+      setColorAviso('green');
+      setMostrarAviso(true)
       //console.log(data)
       terminarEntrenamiento()
     }
@@ -273,6 +280,12 @@ export default function ComenzarRutina() {
       <Navbar />
 
       <main>
+        <Aviso
+          mostrarAviso={mostrarAviso}
+          setMostrarAviso={setMostrarAviso}
+          color={colorAviso}
+          mensaje={mensajeAviso}
+        />
         <br />
         <br />
         <br />
@@ -292,7 +305,7 @@ export default function ComenzarRutina() {
                     <span className="ml-2">{"Volver a Rutinas"}</span>
                   </button>
                   <br/>
-                  <div className="flex flex-row items-center justify-center">
+                  <div className="flex flex-row items-center justify-center sm:mx-16 mt-2">
                     <h2 className="flex-auto text-3xl text-gray-900">{rutina.nombre}</h2>
                     <div className="w-28">
                       <span>Tiempo: </span>
@@ -307,7 +320,7 @@ export default function ComenzarRutina() {
                       ''
                     :
                       !pausaTiempo ? 
-                        <div className="my-12">
+                        <div className="">
                           <div className="flex flex-row my-2">
                             <button 
                             className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
