@@ -11,6 +11,7 @@ export default function Home() {
   const [sesion, setSesion] = useState(null);
   const [resultado, setResultado] = useState(null);
   const [flag, setFlag] = useState(false);
+  const [fechaTermino, setFechaTermino] = useState(null);
 
   let nombrePaquete = "";
   let meses = 0;
@@ -24,11 +25,11 @@ export default function Home() {
 
       nombrePaquete = localStorage.getItem("NombrePaquete");
       meses = localStorage.getItem("Meses");
-      mesesConvertidos = parseInt(meses)
+      mesesConvertidos = parseInt(meses - 1);
 
       if (nombrePaquete && meses) {
         //console.log("El usuario conectado es:" + sesion.user.id);
-        registrarPago();
+        registrarCambio();
         setTimeout(function () {
           router.push("/herramientas");
         }, 3000);
@@ -43,77 +44,69 @@ export default function Home() {
     setFlag(true);
   }, [flag]);
 
-  async function registrarPago() {
-
-    var today = new Date();
-    // getDate() Regresa el día del mes (Desde 1 a 31)
-    var day_Actual = today.getDate();
-    // getMonth() Regresa el mes (Desde 0 a 11)
-    var month_Actual = today.getMonth() + 1;
-    var month_Termino = today.getMonth() + mesesConvertidos;
-    // getFullYear() Regresa el año actual
-    var year_Actual = today.getFullYear();
-
-    var fecha_Actual = `${year_Actual}-${month_Actual}-${day_Actual}`
-    var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
-
-    //console.log(fecha_Actual)
-    //console.log(fecha_Terminacion)
-
-    if(month_Termino > 12 && nombrePaquete == "12 meses"){
-      console.log("Rebasa los 12 meses y es un paquete de 12 meses")
-       var fecha_Terminacion = `${year_Actual + 1}-${month_Actual}-${day_Actual}`
-    }else if(month_Termino > 12 && (nombrePaquete == "6 meses" || nombrePaquete == "1 mes")){
-      console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
-      month_Termino = month_Termino - 12
-      var fecha_Terminacion = `${year_Actual + 1}-${month_Termino}-${day_Actual}`;
-      console.log(fecha_Terminacion)
-    }else{
-      console.log("No rebasa los 12 meses")
-      var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
-    } 
-
-
-    let { data: sus_pagos, err } = await supabase
+  async function registrarCambio() {
+    let { data: sus_pagos, error } = await supabase
       .from("sus_pagos")
-      .select("id_usuario")
+      .select("fecha_termino")
       .eq("id_usuario", sesion.user.id);
 
-    let encontrarPagos = Object.keys(sus_pagos) 
-
-    if (encontrarPagos == 0) {
-      const { error } = await supabase.from("sus_pagos").insert({
-        fecha_compra: fecha_Actual,
-        fecha_termino: fecha_Terminacion,
-        id_usuario: sesion.user.id,
-        plan_name: nombrePaquete,
-        no_meses: meses,
-        activo: 1,
-      });
-
-      if (error) {
-        console.log("ERROR: Hubo un error al registrar el plan.");
-        console.log(error);
-      } else {
-        console.log("Plan registrado");
-      }
+    if (error) {
+      console.log("ERROR al obtener la fecha de termino");
+      console.log(error);
     } else {
-      let { data, error } = await supabase
+      var fecharTerminacionPlanActual = sus_pagos[0].fecha_termino;
+      //console.log(fecharTerminacionPlanActual)
+      var concatenarYear = parseInt(
+          fecharTerminacionPlanActual[0] +
+          fecharTerminacionPlanActual[1] +
+          fecharTerminacionPlanActual[2] +
+          fecharTerminacionPlanActual[3]
+      );
+      var concatenarMonth = parseInt(
+        fecharTerminacionPlanActual[5] + fecharTerminacionPlanActual[6]
+      );
+      var concatenarDay = parseInt(
+        fecharTerminacionPlanActual[8] + fecharTerminacionPlanActual[9]
+      );
+
+      var fecha_PlanActual = `${concatenarYear}-${concatenarMonth}-${concatenarDay}`;
+
+      console.log(fecha_PlanActual);
+
+      var month_TerminoPlanNuevo = concatenarMonth + mesesConvertidos;
+
+        if (month_TerminoPlanNuevo > 12 && nombrePaquete == "12 meses") {
+          console.log("Rebasa los 12 meses y es un paquete de 12 meses")
+          var fecha_TerminacionNuevoPlan = `${concatenarYear + 1}-${concatenarMonth}-${concatenarDay}`;
+          console.log(fecha_TerminacionNuevoPlan)
+        } else if(month_TerminoPlanNuevo > 12 && (nombrePaquete == "6 meses" || nombrePaquete == "1 mes")){
+          console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
+          month_TerminoPlanNuevo = month_TerminoPlanNuevo - 12
+          var fecha_TerminacionNuevoPlan = `${concatenarYear + 1}-${month_TerminoPlanNuevo}-${concatenarDay}`;
+          console.log(fecha_TerminacionNuevoPlan)
+        }else{
+          console.log("No rebasa los 12 meses")  
+          var fecha_TerminacionNuevoPlan = `${concatenarYear}-${month_TerminoPlanNuevo}-${concatenarDay}`;
+          console.log(fecha_TerminacionNuevoPlan)
+        }
+
+        let { data, error } = await supabase
         .from("sus_pagos")
         .update({
-          fecha_compra: fecha_Actual,  
-          fecha_termino: fecha_Terminacion,
+          fecha_compra: fecha_PlanActual,
+          fecha_termino: fecha_TerminacionNuevoPlan,
           plan_name:nombrePaquete,
           no_meses: meses,
           activo: 1 , })
         .eq("id_usuario", sesion.user.id);
 
         if (error) {
-          console.log("ERROR: Surgió un error al reanudar el plan");
+          console.log("ERROR: Surgió un error al actualizar el plan");
           console.log(error);
         } else {
-          console.log("Plan reanudado");
+          console.log("Plan actualizado");
         }
+
     }
 
     localStorage.removeItem("NombrePaquete");
@@ -129,6 +122,7 @@ export default function Home() {
       //console.log(data);
     } else {
       setSesion(null);
+      router.push("/");
       //console.log("No hay Sesión " + error);
       //console.log(data);
     }
@@ -175,7 +169,7 @@ export default function Home() {
               </svg>
               <div className="text-center">
                 <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">
-                  ¡Pago hecho!
+                  ¡Cambio hecho!
                 </h3>
                 <p className="text-gray-600 my-2">
                   Gracias por confiar en EvoltFit, esperamos que te sea de

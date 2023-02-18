@@ -16,9 +16,13 @@ export default function Perfil() {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [updateSucess, setUpdateSuccess] = useState(false);
   const [correoVerificacion, setCorreoVerificacion] = useState(false);
+  const [resultado, setResultado] = useState(null);
+  const [datosPlan, setDatosPlan] = useState();
   
   useEffect(() => {
       handleSesion()
+      localStorage.removeItem("NombrePaquete");
+      localStorage.removeItem("Meses");
   }, [])
 
   const handleSesion = async () => {
@@ -29,6 +33,7 @@ export default function Perfil() {
             //console.log(data.session)
             setSesion(data.session);
             getPerfil(data.session.user.id);
+            getPlan(data.session.user.id)
         } 
         else {
             setSesion(null);
@@ -53,6 +58,24 @@ export default function Perfil() {
               setPerfil(data[0])
           }
   }
+
+  const getPlan = async (sesion_id) => {
+          
+        let { data: sus_pagos, error } = await supabase
+          .from("sus_pagos")
+          .select("activo, plan_name, fecha_termino")
+          .eq("id_usuario", sesion_id);
+
+          if(sus_pagos.length == 0){
+            console.log("Este usuario no tiene plan")
+            setResultado(0)
+          }else{
+            console.log("Este usuario si tiene un plan")
+            setDatosPlan(sus_pagos)
+            setResultado(sus_pagos[0].activo)
+          }
+      
+  } 
 
   const handleToggleEdit = () => {
     if (toggleEdit == true) {
@@ -216,15 +239,28 @@ export default function Perfil() {
                             <button className="btn btn-sm" onClick={() => {router.push('/passwordOlvidada')}}>Editar</button>
                         </div>
                     </div>
+                    {resultado == 0 ? (
                     <div className="flex flex-row px-4 py-3 border-t border-gray-300">
                         <div className="w-full">
                             <p className="text-lg font-semibold">Plan</p>
-                            <p className="text-base font-normal">EvoltFit Basic | Ayuda chats</p>
+                            <p className="text-base font-normal">Actualmente no cuenta con un plan activo</p>
                         </div>
                         <div className="w-fit my-auto">
-                            <button className="btn btn-sm btn-secondary" onClick={() => {router.push('/precios')}}>Cambiar Plan</button>
+                            <button className="btn btn-sm btn-secondary" onClick={() => {router.push('/precios')}}>Obtener plan</button>
                         </div>
                     </div>
+                    ) : (
+                    <div className="flex flex-row px-4 py-3 border-t border-gray-300">
+                        <div className="w-full">
+                            <p className="text-lg font-semibold">Plan</p>
+                            <p className="text-base font-normal">{datosPlan[0].plan_name} | Fecha de termino: {datosPlan[0].fecha_termino}</p>
+                        </div>
+                        <div className="w-fit my-auto">
+                            <button className="btn btn-sm btn-secondary" onClick={() => {router.push('/cambioPlan')}}>Cambiar Plan</button>
+                        </div>
+                    </div>
+                    )}
+                    
                     <div className="flex flex-row px-4 py-3 border-t border-gray-300">
                         <div className="w-full">
                             <p className="text-lg font-semibold">Fecha de Creación</p>
