@@ -6,6 +6,7 @@ import Footer from "/components/Footer";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import shortid from 'shortid';
+import supabase from "../config/supabaseClient";
 
 export default function Home() {
   /*Variables generales
@@ -66,15 +67,15 @@ export default function Home() {
 
 
   /*/////////////////////////////////////////////////////////*/
-
+  
   //contenidos de puede llegar a contener cada dia
-  const contenido1 = [];//lUNES
-  const contenido2 = [];//MARTES
-  const contenido3 = [];//MIERCOLES
-  const contenido4 = [];//JUEVES
-  const contenido5 = [];//VIERNES
-  const contenido6 = [];//SABADO
-  const contenido7 = [];//DOMINGO
+  let contenido1 = [];//lUNES
+  let contenido2 = [];//MARTES
+  let contenido3 = [];//MIERCOLES
+  let contenido4 = [];//JUEVES
+  let contenido5 = [];//VIERNES
+  let contenido6 = [];//SABADO
+  let contenido7 = [];//DOMINGO
 
   //INICIO DEL SE
   const objetivo = opciones[1]
@@ -515,6 +516,7 @@ export default function Home() {
     console.log("Error en el SE P:ENFOQUE");
   }
   //llenamos 
+  //pruebaejercicio();
   llenarArreglo(diasActivos);
 
   //____________________________________________pregunta de experiencia
@@ -562,13 +564,31 @@ export default function Home() {
     }
   }
 
+  /*
+  Cambiar por ejercicios
+  */
+  async function pruebaejercicio() {
+    const { data, error } = await supabase
+      .from("ejercicios")
+      .select("nombre")
+      .eq("musculo_primario", "Pecho");
+
+    if (error) {
+      console.log("ERROR: No se encontró el ejercicio.");
+      console.log(error);
+    } else {
+      console.log(data);
+      contenido1[0].valor = data[0].nombre;
+  }
+  }
+  
+  
 
 
 
 
 
-
-
+  console.log("antes de unirse contenido1:"+contenido1);
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
   const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6, contenido7];
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
@@ -579,7 +599,7 @@ export default function Home() {
     console.log(herramientas);
     console.log(opciones);
     console.log(diasActivos);
-    console.log(contenido5);
+    console.log(contenido1);
   };
 
   return (
