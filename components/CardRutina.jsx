@@ -119,37 +119,47 @@ const CardRutina = ({ rutina }) => {
                   </button>
                 </div>
               :
-                <div>
-                  {
-                  ejerciciosRutina.length === 0 ?
-                    ''
-                  :
-                  <button onClick={() => {
-                    router.push({
-                        pathname: '/comenzarRutina',
-                        query: { rutina: rutina.id }
-                    })
-                    }} 
-                    className="inline-flex mx-1 items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
-                        Comenzar Entrenamiento
-                        <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                  </button>
-                  }
-                  
-                  <button onClick={() => {
-                  router.push({
-                      pathname: '/editarRutina',
-                      query: { rutina: rutina.id }
-                  })
-                  }} 
-                  className="inline-flex mx-1 items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                      Editar
-                      <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                  </button>
-                  <button onClick={() => {eliminarRutina()}} 
-                  className="inline-flex mx-1 items-center mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">
-                      Eliminar
-                  </button>
+                <div className="flex flex-row w-full mt-4">
+                  <div className="flex flex-row space-x-2">
+                    {
+                    ejerciciosRutina.length === 0 ?
+                      ''
+                    :
+                    <button 
+                      className="flex items-center justify-center p-2 text-2xl cursor-pointer text-white rounded-md bg-green-500
+                      hover:bg-green-600 duration-100 active:scale-95"
+                      onClick={() => {
+                        router.push({
+                          pathname: '/comenzarRutina',
+                          query: { rutina: rutina.id }
+                        })}
+                      } 
+                    >
+                      <ion-icon name="barbell-outline"></ion-icon>
+                    </button>
+                    }
+                    <button 
+                      className="flex items-center justify-center p-2 text-2xl cursor-pointer text-white rounded-md bg-blue-500
+                      hover:bg-blue-600 duration-100 active:scale-95"
+                      onClick={() => {
+                        router.push({
+                            pathname: '/editarRutina',
+                            query: { rutina: rutina.id }
+                        })}
+                      } 
+                    >
+                      <ion-icon name="create-outline"></ion-icon>
+                    </button>
+                  </div>
+                  <div className="flex items-end justify-end w-full">
+                    <button 
+                      className="flex items-center justify-center p-2 text-2xl cursor-pointer text-white rounded-md bg-red-500
+                      hover:bg-red-600 duration-100 active:scale-95"
+                      onClick={() => {eliminarRutina()}} 
+                    >
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                  </div>
                 </div>
             }
             

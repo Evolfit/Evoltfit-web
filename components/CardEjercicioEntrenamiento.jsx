@@ -16,10 +16,13 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
         <div 
         className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
         onClick={() => {
-            router.push({
+          /*
+          router.push({
             pathname: '/detalleEjercicio',
             query: { ejercicio: ejercicio.ejercicio.id }
-          })}}
+          })
+          */
+        }}
         >
             <Image className='rounded-full' src={ejercicio.ejercicio.img} layout='fill' objectFit="cover"/>
         </div>
@@ -29,10 +32,13 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
             hover:text-blue-800 duration-150
             whitespace-nowrap text-ellipsis overflow-hidden"
             onClick={() => {
-                router.push({
+              /*
+              router.push({
                 pathname: '/detalleEjercicio',
                 query: { ejercicio: ejercicio.ejercicio.id }
-              })}}
+              })
+              */
+            }}
             >
                 {(ejercicioSeleccionado + 1) + ' - ' + ejercicio.ejercicio.nombre}
             </p>

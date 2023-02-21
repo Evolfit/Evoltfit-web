@@ -19,8 +19,6 @@ export default function Home() {
   const [paginacion, setPaginacion] = useState(1);
   const [rutinas, setRutinas] = useState(null);
   const [cantidad, setCantidad] = useState(null);
-  const [formInput, setFormInput] = useState({musculo: musculoIndex});
-  const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
   
   useEffect(() => {
     handleSesion()
@@ -115,6 +113,12 @@ export default function Home() {
           {
             rutinas ? 
             <div className="mx-auto mt-6">
+              <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
+                <div className='text-3xl mt-auto'>
+                  <ion-icon name="arrow-back-outline"></ion-icon>
+                </div>
+                <span className="ml-2">{"Volver a Rutinas"}</span>
+              </button>
               <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
                 <h2 className="text-3xl sm:text-4xl p-2 text-secondary my-2 w-full font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                   {"Rutinas de " + sesion.user.user_metadata.nombre}
@@ -128,6 +132,7 @@ export default function Home() {
                     )
                 }
                 <button type="submit" onClick={nuevaRutina} className="btn text-white btn-secondary rounded-lg btn-lg w-fit mx-auto my-4">Nueva Rutina</button>
+                <button onClick={() => {router.push('/progreso')}} className="btn text-white btn-success rounded-lg btn-lg w-fit mx-auto">Ir a Progreso</button>
               </div>
               {/* PAGINACIÓN */}
               <div className="flex flex-col items-center mb-2 mt-4">

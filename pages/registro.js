@@ -6,6 +6,7 @@ import { micah } from '@dicebear/collection';
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
+import Aviso from "/components/Aviso";
 
 export default function Home() {
   const router = useRouter();
@@ -17,6 +18,9 @@ export default function Home() {
   //----------------------------------------------------------------
   const [formInput, setFormInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
+  const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [mensajeAviso, setMensajeAviso] = useState('');
+  const [colorAviso, setColorAviso] = useState('red');
 
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
@@ -127,11 +131,14 @@ export default function Home() {
 
         if (error) {
           setDatos(null);
-          setFetchError("Error al conseguir datos");
+          setMostrarAviso(true)
           console.log("Error: " + error);
-        } else {
-          setDatos(data);
-          setFetchError(null);
+
+          setFetchError("Hubo un error, favor de intentarlo mas tarde.");
+          setMensajeAviso('Error al conseguir datos');
+          setColorAviso('red');
+        } 
+        else {
           
           const { error } = await supabase
           .from('perfiles')
@@ -142,11 +149,22 @@ export default function Home() {
             })
 
             if(error) {
-              alert("ERROR: Hubo un error al generar el registro.")
+              setFetchError("Error al conseguir datos");
               console.log(error)
+
+              setMensajeAviso('Hubo un error, esta cuenta ya existe.');
+              setColorAviso('red');
+              setMostrarAviso(true)
             }
             else{
               console.log("Registro exitoso :)");
+              setFetchError(null);
+              setDatos(data);
+
+
+              setMensajeAviso('¡Se envío un corre de verificación!');
+              setColorAviso('green');
+              setMostrarAviso(true)
             }
         }
       }
@@ -184,6 +202,12 @@ export default function Home() {
 
 
       <main>
+        <Aviso
+          mostrarAviso={mostrarAviso}
+          setMostrarAviso={setMostrarAviso}
+          color={colorAviso}
+          mensaje={mensajeAviso}
+        />
         <section className="flex flex-col md:flex-row h-screen items-center">
           <div className=" bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
             <div className="w-full h-100">
@@ -192,7 +216,7 @@ export default function Home() {
               </h1>
 
               <div className="mt-6">
-              <div>
+                <div>
                   <label className="block text-gray-700">
                     Nombre
                   </label>
@@ -336,36 +360,6 @@ export default function Home() {
 
               <hr className="my-6 border-gray-300 w-full" />
 
-              {datos ? (
-             <div className = "grid place-items-center">
-             <div
-               id="toast-danger"
-               className="flex items-center p-4 mb-4 w-full max-w-xs bg-green-300 rounded-lg shadow"
-               role="alert"
-             >
-               <div className = "inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-700 bg-green-300 rounded-lg">
-                 <svg
-                   className="w-5 h-5"
-                   fill="currentColor"
-                   viewBox="0 0 20 20"
-                 >
-                   <path
-                     fillRule="evenodd"
-                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                     clipRule="evenodd"
-                   ></path>
-                 </svg>
-                 <span className="sr-only">Icono de todo correcto</span>
-               </div>
-               <div className="ml-3 text-sm font-normal">
-                 ¡Se envío un corre de verificación!
-               </div>
-             </div>
-             </div>
-          ) : (
-            ""
-          )}
-
           {fetchError ? (
              <div className = "grid place-items-center">
              <div
@@ -393,8 +387,37 @@ export default function Home() {
              </div>
              </div>
           ) : (
-            ""
-          )}
+            datos ? (
+            <div className = "grid place-items-center">
+              <div
+                id="toast-danger"
+                className="flex items-center p-4 mb-4 w-full max-w-xs bg-green-300 rounded-lg shadow"
+                role="alert"
+              >
+                <div className = "inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-700 bg-green-300 rounded-lg">
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Icono de todo correcto</span>
+                </div>
+                <div className="ml-3 text-sm font-normal">
+                  ¡Se envío un corre de verificación!
+                </div>
+              </div>
+            </div>
+          )
+          :
+          ""
+          )
+          }
 
               <p className="">
                 {"¿Ya tienes una cuenta? " }

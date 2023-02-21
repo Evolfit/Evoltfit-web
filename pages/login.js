@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
+import Aviso from "/components/Aviso";
 
 export default function Home() {
   const router = useRouter();
@@ -15,6 +16,9 @@ export default function Home() {
   //----------------------------------------------------------------
   const [formInput, setFormInput] = useState({});
   const [errorDatosInput, setErrorDatosInput] = useState({});
+  const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [mensajeAviso, setMensajeAviso] = useState('');
+  const [colorAviso, setColorAviso] = useState('red');
 
   const handleOnInputChange = useCallback(
     (event) => {
@@ -43,6 +47,9 @@ export default function Home() {
     if (error) {
       setDatos(null);
       setFetchError("Error en el login.");
+      setMensajeAviso('Correo o contraseña incorrectos.');
+      setColorAviso('red');
+      setMostrarAviso(true)
       console.log("Login fallido");
       console.log(error);
     } else {
@@ -84,6 +91,12 @@ export default function Home() {
       <br />
 
       <main>
+        <Aviso
+          mostrarAviso={mostrarAviso}
+          setMostrarAviso={setMostrarAviso}
+          color={colorAviso}
+          mensaje={mensajeAviso}
+        />
         <section className="flex flex-col md:flex-row h-screen items-center">
           <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
             <img

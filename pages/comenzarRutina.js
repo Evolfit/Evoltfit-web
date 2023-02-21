@@ -246,7 +246,7 @@ export default function ComenzarRutina() {
     }
     else{
       console.log('Se terminó el entrenamiento')
-      router.push('/rutinas')
+      router.push('/progreso')
     }
   }
 
