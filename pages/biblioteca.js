@@ -386,7 +386,7 @@ export default function Home() {
                     alt={ejercicio.nombre} 
                     className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
                   />
-                  <div className="flex flex-col items-start justify-center sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
+                  <div className="flex flex-col items-center justify-center pl-1 sm:pl-0 sm:p-4 sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
                     <div
                       className="w-full sm:w-8/12"
                     >
@@ -398,9 +398,9 @@ export default function Home() {
                       className="text-sm lg:text-lg"
                       >{ejercicio.musculo_primario}</p>
                       <p
-                      className="lg:text-sm text-xs"
+                      className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
                       >
-                        {'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface'}
+                        {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
                       </p>
                     </div>
                     <div
@@ -412,7 +412,7 @@ export default function Home() {
                         {'Equipo: '}
                       </span>
                       <span
-                        className=" lg:text-base text-xs"
+                        className="lg:text-base text-xs"
                         >
                           {ejercicio.equipo.join(", ")}
                       </span>

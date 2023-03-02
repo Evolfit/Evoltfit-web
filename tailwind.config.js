@@ -14,5 +14,8 @@ module.exports = {
       'catamaran':['Catamaran'],
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require('@tailwindcss/line-clamp')
+  ],
 }
