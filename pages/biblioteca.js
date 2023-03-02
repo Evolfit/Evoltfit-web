@@ -374,7 +374,7 @@ export default function Home() {
                   */
                 <div 
                   key={ejercicio.id}
-                  className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-4 px-4"
+                  className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
                   onClick={() => {
                     router.push({
                     pathname: '/detalleEjercicio',
@@ -384,7 +384,7 @@ export default function Home() {
                   <img 
                     src={ejercicio.img} 
                     alt={ejercicio.nombre} 
-                    className="w-1/2 sm:w-3/12 p-2 md:w-2/12 z-0"
+                    className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
                   />
                   <div className="flex flex-col items-start justify-center sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
                     <div
