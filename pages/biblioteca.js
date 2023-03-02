@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -156,7 +157,7 @@ export default function Home() {
         <br />
         <br />
         
-        <div className="w-11/12 sm:w-9/12 mx-auto max-w-5xl">
+        <div className="w-11/12 md:w-9/12 mx-auto max-w-5xl">
           <div>
             <h2 className="text-2xl lg:text-5xl text-left text-secondary font-semibold lg:my-4">Biblioteca de Ejercicios</h2>
             <br/>
@@ -309,7 +310,7 @@ export default function Home() {
             ejercicios ? 
             <div className="mx-auto mt-6">
               <div className="flex mx-auto">
-                <span className="text-sm lg:text-lg w-1/4 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
+                <span className="text-sm lg:text-lg w-1/2 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
                 {/* PAGINACIÓN */}
                 <div className="flex flex-col my-auto w-3/4 items-end">
                   <div className="btn-group">
@@ -327,6 +328,7 @@ export default function Home() {
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
+                  /*
                   <div key={ejercicio.id} className="lg:flex drop-shadow-md my-4 w-full">
                     <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer hover:opacity-70 duration-75" 
                     style={{backgroundImage: 'url("'+ejercicio.img+'")'}}
@@ -369,6 +371,54 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                  */
+                <div 
+                  key={ejercicio.id}
+                  className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-4 px-4"
+                  onClick={() => {
+                    router.push({
+                    pathname: '/detalleEjercicio',
+                    query: { ejercicio: ejercicio.id }
+                  })}}
+                >
+                  <img 
+                    src={ejercicio.img} 
+                    alt={ejercicio.nombre} 
+                    className="w-1/2 sm:w-3/12 p-2 md:w-2/12 z-0"
+                  />
+                  <div className="flex flex-col items-start justify-center sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
+                    <div
+                      className="w-full sm:w-8/12"
+                    >
+                      <h3
+                      className="font-semibold whitespace-nowrap text-ellipsis overflow-hidden lg:text-xl"
+                      >
+                        {ejercicio.nombre}</h3>
+                      <p
+                      className="text-sm lg:text-lg"
+                      >{ejercicio.musculo_primario}</p>
+                      <p
+                      className="lg:text-sm text-xs"
+                      >
+                        {'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface'}
+                      </p>
+                    </div>
+                    <div
+                    className="w-full sm:w-4/12 flex flex-col sm:mt-0 mt-2 sm:px-4"
+                    >
+                      <span 
+                      className="text-xs lg:text-lg font-semibold"
+                      >
+                        {'Equipo: '}
+                      </span>
+                      <span
+                        className=" lg:text-base text-xs"
+                        >
+                          {ejercicio.equipo.join(", ")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
                 ))
                 }
               </div>

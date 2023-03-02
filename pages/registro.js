@@ -140,6 +140,7 @@ export default function Home() {
         } 
         else {
           
+          
           const { error } = await supabase
           .from('perfiles')
           .insert({
