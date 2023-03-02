@@ -102,6 +102,7 @@ export default function Home() {
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
     
+    query = query.order('id', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
@@ -199,7 +200,7 @@ export default function Home() {
 
             <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow-md text-sm lg:text-xl">
                 <input type="checkbox" className="peer"/> 
-                <div className="collapse-title text-secondary">
+                <div className="collapse-title text-secondary peer-checked:h-0">
                   Equipo
                 </div>
               <div className="collapse-content  lg:px-10"> 
@@ -425,13 +426,13 @@ export default function Home() {
               {/* PAGINACIÓN */}
               <div className="flex flex-col items-center mb-2 mt-4">
                 <div className="btn-group">
-                  {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                  {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
+                  {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1); window.scrollTo(0, 0)}}>«</button>}
+                  {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2); window.scrollTo(0, 0)}}>{paginacion - 2}</button>}
+                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1); window.scrollTo(0, 0)}}>{paginacion - 1}</button>}
                   <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
-                  {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
-                  {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
-                  {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                  {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1); window.scrollTo(0, 0)}}>{paginacion + 1}</button> : ""}
+                  {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2); window.scrollTo(0, 0);}}>{paginacion + 2}</button> : ""}
+                  {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1); window.scrollTo(0, 0);}}>»</button>}
                 </div>
               </div>
             </div> 

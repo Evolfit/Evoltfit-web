@@ -88,7 +88,7 @@ export default function Progreso() {
                     <h2>{'Ups, aquí no hay setsProgreso. 🥵'}</h2>
                   :
                     (setsProgreso.map((set) => (
-                        <div>
+                        <div key={set.id}>
                           <span>
                             {
                             set.ejercicio.nombre

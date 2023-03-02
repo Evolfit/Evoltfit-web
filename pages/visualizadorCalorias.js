@@ -168,9 +168,7 @@ export default function VisualizadorCalorias() {
                   <div className="tooltip-localCalorias">
                     <ion-icon name="alert-circle-outline"></ion-icon>
                     <span className="tooltiptext-localCalorias">
-                      Presiona "Nuevo registro" para crear un registro con la fecha actual.
-                      Puedes usar el botón "Opciones" para eliminarlo o para agregar productos
-                      al registro.
+                      {'Presiona "Nuevo registro" para crear un registro con la fecha actual.Puedes usar el botón "Opciones" para eliminarlo o para agregar productos al registro.'}
                     </span>
                   </div>
                 </div>
@@ -221,14 +219,12 @@ export default function VisualizadorCalorias() {
                 <div className="tooltip-localCaloriasGrafica">
                   <ion-icon name="alert-circle-outline"></ion-icon>
                   <span className="tooltiptext-localCaloriasGrafica">
-                    Con el botón "Asignar meta" puedes definir la meta de
-                    calorías que quieres seguir cada día. Solamente se suman los
-                    productos que se consuman en el día actual.
+                    {'Con el botón "Asignar meta" puedes definir la meta de calorías que quieres seguir cada día. Solamente se suman los productos que se consuman en el día actual.'}
                   </span>
                 </div>
               </div>
               <h5 className="text-lg font-semibold text-center tracking-tighter text-blue-600 mb-2 xl:text-2xl xl:font-bold xl:tracking-tight ">
-                Calorías consumidas hoy <br /> {fecha_Visual}
+                {'Calorías consumidas hoy'} <br /> {fecha_Visual}
               </h5>
               <div className="h-28 w-28 xl:h-36 xl:w-36">
                 <CircularProgressbarWithChildren
@@ -271,8 +267,7 @@ export default function VisualizadorCalorias() {
                     role="alert"
                   >
                     <div className="ml-3 text-sm font-normal text-center">
-                      Cuidado, tus calorías totales han sobrepasado tu meta del
-                      día.
+                      {'Cuidado, tus calorías totales han sobrepasado tu meta del día.'}
                     </div>
                   </div>
                 </div>
