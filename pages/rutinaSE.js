@@ -480,7 +480,7 @@ export default function Home() {
   const diasActivos = Object.values(dias).filter(dia => dia).length;
   let variables1 = { push: 4, pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
   let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
-  let variables7 = { prueba4: 6 };
+  let variables7 = { };
   const diasArray = [
     { dia: "Lunes", array: contenido1 },
     { dia: "Martes", array: contenido2 },

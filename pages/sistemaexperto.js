@@ -74,6 +74,7 @@ export default function Home() {
   }
   //Funcion para retroceder entre componentes 
   function handlePrevious() {
+    setShowButton(false);
     if (value === 6) {
       setCheckboxes2({
         Lunes: false,

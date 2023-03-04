@@ -37,7 +37,7 @@ function Seccion2(props) {
             <div className = "mt-0.5 absolute left-56 xl:left-96">
             <div className = "tooltip-local">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            <span  className = "tooltiptext-local">Ganar masa muscular: Este es un objetivo común para aquellos que quieren aumentar su tamaño y fortaleza muscular.</span>
             </div>
             </div>
           </label>
@@ -60,7 +60,7 @@ function Seccion2(props) {
             <div className = "mt-0.5 absolute left-56 xl:left-96">
             <div className = "tooltip-local">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            <span  className = "tooltiptext-local">Mejorar la resistencia: El objetivo de mejorar la resistencia es aumentar la capacidad del cuerpo para soportar el esfuerzo físico prolongado.</span>
             </div>
             </div>
           </label>
@@ -83,7 +83,7 @@ function Seccion2(props) {
             <div className = "mt-0.5 absolute left-56 xl:left-96">
             <div className = "tooltip-local">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            <span  className = "tooltiptext-local">Aumentar la fuerza: Este es un objetivo común para aquellos que quieren ser más fuertes y más capaces de levantar pesas más pesadas.</span>
             </div>
             </div>
           </label>
@@ -106,7 +106,7 @@ function Seccion2(props) {
             <div className = "mt-0.5 absolute left-56 xl:left-96">
             <div className = "tooltip-local">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            <span  className = "tooltiptext-local">Perder peso: El objetivo de perder peso es reducir la cantidad de grasa corporal mediante la quema de calorías durante el ejercicio.</span>
             </div>
             </div>
           </label>
@@ -129,7 +129,7 @@ function Seccion2(props) {
             <div className = "mt-0.5 absolute left-56 xl:left-96">
             <div className = "tooltip-local">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Texto de ejemplo</span>
+            <span  className = "tooltiptext-local">Mejorar la salud en general: Muchas personas hacen ejercicio con el objetivo de mejorar su salud en general, reducir el riesgo de enfermedades crónicas y sentirse más energéticas y vitales.</span>
             </div>
             </div>
           </label>
