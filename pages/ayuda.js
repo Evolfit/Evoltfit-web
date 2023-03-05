@@ -85,17 +85,13 @@ export default function Home() {
                 <div>
                   
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 1
+                    ¿Cómo puedo obtener una rutina de entrenamiento personalizada?
                     </h1>
                   
 
                   
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    Al registrarte y responder algunas preguntas sobre tus objetivos de acondicionamiento físico, nivel de condición física actual y preferencias de entrenamiento, nuestro sistema experto generará una rutina de ejercicios personalizada para ti.
                     </p>
                   
                 </div>
@@ -124,17 +120,13 @@ export default function Home() {
                 <div>
                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 2
+                    ¿Cómo puedo hacer un seguimiento de mi consumo de calorías diarias?
                     </h1>
                  
 
                   
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    Nuestro sistema contador de calorías te permitirá registrar tus comidas y hacer un seguimiento de tu consumo diario de calorías.
                     </p>
                  
                 </div>
@@ -163,16 +155,12 @@ export default function Home() {
                 <div>
                   
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 3
+                    ¿Puedo personalizar mi propia rutina de entrenamiento?
                     </h1>
                   
                   
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    Sí, en nuestra sección de personalización de rutinas, puedes crear y personalizar tu propia rutina de entrenamiento según tus preferencias.
                     </p>
                   
                 </div>
@@ -201,16 +189,12 @@ export default function Home() {
                 <div>
                   
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 4
+                    ¿Cómo puedo utilizar la biblioteca de ejercicios en la página web?
                     </h1>
                   
                   
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    Puedes utilizar nuestra biblioteca de ejercicios para buscar y aprender más sobre diferentes ejercicios de entrenamiento de fuerza y acondicionamiento físico.
                     </p>
                   
                 </div>
@@ -239,16 +223,12 @@ export default function Home() {
                 <div>
                  
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 5
+                    ¿Es seguro proporcionar mi información personal en la página web?
                     </h1>
                  
                  
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    Sí, tomamos muy en serio la privacidad y seguridad de la información de nuestros usuarios y utilizamos medidas de seguridad para proteger sus datos personales.
                     </p>
                  
                 </div>
@@ -277,16 +257,12 @@ export default function Home() {
                 <div>
                   
                     <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-                      Pregunta 6
+                    ¿Qué ventajas ofrece la suscripción en tu página web?
                     </h1>
                   
                   
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident placeat, consequatur eveniet veritatis quos
-                      dignissimos beatae dolores exercitationem laboriosam
-                      officia magnam atque blanditiis illum doloremque magni ex
-                      corrupti tempora quis.
+                    La suscripción en nuestra página web ofrece ventajas adicionales que te ayudarán a alcanzar tus objetivos de acondicionamiento físico de manera más fácil y eficiente, incluyendo una experiencia de usuario mejorada y mayor comodidad. Obtén el máximo provecho de nuestra plataforma y el apoyo que necesitas para alcanzar tus objetivos de acondicionamiento físico con una suscripción. Explora nuestras opciones de suscripción para obtener más información.
                     </p>
                   
                 </div>
