@@ -129,15 +129,15 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+            className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
           >
             <img className="w-8 h-8 mr-2" src="evologo.png" alt="logo" />
             EvoltFit
           </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl md:text-2xl font-bold leading-tight">
-                Ingresa a tu cuenta
+                Recupera tu cuenta
               </h1>
 
               <div>
@@ -177,13 +177,9 @@ export default function Home() {
               {/*BOTÓN ENVIAR FORMULARIO ---------------- */}
               <button
                 className={
-                  "w-full block bg-blue-600 hover:bg-blue-500 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6" +
-                  (incluye(errorDatosInput.correo, "control")
-                    ? incluye(errorDatosInput.correo, "error") ||
-                      incluye(errorDatosInput.password, "error") ||
-                      incluye(errorDatosInput.confirmarPassword, "error")
-                      ? "btn-disabled"
-                      : " "
+                  "w-full block btn-secondary hover:bg-blue-500 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6 " +
+                  (incluye(errorDatosInput.correo, "error")
+                    ? "btn-disabled"
                     : " ")
                 }
                 onClick={handlePasswordOlvidada}
@@ -213,7 +209,7 @@ export default function Home() {
                       <span className="sr-only">Icono de error</span>
                     </div>
                     <div className="ml-3 text-sm font-normal">
-                      ¡Se envío un corre de verificación!
+                      ¡Se envío un correo de verificación!
                     </div>
                   </div>
                 </div>
@@ -228,7 +224,7 @@ export default function Home() {
                     className="flex items-center p-4 mb-4 w-full max-w-xs bg-red-200 rounded-lg shadow"
                     role="alert"
                   >
-                    <div className="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-200 rounded-lg dark:bg-red-800 dark:text-red-200">
+                    <div className="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-200 rounded-lg">
                       <svg
                         className="w-5 h-5"
                         fill="currentColor"
@@ -250,11 +246,11 @@ export default function Home() {
               ) : (
                 ""
               )}
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-gray-500">
                 ¿Ya tienes una cuenta?{" "}
                 <a
                   onClick={() => router.push("/login")}
-                  className="link link-secondary font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="link link-secondary font-medium text-primary-600 hover:underline"
                 >
                   Inicia sesión
                 </a>

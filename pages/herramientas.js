@@ -71,11 +71,11 @@ export default function Home() {
         {sesion ? (
           <section className="bg-stone-100">
             <div className="container px-6 py-10 mx-auto">
-              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
+              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
                 Todo lo que necesitas en un solo lugar
               </h1>
 
-              <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+              <p className="mt-4 text-center text-gray-500">
                 Te ofrecemos un repertorio de herramientas que te serviran para
                 hacer un seguimiento de tu progreso.
               </p>
@@ -208,11 +208,11 @@ export default function Home() {
           <section className="bg-stone-100">
             {/*Renderizado si no hay sesion iniciada*/}
             <div className="container px-6 py-10 mx-auto">
-              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">
+              <h1 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
                 Todo lo que necesitas en un solo lugar
               </h1>
 
-              <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+              <p className="mt-4 text-center text-gray-500">
                 Te ofrecemos un repertorio de herramientas que te serviran para
                 hacer un seguimiento de tu progreso.
               </p>

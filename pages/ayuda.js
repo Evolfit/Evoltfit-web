@@ -55,9 +55,9 @@ export default function Home() {
         <br />
         <br />
 
-        <section className="bg-white dark:bg-gray-900">
+        <section className="bg-white">
           <div className="container px-6 py-12 mx-auto">
-              <h1 className="text-3xl font-semibold text-gray-800 lg:text-4xl dark:text-white">
+              <h1 className="text-3xl font-semibold text-gray-800 lg:text-4xl">
                 Preguntas frecuentes.
               </h1>
             
@@ -83,13 +83,13 @@ export default function Home() {
                 
                 <div>
                   
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Cómo puedo obtener una rutina de entrenamiento personalizada?
                     </h1>
                   
 
                   
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     Al registrarte y responder algunas preguntas sobre tus objetivos de acondicionamiento físico, nivel de condición física actual y preferencias de entrenamiento, nuestro sistema experto generará una rutina de ejercicios personalizada para ti.
                     </p>
                   
@@ -118,13 +118,13 @@ export default function Home() {
 
                 <div>
                  
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Cómo puedo hacer un seguimiento de mi consumo de calorías diarias?
                     </h1>
                  
 
                   
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     Nuestro sistema contador de calorías te permitirá registrar tus comidas y hacer un seguimiento de tu consumo diario de calorías.
                     </p>
                  
@@ -153,12 +153,12 @@ export default function Home() {
 
                 <div>
                   
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Puedo personalizar mi propia rutina de entrenamiento?
                     </h1>
                   
                   
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     Sí, en nuestra sección de personalización de rutinas, puedes crear y personalizar tu propia rutina de entrenamiento según tus preferencias.
                     </p>
                   
@@ -187,12 +187,12 @@ export default function Home() {
 
                 <div>
                   
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Cómo puedo utilizar la biblioteca de ejercicios en la página web?
                     </h1>
                   
                   
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     Puedes utilizar nuestra biblioteca de ejercicios para buscar y aprender más sobre diferentes ejercicios de entrenamiento de fuerza y acondicionamiento físico.
                     </p>
                   
@@ -221,12 +221,12 @@ export default function Home() {
 
                 <div>
                  
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Es seguro proporcionar mi información personal en la página web?
                     </h1>
                  
                  
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     Sí, tomamos muy en serio la privacidad y seguridad de la información de nuestros usuarios y utilizamos medidas de seguridad para proteger sus datos personales.
                     </p>
                  
@@ -255,12 +255,12 @@ export default function Home() {
 
                 <div>
                   
-                    <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    <h1 className="text-xl font-semibold text-gray-700">
                     ¿Qué ventajas ofrece la suscripción en tu página web?
                     </h1>
                   
                   
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                    <p className="mt-2 text-sm text-gray-500">
                     La suscripción en nuestra página web ofrece ventajas adicionales que te ayudarán a alcanzar tus objetivos de acondicionamiento físico de manera más fácil y eficiente, incluyendo una experiencia de usuario mejorada y mayor comodidad. Obtén el máximo provecho de nuestra plataforma y el apoyo que necesitas para alcanzar tus objetivos de acondicionamiento físico con una suscripción. Explora nuestras opciones de suscripción para obtener más información.
                     </p>
                   
@@ -347,18 +347,18 @@ export default function Home() {
                 </div>
 
                 <div className="mt-8 lg:w-1/2 lg:mx-6">
-                  <div className="w-full px-8 py-10 mx-auto overflow-hidden bg-white shadow-2xl rounded-xl dark:bg-gray-900 lg:max-w-xl">
-                    <h1 className="text-2xl font-medium text-gray-700 dark:text-gray-200">
+                  <div className="w-full px-8 py-10 mx-auto overflow-hidden bg-white shadow-2xl rounded-xl lg:max-w-xl">
+                    <h1 className="text-2xl font-medium text-gray-700">
                       Formulario de contacto
                     </h1>
 
-                    <p className="mt-4 text-gray-500 dark:text-gray-400">
+                    <p className="mt-4 text-gray-500">
                       Pregúntanos y recomiéndanos lo que quieras.
                     </p>
 
                     <form onSubmit={handleSubmit} className="mt-6">
                       <div className="flex-1">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                        <label className="block mb-2 text-sm text-gray-600">
                           Nombre completo
                         </label>
                         <input
@@ -366,12 +366,12 @@ export default function Home() {
                           name = "nombre"
                           type="text"
                           placeholder="John Doe"
-                          className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                         />
                       </div>
 
                       <div className="flex-1 mt-6">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                        <label className="block mb-2 text-sm text-gray-6000">
                           Dirección de correo
                         </label>
                         <input
@@ -379,18 +379,18 @@ export default function Home() {
                           name = "correo"
                           type="email"
                           placeholder="johndoe@ejemplo.com"
-                          className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                         />
                       </div>
 
                       <div className="w-full mt-6">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                        <label className="block mb-2 text-sm text-gray-600">
                           Mensaje
                         </label>
                         <textarea
                           onChange={e => setMensaje(e.target.value)}
                           name = "mensaje"
-                          className="block w-full h-32 px-5 py-3 mt-2 textform text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                          className="block w-full h-32 px-5 py-3 mt-2 textform text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                           placeholder="Mensaje"
                         ></textarea>
                       </div>

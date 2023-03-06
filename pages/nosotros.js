@@ -151,9 +151,9 @@ export default function Nosotros() {
           </div>
         </section>
 
-        <section className="dark:bg-gray-900">
+        <section className="">
           <div className="container px-6 py-10 mx-auto">
-            <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+            <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl">
               Tenemos <br /> claros objetivos
             </h1>
 
@@ -166,7 +166,7 @@ export default function Nosotros() {
             <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
               <div className="grid w-full grid-cols-1 gap-8 lg:w-1/2 xl:gap-16 md:grid-cols-2">
                 <div className="space-y-3">
-                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl dark:text-white dark:bg-blue-500">
+                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -183,18 +183,18 @@ export default function Nosotros() {
                     </svg>
                   </span>
 
-                  <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
+                  <h1 className="text-2xl font-semibold text-gray-700 capitalizee">
                     Estadísticas reales
                   </h1>
 
-                  <p className="text-gray-500 dark:text-gray-300">
+                  <p className="text-gray-500">
                     Las estadísticas y graficos que mostramos son de información generada por los ejercicios y
                     rutinas que lleves a cabo a lo largo del tiempo.
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl dark:text-white dark:bg-blue-500">
+                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -217,18 +217,18 @@ export default function Nosotros() {
                     </svg>
                   </span>
 
-                  <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
+                  <h1 className="text-2xl font-semibold text-gray-700 capitalize">
                     Diseño entendible
                   </h1>
 
-                  <p className="text-gray-500 dark:text-gray-300">
+                  <p className="text-gray-500">
                     Estamos en constante evolución para poder entregarte una plataforma que cualquier persona pueda
                     entender y usar.
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl dark:text-white dark:bg-blue-500">
+                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -245,18 +245,18 @@ export default function Nosotros() {
                     </svg>
                   </span>
 
-                  <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
+                  <h1 className="text-2xl font-semibold text-gray-700 capitalize">
                     Personalizado
                   </h1>
 
-                  <p className="text-gray-500 dark:text-gray-300">
+                  <p className="text-gray-500">
                     Con nuestras rutinas inteligentes puedes estar seguro que la rutina que te damos es la que mejorar
                     se apega a tus objetivos y a tu nivel.
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl dark:text-white dark:bg-blue-500">
+                  <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -273,11 +273,11 @@ export default function Nosotros() {
                     </svg>
                   </span>
 
-                  <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
+                  <h1 className="text-2xl font-semibold text-gray-700 capitalize">
                     Simple
                   </h1>
 
-                  <p className="text-gray-500 dark:text-gray-300">
+                  <p className="text-gray-500">
                     No usamos interfaces complejas ni sistemas robustos, todo lo que necesitas lo encuentras
                     de manera entendible, sin muchos botones y muy intuitivo.
                   </p>
