@@ -330,7 +330,7 @@ export default function Home() {
     </div>
   </>
 ) : (
-  <button className="bottonSig-2 mt-12 xl:mt-0" onClick={handleNext} >Comenzar</button>
+  <button className="bottonSig-2  lg:mt-12 xl:mt-0" onClick={handleNext} >Comenzar</button>
 )}
 
         </div>
