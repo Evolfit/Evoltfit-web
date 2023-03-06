@@ -123,15 +123,16 @@ export default function Home() {
       <br />
       <br />
       <br />
-      <div className="relative">
-        <div></div>
-        <img className="transparencia-banner opacity-80" src="bcprice.jpg" />
-        <h1 className="absolute text-3xl italic font-bold text-center text-blue-700 top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2  xl:absolute xl:text-5xl">
+
+      <section className = "bg-cover bg-internal-img">
+        <div className = "flex flex-col min-h-screen bg-white/30">
+        <h1 className="text-5xl lg:text-6xl italic font-bold text-center text-blue-700 mt-36">
           EvoltFit Plus
         </h1>
-        <h1 className="absolute top-24 text-base text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-4xl xl:top-64 ">
+        <h1 className="text-2xl lg:text-base text-center font-bebas text-white tracking-wider xl:text-4xl mt-7">
           Precios diseñados para tus objetivos
         </h1>
+        <div className = "grid place-items-center">
         <Link
           to="seccionPaquetes"
           spy={true}
@@ -139,11 +140,13 @@ export default function Home() {
           offset={50}
           duration={800}
         >
-          <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 rounded-md hover:scale-110 transition-all font-catamaran top-28 py-2  px-4 xl:w-64 xl:py-4 xl:px-8 xl:rounded-lg xl:text-xl whitespace-nowrap bg-blue-600 text-white  xl:top-72">
+          <button className="mt-12 rounded-md hover:scale-110 transition-all font-catamaran px-4 w-48 py-4 text-xl lg:w-64 xl:px-8 lg:rounded-lg lg:text-xl whitespace-nowrap bg-blue-600 text-white">
             Pruébalos
           </button>
         </Link>
-      </div>
+        </div>
+          </div>
+        </section>
 
       <br />
       <br />

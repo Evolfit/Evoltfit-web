@@ -57,7 +57,6 @@ export default function Home() {
 
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-12 mx-auto">
-           
               <h1 className="text-3xl font-semibold text-gray-800 lg:text-4xl dark:text-white">
                 Preguntas frecuentes.
               </h1>

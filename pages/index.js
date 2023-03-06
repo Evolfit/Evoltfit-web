@@ -597,7 +597,7 @@ export default function Home() {
                   />
                 </svg>
 
-                <span className="mx-3">Rutinas automáticas</span>
+                <span className="mx-3">Rutinas inteligentes</span>
               </div>
 
               <div className="flex items-center text-gray-800 -px-3">

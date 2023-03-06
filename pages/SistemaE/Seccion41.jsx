@@ -23,7 +23,7 @@ function Seccion41(props) {
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 xl:gap-2 xl:w-full xl:max-w-screen-sm">
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_1"
@@ -51,7 +51,7 @@ function Seccion41(props) {
             </label>
           </div>
 
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_2"
@@ -80,7 +80,7 @@ function Seccion41(props) {
             </label>
           </div>
 
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_3"
@@ -108,7 +108,7 @@ function Seccion41(props) {
               </span>
             </label>
           </div>
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_4"

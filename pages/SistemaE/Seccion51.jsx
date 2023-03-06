@@ -15,7 +15,7 @@ function Seccion51(props) {
       <br />
 
       <div className = "grid place-items-center">
-      <section className="app ">
+      <section className="app">
         <article className="feature">
           <input  
               id="ch1"

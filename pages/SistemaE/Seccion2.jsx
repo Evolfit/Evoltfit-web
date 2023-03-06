@@ -34,10 +34,10 @@ function Seccion2(props) {
             htmlFor="mas"
           >
             Ganar Masa Muscular 
-            <div className = "mt-0.5 absolute left-56 xl:left-96">
-            <div className = "tooltip-local">
+            <div className = "mt-0.5 absolute left-56 xl:left-96 h-7 w-7 grid place-items-center tooltip-content">
+            <div className = "tooltip-local mt-0.5">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Ganar masa muscular: Este es un objetivo común para aquellos que quieren aumentar su tamaño y fortaleza muscular.</span>
+            <span  className = "tooltiptext-local">Este es un objetivo común para aquellos que quieren aumentar su tamaño y fortaleza muscular.</span>
             </div>
             </div>
           </label>
@@ -57,10 +57,10 @@ function Seccion2(props) {
             htmlFor="res"
           >
             Ganar Resistencia
-            <div className = "mt-0.5 absolute left-56 xl:left-96">
-            <div className = "tooltip-local">
+            <div className = "mt-0.5 absolute left-56 xl:left-96 h-7 w-7 grid place-items-center tooltip-content">
+            <div className = "tooltip-local mt-0.5">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Mejorar la resistencia: El objetivo de mejorar la resistencia es aumentar la capacidad del cuerpo para soportar el esfuerzo físico prolongado.</span>
+            <span  className = "tooltiptext-local">El objetivo de mejorar la resistencia es aumentar la capacidad del cuerpo para soportar el esfuerzo físico prolongado.</span>
             </div>
             </div>
           </label>
@@ -80,10 +80,10 @@ function Seccion2(props) {
             htmlFor="fuer"
           >
             Ganar Fuerza
-            <div className = "mt-0.5 absolute left-56 xl:left-96">
-            <div className = "tooltip-local">
+            <div className = "mt-0.5 absolute left-56 xl:left-96 h-7 w-7 grid place-items-center tooltip-content">
+            <div className = "tooltip-local mt-0.5">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Aumentar la fuerza: Este es un objetivo común para aquellos que quieren ser más fuertes y más capaces de levantar pesas más pesadas.</span>
+            <span className = "tooltiptext-local">Este es un objetivo común para aquellos que quieren ser más fuertes y más capaces de levantar pesas más pesadas.</span>
             </div>
             </div>
           </label>
@@ -103,10 +103,10 @@ function Seccion2(props) {
             htmlFor="grasa"
           >
             Perder Grasa
-            <div className = "mt-0.5 absolute left-56 xl:left-96">
-            <div className = "tooltip-local">
+            <div className = "mt-0.5 absolute left-56 xl:left-96 h-7 w-7 grid place-items-center tooltip-content">
+            <div className = "tooltip-local mt-0.5">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Perder peso: El objetivo de perder peso es reducir la cantidad de grasa corporal mediante la quema de calorías durante el ejercicio.</span>
+            <span  className = "tooltiptext-local">El objetivo de perder peso es reducir la cantidad de grasa corporal mediante la quema de calorías durante el ejercicio.</span>
             </div>
             </div>
           </label>
@@ -126,10 +126,10 @@ function Seccion2(props) {
             htmlFor="dep"
           >
             Mejorar la Salud en General
-            <div className = "mt-0.5 absolute left-56 xl:left-96">
-            <div className = "tooltip-local">
+            <div className = "mt-0.5 absolute left-56 xl:left-96 h-7 w-7 grid place-items-center tooltip-content">
+            <div className = "tooltip-local mt-0.5">
             <ion-icon name="alert-circle-outline"></ion-icon>
-            <span  className = "tooltiptext-local">Mejorar la salud en general: Muchas personas hacen ejercicio con el objetivo de mejorar su salud en general, reducir el riesgo de enfermedades crónicas y sentirse más energéticas y vitales.</span>
+            <span  className = "tooltiptext-local">Muchas personas hacen ejercicio con el objetivo de mejorar su salud en general, reducir el riesgo de enfermedades crónicas y sentirse más energéticas y vitales.</span>
             </div>
             </div>
           </label>

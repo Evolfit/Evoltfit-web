@@ -1,6 +1,3 @@
-import styled from "daisyui/dist/styled";
-import styles from "../../styles/Home.module.css";
-import React, { useState } from "react";
 
 function Seccion1(props) {
   const handleChange = (event) => {
@@ -23,7 +20,7 @@ function Seccion1(props) {
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-3 xl:gap-2 xl:w-full xl:max-w-screen-sm">
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_1"
@@ -33,7 +30,7 @@ function Seccion1(props) {
               onChange={handleChange}
             />
             <label
-              className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded"
+              className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded "
               htmlFor="radio_1"
             >
               <div className="xl:grid xl:place-items-center">
@@ -47,7 +44,7 @@ function Seccion1(props) {
             </label>
           </div>
 
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_2"
@@ -71,7 +68,7 @@ function Seccion1(props) {
             </label>
           </div>
 
-          <div>
+          <div className = "divInputBoxSE">
             <input
               className="hidden"
               id="radio_3"
