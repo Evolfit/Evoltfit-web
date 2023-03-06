@@ -168,7 +168,7 @@ export default function VisualizadorCalorias() {
                   <div className="tooltip-localCalorias">
                     <ion-icon name="alert-circle-outline"></ion-icon>
                     <span className="tooltiptext-localCalorias">
-                      {'Presiona "Nuevo registro" para crear un registro con la fecha actual.Puedes usar el botón "Opciones" para eliminarlo o para agregar productos al registro.'}
+                      {'Presiona "Nuevo registro" para crear un registro con la fecha actual. Puedes usar el botón "Opciones" para eliminarlo o para agregar productos al registro.'}
                     </span>
                   </div>
                 </div>

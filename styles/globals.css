@@ -234,7 +234,6 @@
   transform: translateY(-1px);
 }
 
-
 .bottonAnt{
   padding: 1.3em 3em;
   font-size: 12px;
@@ -280,6 +279,15 @@
   height: 700px;
 }
 
+.seccionInicial{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.contenedorSeccionInicial{
+  height: 440px;
+}
+
 @media screen and (max-width: 380px) {
   .seccion {
     margin-top: 30%;
@@ -293,17 +301,19 @@
     margin-top: 30%;
     height: 85%;
   }
-  
+  .seccionInicial{
+    margin-top: 45%;
+    height: 85%;
+  }
 
 }
 
 /*CSS para los input radio del SE*/
 
-input:checked + label {
+.divInputBoxSE input:checked + label {
 	border-color: #2563eb;
 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
 
 /*Imagenes para background*/
 
@@ -317,6 +327,22 @@ input:checked + label {
 
 .bg-internal-img3 {
   background-image: url('../public/bannerindex.jpg');
+}
+
+.bg-internal-img4 {
+  background-image: url('../public/bcnosotros.jpg');
+}
+
+.bg-internal-img5 {
+  background-image: url('../public/bcsobrecarga.jpg');
+}
+
+.bg-internal-img6 {
+  background-image: url('../public/bcbilbo.jpg');
+}
+
+.bg-internal-img7{
+  background-image: url('../public/bgSE.jpg')
 }
 
 .textform{
@@ -385,11 +411,11 @@ input:checked + label {
 /* Tooltip text */
 .tooltip-local .tooltiptext-local {
   visibility: hidden;
-  width: 120px;
+  width: 150px;
   background-color: gray;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px 5px;
   border-radius: 6px;
   font-size: small;
   position:absolute;
@@ -402,7 +428,7 @@ input:checked + label {
 }
 
 /* Hover para mostrarlo */
-.tooltip-local:hover .tooltiptext-local {
+.tooltip-content:hover .tooltiptext-local {
   visibility: visible;
 }
 
@@ -582,7 +608,25 @@ input:checked + label {
 }
 
 @media screen and (max-width: 380px) {
-  article {
+  .feature {
     float:none;
   }
+}
+
+
+/* Clases de los iconos SVG de las paginas sobrecarga y metodo bilbo */
+.svg-icon {
+  width: 2em;
+  height: 2em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }

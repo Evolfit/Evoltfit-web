@@ -64,7 +64,7 @@ export default function Perfil() {
         let { data: sus_pagos, error } = await supabase
           .from("sus_pagos")
           .select("activo, plan_name, fecha_termino")
-          .eq("id_usuario", sesion_id);
+          .match({id_usuario: sesion_id, activo: 1});
 
           if(sus_pagos.length == 0){
             console.log("Este usuario no tiene plan")
@@ -74,7 +74,6 @@ export default function Perfil() {
             setDatosPlan(sus_pagos)
             setResultado(sus_pagos[0].activo)
           }
-      
   } 
 
   const handleToggleEdit = () => {

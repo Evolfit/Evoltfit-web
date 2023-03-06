@@ -27,7 +27,7 @@ export default function Nosotros() {
         <br />
         <br />
 
-        <div className="relative">
+        {/* <div className="relative min-h-screen">
           <img
             className="transparencia-banner opacity-80"
             src="bcnosotros.jpg"
@@ -43,7 +43,23 @@ export default function Nosotros() {
             className="absolute top-32 text-2xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-7xl xl:top-64 "
             loop={true}
           />
-        </div>
+        </div> */}
+
+        <section className = "bg-cover bg-internal-img4">
+          <div className = "flex flex-col min-h-screen">
+          <Typed
+            strings={[
+              "Accesible",
+              "Centralizado",
+              "Intuitivo",
+            ]}
+            typeSpeed={150}
+            backSpeed={100}
+            className="absolute top-32 text-2xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 lg:text-8xl xl:top-96 "
+            loop={true}
+          />
+          </div>
+        </section>
 
         <br />
         <br />
@@ -129,7 +145,7 @@ export default function Nosotros() {
             <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Visión</h2>
               <p>
-              Construimos un futuro en el cual, la salud sea una de las prioridades más importantes de la población. Alentando a las peresonas a que no solo es posible ejercitarse en un gimnasio, sino también en casa.
+              Construimos un futuro en el cual, la salud sea una de las prioridades más importantes de la población. Alentando a las personas a que no solo es posible ejercitarse en un gimnasio, sino también en casa.
               </p>
             </div>
           </div>
