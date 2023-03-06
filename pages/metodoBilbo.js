@@ -54,10 +54,10 @@ export default function MetodoBilbo() {
         </div>
         
         <section className = "-mb-14">
-          <div class="container px-6 py-12 mx-auto">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="container px-6 py-12 mx-auto">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -65,17 +65,17 @@ export default function MetodoBilbo() {
 								c0.113,0.113,0.263,0.166,0.411,0.162c0.148,0.004,0.298-0.049,0.411-0.162c0.024-0.024,0.036-0.055,0.055-0.083l5.701-5.7
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {"No se alcanza el fallo"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {"El fallo total es un paso atrás, no es beneficioso. Siempre después de un fallo viene una pequeña perdida de rendimiento, por lo que es mejor evitar en lo posible llegar a fallar. Los entrenamientos que sistemáticamente buscan el fallo pueden ser soportables por gente que use química. Nadie natural puede ir al fallo todos los días en el gimnasio y esperar mejoras."}
                 </p>
               </div>
 
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -83,17 +83,17 @@ export default function MetodoBilbo() {
 								c0.113,0.113,0.263,0.166,0.411,0.162c0.148,0.004,0.298-0.049,0.411-0.162c0.024-0.024,0.036-0.055,0.055-0.083l5.701-5.7
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                {"Superávit calórico"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {"Como en cualquier otro método de entrenamiento, si se quiere mejorar se tienen que hacer las progresiones en superávit calórico. Hay que ir incrementando el peso corporal mientras ajustamos las progresiones, volviendo a bajar de peso corporal al terminarlas, pero sin preocuparnos de perder marcas. Y repetir una y otra vez esto. Cada vez que terminemos la progresión ayudados con el aumento de peso corporal, habremos ganado masa muscular y fuerza."}
                 </p>
               </div>
 
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -102,11 +102,11 @@ export default function MetodoBilbo() {
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
 
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {"Retracción escapular"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                {"La retracción idónea para realizar el press de banca de manera que nos permita mejorar en fuerza e hipertrofia además de evitar lesiones, es la que marca una postura en la cuál dejamos los hombros retrasados y el pectoral por delante de éstos. Con ello conseguimos un ligero arco lumbar y una moderada retracción escapular."}
                 </p>
               </div>

@@ -83,7 +83,7 @@ export default function Home() {
       const { data, error } = await supabase.auth.resetPasswordForEmail(
         formInput.correo,
         {
-          redirectTo: "http://localhost:3000/recuperarPassword",
+          redirectTo: "https://evoltfit-app.vercel.app/recuperarPassword",
         }
       );
 
