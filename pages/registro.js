@@ -368,7 +368,7 @@ export default function Home() {
                className="flex items-center p-4 mb-4 w-full max-w-xs bg-red-200 rounded-lg shadow"
                role="alert"
              >
-               <div className = "inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-200 rounded-lg dark:bg-red-800 dark:text-red-200">
+               <div className = "inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-200 rounded-lg">
                  <svg
                    className="w-5 h-5"
                    fill="currentColor"

@@ -86,7 +86,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
                       <div className="flex-1">
                         
                         <div className = "grid place-items-center">
-                        <label className="mb-2 text-base xl:text-xl font-bold text-gray-600 dark:text-gray-200">
+                        <label className="mb-2 text-base xl:text-xl font-bold text-gray-600">
                           Ingresa las calorías
                         </label>
                         <input

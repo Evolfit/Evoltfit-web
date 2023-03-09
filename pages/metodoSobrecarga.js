@@ -51,10 +51,10 @@ export default function MetodoSobrecarga() {
         </div>
         <br></br>
         <section className = "-mb-14">
-          <div class="container px-6 py-12 mx-auto">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="container px-6 py-12 mx-auto">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -62,17 +62,17 @@ export default function MetodoSobrecarga() {
 								c0.113,0.113,0.263,0.166,0.411,0.162c0.148,0.004,0.298-0.049,0.411-0.162c0.024-0.024,0.036-0.055,0.055-0.083l5.701-5.7
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {" Aumenta la resistencia"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {"Al añadir más estrés a los músculos, provocamos que las fibras musculares se rompan y se reconstruyan, y por consecuencia, se fortalezcan. No obstante, antes de aumentar el peso en los ejercicios, asegúrate de que puedas levantar ese peso de manera cómoda durante al menos unas 10 o 12 repeticiones."}
                 </p>
               </div>
 
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -80,17 +80,17 @@ export default function MetodoSobrecarga() {
 								c0.113,0.113,0.263,0.166,0.411,0.162c0.148,0.004,0.298-0.049,0.411-0.162c0.024-0.024,0.036-0.055,0.055-0.083l5.701-5.7
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                 {"Añade más repeticiones"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {" Aumentar el peso no es la única manera de entrenar con sobrecarga progresiva. También podemos lograrlo aumentando la cantidad de repeticiones; de esta manera, a los músculos se les exige cada vez más y pueden volverse más fuertes con el tiempo y la práctica. "}
                 </p>
               </div>
 
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -99,11 +99,11 @@ export default function MetodoSobrecarga() {
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
 
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {"Aumenta el volumen"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                {"Además de incrementar la cantidad de repeticiones, también puedes hacerlo con el número de series que realizas. Si haces tres series de 10 repeticiones de un ejercicio, prueba a pasar a cuatro series de 10 repeticiones. "}
                 </p>
               </div>
@@ -112,10 +112,10 @@ export default function MetodoSobrecarga() {
         </section>
        
         <section>
-          <div class="container px-6 py-12 mx-auto ">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
+          <div className="container px-6 py-12 mx-auto ">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -124,17 +124,17 @@ export default function MetodoSobrecarga() {
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
 
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {" Reduce el tiempo de descanso"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {"El tiempo de descanso puede variar según tus objetivos. Al reducirlo, aumentamos la intensidad de nuestros entrenamientos, lo que puede ayudarnos a obtener resultados más rápido. No obstante, si vas a disminuir el tiempo de descanso, hazlo empleando menos peso y a un ritmo más rápido."}
                 </p>
               </div>
 
               <div>
-              <svg class="svg-icon" viewBox="0 0 20 20">
+              <svg className="svg-icon" viewBox="0 0 20 20">
 							<path fill="none" d="M9.917,0.875c-5.086,0-9.208,4.123-9.208,9.208c0,5.086,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208
 								C19.125,4.998,15.003,0.875,9.917,0.875z M9.917,18.141c-4.451,0-8.058-3.607-8.058-8.058s3.607-8.057,8.058-8.057
 								c4.449,0,8.057,3.607,8.057,8.057S14.366,18.141,9.917,18.141z M13.851,6.794l-5.373,5.372L5.984,9.672
@@ -143,11 +143,11 @@ export default function MetodoSobrecarga() {
 								c0.219-0.219,0.219-0.575,0-0.794C14.425,6.575,14.069,6.575,13.851,6.794z"></path>
 						  </svg>
 
-                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                <h1 className="mt-4 text-xl font-semibold text-gray-800">
                  {" Aumenta la frecuencia"}
                 </h1>
 
-                <p class="mt-2 text-gray-500 font-heebo">
+                <p className="mt-2 text-gray-500 font-heebo">
                 {"Por último, quizás la manera más sencilla de aplicar la sobrecarga progresiva es aumentando la frecuencia de nuestros entrenamientos. Si te acostumbras a saltarte días de entrenamiento o entrenas pocos días a la semana, puede que en algún momento tu rendimiento se vea estancado."}
                 </p>
               </div>

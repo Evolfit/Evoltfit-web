@@ -329,97 +329,53 @@ export default function Home() {
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
-                  /*
-                  <div key={ejercicio.id} className="lg:flex drop-shadow-md my-4 w-full">
-                    <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden cursor-pointer hover:opacity-70 duration-75" 
-                    style={{backgroundImage: 'url("'+ejercicio.img+'")'}}
+                  <div 
+                    key={ejercicio.id}
+                    className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
                     onClick={() => {
                       router.push({
                       pathname: '/detalleEjercicio',
                       query: { ejercicio: ejercicio.id }
                     })}}
-                    >
-                    </div>
-                    <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
-                      <div className="mb-8">
-                        <p className="text-sm text-gray-600 flex items-center">
-                          <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                          </svg>
-                          {ejercicio.musculo_primario}
-                        </p>
-                        <p className="text-gray-900 font-bold text-xl mb-2 cursor-pointer hover:text-secondary duration-75"
-                          onClick={() => {
-                            router.push({
-                            pathname: '/detalleEjercicio',
-                            query: { ejercicio: ejercicio.id }
-                          })}}
-                        >{ejercicio.nombre}</p>
-                        <p className="text-gray-700 text-base">{ejercicio.recomendaciones}</p>
-                      </div>
-                      
-                      <div className="flex items-center">
-                      {ejercicio.musculo_otros != "" ? 
-                      <div className="text-sm mr-4">
-                        <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
-                        <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
-                      </div>
-                      : ""}
-                        <div className="text-sm">
-                          <p className="text-gray-900 leading-none font-semibold">Equipo:</p>
-                          <p className="text-gray-600">{ejercicio.equipo.join(", ")}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  */
-                <div 
-                  key={ejercicio.id}
-                  className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
-                  onClick={() => {
-                    router.push({
-                    pathname: '/detalleEjercicio',
-                    query: { ejercicio: ejercicio.id }
-                  })}}
-                >
-                  <img 
-                    src={ejercicio.img} 
-                    alt={ejercicio.nombre} 
-                    className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
-                  />
-                  <div className="flex flex-col items-center justify-center pl-1 sm:pl-0 sm:p-4 sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
-                    <div
-                      className="w-full sm:w-8/12"
-                    >
-                      <h3
-                      className="font-semibold whitespace-nowrap text-ellipsis overflow-hidden lg:text-xl"
+                  >
+                    <img 
+                      src={ejercicio.img} 
+                      alt={ejercicio.nombre} 
+                      className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
+                    />
+                    <div className="flex flex-col items-center justify-center pl-1 sm:pl-0 sm:p-4 sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
+                      <div
+                        className="w-full sm:w-8/12"
                       >
-                        {ejercicio.nombre}</h3>
-                      <p
-                      className="text-sm lg:text-lg"
-                      >{ejercicio.musculo_primario}</p>
-                      <p
-                      className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
-                      >
-                        {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
-                      </p>
-                    </div>
-                    <div
-                    className="w-full sm:w-4/12 flex flex-col sm:mt-0 mt-2 sm:px-4"
-                    >
-                      <span 
-                      className="text-xs lg:text-lg font-semibold"
-                      >
-                        {'Equipo: '}
-                      </span>
-                      <span
-                        className="lg:text-base text-xs"
+                        <h3
+                        className="font-semibold whitespace-nowrap text-ellipsis overflow-hidden lg:text-xl"
                         >
-                          {ejercicio.equipo.join(", ")}
-                      </span>
+                          {ejercicio.nombre}</h3>
+                        <p
+                        className="text-sm lg:text-lg"
+                        >{ejercicio.musculo_primario}</p>
+                        <p
+                        className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
+                        >
+                          {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
+                        </p>
+                      </div>
+                      <div
+                      className="w-full sm:w-4/12 flex flex-col sm:mt-0 mt-2 sm:px-4"
+                      >
+                        <span 
+                        className="text-xs lg:text-lg font-semibold"
+                        >
+                          {'Equipo: '}
+                        </span>
+                        <span
+                          className="lg:text-base text-xs"
+                          >
+                            {ejercicio.equipo.join(", ")}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
                 ))
                 }
               </div>

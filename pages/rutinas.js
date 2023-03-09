@@ -113,38 +113,33 @@ export default function Home() {
           {
             rutinas ? 
             <div className="mx-auto mt-6">
-              <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
-                <div className='text-3xl mt-auto'>
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </div>
-                <span className="ml-2">{"Volver a Rutinas"}</span>
-              </button>
               <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
-                <h2 className="text-3xl sm:text-4xl p-2 text-secondary my-2 w-full font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
-                  {"Rutinas de " + sesion.user.user_metadata.nombre}
+                <h2 className="text-2xl sm:text-4xl text-secondary my-2 uppercase w-full font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                  {"RUTINAS DE " + sesion.user.user_metadata.nombre}
                 </h2>
-                { rutinas.length === 0 ? 
-                    <h2>{'Ups, aquí no hay rutinas. 🥵'}</h2>
-                  :
-                    (rutinas.map((rutina) => (
-                        <CardRutina key={rutina.id} rutina={rutina}/>
-                      ))
-                    )
-                }
-                <button type="submit" onClick={nuevaRutina} className="btn text-white btn-secondary rounded-lg btn-lg w-fit mx-auto my-4">Nueva Rutina</button>
-                <button onClick={() => {router.push('/progreso')}} className="btn text-white btn-success rounded-lg btn-lg w-fit mx-auto">Ir a Progreso</button>
-              </div>
-              {/* PAGINACIÓN */}
-              <div className="flex flex-col items-center mb-2 mt-4">
-                <div className="btn-group">
-                  {(paginacion == 1) ? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>«</button>}
-                  {((paginacion - 2) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 2)}}>{paginacion - 2}</button>}
-                  {((paginacion - 1) <= 0) ? "" : <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion - 1)}}>{paginacion - 1}</button>}
-                  <button className="btn lg:btn-lg btn-secondary">{paginacion}</button>
-                  {(cantidad > (paginacion * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>{paginacion + 1}</button> : ""}
-                  {(cantidad > ((paginacion+1) * 10))? <button className="btn btn-outline btn-secondary lg:btn-lg" onClick={() => {setPaginacion(paginacion + 2)}}>{paginacion + 2}</button> : ""}
-                  {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1)}}>»</button>}
+                {rutinas.length === 0 ? <p className="text-lg">{'Aún no tienes rutinas.'}</p> : ''}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-2">
+                  { rutinas.length === 0 ? 
+                      ''
+                    :
+                          (rutinas.map((rutina) => (
+                              <CardRutina key={rutina.id} rutina={rutina}/>
+                            ))
+                          )
+                  }
+                  <div 
+                  className="flex justify-center hover:text-white hover:bg-blue-500 text-blue-500 items-center bg-white border-2 rounded-lg shadow-md hover:scale-105 hover:shadow-lg hover:border-blue-500 duration-100 p-4 cursor-pointer"
+                  onClick={nuevaRutina}
+                  >
+                    <div className="text-9xl">
+                      <ion-icon name="add-outline"></ion-icon>
+                    </div>
+                  </div>
                 </div>
+                {/*
+                <button type="submit" onClick={nuevaRutina} className="btn text-white btn-secondary mx-auto mt-4">Nueva Rutina</button>
+                <button onClick={() => {router.push('/progreso')}} className="btn text-white btn-success mx-auto">Ir a Progreso</button>
+                */}
               </div>
             </div> 
             : 

@@ -96,6 +96,7 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
     
+    query = query.order('id', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
@@ -294,8 +295,8 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
           {
             ejercicios ? 
             <div className="mx-auto mt-6">
-              <div className="flex w-11/12 sm:w-9/12 mx-auto max-w-5xl">
-                <span className="text-sm w-1/4 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
+              <div className="flex mx-auto">
+                <span className="text-sm lg:text-lg w-1/2 my-auto">{"Mostrando " + Object.keys(ejercicios).length + " de " + cantidad + "."}</span>
                 {/* PAGINACIÓN */}
                 <div className="flex flex-col my-auto w-3/4 items-end">
                   <div className="btn-group">
@@ -313,35 +314,46 @@ const SeleccionarEjercicio = ({ agregarEjercicio, setToggleSeleccionar }) => {
                 {/* MOSTRAR EJERCICIOS EN VARIABLE ejercicios */}
                 {
                   ejercicios.map((ejercicio) =>(
-                  <div key={ejercicio.id} className="w-full lg:flex drop-shadow-md my-6">
-                    <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: 'url("'+ejercicio.img+'")'}}>
-                    </div>
-                    <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
-                      <div className="mb-4">
-                        <p className="text-xs text-gray-600 flex items-center">
-                          <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                          </svg>
-                          {ejercicio.musculo_primario}
+                  <div 
+                    key={ejercicio.id}
+                    className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
+                    onClick={() => {agregarEjercicio(ejercicio.id)}}
+                  >
+                    <img 
+                      src={ejercicio.img} 
+                      alt={ejercicio.nombre} 
+                      className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
+                    />
+                    <div className="flex flex-col items-center justify-center pl-1 sm:pl-0 sm:p-4 sm:flex-row w-1/2 sm:w-9/12 md:w-10/12">
+                      <div
+                        className="w-full sm:w-8/12"
+                      >
+                        <h3
+                        className="font-semibold whitespace-nowrap text-ellipsis overflow-hidden lg:text-xl"
+                        >
+                          {ejercicio.nombre}</h3>
+                        <p
+                        className="text-sm lg:text-lg"
+                        >{ejercicio.musculo_primario}</p>
+                        <p
+                        className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
+                        >
+                          {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
                         </p>
-                        <div className="text-gray-900 font-bold text-lg mb-2">{ejercicio.nombre}</div>
-                        <p className="text-gray-700 text-xs">{ejercicio.recomendaciones}</p>
                       </div>
-                      
-                      <div className="flex flex-row items-center">
-                        <button onClick={() => {agregarEjercicio(ejercicio.id)}} className="btn btn-secondary btn-sm mr-4">
-                            AGREGAR EJERCICIO
-                        </button>
-                      {ejercicio.musculo_otros != "" ? 
-                        <div className="text-xs mr-4">
-                            <p className="text-gray-900 leading-none font-semibold">Otros músculos activados:</p>
-                            <p className="text-gray-600">{ejercicio.musculo_otros.join(", ")}</p>
-                        </div>
-                      : ""}
-                        <div className="text-xs">
-                          <p className="text-gray-900 leading-none font-semibold">Equipo:</p>
-                          <p className="text-gray-600">{ejercicio.equipo.join(", ")}</p>
-                        </div>
+                      <div
+                      className="w-full sm:w-4/12 flex flex-col sm:mt-0 mt-2 sm:px-4"
+                      >
+                        <span 
+                        className="text-xs lg:text-lg font-semibold"
+                        >
+                          {'Equipo: '}
+                        </span>
+                        <span
+                          className="lg:text-base text-xs"
+                          >
+                            {ejercicio.equipo.join(", ")}
+                        </span>
                       </div>
                     </div>
                   </div>

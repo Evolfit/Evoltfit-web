@@ -615,8 +615,8 @@ export default function Home() {
         <br /><br />
 
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-left text-gray-500">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
                 <th className="px-6 py-3">Lunes</th>
                 <th className="px-6 py-3">Martes</th>
@@ -629,7 +629,7 @@ export default function Home() {
             </thead>
             <tbody>
               {longestArray.map((_, index) => (
-                <tr key={`${arrays[index]}-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
                   {arrays.map((array) => (
 
                     <td key={shortid.generate()} className="px-6 py-4">
@@ -652,7 +652,7 @@ export default function Home() {
         </div>
 
 
-        <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
+        <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
         <br /><br /> <br /> <br /> <br /> <br /> <br />
       </main>
       <Footer></Footer>

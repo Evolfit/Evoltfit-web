@@ -55,8 +55,8 @@ const CardsPrecios = ({
     await stripe.redirectToCheckout({
       mode: "payment",
       lineItems,
-      successUrl: `http://localhost:3000/successPay`,
-      cancelUrl: `http://localhost:3000/failurePay`,
+      successUrl: `https://evoltfit-app.vercel.app/successPay`,
+      cancelUrl: `https://evoltfit-app.vercel.app/failurePay`,
     });
   }
 
