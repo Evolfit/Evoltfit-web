@@ -32,6 +32,7 @@ export default function VisualizadorCalorias() {
   const [sumatoriaCalorias, setSumatoriaCalorias] = useState(null);
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
   const [metaCalorias, setMetaCalorias] = useState(null);
+  const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' });
 
   var sumatoriaCal = 0;
 
@@ -39,6 +40,18 @@ export default function VisualizadorCalorias() {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      const diff = tomorrow - now;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      setTime({ hours, minutes, seconds });
+    }, 1000);
+    return () => clearInterval(interval);
+
   }, []);
 
   const nuevoRegistro = async () => {
@@ -275,12 +288,30 @@ export default function VisualizadorCalorias() {
                 ""
               )}
 
-              <button
-                onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
-                className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mt-5"
-              >
-                Asignar meta
-              </button>
+                  {metaCalorias == 0 ? (
+                     <button
+                     onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
+                     className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mt-5"
+                   >
+                     Asignar meta
+                   </button>
+                  )  : (
+                  
+                    <button
+                    onClick={() => setToggleSeleccionar(!toggleSeleccionar)}
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm xl:text-base px-5 py-2.5 text-center mt-5"
+                  >
+                    Cambiar meta
+                  </button>
+                  
+                  )}
+
+              
+
+              <div className = "mt-5">
+              <h2 className = "text-center text-lg font-semibold tracking-tighter text-blue-600 mb-2 xl:text-xl xl:font-bold xl:tracking-tight">Tiempo restante para resetear las calorías</h2>
+              <p className = "text-center text-lg font-semibold tracking-tighter text-zinc-800 mb-2 xl:text-lg xl:font-bold xl:tracking-tight">{time.hours} horas {time.minutes} minutos {time.seconds} segundos</p>
+            </div>
             </div>
           </div>
           <br />
