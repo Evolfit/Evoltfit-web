@@ -481,6 +481,7 @@ export default function Home() {
   let variables1 = { push: 4, pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
   let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
   let variables7 = { };
+
   const diasArray = [
     { dia: "Lunes", array: contenido1 },
     { dia: "Martes", array: contenido2 },
@@ -490,14 +491,7 @@ export default function Home() {
     { dia: "Sabado", array: contenido6 },
     { dia: "Domingo", array: contenido7 }
   ];
-  /*
-  //Plantilla 1
-    //Dia1
-    variables1 = { pecho: 3, hombro: 2, tricep: 3 };
-    variables2 = { espalda: 3, biceps: 3, };
-    variables3 = { cuadriceps: 3, isquos: 3, gluteos: 3 };
-    llenarArreglo(diasActivos);
-  */
+ 
 
   //____________________________________________pregunta de enfoque.
   if (opciones[4] === 'superior' && diasActivos > 2) {
@@ -553,7 +547,7 @@ export default function Home() {
         Object.entries(eval(`variables${count}`)).forEach(([name, cantidad]) => {
           for (let i = 0; i < cantidad; i++) {
             if (name === "hombro" || name === "antebrazo" || name === "pantorrilla") {
-              array.push({ valor: name, series: 5, repeticiones: repeticionesG });
+              array.push({ valor: name, series: 4, repeticiones: repeticionesG });
             } else {
               array.push({ valor: name, series: seriesG, repeticiones: repeticionesG });
             }
@@ -578,7 +572,7 @@ export default function Home() {
       console.log(error);
     } else {
       console.log(data);
-      contenido1[0].valor = data[0].nombre;
+      //contenido1[0].valor = data[0].nombre;
   }
   }
   
