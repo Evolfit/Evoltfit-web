@@ -43,7 +43,12 @@ export default function Home() {
         var temp = equipo;
         
         if (checked == true){
-          temp.push(value);
+          if (temp[0] == 'Ninguno') {
+            temp = [value]
+          }
+          else{
+            temp.push(value);
+          }
         }
         
         if (checked == false){
@@ -51,6 +56,10 @@ export default function Home() {
           if (indice > -1) {
             temp.splice(indice, 1);
           }
+        }
+
+        if (temp.length === 0){
+          temp.push("Ninguno");
         }
         
         setEquipo(temp);
@@ -96,12 +105,12 @@ export default function Home() {
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
     //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
 
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
     //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
 
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
-    
+
     query = query.order('id', { ascending: false })
     const data = await query
 
@@ -115,7 +124,7 @@ export default function Home() {
     .select('id', { count: 'exact', head: true })
 
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
 
     const count = await query
@@ -209,7 +218,7 @@ export default function Home() {
                 {/* CHECKBOX TOGGLE EQUIPO */}
                 <div className="flex flex-row flex-wrap form-control">
                   <div className="w-full lg:w-1/3 lg:m-auto">
-                    <label className="cursor-pointer label">
+                  <label className="cursor-pointer label">
                       <span className="label-text mx-4">Ninguno</span> 
                       <input type="checkbox" checked={formInput.equipo ? incluye(formInput.equipo, "Ninguno") : true} className="toggle toggle-secondary" value="Ninguno" id="equipo" name="equipo" onChange={handleOnInputChange} />
                     </label>
@@ -271,8 +280,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center mb-3 mt-5">
-                  <div className="flex flex-row flex-wrap items-center">
+                <div className="flex flex-row my-4">
+                  <div className="flex items-center justify-center w-6/12">
                     <button
                     onClick={() => {
                       var temp = ["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]
@@ -282,26 +291,22 @@ export default function Home() {
                         musculo: formInput.musculo,
                         search: formInput.search
                       })}} 
-                      className="btn btn-secondary w-3/4 mx-auto mt-2">Activar todos
+                      className="btn btn-secondary w-11/12">Activar todos
                     </button>
+                  </div>
+                  <div className="flex items-center justify-center w-6/12">
                     <button
                     onClick={() => {
-                      var temp = []
+                      var temp = ["Ninguno"]
                       setEquipo(temp);
                       setFormInput({
                         equipo: temp,
                         musculo: formInput.musculo,
                         search: formInput.search
                       })}} 
-                      className="btn mt-4 w-3/4 mx-auto mb-2">Desactivar todos
+                      className="btn w-11/12 ">Desactivar todos
                     </button>
                   </div>
-                </div>
-
-                <div className="divider m-0"></div>
-
-                <div className="flex flex-col items-center mb-3 mt-5">
-                  <button type="submit" onClick={getEjerciciosBiblioteca} className="btn btn-lg btn-secondary px-6 w-3/4 lg:w-3/12">FILTRAR</button>
                 </div>
               </div>
             </div>
