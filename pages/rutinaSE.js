@@ -67,7 +67,7 @@ export default function Home() {
 
 
   /*/////////////////////////////////////////////////////////*/
-  
+
   //contenidos de puede llegar a contener cada dia
   let contenido1 = [];//lUNES
   let contenido2 = [];//MARTES
@@ -76,6 +76,7 @@ export default function Home() {
   let contenido5 = [];//VIERNES
   let contenido6 = [];//SABADO
   let contenido7 = [];//DOMINGO
+
 
   //INICIO DEL SE
   const objetivo = opciones[1]
@@ -480,7 +481,7 @@ export default function Home() {
   const diasActivos = Object.values(dias).filter(dia => dia).length;
   let variables1 = { push: 4, pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
   let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
-  let variables7 = { };
+  let variables7 = {};
 
   const diasArray = [
     { dia: "Lunes", array: contenido1 },
@@ -491,7 +492,7 @@ export default function Home() {
     { dia: "Sabado", array: contenido6 },
     { dia: "Domingo", array: contenido7 }
   ];
- 
+
 
   //____________________________________________pregunta de enfoque.
   if (opciones[4] === 'superior' && diasActivos > 2) {
@@ -509,8 +510,8 @@ export default function Home() {
   } else {
     console.log("Error en el SE P:ENFOQUE");
   }
-  //llenamos 
-  //pruebaejercicio();
+  //llenamos
+
   llenarArreglo(diasActivos);
 
   //____________________________________________pregunta de experiencia
@@ -558,42 +559,124 @@ export default function Home() {
     }
   }
 
+  function llenarOtraVez() {
+    setArrays([
+      contenido1,
+      contenido2,
+      contenido3,
+      contenido4,
+      contenido5,
+      contenido6,
+      contenido7,
+    ]);
+  }
+
+
+
   /*
+  /
+  ////////////////////////////////////////////////
+  /
+  /
   Cambiar por ejercicios
+  /
+  /
+  //////////////////////////////////////////////////
+  /
   */
-  async function pruebaejercicio() {
+
+
+  async function cargar_ejercicios() {
     const { data, error } = await supabase
       .from("ejercicios")
-      .select("nombre")
+      .select("nombre", "musculo_otros")
       .eq("musculo_primario", "Pecho");
+
+
+
+
+
 
     if (error) {
       console.log("ERROR: No se encontró el ejercicio.");
       console.log(error);
     } else {
       console.log(data);
-      //contenido1[0].valor = data[0].nombre;
+
+    }
   }
-  }
-  
-  
 
 
 
 
 
-  console.log("antes de unirse contenido1:"+contenido1);
+
+
+
+
+
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
-  const arrays = [contenido1, contenido2, contenido3, contenido4, contenido5, contenido6, contenido7];
+
+
+//D
+  const [arrays, setArrays] = useState([
+    contenido1,
+    contenido2,
+    contenido3,
+    contenido4,
+    contenido5,
+    contenido6,
+    contenido7,
+  ]);
+
+  /*/////////////////////////////
+  UseEffect que activa evento para cuando se recargue
+  la página guardar la rutina.
+  /////////////////////////////*/
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+      window.addEventListener('beforeunload', () => {
+        localStorage.setItem('rutina', JSON.stringify(arrays));
+      });
+    }
+  }, [arrays]);
+
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+
+      if (arrays.every(posicion => posicion.length === 0)) {
+
+        const storedCount = localStorage.getItem('rutina');
+        if (storedCount) {
+          setArrays(JSON.parse(storedCount));
+        }
+
+      }
+    }
+  }, []);
+
+
+
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
+
+
+
   const handleClick = () => {
+
+    //cargar_ejercicios();
+    llenarArreglo(diasActivos);
+    //llenarOtraVez();
     console.log(formulario);
     console.log(dias);
     console.log(herramientas);
     console.log(opciones);
     console.log(diasActivos);
     console.log(contenido1);
+    console.log(arrays);
+
+
+
   };
 
   return (
