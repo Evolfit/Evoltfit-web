@@ -95,7 +95,7 @@ const CardRutina = ({ rutina }) => {
                   (ejerciciosRutina.map((ejercicio) => (
                       <div className="flex flex-row w-full my-1" key={ejercicio.id}>
                           <span className="w-9/12 font-semibold text-sm whitespace-nowrap text-ellipsis overflow-hidden">
-                            {(ejercicio.orden+1) + ' - ' + ejercicio.ejercicio.nombre}
+                            {(ejercicio.orden+1) + '. ' + ejercicio.ejercicio.nombre}
                           </span>
                           <span className="w-3/12 font-normal text-sm sm:ml-1">
                             {ejercicio.rutinas_ejercicio_sets.length === 1 ? 
