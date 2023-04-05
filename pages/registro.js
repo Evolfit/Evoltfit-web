@@ -114,6 +114,15 @@ export default function Home() {
       
         const avatar = createAvatar(micah, {
           seed: formInput.nombre,
+          baseColor: ["#f7bba3"],
+          earringsProbability: 0,
+          eyebrows: ["down","up"],
+          facialHairProbability: 0,
+          glassesProbability: 0,
+          eyes: ["eyes","round","smiling"],
+          hair: ["dannyPhantom"],
+          hairColor: ["000000","d2eff3", "e0ddff", "f9c9b6", "ffedef", "ffffff","fc909f"],
+          mouth: ["laughing", "nervous", "pucker", "smile", "smirk", "surprised"]
         });
         
         const avatarSvg = await avatar.toDataUri();
