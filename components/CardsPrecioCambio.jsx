@@ -77,10 +77,10 @@ const CardsPrecios = ({
         </p>
         <div className="flex justify-center items-center">
           <div className="flex items-start">
-            <p className="text-4xl font-medium">{signo}</p>
-            <p className="text-7xl font-bold">{precio}</p>
+            <p className="text-3xl lg:text-4xl font-medium">{signo}</p>
+            <p className="text-6xl lg:text-7xl font-bold">{precio}</p>
           </div>
-          <p className="text-2xl text-gray-400">/{frecuencia}</p>
+          <p className="text-xl lg:text-2xl text-gray-400">/{frecuencia}</p>
         </div>
       </div>
       {/* Caracteristicas del plan */}
@@ -89,7 +89,7 @@ const CardsPrecios = ({
           {caracteristicas.map((feature, index) => (
             <li key={index} className="flex items-center space-x-4">
               <CheckIcon className="w-6 h-6 text-green-500 flex-shrink-0" />
-              <p className="font-heebo text-lg text-gray-600">{feature}</p>
+              <p className="font-heebo text-base lg:text-lg text-gray-600">{feature}</p>
             </li>
           ))}
         </ul>

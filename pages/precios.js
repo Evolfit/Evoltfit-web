@@ -152,7 +152,7 @@ export default function Home() {
       <br />
 
       <div className="grid place-items-center">
-        <div className="xl:flex xl:justify-between xl:w-3/4 xl:h-full xl:p-24 xl:bg-gray-100 xl:shadow-lg xl:shadow-zinc-300">
+        <div className="flex-col lg:flex lg:flex-row lg:justify-between lg:w-3/4 lg:h-full lg:p-24 lg:bg-gray-100 lg:shadow-lg lg:shadow-zinc-300">
           <div className="w-64 p-8">
             <center>
               <div className="h-16 w-16">
@@ -226,7 +226,7 @@ export default function Home() {
           {plans.map((plan) => (
             <div
               key={plan.nombre}
-              className={`w-full max-w-md mx-auto ${
+              className={`w-10/12 lg:w-full max-w-md mx-auto ${
                 plan.popular
                   ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
                   : "lg:transform lg:scale-90"
@@ -247,7 +247,7 @@ export default function Home() {
           {plans.map((plan) => (
             <div
               key={plan.nombre}
-              className={`w-full max-w-md mx-auto ${
+              className={`w-10/12 lg:w-full max-w-md mx-auto ${
                 plan.popular
                   ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
                   : "lg:transform lg:scale-90"
@@ -268,7 +268,7 @@ export default function Home() {
             {plans.map((plan) => (
               <div
                 key={plan.nombre}
-                className={`w-full max-w-md mx-auto ${
+                className={`w-10/12 lg:w-full max-w-md mx-auto ${
                   plan.popular
                     ? "order-first lg:order-none lg:scale-110 lg:transform lg:z-10"
                     : "lg:transform lg:scale-90"

@@ -378,8 +378,13 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1324px) {
+  .body-map__body {
+    height: 350px;
+  }
+}
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .body-map__body {
     height: 450px;
   }

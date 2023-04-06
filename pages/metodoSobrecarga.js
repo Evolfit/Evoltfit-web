@@ -154,18 +154,19 @@ export default function MetodoSobrecarga() {
             </div>
           </div>
         </section>
+
         <section className="py-16">
-          <div className="container mx-auto py-2 flex">
-            <div className="flex flex-col justify-center text-center px-16 w-2/2 xl:w-1/2">
+          <div className="container mx-auto py-2 flex flex-col lg:flex-row">
+            <div className="flex flex-col justify-center text-center px-16 w-2/2 lg:w-1/2">
               <h2 className="text-3xl font-bold mb-5">{"¿Cuál es un buen momento para intensificar los ejercicios?"}</h2>
               <p className = "font-heebo">
               {"Antes de aumentar el nivel de dificultad, asegúrate de que tu cuerpo está bien preparado para añadir más repeticiones y más peso en las series. Si aumentas el nivel de dificultad demasiado rápido, afectará negativamente al ejercicio. La ejecución correcta del ejercicio debe estar siempre en primer plano; si no, aumenta el riesgo de lesión, algo que no será beneficioso ni para ti ni para tus músculos."}
               </p>
             </div>
 
-            <div className="w-1/2">
+            <div className="w-0 lg:w-1/2">
               <img
-                className="skew-y-6 invisible xl:w-full xl:visible"
+                className="skew-y-6 invisible lg:w-full xl:visible"
                 src="preguntasSobrecarga.jpg"
               />
             </div>
@@ -173,8 +174,8 @@ export default function MetodoSobrecarga() {
         </section>
 
         <section className="py-16">
-          <div className="container mx-auto py-2 flex">
-            <div className="w-1/2">
+          <div className="container mx-auto py-2 flex flex-col lg:flex-row">
+            <div className="w-0 lg:w-1/2">
               <img
                 className="-skew-y-6 invisible lg:w-full lg:visible"
                 src="preguntasSobrecarga2.jpg"

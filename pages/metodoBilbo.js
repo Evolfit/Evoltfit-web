@@ -115,17 +115,17 @@ export default function MetodoBilbo() {
         </section>
 
         <section className="py-16">
-          <div className="container mx-auto py-2 flex">
-            <div className="flex flex-col justify-center text-center px-16 w-2/2 xl:w-1/2">
+          <div className="container mx-auto py-2 flex flex-col lg:flex-row">
+            <div className="flex flex-col justify-center text-center px-16 w-2/2 lg:w-1/2">
               <h2 className="text-3xl font-bold mb-5">{"Recomendaciones del creador"}</h2>
               <p className = "font-heebo">
               {"Jesús Varela te propone empezar cada entrenamiento sacando el máximo partido a tu primera serie. La primera serie se llama serie Bilbo y es la clave del progreso. En la serie Bilbo, se escoge un peso relativamente bajo y se busca sacar el máximo número de repeticiones posible. Hay que empujar siempre de una forma rápida y explosiva, pero evitando las trampas y rebotes en la medida de lo posible. Una vez que es completada la serie Bilbo, se anota el número de repes conseguidas, ya que el objetivo en el siguiente entrenamiento será superar dicho récord."}
               </p>
             </div>
 
-            <div className="w-1/2">
+            <div className="w-0 lg:w-1/2">
               <img
-                className="skew-y-6 invisible xl:w-full xl:visible"
+                className="skew-y-6 invisible lg:w-full lg:visible"
                 src="preguntaBilbo2.jpg"
               />
             </div>

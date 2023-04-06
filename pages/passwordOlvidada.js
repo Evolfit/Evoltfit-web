@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Footer from "/components/Footer";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
 import supabase from "../config/supabaseClient";
@@ -281,6 +281,8 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      <Footer/>
     </div>
   );
 }

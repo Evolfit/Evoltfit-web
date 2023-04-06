@@ -80,7 +80,7 @@ export default function Home() {
                 hacer un seguimiento de tu progreso.
               </p>
 
-              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-4">
+              <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:mt-12 lg:gap-12 lg:grid-cols-4">
 
                 <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
                   <Link href="/sistemaexperto">
@@ -143,7 +143,7 @@ export default function Home() {
                 </div>
 
                 <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
-                  <Link href="/">
+                  <Link href="/visualizadorProgreso">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                         <div className="h-20 w-20">

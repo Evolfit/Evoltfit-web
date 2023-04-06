@@ -27,24 +27,6 @@ export default function Nosotros() {
         <br />
         <br />
 
-        {/* <div className="relative min-h-screen">
-          <img
-            className="transparencia-banner opacity-80"
-            src="bcnosotros.jpg"
-          />
-          <Typed
-            strings={[
-              "Accesible",
-              "Centralizado",
-              "Intuitivo",
-            ]}
-            typeSpeed={150}
-            backSpeed={100}
-            className="absolute top-32 text-2xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 xl:text-7xl xl:top-64 "
-            loop={true}
-          />
-        </div> */}
-
         <section className = "bg-cover bg-internal-img4">
           <div className = "flex flex-col min-h-screen">
           <Typed
@@ -55,7 +37,7 @@ export default function Nosotros() {
             ]}
             typeSpeed={150}
             backSpeed={100}
-            className="absolute top-32 text-2xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 lg:text-8xl xl:top-96 "
+            className="absolute top-96 text-5xl text-center font-bebas text-white tracking-wider left-1/2 -translate-x-1/2 -translate-y-1/2 lg:text-8xl xl:top-96 "
             loop={true}
           />
           </div>
@@ -66,7 +48,7 @@ export default function Nosotros() {
         <br />
         <br />
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 gap-32 xl:grid xl:grid-cols-4 xl:gap-0.5 xl:w-full ">
+          <div className="grid grid-cols-1 gap-32 sm:grid-cols-2 sm:gap-x-14 lg:grid-cols-4 lg:gap-x-18 lg:w-auto ">
             <div>
               <div className="xl:grid xl:place-items-center">
                 <div className="h-56 w-56">
@@ -119,30 +101,31 @@ export default function Nosotros() {
         <br />
         <br />
         <br />
+        
         <section className="py-16">
-          <div className="container mx-auto py-2 flex">
-            <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
+          <div className="container mx-auto py-2 flex flex-col lg:flex-row">
+            <div className="flex flex-col justify-center text-center px-16 lg:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Misión</h2>
               <p>
               Ofrecer oportunidades y herramientas para mejorar la salud de todas y todos de manera creativa, innovadora y responsable, pero sobre todo personalizada implementando un sistema innovador enfocado al entrenamiento en cualquier parte.
               </p>
             </div>
 
-            <div className="w-1/2 relative">
-              <img className="invisible xl:w-full xl:relative xl:z-10 xl:visible" src="bcmision.jpg" />
-              <div className="invisible xl:bg-blue-600 xl:h-full xl:w-full xl:absolute xl:top-6 xl:-left-6 xl:visible"></div>
+            <div className="w-0 lg:w-1/2 relative">
+              <img className="invisible lg:w-full lg:relative lg:z-10 lg:visible" src="bcmision.jpg" />
+              <div className="invisible lg:bg-blue-600 lg:h-full lg:w-full lg:absolute lg:top-6 lg:-left-6 lg:visible"></div>
             </div>
           </div>
         </section>
 
         <section className="py-16">
-          <div className="container mx-auto py-2 flex">
-            <div className="w-1/2 relative">
-              <img className="invisible xl:w-full xl:relative xl:z-10 xl:visible" src="bcvision.jpg" />
-              <div className="invisible xl:bg-blue-600 xl:h-full xl:w-full xl:absolute xl:bottom-6 xl:-right-6 xl:visible"></div>
+          <div className="container mx-auto py-2 flex flex-col lg:flex-row">
+            <div className="w-0 lg:w-1/2 relative">
+              <img className="invisible lg:w-full lg:relative lg:z-10 lg:visible" src="bcvision.jpg" />
+              <div className="invisible lg:bg-blue-600 lg:h-full lg:w-full lg:absolute lg:bottom-6 lg:-right-6 lg:visible"></div>
             </div>
 
-            <div className="flex flex-col justify-center text-center px-16 xl:w-1/2">
+            <div className="flex flex-col justify-center text-center px-16 lg:w-1/2">
               <h2 className="text-3xl font-bold mb-5">Visión</h2>
               <p>
               Construimos un futuro en el cual, la salud sea una de las prioridades más importantes de la población. Alentando a las personas a que no solo es posible ejercitarse en un gimnasio, sino también en casa.
