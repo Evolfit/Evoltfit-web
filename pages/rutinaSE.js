@@ -165,7 +165,7 @@ export default function Home() {
 
 
 
-  
+
 var dosdecuatro=0;
 //____________________________________________pregunta de tiempo
   if (opciones[3] === '30min' || opciones[3] === '1hr') {
@@ -614,8 +614,8 @@ var dosdecuatro=0;
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
   
   //cambiar_ejercicios();
-  //D
-  /*
+
+  
   const [arrays, setArrays] = useState([
     contenido1,
     contenido2,
@@ -625,22 +625,14 @@ var dosdecuatro=0;
     contenido6,
     contenido7,
   ]);
-  */
-  const arrays = [
-    contenido1,
-    contenido2,
-    contenido3,
-    contenido4,
-    contenido5,
-    contenido6,
-    contenido7
-  ];
+  
+ 
 
   /*/////////////////////////////
   UseEffect que activa evento para cuando se recargue
   la página guardar la rutina.
   /////////////////////////////*/
-  /*
+  
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
       window.addEventListener('beforeunload', () => {
@@ -665,7 +657,7 @@ var dosdecuatro=0;
     }
   }, []);
 
-*/
+
 
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
@@ -676,8 +668,6 @@ var dosdecuatro=0;
 
     //cargar_ejercicios();
     //llenarOtraVez();
-    //indispensable llenar arreglo
-
     //cambiar_ejercicios_Click();
     //llenarArreglo(diasActivos);
     console.log(formulario);
