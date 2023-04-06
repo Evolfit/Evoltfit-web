@@ -165,38 +165,7 @@ export default function Home() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  dias.Lunes = true;
-  dias.Martes = true;
-  dias.Miercoles = true;
-  dias.Jueves = true;
-  dias.Viernes = true;
-  dias.Sabado = true;
-  dias.Domingo = false;
-
-  //opciones[4] = 'superior';
-  opciones[4] = 'brazos';
-  //opciones[4] = 'pierna';
-  //opciones[4] = 'completo';
-
-
-  opciones[3] = '30min';
-  //opciones[3] = '1hr 30';
-  opciones[3] = '2hr';
-  opciones[2] = 'principiante';
-  opciones[2] = 'experimentado';
-  opciones[1] = 'masamuscular';
+  
 var dosdecuatro=0;
 //____________________________________________pregunta de tiempo
   if (opciones[3] === '30min' || opciones[3] === '1hr') {
