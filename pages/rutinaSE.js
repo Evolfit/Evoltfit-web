@@ -135,7 +135,7 @@ export default function Home() {
   } else if (opciones[3] === '1hr 30' || opciones[3] === '2hr') {
     temp = 3;
   } else {
-    console.log("Error en el SE P:TIEMPO");
+    //console.log("Error en el SE P:TIEMPO");
   }
 
   //Cambios de la nueva pregunta del SE DIAS 
@@ -177,7 +177,7 @@ export default function Home() {
       if (opciones[2] === 'principiante' || opciones[2] === 'intermedio') {
         //Plantilla 1
         variables1 = { pecho: temp, hombro: temp - 1, tricep: temp };
-        variables2 = { espaldaSuperior: temp - 1, Dorsal: temp - 1, biceps: temp };
+        variables2 = { dorsal: temp - 1, dorsal: temp - 1, biceps: temp };
         variables3 = { cuadriceps: temp, isquos: temp - 1, gluteos: temp - 1 };
       }
       else {
@@ -508,25 +508,25 @@ export default function Home() {
   } else if (diasActivos === 1) {
     undia(diasActivos);
   } else {
-    console.log("Error en el SE P:ENFOQUE");
+    //console.log("Error en el SE P:ENFOQUE");
   }
   //llenamos
 
   llenarArreglo(diasActivos);
-
-  //____________________________________________pregunta de experiencia
-  if (opciones[2] === 'principiante') {
-    console.log("principiante");
-  } else if (opciones[2] === 'intermedio') {
-    console.log("intermedio");
-  } else if (opciones[2] === 'avanzado') {
-    console.log("avanzado");
-  } else if (opciones[2] === 'experimentado') {
-    console.log("experimentado");
-  } else {
-    console.log("Error en el SE P:OBJETIVO");
-  }
-
+  /*
+    //____________________________________________pregunta de experiencia
+    if (opciones[2] === 'principiante') {
+      console.log("principiante");
+    } else if (opciones[2] === 'intermedio') {
+      console.log("intermedio");
+    } else if (opciones[2] === 'avanzado') {
+      console.log("avanzado");
+    } else if (opciones[2] === 'experimentado') {
+      console.log("experimentado");
+    } else {
+      console.log("Error en el SE P:OBJETIVO");
+    }
+  */
 
 
 
@@ -559,17 +559,7 @@ export default function Home() {
     }
   }
 
-  function llenarOtraVez() {
-    setArrays([
-      contenido1,
-      contenido2,
-      contenido3,
-      contenido4,
-      contenido5,
-      contenido6,
-      contenido7,
-    ]);
-  }
+
 
 
 
@@ -593,10 +583,6 @@ export default function Home() {
       .eq("musculo_primario", "Pecho");
 
 
-
-
-
-
     if (error) {
       console.log("ERROR: No se encontró el ejercicio.");
       console.log(error);
@@ -607,7 +593,19 @@ export default function Home() {
   }
 
 
+  function cambiar_ejercicios() {
+    console.log("llego a la funcion");
+    console.log(contenido1);
+    if (contenido1 && contenido1[0]) {
+      contenido1[0].valor = "nuevo valor";
+    }
+  }
 
+  function cambiar_ejercicios_Click() {
+    const newArrays = [...arrays];
+    newArrays[0][0].valor = "Hola";
+    setArrays(newArrays);
+  }
 
 
 
@@ -616,9 +614,9 @@ export default function Home() {
 
 
   //una vez lleno el contenido se une todo para mostrarlo en la tabla
-
-
-//D
+  cargar_ejercicios();
+  cambiar_ejercicios();
+  //D
   const [arrays, setArrays] = useState([
     contenido1,
     contenido2,
@@ -628,6 +626,7 @@ export default function Home() {
     contenido6,
     contenido7,
   ]);
+
 
   /*/////////////////////////////
   UseEffect que activa evento para cuando se recargue
@@ -648,7 +647,9 @@ export default function Home() {
 
         const storedCount = localStorage.getItem('rutina');
         if (storedCount) {
+
           setArrays(JSON.parse(storedCount));
+
         }
 
       }
@@ -665,8 +666,11 @@ export default function Home() {
   const handleClick = () => {
 
     //cargar_ejercicios();
-    llenarArreglo(diasActivos);
     //llenarOtraVez();
+    //indispensable llenar arreglo
+
+    cambiar_ejercicios_Click();
+    llenarArreglo(diasActivos);
     console.log(formulario);
     console.log(dias);
     console.log(herramientas);
