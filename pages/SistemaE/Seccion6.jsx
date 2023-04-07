@@ -78,15 +78,15 @@ function Seccion6(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
+        <div className="font-catamaran text-2xl md:text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>¿Qué herramientas tienes disponibles?</h1>
         </div>
       </div>
       <br />
       <br />
 
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex ">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r secc4:border-gray-600">
           <div className="flex items-center pl-3">
             <input
               id="ch1"
@@ -94,17 +94,17 @@ function Seccion6(props) {
               name="Ninguno"
               onChange={onCheckboxChange}
               checked={Ninguno} onClick={handleNoneClick}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch1"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Ninguno
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
           <div className="flex items-center pl-3">
             <input
               id="ch2"
@@ -112,17 +112,17 @@ function Seccion6(props) {
               name="Bandaresistencia"
               checked={ch1} onClick={() => handleChClick("Bandaresistencia")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch2"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Banda de Resistencia
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch3"
@@ -130,17 +130,17 @@ function Seccion6(props) {
               name="Bandasuspension"
               onChange={onCheckboxChange}
               checked={ch2} onClick={() => handleChClick("Bandasuspension")}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
               htmlFor="ch3"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Banda de suspensión
             </label>
           </div>
         </li>
-        <li className="w-full dark:border-gray-600">
+        <li className="w-full ">
           <div className="flex items-center pl-3">
             <input
               id="ch4"
@@ -148,11 +148,11 @@ function Seccion6(props) {
               name="Barra"
               checked={ch3} onClick={() => handleChClick("Barra")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
               htmlFor="ch4"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Barra
             </label>
@@ -160,8 +160,8 @@ function Seccion6(props) {
         </li>
       </ul>
 
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch5"
@@ -169,17 +169,17 @@ function Seccion6(props) {
               name="BarraZ"
               checked={ch4} onClick={() => handleChClick("BarraZ")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
               htmlFor="ch5"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Barra Z
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch6"
@@ -187,17 +187,17 @@ function Seccion6(props) {
               name="Barras"
               checked={ch5} onClick={() => handleChClick("Barras")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch6"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Barras dominadas, paralelas
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
           <div className="flex items-center pl-3">
             <input
               id="ch8"
@@ -205,17 +205,17 @@ function Seccion6(props) {
               name="Mancuernas"
               checked={ch6} onClick={() => handleChClick("Mancuernas")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch8"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Mancuernas
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch9"
@@ -223,11 +223,11 @@ function Seccion6(props) {
               name="PesaRusa"
               checked={ch7} onClick={() => handleChClick("PesaRusa")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch9"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Pesa Rusa
             </label>
@@ -235,8 +235,8 @@ function Seccion6(props) {
         </li>
       </ul>
 
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex mt-1">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
           <div className="flex items-center pl-3">
             <input
               id="ch10"
@@ -244,17 +244,17 @@ function Seccion6(props) {
               name="PlacaPeso"
               checked={ch8} onClick={() => handleChClick("PlacaPeso")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch10"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Placa de Peso
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch11"
@@ -262,17 +262,17 @@ function Seccion6(props) {
               name="MaquinasGYM"
               checked={ch9} onClick={() => handleChClick("MaquinasGYM")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch11"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Máquinas en GYM
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
           <div className="flex items-center pl-3">
             <input
               id="ch12"
@@ -280,17 +280,17 @@ function Seccion6(props) {
               name="BancoPlano"
               checked={ch10} onClick={() => handleChClick("BancoPlano")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch12"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Banco Plano
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
           <div className="flex items-center pl-3">
             <input
               id="ch13"
@@ -298,11 +298,11 @@ function Seccion6(props) {
               name="BancoDeclinado"
               checked={ch11} onClick={() => handleChClick("BancoDeclinado")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch13"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Banco Declinado
             </label>
@@ -310,8 +310,8 @@ function Seccion6(props) {
         </li>
       </ul>
 
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch14"
@@ -319,17 +319,17 @@ function Seccion6(props) {
               name=" BancoInclinado"
               checked={ch12} onClick={() => handleChClick("BancoInclinado")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch14"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Banco Inclinado
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch15"
@@ -337,17 +337,17 @@ function Seccion6(props) {
               name="Cuerda"
               checked={ch13} onClick={() => handleChClick("Cuerda")}
               onChange={onCheckboxChange}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch15"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               Cuerda
             </label>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <input
               id="ch16"
@@ -355,25 +355,138 @@ function Seccion6(props) {
               name="Todos"
               onChange={onCheckboxChange}
               checked={Todos} onClick={handleAllClick}
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
             />
             <label
               htmlFor="ch16"
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             >
               Todos
             </label>
           </div>
         </li>
 
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
           <div className="flex items-center pl-3">
             <label
-              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
             ></label>
           </div>
         </li>
       </ul>
+
+      {/* <div className = "grid place-items-center">
+      <section className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <article className="feature">
+        <div className="grid place-items-center">
+                <div className="h-8 w-8 mt-5">
+                  <img src="img/other.png"></img>
+                </div>
+              </div>
+          <input  
+              id="ch1"
+              type="checkbox"
+              name="Lunes"
+              onChange={onCheckboxChange}
+              className = "inputArticle" />
+          <div className = "divArticle">
+            <span className = "font-semibold mb-10">
+              Lunes
+            </span>
+          </div>
+        </article>
+
+        <article className="feature">
+          <input  
+              id="ch2"
+              type="checkbox"
+              name="Martes"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Martes
+            </span>
+          </div>
+        </article>
+
+        <article className="feature">
+          <input 
+              id="ch3"
+              type="checkbox"
+              name="Miercoles"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Miercoles
+            </span>
+          </div>
+        </article>
+
+        <article className="feature">
+          <input 
+              id="ch4"
+              type="checkbox"
+              name="Jueves"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Jueves
+            </span>
+          </div>
+        </article>
+      </section>
+      </div>
+
+      <div className = "grid place-items-center mt-2">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <article className="feature">
+          <input  
+              id="ch5"
+              type="checkbox"
+              name="Viernes"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Viernes
+            </span>
+          </div>
+        </article>
+
+        <article className="feature">
+          <input 
+              id="ch6"
+              type="checkbox"
+              name="Sabado"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Sábado
+            </span>
+          </div>
+        </article>
+
+        <article className="feature">
+          <input 
+              id="ch8"
+              type="checkbox"
+              name="Domingo"
+              onChange={onCheckboxChange} 
+              className = "inputArticle"/>
+          <div className = "divArticle">
+            <span className = "font-semibold">
+              Domingo
+            </span>
+          </div>
+        </article>
+
+      </section>
+      </div> */}
+
 
       <br />
       <br />

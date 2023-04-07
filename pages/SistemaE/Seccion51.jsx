@@ -7,7 +7,7 @@ function Seccion51(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
+        <div className="font-catamaran text-2xl md:text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>¿Cuáles dias de la semana tienes disponibles?</h1>
         </div>
       </div>
@@ -15,7 +15,7 @@ function Seccion51(props) {
       <br />
 
       <div className = "grid place-items-center">
-      <section className="app">
+      <section className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <article className="feature">
           <input  
               id="ch1"
@@ -75,7 +75,7 @@ function Seccion51(props) {
       </div>
 
       <div className = "grid place-items-center mt-2">
-      <section className="app ">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         <article className="feature">
           <input  
               id="ch5"

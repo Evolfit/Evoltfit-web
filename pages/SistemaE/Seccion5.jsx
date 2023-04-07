@@ -43,7 +43,7 @@ function Seccion5({ formData2, onSubmit }) {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
+        <div className="font-catamaran text-2xl md:text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>Cuéntanos más de ti</h1>
         </div>
       </div>
@@ -92,7 +92,7 @@ function Seccion5({ formData2, onSubmit }) {
               />
             </label>
           </div>
-          <div className = "absolute mt-12 xl:mt-4">
+          <div className = "absolute mt-5">
           <button
             type="button"
             onClick={omitir}

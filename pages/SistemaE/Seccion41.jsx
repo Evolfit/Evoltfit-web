@@ -1,5 +1,3 @@
-import styled from "daisyui/dist/styled";
-import styles from "../../styles/Home.module.css";
 import React, { useState } from "react";
 
 function Seccion41(props) {
@@ -13,7 +11,7 @@ function Seccion41(props) {
   return (
     <div>
       <div className="grid place-items-center">
-        <h1 className="font-catamaran text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
+        <h1 className="font-catamaran text-2xl md:text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
           ¿Qué enfoque te gustaría darle a tu rutina?
         </h1>
       </div>
@@ -22,7 +20,7 @@ function Seccion41(props) {
       <br />
 
       <div className="flex justify-center">
-        <div className="grid grid-cols-1 gap-2 xl:grid xl:grid-cols-2 xl:gap-2 xl:w-full xl:max-w-screen-sm">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:gap-2 xl:w-full xl:max-w-screen-sm">
           <div className = "divInputBoxSE">
             <input
               className="hidden"

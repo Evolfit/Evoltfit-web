@@ -14,7 +14,7 @@ function Inicio() {
         </h1>
         <br/>
         <div className = "w-9/12">
-        <p className = "text-justify text-sm lg:text-base text-black font-heebo pb-5 lg:pb-0">
+        <p className = "text-justify text-xs sm:text-base md:text-base lg:text-base text-black font-heebo pb-5 lg:pb-0">
         Hola, me alegra que estés interesado en mejorar tu salud y tu forma física. Estás a punto de usar una herramienta que te ayudará a crear un plan de entrenamiento personalizado según tus objetivos, preferencias y disponibilidad.<span className="text-blue-600 font-semibold"> Para que el plan sea efectivo y seguro, es importante que seas sincero al momento de responder las preguntas que te haré a continuación</span>. Es importante tener en cuenta que este sistema no es un entrenador personal humano, pero puede brindarte una rutina de ejercicios personalizada de manera fácil y rápida.
         </p>
         </div>

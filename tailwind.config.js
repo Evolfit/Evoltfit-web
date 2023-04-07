@@ -13,6 +13,7 @@ module.exports = {
       'bebas':['Bebas Neue'],
       'catamaran':['Catamaran'],
     },
+
   },
   plugins: [
     require("daisyui"),

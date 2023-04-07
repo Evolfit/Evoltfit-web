@@ -53,34 +53,190 @@ export default function VisualizadorProgreso() {
         </div>
 
        
-          <div className="grid grid-cols-2 gap-2xl h-full ml-11 mr-11 p-5">
-            <div className="border-blue-600 border-2 w-11/12 mt-6 mb-6 rounded-md shadow-2xl">
-              <div className="h-12/12"></div>
-            </div>
+          <div className="grid grid-cols-1 gap-y-16 mt-16 lg:grid-cols-2 place-items-center">
 
-            <div className="border-blue-600 border-2 w-11/12 mt-6 mb-6 rounded-md shadow-2xl">
-              <div className="grid place-items-center p-10">
-                <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
-                  Prueba{" "}
-                  <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
-                    Prueba
-                  </span>
-                </h1>
-                <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
-                  Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba
-                  Prueba Prueba Prueba Prueba
-                </h2>
-                <span className="text-black text-xl font-semibold mt-3">
-                  O también...
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
                 </span>
-                <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
-                <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
-                  Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba
-                </h2>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
               </div>
             </div>
+            </div>
+
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
+                </span>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
+              </div>
+            </div>
+            </div>
+
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
+                </span>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
+              </div>
+            </div>
+            </div>
+
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
+                </span>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
+              </div>
+            </div>
+            </div>
+
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
+                </span>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
+              </div>
+            </div>
+            </div>
+
+            <div className="border-blue-600 border-2 w-11/12 rounded-md shadow-2xl">
+            <div className="grid place-items-center p-10">
+              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
+                Bienvenido a{" "}
+                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
+                  EvoltFit
+                </span>
+              </h1>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Selecciona un músculo del modelo y busca los ejercicios que
+                mejor te acomoden.
+              </h2>
+              <span className="text-black text-xl font-semibold mt-3">
+                O también...
+              </span>
+              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
+                rutina para ti.
+              </h2>
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <Link href="/sistemaexperto">
+                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
+                    Vamos
+                  </a>
+                </Link>
+              </div>
+            </div>
+            </div>
+
           </div>
-        
+         
         <br />
         <br />
         <br />

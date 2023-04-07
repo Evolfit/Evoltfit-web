@@ -264,22 +264,7 @@
 
 /*CSS para el contenedor de los input*/
 
-.seccion{
-  margin-top: 9%;
-  height: 440px;
-}
-
-.seccion2{
-  margin-top: 8%;
-  height: 600px;
-}
-
-.seccion3{
-  margin-top: 8%;
-  height: 700px;
-}
-
-.seccionInicial{
+.seccInic{
   margin-top: 9%;
   height: 440px;
 }
@@ -288,22 +273,253 @@
   height: 440px;
 }
 
-@media screen and (max-width: 380px) {
-  .seccion {
+.secc0{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.secc1{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.secc2{
+  margin-top: 8%;
+  height: 600px;
+}
+
+.secc3{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.secc4{
+  margin-top: 10%;
+  height: 700px;
+}
+
+.secc5{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.secc6{
+  margin-top: 9%;
+  height: 440px;
+}
+
+.secc7{
+  margin-top: 9%;
+  height: 440px;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+  .secc0 {
+    margin-top: 15%;
+  }
+
+  .secc1{
+    margin-top: 15%;
+  }
+
+  .secc2{
+    margin-top: 14%;
+  }
+
+  .secc3{
+    margin-top: 15%;
+  }
+
+  .secc4{
+    margin-top: 15%;
+  } 
+
+  .secc5{
+    margin-top: 15%;
+  }
+
+  .secc6{
+    margin-top: 15%;
+  }
+
+  .secc7{
+    margin-top: 15%;
+  }
+
+  .seccInic{
+    margin-top: 15%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .secc5 {
+    margin-top: 10%;
+    height: 75%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .secc0 {
+    margin-top: 20%;
+  }
+
+  .secc1 {
+    margin-top: 20%;
+  }
+
+  .secc2{
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .secc3 {
+    margin-top: 20%;
+  }
+
+  .secc4{
+    margin-top: 20%;
+    height: 85%;
+  }
+
+  .secc6{
+    margin-top: 20%;
+  }
+
+  .secc7{
+    margin-top: 20%;
+  }
+
+  .seccInic{
+    margin-top: 20%;
+  }
+}
+
+
+@media screen and (max-width: 640px) {
+  .seccInic{
+    margin-top: 30%;
+  }
+
+  .secc0 {
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .secc1 {
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .secc3 {
+    margin-top: 20%;
+    height: 70%;
+  }
+
+  .secc5 {
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .secc6{
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .secc7{
+    margin-top: 20%;
+    height: 80%;
+  }
+
+  .resp-botonComenzar{
+    margin-top: 10%;
+  }
+}
+
+
+@media screen and (max-width: 540px) {
+ 
+  .seccInic{
+    margin-top: 30%;
+  }
+
+  .secc0 {
+    margin-top: 30%;
+  }
+
+  .secc1 {
+    margin-top: 30%;
+  }
+
+  .secc2{
     margin-top: 30%;
     height: 85%;
   }
-  .seccion2{
+
+  .secc4{
+    margin-top: 30%;
+    
+  }
+
+  .secc5 {
+    margin-top: 30%;
+  }
+
+  .secc6{
+    margin-top: 30%;
+  }
+
+  .secc7{
+    margin-top: 30%;
+  }
+
+  .resp-botonComenzar{
+    margin-top: 10%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .secc0 {
     margin-top: 30%;
     height: 85%;
   }
-  .seccion3{
+
+  .secc1 {
     margin-top: 30%;
     height: 85%;
   }
-  .seccionInicial{
-    margin-top: 45%;
+
+  .secc3 {
+    margin-top: 30%;
+    height: 78%;
+  }
+
+  .secc4{
+    margin-top: 30%;
+    height: 88%;
+  }
+
+  .secc5 {
+    margin-top: 30%;
     height: 85%;
+  }
+
+  .secc6{
+    margin-top: 40%;
+    height: 80%;
+  }
+
+  .secc7{
+    margin-top: 30%;
+    height: 85%;
+  }
+
+  .seccInic{
+    margin-top: 35%;
   }
 
 }
@@ -583,7 +799,6 @@
   width: 140px;
   height: 100px;
   margin: 5px;
-  float: left;
   border: 2px solid #2563eb;
   box-sizing: border-box;
 }
@@ -613,9 +828,7 @@
 }
 
 @media screen and (max-width: 380px) {
-  .feature {
-    float:none;
-  }
+  
 }
 
 
@@ -635,7 +848,5 @@
   stroke: #4691f6;
   stroke-width: 1;
 }
-
-
 
 
