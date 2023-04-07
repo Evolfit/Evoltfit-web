@@ -190,7 +190,7 @@ export default function Home() {
       });
     } else if (name === "Todos") {
       setCheckboxes({
-        Ninguno: false,
+        Ninguno: true,
         Bandaresistencia: true,
         Bandasuspension: true,
         Barra: true,
@@ -209,7 +209,7 @@ export default function Home() {
       setCheckboxes({
         ...checkboxes,
         [name]: checked,
-        Ninguno: false,
+        Ninguno: true,
       });
     }
   };
