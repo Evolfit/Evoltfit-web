@@ -158,7 +158,7 @@ export default function Home() {
                 </div>
 
                 <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
-                  <Link href="/">
+                  <Link href="../oneRepMax">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                         <div className="h-20 w-20">
@@ -308,7 +308,7 @@ export default function Home() {
                 </div>
 
                 <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
-                  <Link href="">
+                  <Link href="../oneRepMax">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                         <div className="h-20 w-20">
