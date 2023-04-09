@@ -310,7 +310,7 @@
 
 .secc7{
   margin-top: 9%;
-  height: 440px;
+  height: 45%px;
 }
 
 
@@ -432,7 +432,7 @@
 
   .secc7{
     margin-top: 20%;
-    height: 80%;
+    height: 95%;
   }
 
   .resp-botonComenzar{
@@ -470,10 +470,6 @@
   }
 
   .secc6{
-    margin-top: 30%;
-  }
-
-  .secc7{
     margin-top: 30%;
   }
 
@@ -515,7 +511,7 @@
 
   .secc7{
     margin-top: 30%;
-    height: 85%;
+    height: 95%;
   }
 
   .seccInic{
@@ -827,9 +823,43 @@
   color:white;
 }
 
-@media screen and (max-width: 380px) {
-  
+
+/*CSS de los checkbox para seleccionar las herramientas en el SE */
+
+.feature-2 {
+  position: relative;
+  width: 140px;
+  height: 150px;
+  margin: 5px;
+  border: 2px solid #2563eb;
+  box-sizing: border-box;
 }
+
+.feature-2 .divArticle-2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s ease;
+}
+
+.feature-2 .inputArticle-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 100px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.inputArticle-2[type=checkbox]:checked ~ .divArticle-2 {
+  background-color: #2563eb;
+  color:white;
+}
+
+
 
 
 /* Clases de los iconos SVG de las paginas sobrecarga y metodo bilbo */
