@@ -56,6 +56,36 @@ export default function Home() {
     localStorage.removeItem("Meses");
   }, []);
 
+  //ELIMINAR DESPUES
+  function llenarrapido() {
+    setCheckboxes2({
+      Lunes: true,
+      Martes: true,
+      Miercoles: true,
+      Jueves: false,
+      Viernes: false,
+      Sabado: false,
+      Domingo: false,
+    });
+    setCheckboxes({
+      Ninguno: true,
+      Bandaresistencia: false,
+      Bandasuspension: false,
+      Barra: true,
+      BarraZ: false,
+      Barras: false,
+      Mancuernas: true,
+      PesaRusa: false,
+      PlacaPeso: false,
+      MaquinasGYM: false,
+      BancoPlano: true,
+      BancoDeclinado: false,
+      BancoInclinado: false,
+      Cuerda: false,
+    });
+    setArreglo(['hombre', 'masamuscular', 'principiante', '30min', 'superior']);
+
+  }
   //Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
   //y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
@@ -342,12 +372,38 @@ export default function Home() {
               </div>
             </>
           ) : (
-            <button
-              className="bottonSig-2 resp-botonComenzar"
-              onClick={handleNext}
-            >
-              Comenzar
-            </button>
+            <div>
+              <button
+                className="bottonSig-2 resp-botonComenzar"
+                onClick={handleNext}
+                style={{ display: "inline-block", marginRight: "10px" }}
+              >
+                Comenzar
+              </button>
+              <Link
+                href={{
+                  pathname: "../rutinaSE",
+                  query: {
+                    formData2: JSON.stringify(formData2),
+                    checkboxes: JSON.stringify(checkboxes),
+                    checkboxes2: JSON.stringify(checkboxes2),
+                    arreglo: JSON.stringify(arreglo),
+                  },
+                }}
+                style={{ display: "inline-block", marginRight: "10px" }}
+              >
+                <button className="bottonSig-2" style={{ display: "inline-block" }}>
+                  TEST
+                </button>
+              </Link>
+              <button
+                className="bottonSig-2"
+                onClick={llenarrapido}
+                style={{ display: "inline-block", marginRight: "10px" }}
+              >
+                LLENAR PRIMERO
+              </button>
+            </div>
           )}
         </div>
         <br />

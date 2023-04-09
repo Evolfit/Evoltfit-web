@@ -40,8 +40,9 @@ export default function Home() {
   }
 
 
-
-
+  const [loading, setLoading] = useState(false);
+  
+  const [data, setData] = useState([]);
   // <-------------- Carga de Ejercicios ---------------->
   /*
 
@@ -73,15 +74,15 @@ export default function Home() {
       herramientasActivas.push(nombreMap[herramienta]);
     }
   }
-  console.log(herramientasActivas)
-  cargar_ejercicios();
+  //console.log(herramientasActivas)
+  
   //
   //
   //Funcion para cargar los ejercicios....
   //
   //
-  async function cargar_ejercicios() {
-
+  
+  const cargar_ejercicios = async () => {
     let query = supabase
       .from('ejercicios')
       .select('id, nombre, musculo_primario,equipo, img')
@@ -89,11 +90,17 @@ export default function Home() {
     query = query.containedBy('equipo', herramientasActivas)
     query = query.order('puntuacion', { ascending: false })
 
-    const data = await query
-    //leer data
-    console.log(data.data)
+    const { data, error } = await query;
+    if (error) {
+      console.log(error);
+    } else {
+      setData(data);
+      console.log("Funcion Cargar")
+      console.log(data)
+    }
+  };
 
-  }
+
   /*
   //////////////////////////////////////////////////////////
   Cambios a variables para no regresarme a las preguntas (borras despues)
@@ -628,35 +635,28 @@ export default function Home() {
 
 
   function cambiar_ejercicios() {
-    console.log("llego a la funcion");
-    console.log(contenido1);
-    if (diasActivos === 4) {
-
-    } else if (diasActivos === 5) {
-
-
-    } else if (diasActivos === 6 || diasActivos === 7) {
-
-    } else {
-      console.log("Algun error ocurrió en DIAS llenar datos")
-    }
+    console.log("Dentro de la funcion CAMBIAREJERCICIOS")
+    console.log(data)
+    
+    //if (data.every(posicion => posicion.length === 0)) {
+    // cargar_ejercicios();
+    //}
+    //console.log("FINALLLLL")
+    //console.log(data)
+    //console.log(arrays)
+    //const newArrays = [...arrays];
+    //newArrays[0][0].valor = "Hola";
+    //setArrays(newArrays);
   }
-
+//que no tengo antes de esto.
   function cambiar_ejercicios_Click() {
+    console.log(herramientasActivas)
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
     const newArrays = [...arrays];
-    newArrays[0][0].valor = "Hola";
+    newArrays[0][0].valor = "Hola"+randomNumber;
     setArrays(newArrays);
   }
 
-
-
-
-
-
-
-  //una vez lleno el contenido se une todo para mostrarlo en la tabla
-
-  cambiar_ejercicios();
 
 
   const [arrays, setArrays] = useState([
@@ -711,7 +711,7 @@ export default function Home() {
 
     //cargar_ejercicios();
     //llenarOtraVez();
-    //cambiar_ejercicios_Click();
+    cambiar_ejercicios_Click();
     //llenarArreglo(diasActivos);
     console.log(formulario);
     console.log(dias);
@@ -724,6 +724,13 @@ export default function Home() {
 
 
   };
+  useEffect(() => {
+    if (data.every(posicion => posicion.length === 0)) {
+      cargar_ejercicios();
+    }else{
+      cambiar_ejercicios_Click();
+    }
+  }, [data]);
 
   return (
     <div className="bg-blue-100 w-full">
@@ -734,7 +741,14 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main className={styles.main}>
+     
+      { loading ? (
+        <div>
+        <div className="loader"></div>
+        <p>{'CARGANDO'}</p>
+      </div>
+      ) : (
+        <main className={styles.main}>
         <br /><br />
 
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -778,6 +792,8 @@ export default function Home() {
         <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
         <br /><br /> <br /> <br /> <br /> <br /> <br />
       </main>
+      )}
+        
       <Footer></Footer>
     </div>
   );
