@@ -102,7 +102,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="relative">
         <br />
         <br />
         <br />
@@ -149,11 +149,9 @@ export default function Home() {
           }
         </div>
         <br />
+        <br />
       </main>
-
-      <br />
-
-      <Footer></Footer>
+      <Footer/>
     </div>
   );
 }

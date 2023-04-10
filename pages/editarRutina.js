@@ -273,13 +273,12 @@ export default function Home() {
                       <span className="ml-2">{"Volver a Rutinas"}</span>
                     </button>
                     <br/>
-                    <h2 className="mt-2 text-xl text-gray-900">Nombre de la Rutina:</h2>
                     <input 
                       name="nombre" 
                       id="nombre" 
                       type="text" 
-                      className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b
-                      outline-none border-blue-500 focus:border-b-2 duration-75  whitespace-nowrap text-ellipsis overflow-hidden" 
+                      className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b-2
+                      outline-none border-blue-500 focus:border-b-4 duration-150  whitespace-nowrap text-ellipsis overflow-hidden" 
                       value={formInput.nombre || ""} 
                       onChange={handleOnInputChange}
                     />

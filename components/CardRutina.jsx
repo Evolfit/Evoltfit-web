@@ -4,11 +4,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
+import EliminarConfirmar from "/components/EliminarConfirmar";
+
 
 const CardRutina = ({ rutina }) => {
     const router = useRouter();
 
     const [ejerciciosRutina, setEjerciciosRutina] = useState([])
+    const [mostrarEliminar, setMostrarEliminar] = useState(false);
 
     useEffect(() => {
         getEjerciciosRutina()
@@ -74,7 +77,14 @@ const CardRutina = ({ rutina }) => {
     }
     
     return (
-        <div className="flex flex-col bg-white border-2 rounded-lg shadow-md hover:scale-105 hover:shadow-lg hover:border-blue-500 duration-100 p-4">
+      <div>
+        <EliminarConfirmar
+          mostrarEliminar={mostrarEliminar}
+          setMostrarEliminar={setMostrarEliminar}
+          mensaje={'¿Seguro que quieres eliminar ' + rutina.nombre + '?'}
+          funcEliminar={eliminarRutina}
+        />
+        <div className="flex flex-col h-full bg-white border-2 rounded-lg shadow-md hover:scale-105 hover:shadow-lg hover:border-blue-500 duration-100 p-4">
           <div className="flex flex-col w-full h-full">
             <div className="">
               <h5 className="text-xl font-bold text-gray-900 cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden"
@@ -170,7 +180,14 @@ const CardRutina = ({ rutina }) => {
                       <button 
                         className="flex items-center justify-center p-2 text-2xl cursor-pointer text-white rounded-md bg-red-500
                         hover:bg-red-600 duration-100 active:scale-95"
-                        onClick={() => {eliminarRutina()}} 
+                        onClick={()=>{
+                          setMostrarEliminar(true)
+                          document.getElementById('confirmarEliminar').scrollIntoView({
+                            behavior: 'auto',
+                            block: 'center',
+                            inline: 'center'
+                          });
+                        }} 
                       >
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
@@ -179,6 +196,7 @@ const CardRutina = ({ rutina }) => {
               }
             </div>
         </div>
+      </div>
     );
 };
 
