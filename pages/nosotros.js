@@ -11,6 +11,7 @@ export default function Nosotros() {
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+    localStorage.setItem('bandera', 'false');
   }, []);
 
   return (

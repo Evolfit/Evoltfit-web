@@ -41,7 +41,7 @@ export default function Home() {
 
 
   const [loading, setLoading] = useState(false);
-  
+
   const [data, setData] = useState([]);
   // <-------------- Carga de Ejercicios ---------------->
   /*
@@ -75,13 +75,13 @@ export default function Home() {
     }
   }
   //console.log(herramientasActivas)
-  
+
   //
   //
   //Funcion para cargar los ejercicios....
   //
   //
-  
+
   const cargar_ejercicios = async () => {
     let query = supabase
       .from('ejercicios')
@@ -603,9 +603,9 @@ export default function Home() {
         Object.entries(eval(`variables${count}`)).forEach(([name, cantidad]) => {
           for (let i = 0; i < cantidad; i++) {
             if (name === "Hombros" || name === "Antebrazos" || name === "Pantorrillas") {
-              array.push({ valor: name, series: 4 + dosdecuatro, repeticiones: repeticionesG });
+              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG });
             } else {
-              array.push({ valor: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG });
+              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG });
             }
           }
         });
@@ -635,25 +635,36 @@ export default function Home() {
 
 
   function cambiar_ejercicios() {
-    console.log("Dentro de la funcion CAMBIAREJERCICIOS")
-    console.log(data)
     
-    //if (data.every(posicion => posicion.length === 0)) {
-    // cargar_ejercicios();
-    //}
-    //console.log("FINALLLLL")
-    //console.log(data)
-    //console.log(arrays)
-    //const newArrays = [...arrays];
-    //newArrays[0][0].valor = "Hola";
-    //setArrays(newArrays);
+    // Variable para almacenar los ejercicios ya asignados
+    let asignados = [];
+
+    // Recorrer el arreglo "arrays"
+    for (let i = 0; i < arrays.length; i++) {
+     
+      for (let j = 0; j < arrays[i].length; j++) {
+        let obj = arrays[i][j];
+       
+        if (obj.etiqueta) {
+         
+          let ejercicio = data.find(ej => ej.musculo_primario === obj.etiqueta && !asignados.includes(ej.id));
+         
+          if (ejercicio && ejercicio.nombre !== obj.nombreE) {
+            obj.nombreE = ejercicio.nombre;
+            asignados.push(ejercicio.id);
+          }
+        }
+      }
+    }
+    console.log(arrays)
+    setArrays([...arrays]);
   }
-//que no tengo antes de esto.
+  //que no tengo antes de esto.
   function cambiar_ejercicios_Click() {
-    console.log(herramientasActivas)
+    console.log(arrays)
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     const newArrays = [...arrays];
-    newArrays[0][0].valor = "Hola"+randomNumber;
+    newArrays[0][0].nombreE = "Hola" + randomNumber;
     setArrays(newArrays);
   }
 
@@ -680,6 +691,7 @@ export default function Home() {
     if (typeof localStorage !== 'undefined') {
       window.addEventListener('beforeunload', () => {
         localStorage.setItem('rutina', JSON.stringify(arrays));
+        localStorage.setItem('bandera', 'true');
       });
     }
   }, [arrays]);
@@ -724,12 +736,31 @@ export default function Home() {
 
 
   };
+  
+   useEffect(() => {
+
+    const handlePopstate = () => {
+      localStorage.setItem('bandera', 'false');
+      window.removeEventListener('popstate', handlePopstate);
+    };
+
+    window.addEventListener('popstate', handlePopstate);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  }, []);
+
   useEffect(() => {
     if (data.every(posicion => posicion.length === 0)) {
       cargar_ejercicios();
-    }else{
-      cambiar_ejercicios_Click();
+    } else {
+      if(localStorage.getItem('bandera') !== 'true'){
+      cambiar_ejercicios();
+
+      }
     }
+    console.log(localStorage.getItem('bandera'));
   }, [data]);
 
   return (
@@ -741,59 +772,59 @@ export default function Home() {
       </Head>
       <Navbar />
 
-     
-      { loading ? (
+
+      {loading ? (
         <div>
-        <div className="loader"></div>
-        <p>{'CARGANDO'}</p>
-      </div>
+          <div className="loader"></div>
+          <p>{'CARGANDO'}</p>
+        </div>
       ) : (
         <main className={styles.main}>
-        <br /><br />
+          <br /><br />
 
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-              <tr>
-                <th className="px-6 py-3">Lunes</th>
-                <th className="px-6 py-3">Martes</th>
-                <th className="px-6 py-3">Miércoles</th>
-                <th className="px-6 py-3">Jueves</th>
-                <th className="px-6 py-3">Viernes</th>
-                <th className="px-6 py-3">Sábado</th>
-                <th className="px-6 py-3">Domingo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {longestArray.map((_, index) => (
-                <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
-                  {arrays.map((array) => (
-
-                    <td key={shortid.generate()} className="px-6 py-4">
-                      {index < array.length ?
-                        <p>
-                          {array[index].valor} <br />
-                          <img src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
-                          <br />{array[index].series}x{array[index].repeticiones} <br />
-                          Descanso: {descanso}
-                        </p>
-                        : ''} <br />
-                    </td>
-
-                  ))}
-
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3">Lunes</th>
+                  <th className="px-6 py-3">Martes</th>
+                  <th className="px-6 py-3">Miércoles</th>
+                  <th className="px-6 py-3">Jueves</th>
+                  <th className="px-6 py-3">Viernes</th>
+                  <th className="px-6 py-3">Sábado</th>
+                  <th className="px-6 py-3">Domingo</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {longestArray.map((_, index) => (
+                  <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
+                    {arrays.map((array) => (
+
+                      <td key={shortid.generate()} className="px-6 py-4">
+                        {index < array.length ?
+                          <p>
+                            {array[index].nombreE} <br />
+                            <img src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+                            <br />{array[index].series}x{array[index].repeticiones} <br />
+                            Descanso: {descanso}
+                          </p>
+                          : ''} <br />
+                      </td>
+
+                    ))}
+
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
 
-        <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
-        <br /><br /> <br /> <br /> <br /> <br /> <br />
-      </main>
+          <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
+          <br /><br /> <br /> <br /> <br /> <br /> <br />
+        </main>
       )}
-        
+
       <Footer></Footer>
     </div>
   );

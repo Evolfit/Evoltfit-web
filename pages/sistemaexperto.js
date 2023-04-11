@@ -50,7 +50,7 @@ export default function Home() {
   let algunoEsVerdadero = false;
   let element;
   let element2;
-
+  localStorage.setItem('bandera', 'false');
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");

@@ -16,6 +16,7 @@ export default function Home() {
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+    localStorage.setItem('bandera', 'false');
   }, [])
 
   const handleSubmit = async (e) => {

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Home() {
   const [sesion, setSesion] = useState(null);
-
+  localStorage.setItem('bandera', 'false');
   useEffect(() => {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
