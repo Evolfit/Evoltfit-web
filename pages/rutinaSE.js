@@ -18,7 +18,8 @@ export default function Home() {
   const router = useRouter();
   const { formData2, checkboxes, checkboxes2, arreglo } = router.query;
   //JSON
-
+  //IMAGEN
+  const imgSrc = "img/completo2.png";
   let formulario = {};
   if (formData2) {
     formulario = JSON.parse(formData2);
@@ -85,7 +86,7 @@ export default function Home() {
   const cargar_ejercicios = async () => {
     let query = supabase
       .from('ejercicios')
-      .select('id, nombre, musculo_primario,equipo, img')
+      .select('id,similar, nombre, musculo_primario,equipo, img')
 
     query = query.containedBy('equipo', herramientasActivas)
     query = query.order('puntuacion', { ascending: false })
@@ -603,9 +604,9 @@ export default function Home() {
         Object.entries(eval(`variables${count}`)).forEach(([name, cantidad]) => {
           for (let i = 0; i < cantidad; i++) {
             if (name === "Hombros" || name === "Antebrazos" || name === "Pantorrillas") {
-              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG });
+              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG, imgR:imgSrc});
             } else {
-              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG });
+              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG, imgR:imgSrc });
             }
           }
         });
@@ -613,10 +614,6 @@ export default function Home() {
       }
     }
   }
-
-
-
-
 
   /*
   /
@@ -630,35 +627,32 @@ export default function Home() {
   /
   */
 
-
-
-
-
   function cambiar_ejercicios() {
-    
     // Variable para almacenar los ejercicios ya asignados
     let asignados = [];
-
+    let similares = [];
     // Recorrer el arreglo "arrays"
     for (let i = 0; i < arrays.length; i++) {
-     
       for (let j = 0; j < arrays[i].length; j++) {
         let obj = arrays[i][j];
-       
         if (obj.etiqueta) {
-         
-          let ejercicio = data.find(ej => ej.musculo_primario === obj.etiqueta && !asignados.includes(ej.id));
-         
+          let ejercicio = data.find(ej => ej.musculo_primario === obj.etiqueta && !asignados.includes(ej.id) && !similares.includes(ej.similar));
           if (ejercicio && ejercicio.nombre !== obj.nombreE) {
             obj.nombreE = ejercicio.nombre;
+            obj.imgR = ejercicio.img;
             asignados.push(ejercicio.id);
+            if (ejercicio.similar !== null)
+              similares.push(ejercicio.similar);
           }
         }
       }
     }
     console.log(arrays)
+    console.log(similares)
     setArrays([...arrays]);
   }
+
+
   //que no tengo antes de esto.
   function cambiar_ejercicios_Click() {
     console.log(arrays)
@@ -667,8 +661,6 @@ export default function Home() {
     newArrays[0][0].nombreE = "Hola" + randomNumber;
     setArrays(newArrays);
   }
-
-
 
   const [arrays, setArrays] = useState([
     contenido1,
@@ -679,8 +671,6 @@ export default function Home() {
     contenido6,
     contenido7,
   ]);
-
-
 
   /*/////////////////////////////
   UseEffect que activa evento para cuando se recargue
@@ -696,72 +686,63 @@ export default function Home() {
     }
   }, [arrays]);
 
+  //UseEffect para obtener la rutina si el usuario recarga la página
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
-
       if (arrays.every(posicion => posicion.length === 0)) {
-
         const storedCount = localStorage.getItem('rutina');
         if (storedCount) {
-
           setArrays(JSON.parse(storedCount));
-
         }
-
       }
     }
   }, []);
 
-
-
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
-
-
-
+  //
+  //Cuando se preciona un boton
+  //
+  function mostrarPosicion(arrayIndex, index) {
+    console.log(`Botón presionado en la posición [${arrayIndex}][${index}]`);
+  }
   const handleClick = () => {
-
     //cargar_ejercicios();
     //llenarOtraVez();
-    cambiar_ejercicios_Click();
+    //cambiar_ejercicios_Click();
     //llenarArreglo(diasActivos);
-    console.log(formulario);
-    console.log(dias);
-    console.log(herramientas);
-    console.log(opciones);
-    console.log(diasActivos);
-    console.log(contenido1);
-    console.log(arrays);
-
-
-
+    //console.log(formulario);
+    //console.log(dias);
+    //console.log(herramientas);
+    //console.log(opciones);
+    //console.log(diasActivos);
+    //console.log(contenido1);
+    //console.log(arrays);
   };
-  
-   useEffect(() => {
-
+  //Use effect para detectar si el usuario sale de rutinaSE
+  useEffect(() => {
     const handlePopstate = () => {
       localStorage.setItem('bandera', 'false');
       window.removeEventListener('popstate', handlePopstate);
     };
-
     window.addEventListener('popstate', handlePopstate);
-
     return () => {
       window.removeEventListener('popstate', handlePopstate);
     };
   }, []);
 
+  //Use Effect para cargar y asignar los ejercicios
   useEffect(() => {
     if (data.every(posicion => posicion.length === 0)) {
       cargar_ejercicios();
     } else {
-      if(localStorage.getItem('bandera') !== 'true'){
-      cambiar_ejercicios();
-
+      if (localStorage.getItem('bandera') !== 'true') {
+        cambiar_ejercicios();
       }
     }
-    console.log(localStorage.getItem('bandera'));
+    //console.log(localStorage.getItem('bandera'));
   }, [data]);
+
 
   return (
     <div className="bg-blue-100 w-full">
@@ -796,26 +777,35 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {longestArray.map((_, index) => (
-                  <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
-                    {arrays.map((array) => (
-
-                      <td key={shortid.generate()} className="px-6 py-4">
-                        {index < array.length ?
-                          <p>
-                            {array[index].nombreE} <br />
-                            <img src="img/completo2.png" alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
-                            <br />{array[index].series}x{array[index].repeticiones} <br />
-                            Descanso: {descanso}
-                          </p>
-                          : ''} <br />
-                      </td>
-
-                    ))}
-
-                  </tr>
-                ))}
-              </tbody>
+  {longestArray.map((_, index) => (
+    <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
+      {arrays.map((array, arrayIndex) => (
+        <td key={shortid.generate()} className="px-6 py-4">
+          {index < array.length ? (
+            <p>
+              {array[index].nombreE} <br />
+              <img src={array[index].imgR} alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+              <br />{array[index].series}x{array[index].repeticiones} <br />
+              Descanso: {descanso}
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-0.3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                onClick={() => mostrarPosicion(arrayIndex, index)}
+              >
+                <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Icon description</span>
+              </button>
+            </p>
+          ) : (
+            ''
+          )} <br />
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
             </table>
           </div>
 
