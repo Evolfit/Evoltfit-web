@@ -651,15 +651,47 @@ export default function Home() {
     console.log(similares)
     setArrays([...arrays]);
   }
+   //
+  //Cuando se preciona un boton
+  //
+  const ejerciciosSeleccionados = [];
+  const [contador, setContador] = useState(0);
+  function mostrarPosicion(arrayIndex, index) {
+    let obj2 = arrays[arrayIndex][index];
+    let ubicacion = data.findIndex((ejercicio) => {
+      return ejercicio.nombre === obj2.nombreE;
+    });
+    console.log("______________________________________")
+    console.log("Ejercicio Seleccionados")
+    console.log(ejerciciosSeleccionados)
+    console.log("Ejercicio Actual")
+    console.log(obj2)
+    console.log("Contador")
+    console.log(contador)
+    // Obtener los ejercicios que coinciden con la etiqueta y no están en arrays
+    const ejerciciosFiltrados = data.filter((ejercicio, i) => {
+      return (
+        ejercicio.musculo_primario === data[ubicacion].musculo_primario &&
+        !ejerciciosSeleccionados.includes(i) &&
+        !arrays.some((arr) => arr.some((ej) => ej.nombreE === ejercicio.nombre)) &&
+        ejercicio.nombre !== obj2.nombreE 
+      );
+    });
 
-
-  //que no tengo antes de esto.
-  function cambiar_ejercicios_Click() {
-    console.log(arrays)
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
-    const newArrays = [...arrays];
-    newArrays[0][0].nombreE = "Hola" + randomNumber;
-    setArrays(newArrays);
+   console.log("Ejercicios filtrados")
+   console.log(ejerciciosFiltrados)
+   //ponerle que recoga todos los ejercicios y utilizar la ubicacion
+    if (ejerciciosFiltrados.length > 0) {
+      const siguienteEjercicio = ejerciciosFiltrados[contador];
+      ejerciciosSeleccionados.push(data[ubicacion]);
+      //Cambio de datos
+      obj2.nombreE = siguienteEjercicio.nombre;
+      obj2.imgR = siguienteEjercicio.img;
+      setArrays([...arrays]);
+      setContador(contador+1);
+    }else{
+      setContador(0);
+    }
   }
 
   const [arrays, setArrays] = useState([
@@ -700,12 +732,7 @@ export default function Home() {
 
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
-  //
-  //Cuando se preciona un boton
-  //
-  function mostrarPosicion(arrayIndex, index) {
-    console.log(`Botón presionado en la posición [${arrayIndex}][${index}]`);
-  }
+ 
   const handleClick = () => {
     //cargar_ejercicios();
     //llenarOtraVez();
