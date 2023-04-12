@@ -14,8 +14,8 @@ const CardRutina = ({ rutina }) => {
     const [mostrarEliminar, setMostrarEliminar] = useState(false);
 
     useEffect(() => {
-        getEjerciciosRutina()
-      }, [])
+      getEjerciciosRutina()
+    }, [])
 
     async function getEjerciciosRutina() {
       //const { data, error } = await supabase.rpc('getEjerciciosRutina', { rutina_id: rutina.id })
@@ -182,11 +182,6 @@ const CardRutina = ({ rutina }) => {
                         hover:bg-red-600 duration-100 active:scale-95"
                         onClick={()=>{
                           setMostrarEliminar(true)
-                          document.getElementById('confirmarEliminar').scrollIntoView({
-                            behavior: 'auto',
-                            block: 'center',
-                            inline: 'center'
-                          });
                         }} 
                       >
                         <ion-icon name="trash-outline"></ion-icon>

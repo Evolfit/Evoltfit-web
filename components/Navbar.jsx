@@ -72,9 +72,7 @@ const Navbar = () => {
     const router = useRouter();
 
     return (
-
-     
-        <div className = "shadow-md w-full fixed top-0 left-0 z-40"  data-theme="emerald">
+        <div className = "shadow-md w-full fixed top-0 left-0 z-50"  data-theme="emerald">
             <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></Script>
             <Script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></Script>
               <Head>

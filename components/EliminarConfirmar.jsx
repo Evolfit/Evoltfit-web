@@ -10,6 +10,16 @@ import Link from 'next/link'
 const EliminarConfirmar = ({ mostrarEliminar, setMostrarEliminar, mensaje, funcEliminar }) => {
     let aviso = mensaje || '¿Estás seguro?'
     
+    useEffect(() => {
+        if (mostrarEliminar){
+            document.getElementById('confirmarEliminar').scrollIntoView({
+                behavior: 'auto',
+                block: 'center',
+                inline: 'center'
+            });
+        }
+    }, [mostrarEliminar])
+
     return (
         <div className={
             "absolute w-full h-full bg-inherit flex items-center left-0 top-0 z-10 justify-center duration-200 backdrop-blur" 

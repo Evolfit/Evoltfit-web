@@ -271,11 +271,6 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 <button 
                 onClick={() => {
                     setMostrarEliminar(true)
-                    document.getElementById('confirmarEliminar').scrollIntoView({
-                    behavior: 'auto',
-                    block: 'center',
-                    inline: 'center'
-                    });
                 }} 
                 className="inline-flex items-center p-2 text-2xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 outline-none duration-75 active:scale-95"
                 >
