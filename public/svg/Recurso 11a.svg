@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.1 49.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2d3540;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <rect class="cls-1" x="36.99" y=".36" width="4.44" height="19.06" rx="1.09" ry="1.09" transform="translate(4.49 30.62) rotate(-45)"/>
+      <rect class="cls-1" x="40.62" y="-.93" width="4.44" height="14.37" rx=".95" ry=".95" transform="translate(8.12 32.13) rotate(-45)"/>
+      <rect class="cls-1" x="7.67" y="29.68" width="4.44" height="19.06" rx="1.09" ry="1.09" transform="translate(44.61 59.94) rotate(135)"/>
+      <rect class="cls-1" x="4.04" y="35.66" width="4.44" height="14.37" rx=".95" ry=".95" transform="translate(40.97 68.71) rotate(135)"/>
+      <path class="cls-1" d="m22.14,33.37c-.48.48-1.13.8-1.85.84l-3.62.25-3.36,3.36c-.18.18-.46.18-.64,0l-1.4-1.4c-.18-.18-.18-.47,0-.64l3.36-3.36c.49-.49,1.15-.79,1.85-.84l3.62-.25s0,0,.01-.01l.25-3.62c.05-.7.35-1.36.84-1.85l4.67-4.67c.5-.5,1.15-.79,1.85-.84l3.62-.25s0,0,.01-.01l.25-3.62c.05-.7.35-1.36.84-1.85l3.36-3.36c.18-.18.47-.18.64,0l1.4,1.4c.18.18.18.46,0,.64l-3.36,3.36-.25,3.62c-.1,1.44-1.26,2.59-2.69,2.69l-3.62.25-2.34,2.34-2.33,2.33-.25,3.62c-.05.72-.36,1.37-.84,1.85Z"/>
+    </g>
+  </g>
+</svg>

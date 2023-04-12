@@ -46,7 +46,12 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
         var temp = equipo;
         
         if (checked == true){
-          temp.push(value);
+          if (temp[0] == 'Ninguno') {
+            temp = [value]
+          }
+          else{
+            temp.push(value);
+          }
         }
         
         if (checked == false){
@@ -54,6 +59,10 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
           if (indice > -1) {
             temp.splice(indice, 1);
           }
+        }
+
+        if (temp.length === 0){
+          temp.push("Ninguno");
         }
         
         setEquipo(temp);
@@ -99,12 +108,12 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
     //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
 
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
     //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
 
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
-    
+
     query = query.order('id', { ascending: false })
     const data = await query
 
@@ -118,7 +127,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     .select('id', { count: 'exact', head: true })
 
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    if (filtrarEquipo)  { query = query.overlaps('equipo', filtrarEquipo) }
+    if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
 
     const count = await query
@@ -146,21 +155,21 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
   }
 
   return (
-    <div className={"absolute w-full h-full overflow-auto bg-inherit py-6 flex items-center left-0 top-0 z-10 justify-center duration-200 backdrop-blur"
+    <div className={"absolute w-full h-full overflow-y-scroll bg-stone-100 flex items-center left-0 top-0 z-10 justify-center duration-200 pt-6"
     +
     (!toggleSeleccionar ? 
     ' invisible opacity-0'
     :
     ' visible opacity-100')
     }>
-      <div className="h-full overflow-auto bg-white w-11/12 md:w-9/12 mx-auto max-w-5xl rounded-xl shadow-lg p-4">
-          <div className='flex justify-end sticky top-0 px-2 h-0 z-20'>
-            <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow-md p-2">
+      <div className="h-full w-11/12 md:w-9/12 mx-auto max-w-5xl">
+          <div className='flex justify-end sticky top-0 h-0 z-20'>
+            <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow-md p-2 mt-2">
                   <ion-icon name='close-outline'></ion-icon>
             </button>
           </div>
           <div>
-            <h2 id='SeleccionarEjercicio'  className="text-2xl lg:text-5xl text-left text-secondary font-semibold lg:my-4">Seleccionar Ejercicio</h2>
+            <h2 id='SeleccionarEjercicio'  className="text-2xl mt-6 lg:text-5xl text-left text-secondary font-semibold lg:my-4">Seleccionar Ejercicio</h2>
             <br/>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
             <div className="relative flex flex-row">
@@ -382,6 +391,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
                   {(paginacion >= (cantidad/10))? "" : <button className="btn btn-outline btn-secondary text-xl lg:btn-lg" onClick={() => {setPaginacion(paginacion + 1); window.scrollTo(0, 0);}}>»</button>}
                 </div>
               </div>
+              <br/>
             </div> 
             : 
             <div className="mt-12">
