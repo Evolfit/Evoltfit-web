@@ -604,9 +604,9 @@ export default function Home() {
         Object.entries(eval(`variables${count}`)).forEach(([name, cantidad]) => {
           for (let i = 0; i < cantidad; i++) {
             if (name === "Hombros" || name === "Antebrazos" || name === "Pantorrillas") {
-              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG, imgR:imgSrc});
+              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc });
             } else {
-              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG, imgR:imgSrc });
+              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc });
             }
           }
         });
@@ -651,46 +651,53 @@ export default function Home() {
     console.log(similares)
     setArrays([...arrays]);
   }
-   //
+  //
   //Cuando se preciona un boton
   //
-  const ejerciciosSeleccionados = [];
-  const [contador, setContador] = useState(0);
+
   function mostrarPosicion(arrayIndex, index) {
     let obj2 = arrays[arrayIndex][index];
     let ubicacion = data.findIndex((ejercicio) => {
       return ejercicio.nombre === obj2.nombreE;
     });
     console.log("______________________________________")
-    console.log("Ejercicio Seleccionados")
-    console.log(ejerciciosSeleccionados)
     console.log("Ejercicio Actual")
     console.log(obj2)
-    console.log("Contador")
-    console.log(contador)
     // Obtener los ejercicios que coinciden con la etiqueta y no están en arrays
     const ejerciciosFiltrados = data.filter((ejercicio, i) => {
       return (
-        ejercicio.musculo_primario === data[ubicacion].musculo_primario &&
-        !ejerciciosSeleccionados.includes(i) &&
-        !arrays.some((arr) => arr.some((ej) => ej.nombreE === ejercicio.nombre)) &&
-        ejercicio.nombre !== obj2.nombreE 
+        ejercicio.musculo_primario === data[ubicacion].musculo_primario
       );
     });
 
-   console.log("Ejercicios filtrados")
-   console.log(ejerciciosFiltrados)
-   //ponerle que recoga todos los ejercicios y utilizar la ubicacion
-    if (ejerciciosFiltrados.length > 0) {
-      const siguienteEjercicio = ejerciciosFiltrados[contador];
-      ejerciciosSeleccionados.push(data[ubicacion]);
+    console.log("Ejercicios filtrados")
+    console.log(ejerciciosFiltrados)
+    //ponerle que recoga todos los ejercicios y utilizar la ubicacion
+
+    let y = ejerciciosFiltrados.length;
+    let x = ejerciciosFiltrados.findIndex((ejercicio2) => {
+      return ejercicio2.nombre === obj2.nombreE;
+    });
+
+    if (x < y) {
+      console.log("Contador")
+      console.log(x)
+      let siguienteEjercicio=0;
+      if(x+1<y){
+      siguienteEjercicio = ejerciciosFiltrados[x+1];
+      }else{
+      siguienteEjercicio = ejerciciosFiltrados[0];
+      }
+
       //Cambio de datos
+      console.log("Nuevo Ejercicio")
+      console.log(siguienteEjercicio)
       obj2.nombreE = siguienteEjercicio.nombre;
       obj2.imgR = siguienteEjercicio.img;
       setArrays([...arrays]);
-      setContador(contador+1);
-    }else{
-      setContador(0);
+
+    } else {
+      console.log("No hace Nada")
     }
   }
 
@@ -732,7 +739,7 @@ export default function Home() {
 
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
 
- 
+
   const handleClick = () => {
     //cargar_ejercicios();
     //llenarOtraVez();
@@ -804,35 +811,35 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-  {longestArray.map((_, index) => (
-    <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
-      {arrays.map((array, arrayIndex) => (
-        <td key={shortid.generate()} className="px-6 py-4">
-          {index < array.length ? (
-            <p>
-              {array[index].nombreE} <br />
-              <img src={array[index].imgR} alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
-              <br />{array[index].series}x{array[index].repeticiones} <br />
-              Descanso: {descanso}
-              <button
-                type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-0.3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={() => mostrarPosicion(arrayIndex, index)}
-              >
-                <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Icon description</span>
-              </button>
-            </p>
-          ) : (
-            ''
-          )} <br />
-        </td>
-      ))}
-    </tr>
-  ))}
-</tbody>
+                {longestArray.map((_, index) => (
+                  <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
+                    {arrays.map((array, arrayIndex) => (
+                      <td key={shortid.generate()} className="px-6 py-4">
+                        {index < array.length ? (
+                          <p>
+                            {array[index].nombreE} <br />
+                            <img src={array[index].imgR} alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+                            <br />{array[index].series}x{array[index].repeticiones} <br />
+                            Descanso: {descanso}
+                            <button
+                              type="button"
+                              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-0.3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                              onClick={() => mostrarPosicion(arrayIndex, index)}
+                            >
+                              <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                              </svg>
+                              <span class="sr-only">Icon description</span>
+                            </button>
+                          </p>
+                        ) : (
+                          ''
+                        )} <br />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
 
