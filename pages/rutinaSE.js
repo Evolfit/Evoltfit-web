@@ -39,18 +39,15 @@ export default function Home() {
   if (arreglo) {
     opciones = JSON.parse(arreglo);
   }
-
-
+  console.log("Datos de la persona.")
+  console.log(formulario)
   const [loading, setLoading] = useState(false);
+ // <-------------- Sesion ---------------->
+
 
   const [data, setData] = useState([]);
   // <-------------- Carga de Ejercicios ---------------->
-  /*
-
-
-
-
-  */
+ 
   const nombreMap = {
     "Ninguno": "Ninguno",
     "Bandaresistencia": "Banda de resistencia",
@@ -96,8 +93,8 @@ export default function Home() {
       console.log(error);
     } else {
       setData(data);
-      console.log("Funcion Cargar")
-      console.log(data)
+      //console.log("Funcion Cargar")
+      //console.log(data)
     }
   };
 
@@ -647,57 +644,75 @@ export default function Home() {
         }
       }
     }
-    console.log(arrays)
-    console.log(similares)
-    setArrays([...arrays]);
+    if (diasActivos >= 6 && (opciones[4] === 'superior' || opciones[4] === 'brazos')) {
+      const copy = JSON.parse(JSON.stringify(arrays[0]));
+      const copy2 = JSON.parse(JSON.stringify(arrays[1]));
+      arrays[3] = copy;
+      arrays[4] = copy2;
+
+      setArrays([...arrays]);
+    } else {
+      //console.log(arrays)
+      //console.log(similares)
+      setArrays([...arrays]);
+    }
+
   }
+
   //
   //Cuando se preciona un boton
   //
 
   function mostrarPosicion(arrayIndex, index) {
     let obj2 = arrays[arrayIndex][index];
-    let ubicacion = data.findIndex((ejercicio) => {
-      return ejercicio.nombre === obj2.nombreE;
-    });
-    console.log("______________________________________")
-    console.log("Ejercicio Actual")
-    console.log(obj2)
-    // Obtener los ejercicios que coinciden con la etiqueta y no están en arrays
-    const ejerciciosFiltrados = data.filter((ejercicio, i) => {
-      return (
-        ejercicio.musculo_primario === data[ubicacion].musculo_primario
-      );
-    });
+    //console.log(obj2.nombreE)
+    if (!["Abdomen", "Oblicuos", "Antebrazos", "Biceps", "Triceps", "Hombros", "Trapecio", "Trapecio Medio", "Pecho", "Cuadriceps", "Pantorrillas", "Isquiotibiales", "Dorsales", "Gluteos", "Espalda Baja"].includes(obj2.nombreE)) {
+      // Hacer x cosa
 
-    console.log("Ejercicios filtrados")
-    console.log(ejerciciosFiltrados)
-    //ponerle que recoga todos los ejercicios y utilizar la ubicacion
+      let ubicacion = data.findIndex((ejercicio) => {
+        return ejercicio.nombre === obj2.nombreE;
+      });
+      //console.log("______________________________________")
+      //console.log("Ejercicio Actual")
+      //console.log(obj2)
+      // Obtener los ejercicios que coinciden con la etiqueta y no están en arrays
+      const ejerciciosFiltrados = data.filter((ejercicio, i) => {
+        return (
+          ejercicio.musculo_primario === data[ubicacion].musculo_primario
+        );
+      });
 
-    let y = ejerciciosFiltrados.length;
-    let x = ejerciciosFiltrados.findIndex((ejercicio2) => {
-      return ejercicio2.nombre === obj2.nombreE;
-    });
+      //console.log("Ejercicios filtrados")
+      //console.log(ejerciciosFiltrados)
+      //ponerle que recoga todos los ejercicios y utilizar la ubicacion
 
-    if (x < y) {
-      console.log("Contador")
-      console.log(x)
-      let siguienteEjercicio=0;
-      if(x+1<y){
-      siguienteEjercicio = ejerciciosFiltrados[x+1];
-      }else{
-      siguienteEjercicio = ejerciciosFiltrados[0];
+      let y = ejerciciosFiltrados.length;
+      let x = ejerciciosFiltrados.findIndex((ejercicio2) => {
+        return ejercicio2.nombre === obj2.nombreE;
+      });
+
+      if (x < y) {
+        //console.log("Contador")
+        //console.log(x)
+        let siguienteEjercicio = 0;
+        if (x + 1 < y) {
+          siguienteEjercicio = ejerciciosFiltrados[x + 1];
+        } else {
+          siguienteEjercicio = ejerciciosFiltrados[0];
+        }
+
+        //Cambio de datos
+        //console.log("Nuevo Ejercicio")
+        //console.log(siguienteEjercicio)
+        obj2.nombreE = siguienteEjercicio.nombre;
+        obj2.imgR = siguienteEjercicio.img;
+        setArrays([...arrays]);
+
+      } else {
+        console.log("No hace Nada")
       }
-
-      //Cambio de datos
-      console.log("Nuevo Ejercicio")
-      console.log(siguienteEjercicio)
-      obj2.nombreE = siguienteEjercicio.nombre;
-      obj2.imgR = siguienteEjercicio.img;
-      setArrays([...arrays]);
-
     } else {
-      console.log("No hace Nada")
+      alert('No hay Ejercicios Para Asignar');
     }
   }
 

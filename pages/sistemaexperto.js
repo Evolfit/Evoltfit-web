@@ -62,9 +62,9 @@ export default function Home() {
       Lunes: true,
       Martes: true,
       Miercoles: true,
-      Jueves: false,
-      Viernes: false,
-      Sabado: false,
+      Jueves: true,
+      Viernes: true,
+      Sabado: true,
       Domingo: false,
     });
     setCheckboxes({
