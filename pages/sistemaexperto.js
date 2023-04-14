@@ -353,6 +353,7 @@ const getPerfil = async (idUsuario) => {
             </div>
           ) : value === 3 ? (
             <div className="w-9/12 bg-gray-100 p-3 rounded-lg secc3">{element}
+           
             </div>
           ) : value === 4 && arreglo[2] != "principiante" ? (
             <div className="bg-gray-100 w-5/6 p-3 rounded-lg secc4">{element}
