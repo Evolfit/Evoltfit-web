@@ -11,7 +11,7 @@ function Seccion3(props) {
   };
 
   return (
-    <div>
+    <div className = "">
       <div className="grid place-items-center">
         <div className="font-catamaran text-2xl md:text-3xl bg-gradient-to-r from-blue-600 via-blue-800 to-black bg-clip-text text-transparent mt-7 font-bold text-center">
           <h1>En este momento, ¿Con cuál opción te identificas más?</h1>

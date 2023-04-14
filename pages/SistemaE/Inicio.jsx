@@ -6,7 +6,7 @@ function Inicio() {
   
   return (
     <div className = "flex">
-      <div className="w-2/2 lg:w-1/2 rounded-tr-lg lg:rounded-tr-none rounded-bt-lg lg:rounded-bt-none rounded-tl-lg rounded-bl-lg bg-white">
+      <div className="border-2 border-l-blue-600 border-t-blue-600 border-b-blue-600 border-r-0 w-2/2 lg:w-1/2 rounded-tr-lg lg:rounded-tr-none rounded-bt-lg-blue-600 lg:rounded-bt-none rounded-tl-lg rounded-bl-lg bg-white">
         <div className = "grid place-items-center">
         <br/>
         <h1 className="font-catamaran text-center text-blue-600 text-2xl xl:text-3xl font-semibold">
