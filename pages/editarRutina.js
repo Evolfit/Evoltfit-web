@@ -6,6 +6,7 @@ import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import CardEjercicio from "/components/CardEjercicio";
 import SeleccionarEjercicio from "/components/SeleccionarEjercicio";
+import EliminarConfirmar from "/components/EliminarConfirmar";
 import supabase from "../config/supabaseClient";
 
 export default function Home() {
@@ -16,9 +17,8 @@ export default function Home() {
   const [rutina, setRutina] = useState(null);
   const [formInput, setFormInput] = useState();
   const [ejerciciosRutina, setEjerciciosRutina] = useState([])
-  const [ordenEjercicios, setOrdenEjercicios] = useState([])
   const [toggleSeleccionar, setToggleSeleccionar] = useState(false);
-  const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
+  const [mostrarEliminar, setMostrarEliminar] = useState(false);
 
   useEffect(() => {
     //console.log("useEffect")
@@ -198,6 +198,11 @@ export default function Home() {
       }
       else{
         console.log("Se agregó un nuevo set.")
+        document.getElementById((data[0].orden + 1) + '.' + data[0].ejercicio.nombre).scrollIntoView({
+          behavior: 'auto',
+          block: 'center',
+          inline: 'center'
+      });
       }
     }
   }
@@ -252,85 +257,110 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main  className="mt-24 relative">
+      <main className="mt-24 relative">
 
+        <EliminarConfirmar
+          mostrarEliminar={mostrarEliminar}
+          setMostrarEliminar={setMostrarEliminar}
+          mensaje={'¿Seguro que quieres eliminar ' + (formInput ? formInput.nombre : "") + '?'}
+          funcEliminar={eliminarRutina}
+        />
+        
         <SeleccionarEjercicio
             toggleSeleccionar={toggleSeleccionar}
             agregarEjercicio={agregarEjercicio}
             setToggleSeleccionar={setToggleSeleccionar}
           /> 
     
-        <div className="relative py-8">          
+        <div className="py-6">          
           {
             rutina ? 
             <div>
-              <div className={"mx-auto mt-2"}>
-                <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
-                  <div>
-                    <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
-                      <div className='text-3xl mt-auto'>
-                        <ion-icon name="arrow-back-outline"></ion-icon>
-                      </div>
-                      <span className="ml-2">{"Volver a Rutinas"}</span>
-                    </button>
-                    <br/>
-                    <input 
-                      name="nombre" 
-                      id="nombre" 
-                      type="text" 
-                      className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b-2
-                      outline-none border-blue-500 focus:border-b-4 duration-150  whitespace-nowrap text-ellipsis overflow-hidden" 
-                      value={formInput.nombre || ""} 
-                      onChange={handleOnInputChange}
-                    />
-                    <br/>
-                    { ejerciciosRutina.length === 0 ? 
-                        ''
-                      :
-                      <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <Droppable droppableId="ejercicios">
-                          {(provided) => (
-                            <ul className="ejercicios" {...provided.droppableProps} ref={provided.innerRef}>
-                              {ejerciciosRutina.map((ejercicio, index) => (
-                                <Draggable key={ejercicio.id} draggableId={ejercicio.id.toString()} index={index}>
-                                  {(provided) => (
-                                    <li className="my-2" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                        <CardEjercicio 
-                                        rutinaEjercicio={ejercicio} 
-                                        getEjerciciosRutina={getEjerciciosRutina}
-                                        index={index}
-                                        />
-                                    </li>
-                                  )}
-                                </Draggable>
-                                ))
-                              }
-                              {provided.placeholder}
-                            </ul>
-                          )}
-                        </Droppable>
-                      </DragDropContext>
-                    }
-                    <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
-                      <button onClick={() => {
-                          setToggleSeleccionar(!toggleSeleccionar)
-                          window.scrollTo(0, 0)
-                          }
-                        } 
-                        className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-blue-500 hover:bg-blue-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
-                        Agregar ejercicio
-                      </button>
-                      <button onClick={eliminarRutina} className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-red-500 hover:bg-red-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
-                        Eliminar Rutina
-                      </button>
+              <div className="flex flex-col w-11/12 md:w-9/12 mx-auto max-w-5xl">
+                <div>
+                  <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
+                    <div className='text-3xl mt-auto'>
+                      <ion-icon name="arrow-back-outline"></ion-icon>
                     </div>
-                    
+                    <span className="ml-2">{"Volver a Rutinas"}</span>
+                  </button>
+                  <br/>
+                  <input 
+                    name="nombre" 
+                    id="nombre" 
+                    type="text" 
+                    className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b-2
+                    outline-none border-blue-500 focus:border-b-4 duration-150  whitespace-nowrap text-ellipsis overflow-hidden" 
+                    value={formInput.nombre || ""} 
+                    onChange={handleOnInputChange}
+                  />
+                  <br/>
+                  {ejerciciosRutina.length === 0 ?
+                    ''
+                  :
+                  <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
+                    <button onClick={() => {
+                        setToggleSeleccionar(!toggleSeleccionar)
+                        window.scrollTo(0, 0)
+                        }
+                      } 
+                      className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-blue-500 hover:bg-blue-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
+                      Agregar ejercicio
+                    </button>
                   </div>
+                  }
+                  
+                  { ejerciciosRutina.length === 0 ? 
+                      ''
+                    :
+                    <DragDropContext onDragEnd={handleOnDragEnd}>
+                      <Droppable droppableId="ejercicios">
+                        {(provided) => (
+                          <ul className="ejercicios" {...provided.droppableProps} ref={provided.innerRef}>
+                            {ejerciciosRutina.map((ejercicio, index) => (
+                              <Draggable key={ejercicio.id} draggableId={ejercicio.id.toString()} index={index}>
+                                {(provided) => (
+                                  <li className="my-2" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                      <CardEjercicio 
+                                      rutinaEjercicio={ejercicio} 
+                                      getEjerciciosRutina={getEjerciciosRutina}
+                                      index={index}
+                                      />
+                                  </li>
+                                )}
+                              </Draggable>
+                              ))
+                            }
+                            {provided.placeholder}
+                          </ul>
+                        )}
+                      </Droppable>
+                    </DragDropContext>
+                  }
+                  <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
+                    <button onClick={() => {
+                        setToggleSeleccionar(!toggleSeleccionar)
+                        window.scrollTo(0, 0)
+                        }
+                      } 
+                      className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-blue-500 hover:bg-blue-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75">
+                      Agregar ejercicio
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setMostrarEliminar(true)
+                      }} 
+                      className="flex-auto uppercase text-sm font-semibold text-white py-4 bg-red-500 hover:bg-red-600 rounded-lg mx-1 my-1 w-full lg:my-0 duration-75"
+                    >
+                      Eliminar Rutina
+                    </button>
+                  </div>
+                  
                 </div>
-                <div className="flex flex-col items-center w-full">
-                  {/* Aqui se muestran las rutinas */}
-                </div>
-              </div> 
+              </div>
+              <div className="flex flex-col items-center w-full">
+                {/* Aqui se muestran las rutinas */}
+              </div>
             </div>
             : 
             <div className="mt-12">

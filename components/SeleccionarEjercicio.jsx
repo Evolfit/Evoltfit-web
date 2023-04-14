@@ -163,7 +163,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     ' visible opacity-100')
     }>
       <div className="h-full w-11/12 md:w-9/12 mx-auto max-w-5xl">
-          <div className='flex justify-end sticky top-0 h-0 z-20'>
+          <div className='flex fixed justify-end top-24 mt-2 right-4 md:right-36 md:mr-1 z-20'>
             <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow-md p-2 mt-2">
                   <ion-icon name='close-outline'></ion-icon>
             </button>

@@ -84,14 +84,14 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
 
     return (
       <tr className="border-b-2">
-        <th scope="row"  className="text-lg text-center">
+        <th scope="row"  className="text-base text-center">
           {index + 1}
         </th>
         <td className="border-l-2 border-r-2 hover:bg-blue-50 duration-100">
           <select 
           name='tipo' 
           onChange={handleOnInputChange} 
-          className="text-lg text-center h-12 w-full font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit appearance-none cursor-pointer" 
+          className="text-base text-center py-1 w-full font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit appearance-none cursor-pointer" 
           defaultValue='default'
           >
             <option id="default" value={formInput.tipo} hidden>{formInput.tipo}</option>
@@ -101,13 +101,13 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
             <option id="Al fallo" value="Al fallo">Al fallo</option>
           </select>
         </td>
-        <td className="text-center text-lg border-l-2 hover:bg-blue-50 duration-100">
+        <td className="text-center text-base border-l-2 hover:bg-blue-50 duration-100">
           <input 
           name='reps' 
           maxLength={2}
           value={formInput.reps} 
           onChange={handleOnInputChange}
-          className="h-12 w-12 sm:w-full py-3 text-center font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
+          className="w-16 text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
           />
         </td>
         {eliminar ? 
@@ -118,7 +118,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
           onClick={eliminarSet}
           >
             <div className="flex items-center justify-center f-full w-full">
-              <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-gray-700
+              <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-gray-700
               hover:bg-gray-800 duration-100 active:scale-95">
                   <ion-icon name="close-outline"></ion-icon>
               </div>

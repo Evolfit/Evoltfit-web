@@ -153,7 +153,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
           mensaje={'¿Seguro que quieres eliminar ' + (index+1) + '. ' + ejercicio.nombre + '?'}
           funcEliminar={eliminarEjercicio}
         />
-        <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md duration-150">
+        <div className="w-full px-6 py-4 bg-white border border-gray-200 rounded-lg shadow-md duration-150">
             {ejercicio === null ? 
                 "Selecciona un ejercicio"
             : 
@@ -161,9 +161,9 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 <div className='absolute text-3xl sm:text-4xl right-0'>
                     <ion-icon name="reorder-three-outline"></ion-icon>
                 </div>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
+                <div className="flex flex-row items-start justify-center">
                     <div 
-                    className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
+                    className='relative rounded-full overflow-hidden h-14 w-14 border-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
                     onClick={() => {
                         router.push({
                         pathname: '/detalleEjercicio',
@@ -172,34 +172,35 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                     >
                         <Image className='rounded-full' src={ejercicio.img} layout='fill' objectFit="cover"/>
                     </div>
-                    <div className="flex-auto sm:w-0 ml-0 sm:ml-4 w-full">
+                    <div className="flex-auto w-2 pl-2">
                         <p 
-                        className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer 
+                        className="mr-8 text-xl font-bold tracking-tight text-gray-900 cursor-pointer 
                         hover:text-blue-800 duration-150
                         whitespace-nowrap text-ellipsis overflow-hidden"
+                        id={(index+1) + '.' + ejercicio.nombre}
                         onClick={() => {
                             router.push({
                             pathname: '/detalleEjercicio',
                             query: { ejercicio: ejercicio.id }
                         })}}
                         >
-                            <span className="mr-1">{(index+1) + '. '}</span>
+                            <span className="mr-1">{(index+1) + '.'}</span>
                             <span>{ejercicio.nombre}</span>
                         </p>
-                        <p className="mb-2 font-normal text-lg sm:text-xl text-gray-700">{ejercicio.musculo_primario}</p>
+                        <p className="font-normal text-lg text-gray-700">{ejercicio.musculo_primario}</p>
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-start">
-                    <span className="font-semibold text-xl mr-2">
+                    <span className="font-semibold text-base mr-1">
                         {'Descanso: '}
                     </span>
-                    <div className="flex flex-row items-center justify-center text-xl w-fit py-2 px-2 text-secondary my-2 font-semibold bg-inherit border-b
-                    outline-none border-blue-500 focus:border-b-2 duration-75">
+                    <div className="flex flex-row items-center justify-center text-base w-fit text-secondary my-2 font-semibold bg-inherit border-b
+                    outline-none border-blue-500 focus:border-b-2 duration-75 pt-1">
                         <input 
                             name='minutos'
                             maxLength={2}
                             onChange={handleOnInputChange}
-                            className='text-center w-6 outline-none'
+                            className='text-center w-5 outline-none'
                             value={
                                 formInput.minutos.toLocaleString('en-US', {
                                     minimumIntegerDigits: 2,
@@ -211,14 +212,14 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                             name='segundos'
                             maxLength={2}
                             onChange={handleOnInputChange}
-                            className='text-center w-6 outline-none'
+                            className='text-center w-5 outline-none'
                             value={
                                 formInput.segundos.toLocaleString('en-US', {
                                     minimumIntegerDigits: 2,
                                     useGrouping: false
                                 })}
                         />
-                        <span className="pl-2">{' Min.'}</span>
+                        <span className="pl-1">{'Min.'}</span>
                     </div>
                 </div>
                 
@@ -226,13 +227,13 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 {
                     setsEjercicio ?
                     <div className="relative overflow-x-auto">
-                        <table className="w-full text-sm text-left mt-4">
+                        <table className="w-full table-auto text-left mt-2 mb-4">
                             <thead className="border-b-2">
                                 <tr>
-                                    <th scope="col" className="text-center text-lg p-2">Set</th>
-                                    <th scope="col" className="text-center text-lg p-2 border-l-2 border-r-2">Tipo</th>
-                                    <th scope="col" className="text-center text-lg p-2 border-l-2">Reps</th>
-                                    <th scope="col" className="text-lg p-2"></th>
+                                    <th scope="col" className="text-center text-base pb-1 px-1">Set</th>
+                                    <th scope="col" className="text-center text-base pb-1 border-l-2 border-r-2">Tipo</th>
+                                    <th scope="col" className="text-center text-base pb-1 border-l-2">Reps</th>
+                                    <th scope="col" className="text-lg"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -247,16 +248,16 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                             ))
                             }
                             <tr>
-                                <td className="p-2"></td>
-                                <td className="p-2"></td>
-                                <td className="p-2"></td>
+                                <td className=""></td>
+                                <td className=""></td>
+                                <td className=""></td>
                                 <td 
-                                className="text-center py-2"
+                                className="text-center"
                                 onClick={agregarSet}
                                 >
                                     <div className="flex items-center justify-center f-full w-full">
-                                        <div className="flex items-center justify-center p-1 text-2xl cursor-pointer text-white rounded-md bg-blue-500
-                                        hover:bg-blue-600 duration-100 active:scale-95">
+                                        <div className="flex items-center justify-center p-0.5 text-2xl cursor-pointer text-white rounded-md bg-blue-500
+                                        hover:bg-blue-600 duration-100 active:scale-95 my-0.5">
                                             <ion-icon name="add-outline"></ion-icon>
                                         </div>
                                     </div>
@@ -272,7 +273,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                 onClick={() => {
                     setMostrarEliminar(true)
                 }} 
-                className="inline-flex items-center p-2 text-2xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 outline-none duration-75 active:scale-95"
+                className="absolute bottom-0 inline-flex items-center p-1.5 text-2xl text-center text-white bg-red-500 rounded-lg hover:bg-red-600 outline-none duration-75 active:scale-95"
                 >
                     <ion-icon name="trash-outline"></ion-icon>
                 </button>   
