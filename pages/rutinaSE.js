@@ -16,7 +16,7 @@ export default function Home() {
   */
   //Recuperar valores
   const router = useRouter();
-  const { formData2, checkboxes, checkboxes2, arreglo } = router.query;
+  const { formData2, checkboxes, checkboxes2, arreglo, perfil } = router.query;
   //JSON
   //IMAGEN
   const imgSrc = "img/completo2.png";
@@ -25,6 +25,10 @@ export default function Home() {
     formulario = JSON.parse(formData2);
   }
 
+  let usuario = {};
+  if (perfil) {
+    usuario = JSON.parse(perfil);
+  }
   let herramientas = {};
   if (checkboxes) {
     herramientas = JSON.parse(checkboxes);
@@ -41,9 +45,9 @@ export default function Home() {
   }
   console.log("Datos de la persona.")
   console.log(formulario)
+  console.log("Datos del Usuario.")
+  console.log(usuario)
   const [loading, setLoading] = useState(false);
- // <-------------- Sesion ---------------->
-
 
   const [data, setData] = useState([]);
   // <-------------- Carga de Ejercicios ---------------->

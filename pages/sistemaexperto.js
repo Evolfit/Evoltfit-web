@@ -12,11 +12,14 @@ import Seccion41 from "./SistemaE/Seccion41";
 import Seccion51 from "./SistemaE/Seccion51";
 import Inicio from "./SistemaE/Inicio";
 import Link from "next/link";
+import supabase from "../config/supabaseClient";
 
 export default function Home() {
   const [value, setValue] = useState(-1);
   const [formData, setFormData] = useState({});
   const [formData2, setFormData2] = useState({ edad: 0, altura: 0, peso: 0 });
+  const [sesion, setSesion] = useState(null);
+  const [perfil, setPerfil] = useState(null);
   const [checkboxes, setCheckboxes] = useState({
     Ninguno: false,
     Bandaresistencia: false,
@@ -52,6 +55,7 @@ export default function Home() {
   let element2;
   localStorage.setItem('bandera', 'false');
   useEffect(() => {
+    handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
   }, []);
@@ -86,6 +90,39 @@ export default function Home() {
     setArreglo(['hombre', 'masamuscular', 'principiante', '30min', 'superior']);
 
   }
+
+  const handleSesion = async () => {
+
+    const { data, error } = await supabase.auth.getSession()
+
+    if(data.session){
+        //console.log(data.session)
+        setSesion(data.session);
+        getPerfil(data.session.user.id);
+    } 
+    else {
+        setSesion(null);
+        console.log("No hay Sesión " + error);
+    }
+}
+
+const getPerfil = async (idUsuario) => {
+    //console.log(idUsuario)
+
+    const { data, error } = await supabase
+        .from('perfiles')
+        .select('*')
+        .eq('id', idUsuario)
+
+        if(error){
+            console.log('ERROR: No se pudo conseguir el perfil.')
+            console.log(error)
+        }
+        else{
+            //console.log(data[0])
+            setPerfil(data[0])
+        }
+}
   //Funcion para cambiar entre componentes a su vez agrega el contenido del objeto a un arreglo
   //y pone el boton sin funcion para que el usuario tenga que ingresar los datos
   function handleNext() {
@@ -354,6 +391,7 @@ export default function Home() {
                           checkboxes: JSON.stringify(checkboxes),
                           checkboxes2: JSON.stringify(checkboxes2),
                           arreglo: JSON.stringify(arreglo),
+                          perfil: JSON.stringify(perfil),
                         },
                       }}
                     >
@@ -388,6 +426,7 @@ export default function Home() {
                     checkboxes: JSON.stringify(checkboxes),
                     checkboxes2: JSON.stringify(checkboxes2),
                     arreglo: JSON.stringify(arreglo),
+                    perfil: JSON.stringify(perfil),
                   },
                 }}
                 style={{ display: "inline-block", marginRight: "10px" }}
