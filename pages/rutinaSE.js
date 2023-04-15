@@ -9,11 +9,24 @@ import shortid from 'shortid';
 import supabase from "../config/supabaseClient";
 
 export default function Home() {
-  /*Variables generales
-  let seriesG=5
-  let repeticionesG= 13;
-  let descanso= "3min";
-  */
+  const [sesion, setSesion] = useState(null);
+  useEffect(() => {
+    handleSesion();
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  }, []);
+  const handleSesion = async () => {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (data.session) {
+      setSesion(data.session);
+      //console.log(data);
+    } else {
+      setSesion(null);
+      router.push("/login");
+    }
+  };
+
   //Recuperar valores
   const router = useRouter();
   const { formData2, checkboxes, checkboxes2, arreglo, perfil } = router.query;
@@ -50,8 +63,61 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState([]);
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- Texto para complementar el sistema ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  //datos de peso estatura y edad.
+  
+  const equivalencias = {
+    masamuscular: {
+      objetivo: "Ganar Masa Muscular",
+      texto: "si tu objetivo es aumentar tu masa muscular, deberás centrarte en el entrenamiento de fuerza y el consumo adecuado de proteínas. El entrenamiento de fuerza es clave para estimular el crecimiento muscular, y deberás enfocarte en levantar pesos progresivamente más pesados ​​con el tiempo. Junto con el entrenamiento de fuerza, una dieta adecuada que incluya suficientes proteínas es esencial para ayudar a reparar y reconstruir los músculos después del ejercicio."
+    },
+    resistencia: {
+      objetivo: "Ganar Resistencia",
+      texto: "es importante incorporar ejercicios de fuerza con repeticiones más amplias, lo que implica realizar un mayor número de repeticiones por serie en lugar de levantar pesos más pesados. La calistenia es una excelente forma de mejorar la resistencia muscular y cardiovascular a través de ejercicios que involucran el propio peso corporal, como flexiones, sentadillas y dominadas. Es importante ir aumentando gradualmente el número de repeticiones en cada serie para desafiar y mejorar la resistencia."
+    },
+    fuerza: {
+      objetivo: "Ganar Fuerza",
+      texto: "si deseas mejorar tu fuerza, debes enfocarte en el entrenamiento de fuerza y ​​en aumentar gradualmente la resistencia en tus ejercicios. A medida que aumentes la resistencia, tu cuerpo se adaptará y se volverá más fuerte. También es importante asegurarse de obtener suficientes nutrientes y descanso adecuado para permitir que tus músculos se recuperen y se fortalezcan."
+    },
+    perdergrasa: {
+      objetivo: "Perder Grasa",
+      texto: "si tu objetivo es mejorar tu salud en general, deberás centrarte en una combinación de entrenamiento de fuerza y cardiovascular, además de adoptar un estilo de vida saludable en términos de nutrición y sueño. El ejercicio regular puede ayudar a reducir el riesgo de enfermedades crónicas como la diabetes y las enfermedades cardíacas, mientras que la nutrición adecuada y el sueño suficiente son esenciales para mantener el cuerpo en buen estado."
+    },
+    salud: {
+      objetivo: "Mejorar la Salud en General",
+      texto: "además de los ejercicios cardiovasculares, los ejercicios de fuerza son cruciales para la pérdida de grasa. El entrenamiento de fuerza ayuda a mantener y aumentar la masa muscular, lo que aumenta el metabolismo y quema más calorías incluso en reposo. Además, el entrenamiento de fuerza puede mejorar la composición corporal, reduciendo la grasa corporal y aumentando la masa muscular. Para perder grasa de manera efectiva, se deben incorporar tanto ejercicios de fuerza como cardiovasculares en una rutina de entrenamiento equilibrada."
+    }
+  };
+  const [infousuario, setinfousuario] = useState(null);
+  const [objetivoUsuario, setObjetivoUsuario] = useState("");
+  const [textoDeObjetivo, setTextoDeObjetivo] = useState("");
+  useEffect(() => {
+
+    //Para datos del usuario
+    if (formulario.edad === 0 || formulario.altura === 0 || formulario.peso === 0 || formulario === null) {
+      setinfousuario("No se prorcionó toda la información del usuario")
+    } else {
+      setinfousuario(opciones[0]+ " Edad: " + formulario.edad + " Altura: " + formulario.altura + " Peso: " + formulario.peso)
+    }
+    //Su objetivo
+    const equivalencia = equivalencias[opciones[1]];
+    setObjetivoUsuario(equivalencia.objetivo);
+    setTextoDeObjetivo(equivalencia.texto);
+
+  }, [formulario]);
+
+
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- Texto para complementar el sistema ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
   // <-------------- Carga de Ejercicios ---------------->
- 
+
   const nombreMap = {
     "Ninguno": "Ninguno",
     "Bandaresistencia": "Banda de resistencia",
@@ -145,10 +211,7 @@ export default function Home() {
   const objetivo = opciones[1]
   const tiempo = opciones[3]
 
-  useEffect(() => {
-    localStorage.removeItem("NombrePaquete");
-    localStorage.removeItem("Meses");
-  }, [])
+
 
   const opcionesEjercicio = {
     masamuscular: {
@@ -649,14 +712,36 @@ export default function Home() {
       }
     }
     if (diasActivos >= 6 && (opciones[4] === 'superior' || opciones[4] === 'brazos')) {
-      const copy = JSON.parse(JSON.stringify(arrays[0]));
-      const copy2 = JSON.parse(JSON.stringify(arrays[1]));
-      arrays[3] = copy;
-      arrays[4] = copy2;
+      //Que arreglos son iguales
+      const resultados = [];
+
+      for (let i = 0; i < arrays.length - 1; i++) {
+        for (let j = i + 1; j < arrays.length; j++) {
+          if (
+            arrays[i].length === arrays[j].length &&
+            arrays[i][0].etiqueta === arrays[j][0].etiqueta
+          ) {
+            resultados.push([i, j]);
+          }
+        }
+      }
+
+      console.log(resultados);
+      // Iteramos sobre 'resultados'
+      for (let i = 0; i < resultados.length; i++) {
+        // Obtenemos los índices de los arreglos que se parecen
+        const idx1 = resultados[i][0];
+        const idx2 = resultados[i][1];
+
+        // Copiamos el contenido del primer arreglo en el segundo arreglo
+        arrays[idx2] = JSON.parse(JSON.stringify(arrays[idx1]));
+      }
+
 
       setArrays([...arrays]);
+      console.log(arrays)
     } else {
-      //console.log(arrays)
+      console.log(arrays)
       //console.log(similares)
       setArrays([...arrays]);
     }
@@ -813,56 +898,83 @@ export default function Home() {
           <p>{'CARGANDO'}</p>
         </div>
       ) : (
-        <main className={styles.main}>
-          <br /><br />
+        <main >
+          <br /><br /><br /><br /><br />
+          <div style={{ float: 'left', marginLeft: '40px' }}>
+            <p>Rutina personalizada para {usuario.nombre}</p>
+            <p>Con estos datos: {infousuario}</p>
 
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3">Lunes</th>
-                  <th className="px-6 py-3">Martes</th>
-                  <th className="px-6 py-3">Miércoles</th>
-                  <th className="px-6 py-3">Jueves</th>
-                  <th className="px-6 py-3">Viernes</th>
-                  <th className="px-6 py-3">Sábado</th>
-                  <th className="px-6 py-3">Domingo</th>
-                </tr>
-              </thead>
-              <tbody>
-                {longestArray.map((_, index) => (
-                  <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
-                    {arrays.map((array, arrayIndex) => (
-                      <td key={shortid.generate()} className="px-6 py-4">
-                        {index < array.length ? (
-                          <p>
-                            {array[index].nombreE} <br />
-                            <img src={array[index].imgR} alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
-                            <br />{array[index].series}x{array[index].repeticiones} <br />
-                            Descanso: {descanso}
-                            <button
-                              type="button"
-                              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-0.3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                              onClick={() => mostrarPosicion(arrayIndex, index)}
-                            >
-                              <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                              </svg>
-                              <span class="sr-only">Icon description</span>
-                            </button>
-                          </p>
-                        ) : (
-                          ''
-                        )} <br />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
-
-
+          <br /><br />
+          <div className={styles.main}>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full text-sm text-left text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3">Lunes</th>
+                    <th className="px-6 py-3">Martes</th>
+                    <th className="px-6 py-3">Miércoles</th>
+                    <th className="px-6 py-3">Jueves</th>
+                    <th className="px-6 py-3">Viernes</th>
+                    <th className="px-6 py-3">Sábado</th>
+                    <th className="px-6 py-3">Domingo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {longestArray.map((_, index) => (
+                    <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
+                      {arrays.map((array, arrayIndex) => (
+                        <td key={shortid.generate()} className="px-6 py-4">
+                          {index < array.length ? (
+                            <p>
+                              {array[index].nombreE} <br />
+                              <img src={array[index].imgR} alt='hola' key={array[index]} style={{ width: '50px', height: '50px' }}></img>
+                              <br />{array[index].series}x{array[index].repeticiones} <br />
+                              Descanso: {descanso}
+                              <button
+                                type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-0.3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick={() => mostrarPosicion(arrayIndex, index)}
+                              >
+                                <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Icon description</span>
+                              </button>
+                            </p>
+                          ) : (
+                            ''
+                          )} <br />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style={{ display: "flex" }}>
+            <div
+              style={{
+                border: "1px solid black",
+                padding: "10px",
+                width: "50%",
+                backgroundColor:'white',
+              }}
+            >
+              <p style={{ margin: "0" }}>Tu objetivo es: {objetivoUsuario} <br/> Entonces {textoDeObjetivo}</p>
+            </div>
+            <div
+              style={{
+                border: "1px solid black",
+                padding: "10px",
+                width: "50%",
+                backgroundColor:'white',
+              }}
+            >
+              <p style={{ margin: "0" }}>Mundo</p>
+            </div>
+          </div>
           <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
           <br /><br /> <br /> <br /> <br /> <br /> <br />
         </main>

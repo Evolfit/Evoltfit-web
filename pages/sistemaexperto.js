@@ -13,8 +13,10 @@ import Seccion51 from "./SistemaE/Seccion51";
 import Inicio from "./SistemaE/Inicio";
 import Link from "next/link";
 import supabase from "../config/supabaseClient";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const [value, setValue] = useState(-1);
   const [formData, setFormData] = useState({});
   const [formData2, setFormData2] = useState({ edad: 0, altura: 0, peso: 0 });
@@ -53,9 +55,14 @@ export default function Home() {
   let algunoEsVerdadero = false;
   let element;
   let element2;
+<<<<<<< Updated upstream
   localStorage.setItem("bandera", "false");
+=======
+  
+>>>>>>> Stashed changes
   useEffect(() => {
     handleSesion();
+    localStorage.setItem('bandera', 'false');
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
   }, []);
@@ -93,6 +100,7 @@ export default function Home() {
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
 
+<<<<<<< Updated upstream
     if (data.session) {
       //console.log(data.session)
       setSesion(data.session);
@@ -100,6 +108,18 @@ export default function Home() {
     } else {
       setSesion(null);
       console.log("No hay Sesión " + error);
+=======
+    const { data, error } = await supabase.auth.getSession()
+
+    if(data.session){
+        //console.log(data.session)
+        setSesion(data.session);
+        getPerfil(data.session.user.id);
+    } 
+    else {
+      setSesion(null);
+      router.push("/login");
+>>>>>>> Stashed changes
     }
   };
 
