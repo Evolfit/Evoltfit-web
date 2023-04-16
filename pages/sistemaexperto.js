@@ -79,7 +79,7 @@ function arriba()  {
       Jueves: true,
       Viernes: true,
       Sabado: true,
-      Domingo: false,
+      Domingo: true,
     });
     setCheckboxes({
       Ninguno: true,

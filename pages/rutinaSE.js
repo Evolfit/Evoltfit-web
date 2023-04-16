@@ -9,6 +9,7 @@ import shortid from 'shortid';
 import supabase from "../config/supabaseClient";
 
 export default function Home() {
+  // <-------- Usuario Logueado --------->
   const [sesion, setSesion] = useState(null);
   useEffect(() => {
     handleSesion();
@@ -27,12 +28,10 @@ export default function Home() {
     }
   };
 
-  //Recuperar valores
+  // <-------- Recuperar valores --------->
   const router = useRouter();
   const { formData2, checkboxes, checkboxes2, arreglo, perfil } = router.query;
-  //JSON
-  //IMAGEN
-  const imgSrc = "img/completo2.png";
+
   let formulario = {};
   if (formData2) {
     formulario = JSON.parse(formData2);
@@ -56,20 +55,41 @@ export default function Home() {
   if (arreglo) {
     opciones = JSON.parse(arreglo);
   }
-  console.log("Datos de la persona.")
-  console.log(formulario)
-  console.log("Datos del Usuario.")
-  console.log(usuario)
+  // <--------------------- >
+  // <--------------------- >
+  // <----- Variables ----- >
+  // <--------------------- >
+  // <--------------------- >
+  const imgSrc = "img/completo2.png";
+  const diasActivos = Object.values(dias).filter(dia => dia).length;
+  let variables1 = { push: 4, Pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
+  let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
+  let variables7 = {};
   const [loading, setLoading] = useState(false);
-
   const [data, setData] = useState([]);
+  const [infousuario, setinfousuario] = useState(null);
+  const [objetivoUsuario, setObjetivoUsuario] = useState("");
+  const [textoDeObjetivo, setTextoDeObjetivo] = useState("");
+  const [nivelusuario, setnivelusuario] = useState("");
+  const [textoNivel, settextoNivel] = useState("");
+  const [nivelvolumen, setnivelmolumen] = useState("");
+  const [mv, setmv] = useState("");
+  const [nivelfrecuencia, setnivelfrecuencia] = useState("");
+  const [enfoquetexti, setenfoquetexto] = useState("");
+  const [enfoquetitulo, setenfoquetitulo] = useState("");
+  // <--------------------- >
+  // <--------------------- >
+  // <----- Variables ----- >
+  // <--------------------- >
+  // <--------------------- >
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- Texto para complementar el sistema ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
+
   //datos de peso estatura y edad.
-  
+  //Objetivo
   const equivalencias = {
     masamuscular: {
       objetivo: "Ganar Masa Muscular",
@@ -92,21 +112,86 @@ export default function Home() {
       texto: "además de los ejercicios cardiovasculares, los ejercicios de fuerza son cruciales para la pérdida de grasa. El entrenamiento de fuerza ayuda a mantener y aumentar la masa muscular, lo que aumenta el metabolismo y quema más calorías incluso en reposo. Además, el entrenamiento de fuerza puede mejorar la composición corporal, reduciendo la grasa corporal y aumentando la masa muscular. Para perder grasa de manera efectiva, se deben incorporar tanto ejercicios de fuerza como cardiovasculares en una rutina de entrenamiento equilibrada."
     }
   };
-  const [infousuario, setinfousuario] = useState(null);
-  const [objetivoUsuario, setObjetivoUsuario] = useState("");
-  const [textoDeObjetivo, setTextoDeObjetivo] = useState("");
+  //Nivel de estado fisico.
+  const nivelfisico = {
+    principiante: {
+      titulo: "Principiante",
+      texto: "es fundamental que revises bien tu técnica al realizar los ejercicios. Ten en cuenta que al principio puede ser normal sentirte un poco incómodo o inseguro al ejecutar ciertos movimientos, por lo que es importante que te tomes el tiempo para aprender correctamente cómo hacerlos. Además, en este nivel se recomienda no modificar demasiado la rutina para centrarse en hacer los ejercicios de manera correcta y obtener los mejores resultados."
+    },
+    intermedio: {
+      titulo: "Intermedio",
+      texto: "es probable que ya tengas cierta experiencia en el entrenamiento físico. En este nivel, es importante que continúes trabajando en tu técnica para evitar lesiones y mejorar tu rendimiento. Además, puedes comenzar a experimentar con la rutina y hacer pequeñas modificaciones para adaptarla a tus necesidades y objetivos específicos."
+    },
+    avanzado: {
+      titulo: "Avanzado",
+      texto: "significa que tienes un alto nivel de experiencia en el entrenamiento físico. En este nivel, es importante que continúes trabajando en tu técnica y en la prevención de lesiones, pero también tienes la posibilidad de modificar la rutina para adaptarla mejor a tus objetivos específicos y a tu nivel de habilidad. Puedes agregar ejercicios más avanzados o cambiar la frecuencia o intensidad de los ejercicios para lograr los resultados que deseas."
+    },
+    experimentado: {
+      titulo: "Experimentado",
+      texto: "significa que tienes una amplia experiencia en el entrenamiento físico. En este nivel, es importante que sigas trabajando en tu técnica y en la prevención de lesiones, pero también tienes la posibilidad de modificar la rutina para adaptarla mejor a tus objetivos específicos y a tu nivel de habilidad. Puedes agregar ejercicios más avanzados o cambiar la frecuencia o intensidad de los ejercicios para lograr los resultados que deseas."
+    }
+  };
+  //Enfoque
+  const enfoqueT = {
+    superior: {
+      titulo: "Tronco Superior",
+      texto: "Nuestra rutina se centrará en mejorar la fuerza y tono muscular en los músculos de la parte superior del cuerpo. Los ejercicios que se incluirán en la rutina se enfocarán en los músculos del pecho y de la espalda, y te ayudarán a mejorar tu postura y a tener una apariencia más atlética. ¡Prepárate para ver un cambio significativo en tus músculos de la parte superior del cuerpo"
+      
+    },
+    brazos: {
+      titulo: "Brazos",
+      texto: "Nuestro sistema ha diseñado una rutina que se centrará en fortalecer y tonificar tus bíceps, tríceps y antebrazos. Los ejercicios incluirán movimientos de flexión y extensión de los brazos con pesas, bandas de resistencia y tu propio peso corporal. Con esta rutina, verás resultados notables en poco tiempo."
+    },
+    pierna: {
+      titulo: "Tronco Inferior",
+      texto: "Nuestra rutina se centrará en fortalecer y tonificar tus piernas, glúteos y abdominales. Los ejercicios incluirán sentadillas, estocadas, elevaciones de pantorrillas y ejercicios de abdomen. Con esta rutina, mejorarás tu equilibrio, resistencia y fuerza en la parte inferior del cuerpo."
+    },
+    completo: {
+      titulo: "Cuerpo Completo",
+      texto: "Nuestra rutina se centrará en trabajar todos los músculos de tu cuerpo para mejorar tu fuerza y resistencia en general. Los ejercicios que se incluirán en la rutina serán compuestos, lo que significa que involucrarán varios grupos musculares al mismo tiempo. Con esta rutina, verás una mejora en tu tono muscular en general y una mayor resistencia física para realizar actividades diarias. ¡Prepárate para sentirte más fuerte y saludable en poco tiempo!"
+    }
+  };
+  
   useEffect(() => {
 
     //Para datos del usuario
     if (formulario.edad === 0 || formulario.altura === 0 || formulario.peso === 0 || formulario === null) {
       setinfousuario("No se prorcionó toda la información del usuario")
     } else {
-      setinfousuario(opciones[0]+ " Edad: " + formulario.edad + " Altura: " + formulario.altura + " Peso: " + formulario.peso)
+      setinfousuario(opciones[0] + " Edad: " + formulario.edad + " Altura: " + formulario.altura + " Peso: " + formulario.peso)
     }
     //Su objetivo
     const equivalencia = equivalencias[opciones[1]];
     setObjetivoUsuario(equivalencia.objetivo);
     setTextoDeObjetivo(equivalencia.texto);
+    //Nivel Fisico
+    const equivalencia2 = nivelfisico[opciones[2]];
+    setnivelusuario(equivalencia2.titulo);
+    settextoNivel(equivalencia2.texto);
+    //Volumen de Rutina
+    if (diasActivos > 4) {
+      setnivelmolumen("Tu rutina cumple con las condiciones de ser MAV (Volumen Máximo Adaptativo), significa que estás entrenando con una cantidad suficiente de trabajo para estimular el crecimiento muscular y mejorar tu fuerza, y además estás permitiendo a tu cuerpo suficiente tiempo de recuperación para adaptarse. Esto puede ser beneficioso si eres un atleta avanzado o si estás buscando aumentar tu tamaño y fuerza muscular. Al seguir una rutina MAV, estás permitiendo a tu cuerpo adaptarse al trabajo y al estrés del entrenamiento, lo que puede resultar en un mayor crecimiento muscular y fuerza. Recuerda que siempre debes trabajar dentro de tus límites y asegurarte de permitir suficiente tiempo de recuperación para evitar lesiones.");
+      setmv("MAV");
+    } else if(diasActivos<=2){
+      setnivelmolumen("Tu rutina cumple con las condiciones de ser MV (Volumen de Mantenimiento), significa que estás entrenando con la cantidad mínima de trabajo necesario para mantener tu nivel actual de fuerza y músculo. Incluso si eres principiante o no has hecho ejercicio por mucho tiempo, seguir una rutina de MV puede ser beneficioso para estimular el crecimiento de tus músculos y mejorar tu fuerza. Al entrenar con un volumen adecuado, estás proporcionando suficiente estímulo para que tus músculos se adapten y crezcan, pero también estás permitiendo suficiente tiempo de recuperación para evitar el sobreentrenamiento y lesiones. Recuerda que aunque estés en una rutina de MV, es importante seguir prestando atención a la calidad de tus entrenamientos y asegurarte de seguir progresando en tus objetivos personales.");
+      setmv("MV");
+    }
+    else {
+      setnivelmolumen("Tu rutina cumple con las condiciones de ser MEV (Volumen Mínimo Efectivo), significa que estás entrenando con la cantidad mínima de trabajo necesario para estimular el crecimiento muscular y mejorar tu fuerza. Esto puede ser beneficioso si eres principiante o si estás buscando mantener tu nivel actual de fuerza y músculo. Al seguir una rutina MEV, puedes evitar el sobreentrenamiento y asegurarte de que estás permitiendo suficiente tiempo de recuperación para tu cuerpo.");
+      setmv("MEV");
+    }
+    
+    //Calcular Frecuencia
+    const frecuencia = (diasActivos * 2) / 6;
+    if (frecuencia > 2)
+      setnivelfrecuencia(2);
+    else
+      setnivelfrecuencia(frecuencia.toFixed(2));
+
+    //Enfoque
+    const enfoc = enfoqueT[opciones[4]];
+    setenfoquetitulo(enfoc.titulo);
+    setenfoquetexto(enfoc.texto);
 
   }, [formulario]);
 
@@ -142,14 +227,12 @@ export default function Home() {
       herramientasActivas.push(nombreMap[herramienta]);
     }
   }
-  //console.log(herramientasActivas)
-
+  
   //
   //
   //Funcion para cargar los ejercicios....
   //
   //
-
   const cargar_ejercicios = async () => {
     let query = supabase
       .from('ejercicios')
@@ -163,39 +246,8 @@ export default function Home() {
       console.log(error);
     } else {
       setData(data);
-      //console.log("Funcion Cargar")
-      //console.log(data)
     }
   };
-
-
-  /*
-  //////////////////////////////////////////////////////////
-  Cambios a variables para no regresarme a las preguntas (borras despues)
-
-  
-  dias.Lunes = true;
-  dias.Martes = false;
-  dias.Miercoles = false;
-  dias.Jueves = false;
-  dias.Viernes = false;
-  dias.Sabado = false;
-  dias.Domingo = false;
-
-  opciones[4] = 'superior';
-  //opciones[4] = 'brazos';
-  //opciones[4] = 'pierna';
-  //opciones[4] = 'completo';
-
-
-  opciones[3] = '30min';
-  opciones[3] = '1hr 30';
-  opciones[2] = 'principiante';
-  opciones[2] = 'experimentado';
-  opciones[1] = 'masamuscular';
-
-
-  /*/////////////////////////////////////////////////////////*/
 
   //contenidos de puede llegar a contener cada dia
   let contenido1 = [];//lUNES
@@ -208,11 +260,9 @@ export default function Home() {
 
 
   //INICIO DEL SE
-  const objetivo = opciones[1]
-  const tiempo = opciones[3]
-
-
-
+  const objetivo = opciones[1];
+  const tiempo = opciones[3];
+  //Definir Rutina
   const opcionesEjercicio = {
     masamuscular: {
       '30min': { seriesG: 3, repeticionesG: 8, descanso: "1min" },
@@ -253,26 +303,15 @@ export default function Home() {
   //Aqui se asignan los valores de repeticion, series y descanso.
   const { seriesG, repeticionesG, descanso } = opcionesEjercicio[objetivo][tiempo];
 
-
   let serie = 0, temp = 0;
 
-
+  //
+  //
+  //
   //Cambios de la nueva pregunta del SE DIAS 
   //
   //
   //
-  //
-  //
-  //
-
-
-
-
-
-
-
-
-
 
   var dosdecuatro = 0;
   //____________________________________________pregunta de tiempo
@@ -289,8 +328,15 @@ export default function Home() {
   } else {
     //console.log("Error en el SE P:TIEMPO");
   }
-
-
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -- Plantillas del Sistema Experto  ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
   function casoSuperiorYC(diasActivos) {
     if (diasActivos === 3) {
 
@@ -556,53 +602,19 @@ export default function Home() {
   function undia(diasActivos) {
     variables1 = { Pecho: temp - 1, Dorsales: temp - 1, Biceps: temp - 1, Triceps: temp - 1, Cuadriceps: temp - 1, Isquiotibiales: temp - 1 };
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -- Plantillas del Sistema Experto  ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
 
   //let Pecho,espalda,Hombros,bicep,tricep,dorsales,Abdomen,Antebrazos,cuadricep,gluteo,Isquiotibiales,Pantorrillas;
-  const diasActivos = Object.values(dias).filter(dia => dia).length;
-  let variables1 = { push: 4, Pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
-  let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
-  let variables7 = {};
 
+  //Asignacion de los dias de la semana
   const diasArray = [
     { dia: "Lunes", array: contenido1 },
     { dia: "Martes", array: contenido2 },
@@ -614,7 +626,7 @@ export default function Home() {
   ];
 
 
-  //____________________________________________pregunta de enfoque.
+  //pregunta de enfoque.
   if (opciones[4] === 'superior' && diasActivos > 2) {
     casoSuperiorYC(diasActivos);
   } else if (opciones[4] === 'brazos' && diasActivos > 2) {
@@ -630,35 +642,13 @@ export default function Home() {
   } else {
     //console.log("Error en el SE P:ENFOQUE");
   }
-  //llenamos
-
+ 
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -- Llenado del Sistema Experto  ------------------->
+  // <-------------- ---------------------------------- ---------------->
+  
   llenarArreglo(diasActivos);
-  /*
-    //____________________________________________pregunta de experiencia
-    if (opciones[2] === 'principiante') {
-      console.log("principiante");
-    } else if (opciones[2] === 'intermedio') {
-      console.log("intermedio");
-    } else if (opciones[2] === 'avanzado') {
-      console.log("avanzado");
-    } else if (opciones[2] === 'experimentado') {
-      console.log("experimentado");
-    } else {
-      console.log("Error en el SE P:OBJETIVO");
-    }
-  */
-
-
-
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //Cambios de la nueva pregunta del SE DIAS 
-
+ 
   //Funcion
   function llenarArreglo(diasSemana) {
     let count = 1;
@@ -678,18 +668,14 @@ export default function Home() {
       }
     }
   }
-
-  /*
-  /
-  ////////////////////////////////////////////////
-  /
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -- Llenado del Sistema Experto  ------------------->
+  // <-------------- ---------------------------------- ---------------->
+  /*////////////////////////////////////////////////
   /
   Cambiar por ejercicios
   /
-  /
-  //////////////////////////////////////////////////
-  /
-  */
+  //////////////////////////////////////////////////*/
 
   function cambiar_ejercicios() {
     // Variable para almacenar los ejercicios ya asignados
@@ -726,8 +712,7 @@ export default function Home() {
         }
       }
 
-      console.log(resultados);
-      // Iteramos sobre 'resultados'
+
       for (let i = 0; i < resultados.length; i++) {
         // Obtenemos los índices de los arreglos que se parecen
         const idx1 = resultados[i][0];
@@ -736,13 +721,8 @@ export default function Home() {
         // Copiamos el contenido del primer arreglo en el segundo arreglo
         arrays[idx2] = JSON.parse(JSON.stringify(arrays[idx1]));
       }
-
-
       setArrays([...arrays]);
-      console.log(arrays)
     } else {
-      console.log(arrays)
-      //console.log(similares)
       setArrays([...arrays]);
     }
 
@@ -761,19 +741,12 @@ export default function Home() {
       let ubicacion = data.findIndex((ejercicio) => {
         return ejercicio.nombre === obj2.nombreE;
       });
-      //console.log("______________________________________")
-      //console.log("Ejercicio Actual")
-      //console.log(obj2)
-      // Obtener los ejercicios que coinciden con la etiqueta y no están en arrays
+      
       const ejerciciosFiltrados = data.filter((ejercicio, i) => {
         return (
           ejercicio.musculo_primario === data[ubicacion].musculo_primario
         );
       });
-
-      //console.log("Ejercicios filtrados")
-      //console.log(ejerciciosFiltrados)
-      //ponerle que recoga todos los ejercicios y utilizar la ubicacion
 
       let y = ejerciciosFiltrados.length;
       let x = ejerciciosFiltrados.findIndex((ejercicio2) => {
@@ -781,8 +754,7 @@ export default function Home() {
       });
 
       if (x < y) {
-        //console.log("Contador")
-        //console.log(x)
+        
         let siguienteEjercicio = 0;
         if (x + 1 < y) {
           siguienteEjercicio = ejerciciosFiltrados[x + 1];
@@ -790,9 +762,6 @@ export default function Home() {
           siguienteEjercicio = ejerciciosFiltrados[0];
         }
 
-        //Cambio de datos
-        //console.log("Nuevo Ejercicio")
-        //console.log(siguienteEjercicio)
         obj2.nombreE = siguienteEjercicio.nombre;
         obj2.imgR = siguienteEjercicio.img;
         setArrays([...arrays]);
@@ -959,20 +928,42 @@ export default function Home() {
                 border: "1px solid black",
                 padding: "10px",
                 width: "50%",
-                backgroundColor:'white',
+                backgroundColor: 'white',
               }}
             >
-              <p style={{ margin: "0" }}>Tu objetivo es: {objetivoUsuario} <br/> Entonces {textoDeObjetivo}</p>
+              <p style={{ margin: "0" }}>Tu objetivo es: {objetivoUsuario} <br /> Entonces {textoDeObjetivo}</p>
             </div>
             <div
               style={{
                 border: "1px solid black",
                 padding: "10px",
                 width: "50%",
-                backgroundColor:'white',
+                backgroundColor: 'white',
               }}
             >
-              <p style={{ margin: "0" }}>Mundo</p>
+              <p style={{ margin: "0" }}>Eres {nivelusuario}:<br /> Primero {textoNivel}</p>
+            </div>
+          </div>
+          <div style={{ display: "flex" }}>
+            <div
+              style={{
+                border: "1px solid black",
+                padding: "10px",
+                width: "50%",
+                backgroundColor: 'white',
+              }}
+            >
+              <p style={{ margin: "0" }}>{mv} <br />{nivelvolumen} <br /> Frecuencia: {nivelfrecuencia} por semana</p>
+            </div>
+            <div
+              style={{
+                border: "1px solid black",
+                padding: "10px",
+                width: "50%",
+                backgroundColor: 'white',
+              }}
+            >
+              <p style={{ margin: "0" }}>Seleccionaste un enfoque en {enfoquetitulo}:<br />{enfoquetexti}</p>
             </div>
           </div>
           <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
