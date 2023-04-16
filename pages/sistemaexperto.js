@@ -79,13 +79,13 @@ function arriba()  {
       Jueves: true,
       Viernes: true,
       Sabado: true,
-      Domingo: true,
+      Domingo: false,
     });
     setCheckboxes({
       Ninguno: true,
       Bandaresistencia: false,
       Bandasuspension: false,
-      Barra: true,
+      Barra: false,
       BarraZ: false,
       Barras: false,
       Mancuernas: true,
@@ -97,7 +97,7 @@ function arriba()  {
       BancoInclinado: false,
       Cuerda: false,
     });
-    setArreglo(["hombre", "masamuscular", "principiante", "30min", "superior"]);
+    setArreglo(["hombre", "resistencia", "principiante", "1hr 30", "superior"]);
   }
 
   const handleSesion = async () => {

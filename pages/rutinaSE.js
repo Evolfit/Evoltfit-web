@@ -136,7 +136,7 @@ export default function Home() {
     superior: {
       titulo: "Tronco Superior",
       texto: "Nuestra rutina se centrará en mejorar la fuerza y tono muscular en los músculos de la parte superior del cuerpo. Los ejercicios que se incluirán en la rutina se enfocarán en los músculos del pecho y de la espalda, y te ayudarán a mejorar tu postura y a tener una apariencia más atlética. ¡Prepárate para ver un cambio significativo en tus músculos de la parte superior del cuerpo"
-      
+
     },
     brazos: {
       titulo: "Brazos",
@@ -151,7 +151,7 @@ export default function Home() {
       texto: "Nuestra rutina se centrará en trabajar todos los músculos de tu cuerpo para mejorar tu fuerza y resistencia en general. Los ejercicios que se incluirán en la rutina serán compuestos, lo que significa que involucrarán varios grupos musculares al mismo tiempo. Con esta rutina, verás una mejora en tu tono muscular en general y una mayor resistencia física para realizar actividades diarias. ¡Prepárate para sentirte más fuerte y saludable en poco tiempo!"
     }
   };
-  
+
   useEffect(() => {
 
     //Para datos del usuario
@@ -172,7 +172,7 @@ export default function Home() {
     if (diasActivos > 4) {
       setnivelmolumen("Tu rutina cumple con las condiciones de ser MAV (Volumen Máximo Adaptativo), significa que estás entrenando con una cantidad suficiente de trabajo para estimular el crecimiento muscular y mejorar tu fuerza, y además estás permitiendo a tu cuerpo suficiente tiempo de recuperación para adaptarse. Esto puede ser beneficioso si eres un atleta avanzado o si estás buscando aumentar tu tamaño y fuerza muscular. Al seguir una rutina MAV, estás permitiendo a tu cuerpo adaptarse al trabajo y al estrés del entrenamiento, lo que puede resultar en un mayor crecimiento muscular y fuerza. Recuerda que siempre debes trabajar dentro de tus límites y asegurarte de permitir suficiente tiempo de recuperación para evitar lesiones.");
       setmv("MAV");
-    } else if(diasActivos<=2){
+    } else if (diasActivos <= 2) {
       setnivelmolumen("Tu rutina cumple con las condiciones de ser MV (Volumen de Mantenimiento), significa que estás entrenando con la cantidad mínima de trabajo necesario para mantener tu nivel actual de fuerza y músculo. Incluso si eres principiante o no has hecho ejercicio por mucho tiempo, seguir una rutina de MV puede ser beneficioso para estimular el crecimiento de tus músculos y mejorar tu fuerza. Al entrenar con un volumen adecuado, estás proporcionando suficiente estímulo para que tus músculos se adapten y crezcan, pero también estás permitiendo suficiente tiempo de recuperación para evitar el sobreentrenamiento y lesiones. Recuerda que aunque estés en una rutina de MV, es importante seguir prestando atención a la calidad de tus entrenamientos y asegurarte de seguir progresando en tus objetivos personales.");
       setmv("MV");
     }
@@ -180,7 +180,7 @@ export default function Home() {
       setnivelmolumen("Tu rutina cumple con las condiciones de ser MEV (Volumen Mínimo Efectivo), significa que estás entrenando con la cantidad mínima de trabajo necesario para estimular el crecimiento muscular y mejorar tu fuerza. Esto puede ser beneficioso si eres principiante o si estás buscando mantener tu nivel actual de fuerza y músculo. Al seguir una rutina MEV, puedes evitar el sobreentrenamiento y asegurarte de que estás permitiendo suficiente tiempo de recuperación para tu cuerpo.");
       setmv("MEV");
     }
-    
+
     //Calcular Frecuencia
     const frecuencia = (diasActivos * 2) / 6;
     if (frecuencia > 2)
@@ -227,7 +227,7 @@ export default function Home() {
       herramientasActivas.push(nombreMap[herramienta]);
     }
   }
-  
+
   //
   //
   //Funcion para cargar los ejercicios....
@@ -642,13 +642,13 @@ export default function Home() {
   } else {
     //console.log("Error en el SE P:ENFOQUE");
   }
- 
+
   // <-------------- ---------------------------------- ---------------->
   // <-------------- -- Llenado del Sistema Experto  ------------------->
   // <-------------- ---------------------------------- ---------------->
-  
+
   llenarArreglo(diasActivos);
- 
+
   //Funcion
   function llenarArreglo(diasSemana) {
     let count = 1;
@@ -658,9 +658,9 @@ export default function Home() {
         Object.entries(eval(`variables${count}`)).forEach(([name, cantidad]) => {
           for (let i = 0; i < cantidad; i++) {
             if (name === "Hombros" || name === "Antebrazos" || name === "Pantorrillas") {
-              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc });
+              array.push({ nombreE: name, etiqueta: name, series: 4 + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc, id: null });
             } else {
-              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc });
+              array.push({ nombreE: name, etiqueta: name, series: seriesG + dosdecuatro, repeticiones: repeticionesG, imgR: imgSrc, id: null });
             }
           }
         });
@@ -690,6 +690,7 @@ export default function Home() {
           if (ejercicio && ejercicio.nombre !== obj.nombreE) {
             obj.nombreE = ejercicio.nombre;
             obj.imgR = ejercicio.img;
+            obj.id = ejercicio.id;
             asignados.push(ejercicio.id);
             if (ejercicio.similar !== null)
               similares.push(ejercicio.similar);
@@ -721,8 +722,10 @@ export default function Home() {
         // Copiamos el contenido del primer arreglo en el segundo arreglo
         arrays[idx2] = JSON.parse(JSON.stringify(arrays[idx1]));
       }
+      console.log(arrays)
       setArrays([...arrays]);
     } else {
+      console.log(arrays)
       setArrays([...arrays]);
     }
 
@@ -741,7 +744,7 @@ export default function Home() {
       let ubicacion = data.findIndex((ejercicio) => {
         return ejercicio.nombre === obj2.nombreE;
       });
-      
+
       const ejerciciosFiltrados = data.filter((ejercicio, i) => {
         return (
           ejercicio.musculo_primario === data[ubicacion].musculo_primario
@@ -754,7 +757,7 @@ export default function Home() {
       });
 
       if (x < y) {
-        
+
         let siguienteEjercicio = 0;
         if (x + 1 < y) {
           siguienteEjercicio = ejerciciosFiltrados[x + 1];
@@ -764,6 +767,7 @@ export default function Home() {
 
         obj2.nombreE = siguienteEjercicio.nombre;
         obj2.imgR = siguienteEjercicio.img;
+        obj2.id = siguienteEjercicio.id;
         setArrays([...arrays]);
 
       } else {
@@ -811,21 +815,117 @@ export default function Home() {
   }, []);
 
   const longestArray = arrays.reduce((a, b) => (a.length > b.length ? a : b));
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ----- Agregar los Ejercicios  ---- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
 
+  const handleClick = async () => {
+    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+    for (let i = 0; i < arrays.length; i++) {
+      if (arrays[i].length !== 0) {
+        const dia = dias[i];
+        const nombreRutina = `RUTINA SE: ${dia}`;
+        const { data, error } = await supabase
+          .from('rutinas')
+          .insert({
+            usuario: sesion.user.id,
+            nombre: nombreRutina
+          })
+          .select('id')
 
-  const handleClick = () => {
-    //cargar_ejercicios();
-    //llenarOtraVez();
-    //cambiar_ejercicios_Click();
-    //llenarArreglo(diasActivos);
-    //console.log(formulario);
-    //console.log(dias);
-    //console.log(herramientas);
-    //console.log(opciones);
-    //console.log(diasActivos);
-    //console.log(contenido1);
-    //console.log(arrays);
+        if (error) {
+          console.log(error)
+          console.log(`ERROR: Hubo un error al crear ${nombreRutina}.`)
+        } else {
+          const idNumero = data[0].id;
+
+          //Se agregan los ejercicios
+          for (let j = 0; j < arrays[i].length; j++) {
+            if (!["Abdomen", "Oblicuos", "Antebrazos", "Biceps", "Triceps", "Hombros", "Trapecio", "Trapecio Medio", "Pecho", "Cuadriceps", "Pantorrillas", "Isquiotibiales", "Dorsales", "Gluteos", "Espalda Baja"].includes(arrays[i][j].nombreE)) {
+            rutinaEjercicios(idNumero, i, j);
+            }else{
+              //console.log("Encontró un Ejercicio que no tiene asignado nada")
+            }
+            //----------------------------------------------------------------------------------------
+          }
+        }
+      }
+    }
+    router.push("/rutinas");
   };
+
+  const rutinaEjercicios = async (idNumero, i, j) => {
+    //----------------------------------------------------------------------------------------
+    //console.log("Ejercicios")
+    //console.log(arrays[i][j].nombreE)
+    //console.log(arrays[i][j].id)
+    const tiempoMap = {
+      "1min": 60,
+      "1min 30sec": 90,
+      "2min": 120,
+      "30sec": 30,
+      "75sec": 75,
+      "2 min": 120,
+      "3 min": 180,
+      "Mas de 3 min": 240,
+    };
+    const tiempoEnSegundos = tiempoMap[descanso];
+
+    const { data, error } = await supabase
+      .from('rutinas_ejercicio')
+      .insert({
+        rutina: idNumero,
+        ejercicio: arrays[i][j].id,
+        orden: j,
+        descanso: tiempoEnSegundos,
+      })
+      .select()
+
+    if (error) {
+      console.log(error)
+      console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
+    }
+    else {
+      //console.log("Se agregó un nuevo ejercicio.")
+      //console.log(data[0])
+      const iddelEjercicio = data[0].id;
+      
+      for (let k = 0; k < arrays[i][j].series; k++) {
+        
+        const { error } = await supabase
+          .from('rutinas_ejercicio_sets')
+          .insert({
+            ejercicio_rutina: iddelEjercicio,
+            reps:arrays[i][j].repeticiones,
+          })
+
+        if (error) {
+          console.log(error)
+          console.log("ERROR: Hubo un error al agregar un nuevo set.")
+        }
+        else {
+          //console.log("Se agregó un nuevo set.")
+        }
+      }
+
+    }
+  };
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ----- Agregar los Ejercicios  ---- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  
   //Use effect para detectar si el usuario sale de rutinaSE
   useEffect(() => {
     const handlePopstate = () => {
@@ -966,7 +1066,15 @@ export default function Home() {
               <p style={{ margin: "0" }}>Seleccionaste un enfoque en {enfoquetitulo}:<br />{enfoquetexti}</p>
             </div>
           </div>
-          <button onClick={handleClick} className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ver Datos</button>
+          <br /><br />
+
+          <button onClick={handleClick}  style={{
+          
+                marginLeft: "40%",
+  
+              }}
+              className="bottonSig-2">Guardar Rutina</button>
+         
           <br /><br /> <br /> <br /> <br /> <br /> <br />
         </main>
       )}
