@@ -34,8 +34,6 @@ export default function OneRepMax() {
     } 
     else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
-      router.push('/login')
     }
   }
 
