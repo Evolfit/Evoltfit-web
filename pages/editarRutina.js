@@ -337,7 +337,16 @@ export default function Home() {
                       </Droppable>
                     </DragDropContext>
                   }
-                  <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
+                  <div
+                  className={'flex flex-col justify-center items-center lg:flex-row w-full'
+                    +
+                    (ejerciciosRutina.length === 0 ?
+                      ' mb-80'
+                      :
+                      ' '
+                    )  
+                    }
+                  >
                     <button onClick={() => {
                         setToggleSeleccionar(!toggleSeleccionar)
                         window.scrollTo(0, 0)
