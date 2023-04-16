@@ -60,11 +60,12 @@ export default function Home() {
   const [sesion, setSesion] = useState(null);
   const [flag, setFlag] = useState(false);
   const [resultado, setResultado] = useState(null);
-  localStorage.setItem('bandera', 'false');
+  
   useEffect(() => {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+    localStorage.setItem('bandera', 'false');
     if (flag == true) {
 
       setFlag(false);
