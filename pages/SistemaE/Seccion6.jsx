@@ -627,7 +627,7 @@ function Seccion6(props) {
                   </g>
                 </svg>
               </div>
-              <span className="font-semibold text-center  w-full px-2 overflow-hidden">Barra Dominadas</span>
+              <span className="font-semibold text-center  w-full px-2 overflow-hidden">Barra Dominadas/Paralelas</span>
             </div>
           </article>
 
