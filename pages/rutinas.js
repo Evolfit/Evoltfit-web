@@ -112,7 +112,7 @@ export default function Home() {
         <div>          
           {
             rutinas ? 
-            <div className="mx-auto mt-6">
+            <div className="mx-auto">
               <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
                 <h2 className="text-2xl sm:text-4xl text-secondary my-2 w-full font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                   {"Mis Rutinas"}
