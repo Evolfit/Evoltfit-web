@@ -202,7 +202,7 @@ export default function DetalleEjercicio() {
           {
             ejercicio ? 
               <div className="mx-auto mt-2">
-                <div className="flex flex-col w-9/12 mx-auto">
+                <div className="w-11/12 md:w-9/12 mx-auto max-w-5xl">
                   <div>
                     <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/biblioteca')}}>
                       <div className='text-3xl mt-auto'>
@@ -212,14 +212,13 @@ export default function DetalleEjercicio() {
                     </button>
                     <br/>
                     {/* EJERCICIO */}
-                    <div className="my-6">
-                      <h2 className="text-2xl font-medium">{ejercicio.nombre}</h2>
-                      <p className="text-xl font-light">{ejercicio.musculo_primario}</p>
-                      <img src={ejercicio.img} alt={ejercicio.nombre} />
+                    <div className="mt-6 bg-white rounded-3xl p-8 shadow">
+                      <h2 className="text-4xl font-medium">{ejercicio.nombre}</h2>
+                      <p className="text-2xl font-light">{ejercicio.musculo_primario}</p>                      
                       
                       {/* AGREGAR A RUTINA */}
-                      <div className="form-control mt-4 mb-4">
-                        <select name="agregarRutina" id="agregarRutina" onChange={handleOnInputChange} className="select select-secondary lg:text-xl lg:py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue='agregar'>
+                      <div className="form-control my-4">
+                        <select name="agregarRutina" id="agregarRutina" onChange={handleOnInputChange} className="select select-secondary text-base lg:py-4 h-full border-0 font-normal rounded-xl shadow-md bg-white-100 hover:scale-105 shadow-gray-200" defaultValue='agregar'>
                           <option id="agregar" value="agregar" hidden>Agregar a Rutina</option>
                           { rutinas ? 
                               (rutinas.length !== 0 ? 
@@ -235,31 +234,36 @@ export default function DetalleEjercicio() {
                           <option id="Nueva Rutina" value="Nueva Rutina">Crear Nueva Rutina</option>
                         </select>
                       </div>
-
-                      <h3 className="mt-6 text-lg font-medium">Recomendaciones</h3>
-                      <p className="my-2 text-lg">{ejercicio.recomendaciones}</p>
-                      <h3 className="mt-6 text-lg font-medium">Errores comunes</h3>
-                      <p className="my-2 text-lg">{ejercicio.errores}</p>
-                      <div className="flex flex-row w-full items-center justify-center">
-                        <div className="w-fit mx-auto">
-                          <h3 className="mt-6 text-md">Otros musculos activados</h3>
-                          <p className="my-2 text-md font-light">{ejercicio.musculo_otros.join(", ")}</p>
+                      
+                      <div className="flex justify-center w-full h-fit">
+                        <img className="rounded-3xl" src={ejercicio.img} alt={ejercicio.nombre} />
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                          <h3 className="text-lg font-medium">Equipo</h3>
+                          <p className="text-md font-light">{ejercicio.equipo.join(", ")}</p>
                         </div>
-                        <div className="w-fit mx-auto">
-                          <h3 className="mt-6 text-md">Equipo</h3>
-                          <p className="my-2 text-md font-light">{ejercicio.equipo.join(", ")}</p>
+                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                          <h3 className="text-lg font-medium">Otros musculos activados</h3>
+                          <p className="text-md font-light">{ejercicio.musculo_otros.join(", ")}</p>
+                        </div>
+                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                          <h3 className="text-lg font-medium">Recomendaciones</h3>
+                          <p className="text-md font-light">{ejercicio.recomendaciones}</p>
+                        </div>
+                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                          <h3 className="text-lg font-medium">Errores comunes</h3>
+                          <p className="text-md font-light">{ejercicio.errores}</p>
                         </div>
                       </div>
                     </div>
                     <br/>
                   </div>
                 </div>
-                <div className="flex flex-col items-center w-full">
-                  {/* Aqui se muestran las rutinas */}
-                </div>
               </div>
             : 
-            <div className="mt-12">
+            <div className="mt-24">
               <div className="loader mt-6"></div>
             </div>
           }
