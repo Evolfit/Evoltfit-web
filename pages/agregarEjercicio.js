@@ -243,7 +243,7 @@ export default function Home() {
                 <option id="Cuadriceps" value="Cuadriceps">Cuadriceps</option>
                 <option id="Pantorrillas" value="Pantorrillas">Pantorrillas</option>
                 <option id="Isquiotibiales" value="Isquiotibiales">Isquiotibiales</option>
-                <option id="Dorsales" value="Dorsales">Dorsales</option>
+                <option id="Dorsales" value="Dorsales" >Dorsales</option>
                 <option id="Gluteos" value="Gluteos">Gluteos</option>
                 <option id="Espalda Baja" value="Espalda Baja">Espalda Baja</option>
                 <option id="Espalda Superior" value="Espalda Superior">Espalda Superior</option>
