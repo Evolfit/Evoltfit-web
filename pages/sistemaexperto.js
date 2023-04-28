@@ -85,7 +85,7 @@ function arriba()  {
       Ninguno: true,
       Bandaresistencia: false,
       Bandasuspension: false,
-      Barra: false,
+      Barra: true,
       BarraZ: false,
       Barras: false,
       Mancuernas: true,
