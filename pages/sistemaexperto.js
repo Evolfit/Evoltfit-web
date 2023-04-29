@@ -97,7 +97,7 @@ function arriba()  {
       BancoInclinado: false,
       Cuerda: false,
     });
-    setArreglo(["hombre", "resistencia", "principiante", "1hr 30", "superior"]);
+    setArreglo(["hombre", "masamuscular", "experimentado", "2hr", "superior"]);
   }
 
   const handleSesion = async () => {
