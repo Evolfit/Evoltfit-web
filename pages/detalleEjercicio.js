@@ -15,6 +15,8 @@ export default function DetalleEjercicio() {
   const [formInput, setFormInput] = useState({});
 
   useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
     handleSesion()
     getEjercicio()
   }, []);

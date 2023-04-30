@@ -21,7 +21,6 @@ export default function Home() {
   const [mostrarEliminar, setMostrarEliminar] = useState(false);
 
   useEffect(() => {
-    //console.log("useEffect")
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
     handleSesion()

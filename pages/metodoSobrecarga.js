@@ -2,8 +2,15 @@ import Head from "next/head";
 import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import Typed from "react-typed";
+import { useEffect } from "react";
 
 export default function MetodoSobrecarga() {
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  })
+
   return (
     <div className="bg-stone-100 w-full">
       <Head>

@@ -7,6 +7,11 @@ import supabase from '../config/supabaseClient';
 export default function Home() {
   const router = useRouter();
 
+  useEffect(() =>{
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  })
+
   return (
     <div className={styles.container}>
       <Head>

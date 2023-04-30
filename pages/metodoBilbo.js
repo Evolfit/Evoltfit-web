@@ -7,6 +7,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function MetodoBilbo() {
+
+  useEffect(() => {
+    localStorage.removeItem("NombrePaquete");
+    localStorage.removeItem("Meses");
+  })
+
   return (
     <div className="bg-stone-100 w-full">
       <Head>
