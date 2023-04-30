@@ -463,18 +463,17 @@ export default function VisualizadorProgreso() {
                       viewBox="0 0 84.99 66.88"
                     >
                       <g id="Layer_1" data-name="Layer 1">
-                       
-                              <g className="cls-1">
-                                <path
-                                  className="cls-3"
-                                  d="m37.85,66.48c.26.26.61.4.95.4s.69-.13.95-.4l9.51-9.51c.53-.53.53-1.38,0-1.91-.53-.53-1.38-.53-1.91,0l-8.56,8.56L7.81,32.63c-3.31-3.31-5.14-7.72-5.14-12.4s1.82-9.09,5.14-12.4c3.31-3.31,7.72-5.14,12.4-5.14s9.09,1.82,12.4,5.14l5.23,5.23c.25.25.6.4.95.4s.7-.14.95-.4l5.23-5.23c6.84-6.84,17.97-6.84,24.8,0,2.72,2.72,4.44,6.16,4.97,9.96.1.74.79,1.25,1.52,1.15.74-.1,1.25-.79,1.15-1.52-.61-4.38-2.6-8.36-5.73-11.49-7.89-7.89-20.73-7.89-28.62,0l-4.27,4.27-4.27-4.27C26.64-1.97,13.8-1.97,5.91,5.92c-7.89,7.89-7.89,20.73,0,28.62l31.94,31.94h0Z"
-                                />
-                              </g>
-                              <path
-                                className="cls-3"
-                                d="m83.64,33.27h-19.14c-.55,0-1.04.33-1.25.84l-3.17,7.77-1.04-20.95c-.03-.62-.48-1.14-1.08-1.26-.61-.12-1.22.18-1.48.74l-5.87,12.3-6.06.81c-.59.08-1.05.53-1.15,1.11l-.57,3.33-3.27-15.46c-.12-.54-.55-.96-1.1-1.05-.55-.09-1.1.17-1.38.64l-4.78,8.08h-7.43c-.75,0-1.35.6-1.35,1.35s.6,1.35,1.35,1.35h8.2c.48,0,.92-.25,1.16-.66l3.41-5.76,4.02,18.97c.13.63.68,1.07,1.32,1.07,0,0,.02,0,.03,0,.65-.01,1.2-.48,1.3-1.12l1.59-9.3,5.8-.77c.45-.06.84-.35,1.04-.76l3.88-8.13,1.07,21.68c.03.63.5,1.16,1.12,1.26.08.01.15.02.23.02.54,0,1.04-.33,1.25-.84l5.12-12.56h18.23c.75,0,1.35-.6,1.35-1.35s-.6-1.35-1.35-1.35h0Z"
-                              />
-                            </g>
+                        <g className="cls-1">
+                          <path
+                            className="cls-3"
+                            d="m37.85,66.48c.26.26.61.4.95.4s.69-.13.95-.4l9.51-9.51c.53-.53.53-1.38,0-1.91-.53-.53-1.38-.53-1.91,0l-8.56,8.56L7.81,32.63c-3.31-3.31-5.14-7.72-5.14-12.4s1.82-9.09,5.14-12.4c3.31-3.31,7.72-5.14,12.4-5.14s9.09,1.82,12.4,5.14l5.23,5.23c.25.25.6.4.95.4s.7-.14.95-.4l5.23-5.23c6.84-6.84,17.97-6.84,24.8,0,2.72,2.72,4.44,6.16,4.97,9.96.1.74.79,1.25,1.52,1.15.74-.1,1.25-.79,1.15-1.52-.61-4.38-2.6-8.36-5.73-11.49-7.89-7.89-20.73-7.89-28.62,0l-4.27,4.27-4.27-4.27C26.64-1.97,13.8-1.97,5.91,5.92c-7.89,7.89-7.89,20.73,0,28.62l31.94,31.94h0Z"
+                          />
+                        </g>
+                        <path
+                          className="cls-3"
+                          d="m83.64,33.27h-19.14c-.55,0-1.04.33-1.25.84l-3.17,7.77-1.04-20.95c-.03-.62-.48-1.14-1.08-1.26-.61-.12-1.22.18-1.48.74l-5.87,12.3-6.06.81c-.59.08-1.05.53-1.15,1.11l-.57,3.33-3.27-15.46c-.12-.54-.55-.96-1.1-1.05-.55-.09-1.1.17-1.38.64l-4.78,8.08h-7.43c-.75,0-1.35.6-1.35,1.35s.6,1.35,1.35,1.35h8.2c.48,0,.92-.25,1.16-.66l3.41-5.76,4.02,18.97c.13.63.68,1.07,1.32,1.07,0,0,.02,0,.03,0,.65-.01,1.2-.48,1.3-1.12l1.59-9.3,5.8-.77c.45-.06.84-.35,1.04-.76l3.88-8.13,1.07,21.68c.03.63.5,1.16,1.12,1.26.08.01.15.02.23.02.54,0,1.04-.33,1.25-.84l5.12-12.56h18.23c.75,0,1.35-.6,1.35-1.35s-.6-1.35-1.35-1.35h0Z"
+                        />
+                      </g>
                     </svg>
                   </div>
                 </div>
@@ -482,44 +481,113 @@ export default function VisualizadorProgreso() {
             </div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl pt-5 pl-5">
-            <div className="">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+            <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Volumen semanal
               </h1>
+              <p className="text-justify mt-4 text-base">
+                Enim sunt qui officia ipsum consectetur excepteur sit
+                reprehenderit magna nulla laboris magna. Enim amet qui officia
+                commodo culpa incididunt.
+              </p>
             </div>
-
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl pt-5 pl-5">
-            <div className="">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+            <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Meta de calorías
               </h1>
+              <p className="text-justify mt-4 text-base">
+                Enim sunt qui officia ipsum consectetur excepteur sit
+                reprehenderit magna nulla laboris magna. Enim amet qui officia
+                commodo culpa incididunt.
+              </p>
             </div>
 
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl pt-5 pl-5">
-            <div className="">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+            <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Ganacia muscular
               </h1>
+              <p className="text-justify mt-4 text-base">
+                Enim sunt qui officia ipsum consectetur excepteur sit
+                reprehenderit magna nulla laboris magna. Enim amet qui officia
+                commodo culpa incididunt.
+              </p>
             </div>
 
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl pt-5 pl-5">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5 blur-sm">
             <div className="">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+              <h1 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
                 Ejercicios donde se recomienda subir peso
               </h1>
             </div>
 
-            <div className="grid place-items-center p-10"></div>
+            <div className="p-5 h-96 mt-1">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
+                  <div className = "grid place-items-center mt-2">
+                    <img
+                      className="rounded-full"
+                      height="100xp"
+                      width="100px"
+                      src="exVP1.gif"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
+                  </div>
+                </div>
+                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
+                  <div className = "grid place-items-center mt-2">
+                    <img
+                      className="rounded-full"
+                      height="100xp"
+                      width="100px"
+                      src="exVP2.gif"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <h1 className="font-semibold text-lg">Aumenta 15 lbs</h1>
+                  </div>
+                </div>
+                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
+                  <div className = "grid place-items-center mt-2">
+                    <img
+                      className="rounded-full"
+                      height="100xp"
+                      width="100px"
+                      src="exVP3.gif"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
+                  </div>
+                </div>
+                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
+                  <div className = "grid place-items-center mt-2">
+                    <img
+                      className="rounded-full"
+                      height="100xp"
+                      width="100px"
+                      src="exVP4.gif"
+                    />
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <h1 className="font-semibold text-lg">Aumenta 20 lbs</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
