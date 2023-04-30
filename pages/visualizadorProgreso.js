@@ -63,12 +63,9 @@ export default function VisualizadorProgreso() {
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 ¿Cuánto trabaja tu rutina?
               </h1>
-              <p className="text-justify mt-4 text-base">
-              Conocer los músculos que trabajan durante tu rutina de ejercicios te ayuda a enfocarte en áreas específicas, evitar lesiones y mejorar tu entrenamiento en general.
-              </p>
             </div>
 
-            <div className="flex">
+            <div className="flex mt-10">
               <div className="body-map2 w-9/12" id="body-map2">
                 <div id="male-body-maps" className="body-map__container2">
                   <div className="body-map__body2">
@@ -389,16 +386,13 @@ export default function VisualizadorProgreso() {
             </div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5 blur-sm">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Tu ritmo cardíaco
               </h1>
-              <p className="text-justify mt-4 text-base">
-              Monitorear el ritmo cardíaco puede ayudar a detectar problemas cardíacos y mejorar la eficacia del entrenamiento físico.
-              </p>
             </div>
-            <div className="border-2 border-gray-500 rounded-md mt-3 h-72 flex p-2 gap-2">
+            <div className="border-2 border-gray-500 rounded-md mt-7 h-80 flex p-2 gap-2">
               <div className="w-4/12 flex flex-col gap-2">
                 <div className="border-2 border-gray-500 h-1/2 flex justify-center items-center rounded-md">
                   <h1 className="text-3xl font-semibold text-blue-600">
@@ -482,9 +476,6 @@ export default function VisualizadorProgreso() {
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Volumen semanal
               </h1>
-              <p className="text-justify mt-4 text-base">
-              Hacer un seguimiento del volumen semanal de entrenamiento puede ayudarte a garantizar que estés alcanzando un estímulo adecuado para el crecimiento muscular.
-              </p>
             </div>
             <div className="grid place-items-center p-10"></div>
           </div>
@@ -494,9 +485,6 @@ export default function VisualizadorProgreso() {
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Meta de calorías
               </h1>
-              <p className="text-justify mt-4 text-base">
-              Hacer un seguimiento de las calorías que consumes puede ayudarte a tomar decisiones informadas sobre tus hábitos alimenticios y a mantener un equilibrio.
-              </p>
             </div>
 
             <div className="grid place-items-center p-10"></div>
@@ -507,15 +495,12 @@ export default function VisualizadorProgreso() {
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Ganacia muscular
               </h1>
-              <p className="text-justify mt-4 text-base">
-              Realizar un seguimiento de tu ganancia muscular te permite evaluar el progreso de tus entrenamientos y ajustar tu rutina en consecuencia.
-              </p>
             </div>
 
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5 blur-sm">
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="">
               <h1 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
                 Ejercicios donde se recomienda subir peso
