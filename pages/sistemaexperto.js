@@ -65,7 +65,7 @@ function arriba()  {
 
   useEffect(() => {
     handleSesion();
-    localStorage.setItem("bandera", "false");
+    localStorage.setItem("bandera", 'false');
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
   }, []);
