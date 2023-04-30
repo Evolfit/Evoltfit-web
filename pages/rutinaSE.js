@@ -55,6 +55,8 @@ export default function Home() {
   if (arreglo) {
     opciones = JSON.parse(arreglo);
   }
+  console.log("Bandera")
+  console.log(localStorage.getItem('bandera'));
   // <--------------------- >
   // <--------------------- >
   // <----- Variables ----- >
@@ -245,6 +247,7 @@ export default function Home() {
     if (error) {
       console.log(error);
     } else {
+      console.log(data)
       setData(data);
     }
   };
@@ -944,9 +947,11 @@ export default function Home() {
   //Use Effect para cargar y asignar los ejercicios
   useEffect(() => {
     if (data.every(posicion => posicion.length === 0)) {
+      console.log("Llama a funcion Cargar Ejercicios")
       cargar_ejercicios();
     } else {
       if (localStorage.getItem('bandera') !== 'true') {
+        console.log("Llama funcion Cambiar Ejercicios")
         cambiar_ejercicios();
       }
     }
