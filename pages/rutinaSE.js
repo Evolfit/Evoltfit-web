@@ -697,6 +697,9 @@ export default function Home() {
           }
         }
       }
+      if(diasActivos===5 || diasActivos===4){
+        similares = [];
+      }
     }
     if (diasActivos >= 6 && (opciones[4] === 'superior' || opciones[4] === 'brazos')) {
       //Que arreglos son iguales
