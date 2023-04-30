@@ -12,14 +12,12 @@ export default function Home() {
   // <-------- Usuario Logueado --------->
   const [sesion, setSesion] = useState(null);
   useEffect(() => {
-    //handleSesion();
+    handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
-    console.log("Bandera")
-    console.log(localStorage.getItem('bandera'));
   }, []);
-  /*
-  const handleSesion = async () => {
+  
+  async function handleSesion() {
     const { data, error } = await supabase.auth.getSession();
 
     if (data.session) {
@@ -30,7 +28,7 @@ export default function Home() {
       router.push("/login");
     }
   };
-  */
+
   // <-------- Recuperar valores --------->
   const router = useRouter();
   const { formData2, checkboxes, checkboxes2, arreglo, perfil } = router.query;
@@ -58,7 +56,6 @@ export default function Home() {
   if (arreglo) {
     opciones = JSON.parse(arreglo);
   }
- 
   // <--------------------- >
   // <--------------------- >
   // <----- Variables ----- >
@@ -237,22 +234,19 @@ export default function Home() {
   //Funcion para cargar los ejercicios....
   //
   //
-  const cargar_ejercicios = async () => {
-    console.log("LLega a la funcion Cargar Ejercicios")
-    let query2 = supabase
+  async function cargar_ejercicios() {
+    let query = supabase
       .from('ejercicios')
       .select('id,similar, nombre, musculo_primario,equipo, img')
 
-    query2 = query2.containedBy('equipo', herramientasActivas)
-    query2 = query2.order('puntuacion', { ascending: false })
+    query = query.containedBy('equipo', herramientasActivas)
+    query = query.order('puntuacion', { ascending: false })
 
-    const { data, error } = await query2;
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data)
-      setData(data);
-    }
+    const data = await query;
+    
+      console.log(data.data)
+      setData(data.data);
+  
   };
 
   //contenidos de puede llegar a contener cada dia
@@ -833,8 +827,7 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
-
-  const handleClick = async () => {
+  async function  handleClick() {
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
     for (let i = 0; i < arrays.length; i++) {
       if (arrays[i].length !== 0) {
@@ -949,9 +942,13 @@ export default function Home() {
 
   //Use Effect para cargar y asignar los ejercicios
   useEffect(() => {
-    
+    if (data.every(posicion => posicion.length === 0)) {
       cargar_ejercicios();
-    
+    } else {
+      if (localStorage.getItem('bandera') !== 'true') {
+        cambiar_ejercicios();
+      }
+    }
     //console.log(localStorage.getItem('bandera'));
   }, [data]);
 
