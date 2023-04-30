@@ -64,9 +64,7 @@ export default function VisualizadorProgreso() {
                 ¿Cuánto trabaja tu rutina?
               </h1>
               <p className="text-justify mt-4 text-base">
-                Enim sunt qui officia ipsum consectetur excepteur sit
-                reprehenderit magna nulla laboris magna. Enim amet qui officia
-                commodo culpa incididunt.
+              Conocer los músculos que trabajan durante tu rutina de ejercicios te ayuda a enfocarte en áreas específicas, evitar lesiones y mejorar tu entrenamiento en general.
               </p>
             </div>
 
@@ -397,9 +395,7 @@ export default function VisualizadorProgreso() {
                 Tu ritmo cardíaco
               </h1>
               <p className="text-justify mt-4 text-base">
-                Enim sunt qui officia ipsum consectetur excepteur sit
-                reprehenderit magna nulla laboris magna. Enim amet qui officia
-                commodo culpa incididunt.
+              Monitorear el ritmo cardíaco puede ayudar a detectar problemas cardíacos y mejorar la eficacia del entrenamiento físico.
               </p>
             </div>
             <div className="border-2 border-gray-500 rounded-md mt-3 h-72 flex p-2 gap-2">
@@ -487,9 +483,7 @@ export default function VisualizadorProgreso() {
                 Volumen semanal
               </h1>
               <p className="text-justify mt-4 text-base">
-                Enim sunt qui officia ipsum consectetur excepteur sit
-                reprehenderit magna nulla laboris magna. Enim amet qui officia
-                commodo culpa incididunt.
+              Hacer un seguimiento del volumen semanal de entrenamiento puede ayudarte a garantizar que estés alcanzando un estímulo adecuado para el crecimiento muscular.
               </p>
             </div>
             <div className="grid place-items-center p-10"></div>
@@ -501,9 +495,7 @@ export default function VisualizadorProgreso() {
                 Meta de calorías
               </h1>
               <p className="text-justify mt-4 text-base">
-                Enim sunt qui officia ipsum consectetur excepteur sit
-                reprehenderit magna nulla laboris magna. Enim amet qui officia
-                commodo culpa incididunt.
+              Hacer un seguimiento de las calorías que consumes puede ayudarte a tomar decisiones informadas sobre tus hábitos alimenticios y a mantener un equilibrio.
               </p>
             </div>
 
@@ -516,9 +508,7 @@ export default function VisualizadorProgreso() {
                 Ganacia muscular
               </h1>
               <p className="text-justify mt-4 text-base">
-                Enim sunt qui officia ipsum consectetur excepteur sit
-                reprehenderit magna nulla laboris magna. Enim amet qui officia
-                commodo culpa incididunt.
+              Realizar un seguimiento de tu ganancia muscular te permite evaluar el progreso de tus entrenamientos y ajustar tu rutina en consecuencia.
               </p>
             </div>
 
