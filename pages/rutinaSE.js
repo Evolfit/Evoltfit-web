@@ -949,18 +949,9 @@ export default function Home() {
 
   //Use Effect para cargar y asignar los ejercicios
   useEffect(() => {
-    if (data.every(posicion => posicion.length === 0)) {
-      console.log("Llama a funcion Cargar Ejercicios")
-      console.log(data)
-      console.log(data)
+    
       cargar_ejercicios();
-    } else {
-      if (localStorage.getItem('bandera') !== 'true') {
-        console.log("Llama funcion Cambiar Ejercicios")
-        //cambiar_ejercicios();
-      }
-    }
-    //console.log(localStorage.getItem('bandera'));
+    
   }, [data]);
 
 
