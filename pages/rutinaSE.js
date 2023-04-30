@@ -957,7 +957,7 @@ export default function Home() {
     } else {
       if (localStorage.getItem('bandera') !== 'true') {
         console.log("Llama funcion Cambiar Ejercicios")
-        cambiar_ejercicios();
+        //cambiar_ejercicios();
       }
     }
     //console.log(localStorage.getItem('bandera'));
