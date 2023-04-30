@@ -952,6 +952,7 @@ export default function Home() {
     
       cargar_ejercicios();
     
+    //console.log(localStorage.getItem('bandera'));
   }, [data]);
 
 
