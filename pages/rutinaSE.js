@@ -15,6 +15,8 @@ export default function Home() {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
+    console.log("Bandera")
+    console.log(localStorage.getItem('bandera'));
   }, []);
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
@@ -55,8 +57,7 @@ export default function Home() {
   if (arreglo) {
     opciones = JSON.parse(arreglo);
   }
-  console.log("Bandera")
-  console.log(localStorage.getItem('bandera'));
+ 
   // <--------------------- >
   // <--------------------- >
   // <----- Variables ----- >
