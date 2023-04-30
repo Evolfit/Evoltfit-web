@@ -12,12 +12,13 @@ export default function Home() {
   // <-------- Usuario Logueado --------->
   const [sesion, setSesion] = useState(null);
   useEffect(() => {
-    handleSesion();
+    //handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
     console.log("Bandera")
     console.log(localStorage.getItem('bandera'));
   }, []);
+  /*
   const handleSesion = async () => {
     const { data, error } = await supabase.auth.getSession();
 
@@ -29,7 +30,7 @@ export default function Home() {
       router.push("/login");
     }
   };
-
+  */
   // <-------- Recuperar valores --------->
   const router = useRouter();
   const { formData2, checkboxes, checkboxes2, arreglo, perfil } = router.query;
@@ -237,6 +238,7 @@ export default function Home() {
   //
   //
   const cargar_ejercicios = async () => {
+    console.log("LLega a la funcion Cargar Ejercicios")
     let query = supabase
       .from('ejercicios')
       .select('id,similar, nombre, musculo_primario,equipo, img')
