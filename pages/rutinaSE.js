@@ -239,14 +239,14 @@ export default function Home() {
   //
   const cargar_ejercicios = async () => {
     console.log("LLega a la funcion Cargar Ejercicios")
-    let query = supabase
+    let query2 = supabase
       .from('ejercicios')
       .select('id,similar, nombre, musculo_primario,equipo, img')
 
-    query = query.containedBy('equipo', herramientasActivas)
-    query = query.order('puntuacion', { ascending: false })
+    query2 = query2.containedBy('equipo', herramientasActivas)
+    query2 = query2.order('puntuacion', { ascending: false })
 
-    const { data, error } = await query;
+    const { data, error } = await query2;
     if (error) {
       console.log(error);
     } else {
@@ -951,6 +951,8 @@ export default function Home() {
   useEffect(() => {
     if (data.every(posicion => posicion.length === 0)) {
       console.log("Llama a funcion Cargar Ejercicios")
+      console.log(data)
+      console.log(data)
       cargar_ejercicios();
     } else {
       if (localStorage.getItem('bandera') !== 'true') {
