@@ -167,7 +167,7 @@ export default function Perfil() {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="relative min-h-[75vh]">
         <br/>
         <br/>
         <br/>

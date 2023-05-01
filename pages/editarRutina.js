@@ -256,7 +256,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main className="mt-24 relative">
+      <main className="mt-24 relative min-h-[75vh]">
 
         <EliminarConfirmar
           mostrarEliminar={mostrarEliminar}

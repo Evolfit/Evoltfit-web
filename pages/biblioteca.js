@@ -111,7 +111,7 @@ export default function Home() {
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
 
-    query = query.order('id', { ascending: false })
+    query = query.order('puntuacion', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
@@ -160,7 +160,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="relative min-h-[75vh]">
         <br />
         <br />
         <br />

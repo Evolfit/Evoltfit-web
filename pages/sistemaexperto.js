@@ -344,7 +344,7 @@ function arriba()  {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="relative min-h-[75vh]">
         <div className="grid place-items-center">
           {value === -1 ? (
             <div className="w-9/12 seccInic">{element}</div>

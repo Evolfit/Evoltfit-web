@@ -102,7 +102,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main className="relative">
+      <main className="relative min-h-[75vh]">
         <br />
         <br />
         <br />

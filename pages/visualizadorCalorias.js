@@ -162,7 +162,7 @@ export default function VisualizadorCalorias() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main>
+      <main className="relative min-h-[75vh]">
         <br />
         <br />
         <br />
