@@ -830,6 +830,7 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   async function  handleClick() {
     setLoading(true);
+    setLoadingtexto("Guardando tu rutina...")
     window.scrollTo(0, 0);
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
     for (let i = 0; i < arrays.length; i++) {
