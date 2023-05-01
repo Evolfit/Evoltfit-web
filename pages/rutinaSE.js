@@ -66,7 +66,8 @@ export default function Home() {
   let variables1 = { push: 4, Pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
   let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
   let variables7 = {};
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingtexto, setLoadingtexto] = useState("Cargando tu Rutina de Entrenamiento...");
   const [data, setData] = useState([]);
   const [infousuario, setinfousuario] = useState(null);
   const [objetivoUsuario, setObjetivoUsuario] = useState("");
@@ -731,7 +732,7 @@ export default function Home() {
       console.log(arrays)
       setArrays([...arrays]);
     }
-
+    setLoading(false);
   }
 
   //
@@ -828,6 +829,8 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   async function  handleClick() {
+    setLoading(true);
+    window.scrollTo(0, 0);
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
     for (let i = 0; i < arrays.length; i++) {
       if (arrays[i].length !== 0) {
@@ -965,8 +968,10 @@ export default function Home() {
 
       {loading ? (
         <div>
-          <div className="loader"></div>
-          <p>{'CARGANDO'}</p>
+          <br /><br /><br /><br /><br />
+          <div className="loader" style={{ marginTop: '10%', marginBottom: '50px' }}></div>
+          <p style={{ marginTop: '50px', marginBottom: '40%', textAlign: 'center'}}>{loadingtexto}</p>
+          
         </div>
       ) : (
         <main >
