@@ -4,12 +4,41 @@ import { useState, useEffect } from "react";
 import Navbar from "/components/Navbar";
 import supabase from "../config/supabaseClient";
 import Footer from "/components/Footer";
+import ProgressBar from "@ramonak/react-progress-bar";
+import Link from "next/link";
 
 export default function VisualizadorProgreso() {
   const router = useRouter();
   const [sesion, setSesion] = useState(null);
   const [num, setNum] = useState(0);
+  const [opCal, setOpCal] = useState(0);
+  const [perfil, setPerfil] = useState(null);
+  const [registros, setRegistros] = useState(null);
+  const [metaCalorias, setMetaCalorias] = useState(null);
+  const [sumatoriaCalorias, setSumatoriaCalorias] = useState(null);
+
   var co = 1;
+
+  const handleSelectChange = (event) => {
+    setOpCal(event.target.value);
+  };
+
+  var today = new Date();
+
+  // getDate() Regresa el día del mes (Desde 1 a 31)
+  var day = today.getDate();
+  // getMonth() Regresa el mes (Desde 0 a 11)
+  var month = today.getMonth() + 1;
+  // getFullYear() Regresa el año actual
+  var year = today.getFullYear();
+
+  // Formatos de las fechas
+  // console.log(`${year}-${month}-${day}`);
+  // console.log(`${day}/${month}/${year}`)
+
+  var fecha_baseDatos = `${year}-${month}-${day}`;
+
+  var sumatoriaCal = 0;
 
   useEffect(() => {
     handleSesion();
@@ -27,10 +56,68 @@ export default function VisualizadorProgreso() {
 
     if (data.session) {
       setSesion(data.session);
-      //console.log(data);
+      getPerfil(data.session.user.id);
+      obtenerRegistros(data.session);
+      obtenerMeta(data.session);
     } else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
+    }
+  };
+
+  async function obtenerRegistros(session) {
+   
+    let { data: res, err } = await supabase
+      .from("calorias_productos_totales")
+      .select("calorias")
+      .match({ usuario: session.user.id, fecha_agregado: fecha_baseDatos });
+
+    if (err) {
+      console.log(
+        "ERROR: Hubo un error al recuperar todos los productos del usuario."
+      );
+      console.log(err);
+    } else {
+      console.log(res);
+      for (var i = 0; i <= res.length - 1; i++) {
+        sumatoriaCal = sumatoriaCal + res[i].calorias;
+      }
+      setSumatoriaCalorias(sumatoriaCal.toFixed(1));
+    }
+  }
+
+  async function obtenerMeta(session) {
+    let { data: res, err } = await supabase
+      .from("calorias_metas")
+      .select("cals_meta")
+      .eq("usuario", session.user.id);
+
+    if (err) {
+      console.log("ERROR: Hubo un error obteniendo la meta del ususario");
+      console.log(err);
+    } else {
+      if (res.length == 0) {
+        console.log("El usuario no tiene una meta establecida");
+        console.log(res);
+      } else {
+        console.log("Meta obtenida exitosamente");
+        //console.log(res)
+        setMetaCalorias(res[0].cals_meta);
+      }
+    }
+  }
+
+  const getPerfil = async (idUsuario) => {
+    const { data, error } = await supabase
+      .from("perfiles")
+      .select("*")
+      .eq("id", idUsuario);
+
+    if (error) {
+      console.log("ERROR: No se pudo conseguir el perfil.");
+    } else {
+      //console.log(data[0])
+      setPerfil(data[0]);
+      console.log(data[0]);
     }
   };
 
@@ -371,12 +458,12 @@ export default function VisualizadorProgreso() {
                   </div>
                 </div>
               </div>
-              <div className="w-3/12 flex items-center">
+              <div className="w-3/12">
                 <select
                   id="opciones"
                   className="bg-gray-50 border border-blue-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-heebo"
                 >
-                  <option selected>Opciones</option>
+                  <option>Opciones</option>
                   <option value="op1">Opción 1</option>
                   <option value="op2">Opción 2</option>
                   <option value="op3">Opción 3</option>
@@ -389,7 +476,8 @@ export default function VisualizadorProgreso() {
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
-                Tu ritmo cardíaco
+                Tu ritmo cardíaco -{" "}
+                <span className="text-green-600">Próximamente</span>
               </h1>
             </div>
             <div className="border-2 border-gray-500 rounded-md mt-7 h-80 flex p-2 gap-2">
@@ -480,16 +568,124 @@ export default function VisualizadorProgreso() {
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
-            <div className="w-11/12">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
-                Meta de calorías
-              </h1>
+          {perfil ? (
+            <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+              <div className="w-11/12">
+                <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+                  Meta de calorías - {perfil.nombre}
+                </h1>
+              </div>
+
+              <div className="flex gap-2 mt-5">
+                <div className="w-9/12 h-celdaCalorias flex flex-col">
+                  <div className="border-gray-500 border-2 rounded-md">
+                    <div className="h-80">
+                      {opCal == "op1" ? (
+                        <div className="">
+                          <h1>Calorías</h1>
+                        </div>
+                      ) : opCal == "op2" ? (
+                        <div className="">
+                          <h1>Proteínas</h1>
+                        </div>
+                      ) : opCal == "op3" ? (
+                        <div className="">
+                          <h1>Grasas</h1>
+                        </div>
+                      ) : (
+                        <div className="">
+                          <h1>Calorías</h1>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {metaCalorias != 0 ? (
+                    <div>
+                    <div>
+                      <h1 className = "font-heebo font-semibold">Estado de tu meta actual (cals):{" "} 
+                      <span className="text-blue-600">
+                          {metaCalorias}
+                        </span></h1>
+                    </div>
+                    <ProgressBar
+                      bgColor={` ${
+                        sumatoriaCalorias > metaCalorias
+                          ? "#dc2626"
+                          : "#2563eb"
+                      }`}
+                      width="100%"
+                      completed={sumatoriaCalorias}
+                      maxCompleted={metaCalorias}
+                    />
+                  </div>
+                  ) : (
+                    <div>
+                      <h1 className = "font-heebo font-semibold">Aún no defines una meta. Pulsa {" "}
+                      <span className="text-blue-600 underline">
+                        <Link href = "../visualizadorCalorias">
+                           aquí 
+                           </Link>
+                        </span> para definirla</h1>
+                    </div>
+                  )
+                  }
+                </div>
+                <div className="w-3/12 h-celdaCalorias flex flex-col gap-48">
+                  <div className="">
+                    <select
+                      id="opciones"
+                      className="bg-stone-100 border border-blue-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-heebo"
+                      onChange={handleSelectChange}
+                    >
+                      <option value="op1">Calorías</option>
+                      <option value="op2">Proteínas</option>
+                      <option value="op3">Grasas</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {perfil.edad ? (
+                      <h1 className="font-heebo font-semibold">
+                        Edad:{" "}
+                        <span className="text-blue-600">
+                          {perfil.edad} años
+                        </span>
+                      </h1>
+                    ) : (
+                      <h1 className="font-heebo font-semibold">
+                        Edad: <span className="text-blue-600">N/A</span>
+                      </h1>
+                    )}
+                    {perfil.estatura ? (
+                      <h1 className="font-hebbo font-semibold">
+                        Estatura:{" "}
+                        <span className="text-blue-600">
+                          {perfil.estatura} mts.
+                        </span>
+                      </h1>
+                    ) : (
+                      <h1 className="font-hebbo font-semibold">
+                        Estatura: <span className="text-blue-600">N/A</span>
+                      </h1>
+                    )}
+                    {perfil.peso ? (
+                      <h1 className="font-hebbo font-semibold">
+                        Peso:{" "}
+                        <span className="text-blue-600">{perfil.peso} kg</span>
+                      </h1>
+                    ) : (
+                      <h1 className="font-hebbo font-semibold">
+                        Peso: <span className="text-blue-600">N/A</span>
+                      </h1>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="grid place-items-center p-10"></div>
-          </div>
-
+          ) : (
+            <div className="my-12">
+              <div className="loader mt-6"></div>
+            </div>
+          )}
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
@@ -503,14 +699,15 @@ export default function VisualizadorProgreso() {
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="">
               <h1 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
-                Ejercicios donde se recomienda subir peso
+                Ejercicios donde se recomienda subir peso -{" "}
+                <span className="text-green-600">Próximamente</span>
               </h1>
             </div>
 
             <div className="p-5 h-96 mt-1">
               <div className="grid grid-cols-2 gap-2">
-                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
-                  <div className = "grid place-items-center mt-2">
+                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                  <div className="grid place-items-center mt-2">
                     <img
                       className="rounded-full"
                       height="100xp"
@@ -522,8 +719,8 @@ export default function VisualizadorProgreso() {
                     <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
                   </div>
                 </div>
-                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
-                  <div className = "grid place-items-center mt-2">
+                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                  <div className="grid place-items-center mt-2">
                     <img
                       className="rounded-full"
                       height="100xp"
@@ -535,8 +732,8 @@ export default function VisualizadorProgreso() {
                     <h1 className="font-semibold text-lg">Aumenta 15 lbs</h1>
                   </div>
                 </div>
-                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
-                  <div className = "grid place-items-center mt-2">
+                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                  <div className="grid place-items-center mt-2">
                     <img
                       className="rounded-full"
                       height="100xp"
@@ -548,8 +745,8 @@ export default function VisualizadorProgreso() {
                     <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
                   </div>
                 </div>
-                <div className="border-blue-600 border-2 rounded-md h-40 w-full">
-                  <div className = "grid place-items-center mt-2">
+                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                  <div className="grid place-items-center mt-2">
                     <img
                       className="rounded-full"
                       height="100xp"

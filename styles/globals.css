@@ -871,6 +871,10 @@
 height: 28.5rem;
 }
 
+.h-celdaCalorias{
+  height: 22.5rem;
+}
+
 /* Clases para el modelo de los musculos del VP */
 
 .body-map2 {
