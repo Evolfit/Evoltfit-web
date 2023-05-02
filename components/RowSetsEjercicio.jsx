@@ -120,7 +120,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
           className="text-center"
           onClick={eliminarSet}
           >
-            <div className="flex items-center justify-center f-full w-full">
+            <div className="flex items-center justify-center w-full">
               <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-gray-700
               hover:bg-gray-800 duration-100 active:scale-95">
                   <ion-icon name="close-outline"></ion-icon>
