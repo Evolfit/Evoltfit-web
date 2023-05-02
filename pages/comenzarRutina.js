@@ -8,6 +8,7 @@ import supabase from "../config/supabaseClient";
 import CardEjercicioEntrenamiento from "/components/CardEjercicioEntrenamiento";
 import Aviso from "/components/Aviso";
 import Cronometro from "/components/Cronometro";
+import EliminarConfirmar from "/components/EliminarConfirmar";
 
 export default function ComenzarRutina() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function ComenzarRutina() {
   const [comenzarEntrenamiento, setComenzarEntrenamiento] = useState(false);
   const [ejerciciosRutina, setEjerciciosRutina] = useState([])
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(0)
+  const [mostrarEliminar, setMostrarEliminar] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("NombrePaquete");
@@ -279,12 +281,18 @@ export default function ComenzarRutina() {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="relative min-h-[75vh]">
         <Aviso
           mostrarAviso={mostrarAviso}
           setMostrarAviso={setMostrarAviso}
           color={colorAviso}
           mensaje={mensajeAviso}
+        />
+        <EliminarConfirmar
+          mostrarEliminar={mostrarEliminar}
+          setMostrarEliminar={setMostrarEliminar}
+          mensaje={'¿Seguro que quieres eliminar el progreso de tu entrenamiento?'}
+          funcEliminar={terminarEntrenamiento}
         />
         <br />
         <br />
@@ -296,7 +304,7 @@ export default function ComenzarRutina() {
           {
             rutina ? 
             <div className={"mx-auto mt-2 "}>
-              <div className="flex flex-col w-11/12 xl:w-9/12 mx-auto">
+              <div className="flex flex-col w-11/12 md:w-9/12 mx-auto max-w-5xl">
                 <div>
                   <button className="btn btn-ghost m-0 px-2 text-lg" onClick={() => {router.push('/rutinas')}}>
                     <div className='text-3xl mt-auto'>
@@ -306,7 +314,7 @@ export default function ComenzarRutina() {
                   </button>
                   <br/>
                   <div className="flex flex-row items-center justify-center sm:mx-16 mt-2">
-                    <h2 className="flex-auto text-3xl text-gray-900">{rutina.nombre}</h2>
+                    <h2 id="nombreRutina" className="flex-auto text-3xl text-gray-900 mr-2 truncate">{rutina.nombre}</h2>
                     <div className="w-28">
                       <span>Tiempo: </span>
                       <Cronometro
@@ -321,12 +329,19 @@ export default function ComenzarRutina() {
                     :
                       !pausaTiempo ? 
                         <div className="">
-                          <div className="flex flex-row my-2">
+                          <div className="flex flex-row mt-2">
                             <button 
-                            className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
-                            onClick={ejercicioAnterior}
+                            className="bg-white text-xl rounded-lg shadow my-2 p-4 mr-2 hover:bg-gray-50 duration-75 active:scale-95 hidden lg:inline"
+                            onClick={() => {
+                              ejercicioAnterior()
+                              document.getElementById("nombreEjercicio").scrollIntoView({
+                                behavior: 'auto',
+                                block: 'center',
+                                inline: 'center'
+                              });
+                            }}
                             >
-                              {'<'}
+                              <ion-icon name="chevron-back-outline"></ion-icon>
                             </button>
                               <CardEjercicioEntrenamiento
                                 key={ejerciciosRutina[ejercicioSeleccionado].id}
@@ -336,23 +351,60 @@ export default function ComenzarRutina() {
                                 agregarSet={agregarSet}
                               />
                             <button 
-                            className="bg-white rounded-lg shadow-md my-2 p-4 hover:bg-gray-50 duration-75 active:bg-blue-50 active:p-3.5"
-                            onClick={ejercicioSiguiente}
+                            className="bg-white text-xl rounded-lg shadow my-2 p-4 ml-2 hover:bg-gray-50 duration-75 active:scale-95 hidden lg:inline"
+                            onClick={() => {
+                              ejercicioSiguiente()
+                              document.getElementById("nombreEjercicio").scrollIntoView({
+                                behavior: 'auto',
+                                block: 'center',
+                                inline: 'center'
+                              });
+                            }}
                             >
-                              {'>'}
+                              <ion-icon name="chevron-forward-outline"></ion-icon>
                             </button>
                           </div>
                           <div className='flex flex-col justify-center items-center lg:flex-row w-full'>
-                            <button onClick={() => {setPausaTiempo(!pausaTiempo)}} className="flex-auto btn text-white btn-secondary rounded-lg btn-md mx-1 my-1 w-full duration-75 lg:my-0 active:bg-blue-800">
+                            <div className='flex flex-row justify-center items-center w-full inline lg:hidden mb-2'>
+                              <button 
+                                className="bg-white w-full mr-1 text-2xl rounded-lg shadow p-4 hover:bg-gray-50 duration-75 active:scale-95"
+                                onClick={() => {
+                                  ejercicioAnterior()
+                                }}
+                              >
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                              </button>
+                              <button 
+                              className="bg-white w-full ml-1 text-2xl rounded-lg shadow p-4 hover:bg-gray-50 duration-75 active:scale-95"
+                              onClick={() => {
+                                ejercicioSiguiente()
+                              }}
+                              >
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                              </button>
+                            </div>
+                            <button onClick={() => {
+                              setPausaTiempo(!pausaTiempo)
+                              document.getElementById('nombreRutina').scrollIntoView({
+                                behavior: 'auto',
+                                block: 'center',
+                                inline: 'center'
+                              });
+                              }} 
+                              className="flex-auto cursor-pointer text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 rounded-lg btn-md mx-1 my-1 w-full lg:my-0">
                               {
                               pausaTiempo ?
-                              'Reanudar Entrenamiento'
+                                <span className="text-base font-medium">REANUDAR ENTRENAMIENTO</span>
                               :
-                              'Pausar'
+                                <span className="text-base font-medium">PAUSAR</span>
                               }
                             </button>
-                            <button onClick={() => {handleFinalizar()}} className="flex-auto  btn text-white btn-success rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Finalizar</button>
-                            <button onClick={() => {terminarEntrenamiento()}} className="flex-auto  btn text-white btn-error rounded-lg btn-md mx-1 my-1 w-full lg:my-0">Cancelar</button>
+                            <button onClick={() => {handleFinalizar()}} className="flex-auto cursor-pointer text-white rounded-md bg-emerald-500 hover:bg-emerald-600 duration-100 active:scale-95 rounded-lg btn-md mx-1 my-1 w-full lg:my-0">
+                              <span className="text-base font-medium">FINALIZAR</span>
+                            </button>
+                            <button onClick={() => {setMostrarEliminar(true)}} className="flex-auto cursor-pointer text-white rounded-md bg-red-500 hover:bg-red-600 duration-100 active:scale-95 rounded-lg btn-md mx-1 my-1 w-full lg:my-0">
+                              <span className="text-base font-medium">CANCELAR</span>
+                            </button>
                           </div>  
                         </div>
                       :

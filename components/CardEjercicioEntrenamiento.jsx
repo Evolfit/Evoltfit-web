@@ -11,7 +11,7 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
   //console.log(ejercicioSeleccionado);
 
   return (
-    <div className="flex-auto bg-white rounded-lg shadow-md my-2 p-6 mx-2">
+    <div className="flex-auto bg-white rounded-lg shadow my-2 p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-center">
         <div 
         className='relative rounded-full overflow-hidden h-16 w-16 sm:h-20 sm:w-20 border-2 mb-2 border-blue-500 hover:border-4 cursor-pointer duration-100'
@@ -28,9 +28,9 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
         </div>
         <div className="flex-auto sm:w-0 ml-0 sm:ml-4 w-full">
             <p 
+            id="nombreEjercicio"
             className="mr-8 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 cursor-pointer 
-            hover:text-blue-800 duration-150
-            whitespace-nowrap text-ellipsis overflow-hidden"
+            hover:text-blue-800 duration-150"
             onClick={() => {
               /*
               router.push({
@@ -40,7 +40,7 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
               */
             }}
             >
-                {(ejercicioSeleccionado + 1) + ' - ' + ejercicio.ejercicio.nombre}
+                {(ejercicioSeleccionado + 1) + '. ' + ejercicio.ejercicio.nombre}
             </p>
             <p className="mb-2 font-normal text-lg sm:text-xl text-gray-700">{ejercicio.ejercicio.musculo_primario}</p>
         </div>

@@ -111,7 +111,10 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
           />
         </td>
         {eliminar ? 
-            ''
+            <td 
+            className="text-center"
+            >
+            </td>
           :
           <td 
           className="text-center"
