@@ -16,13 +16,88 @@ export default function VisualizadorProgreso() {
   const [registros, setRegistros] = useState(null);
   const [metaCalorias, setMetaCalorias] = useState(null);
   const [sumatoriaCalorias, setSumatoriaCalorias] = useState(null);
-
-  var co = 1;
-
+  const [rutinas, setRutinas] = useState([]);
+  const [co, setco] = useState(20);
+  const [userID, serUserID] = useState("");
   const handleSelectChange = (event) => {
     setOpCal(event.target.value);
   };
 
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -----------Seccion Modelo--------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  const [opcionSeleccionada, setOpcionSeleccionada] = useState("");
+  const [cargandoRutinas, setCargandoRutinas] = useState(true);
+  const [ejerciciosRutina, setEjerciciosRutina] = useState([]);
+  //Para cargar La rutina
+  useEffect(() => {
+    if (userID) { // solo cargar las rutinas si userID tiene un valor válido
+      cargar_rutinas();
+    }
+  }, [userID]);
+    //Para cargar La rutina
+    useEffect(() => {
+      if (rutinas) { // solo cargar las rutinas si userID tiene un valor válido
+        cargar_ejercicios();
+      }
+    }, [rutinas]);
+  //Para cargar los Ejercicios
+  
+  //Carga La rutina
+  async function cargar_rutinas() {
+    let query = supabase
+      .from('rutinas')
+      .select('id,nombre')
+      .eq('usuario', userID)
+    const data2 = await query;
+    console.log("Rutinas")
+    console.log(data2.data)
+    setRutinas(data2.data)
+  };
+  async function cargar_ejercicios() {
+    if (rutinas && rutinas.length > 0) {
+      const ejerciciosPorRutina = {};
+      for (let i = 0; i < rutinas.length; i++) {
+        const { data, error } = await supabase
+          .from('rutinas_ejercicio')
+          .select(`
+            id,
+            ejercicio(
+              nombre
+            )
+          `)
+          .eq('rutina', rutinas[i].id);
+        if (error) {
+          console.log(`ERROR: Hubo un error al recuperar los ejercicios de la rutina ${rutinas[i].id}.`);
+          console.log(error);
+        } else {
+          console.log(`Ejercicios de la rutina ${rutinas[i].id}:`);
+          console.log(data);
+          ejerciciosPorRutina[rutinas[i].id] = data;
+        }
+      }
+      console.log('Ejercicios por rutina:');
+      console.log(ejerciciosPorRutina);
+    }
+  }
+  function opcion_rutina(event) {
+    const opcionSeleccionada = event.target.value;
+    console.log(opcionSeleccionada);
+    setOpcionSeleccionada(opcionSeleccionada);
+    setCargandoRutinas(false); // se han cargado los datos
+  }
+
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- -----------Seccion Modelo--------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
   var today = new Date();
 
   // getDate() Regresa el día del mes (Desde 1 a 31)
@@ -56,6 +131,7 @@ export default function VisualizadorProgreso() {
 
     if (data.session) {
       setSesion(data.session);
+      serUserID(data.session.user.id)
       getPerfil(data.session.user.id);
       obtenerRegistros(data.session);
       obtenerMeta(data.session);
@@ -65,7 +141,7 @@ export default function VisualizadorProgreso() {
   };
 
   async function obtenerRegistros(session) {
-   
+
     let { data: res, err } = await supabase
       .from("calorias_productos_totales")
       .select("calorias")
@@ -163,11 +239,10 @@ export default function VisualizadorProgreso() {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <g
-                        className={` ${
-                          co == 1
-                            ? "body-map__muscle2"
-                            : "body-map__muscle2_change"
-                        }`}
+                        className={` ${co == 1
+                          ? "body-map__muscle2"
+                          : "body-map__muscle2_change"
+                          }`}
                         id="Abdomen"
                       >
                         <path
@@ -462,12 +537,18 @@ export default function VisualizadorProgreso() {
                 <select
                   id="opciones"
                   className="bg-gray-50 border border-blue-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-heebo"
+                  onChange={opcion_rutina}
+                  value={opcionSeleccionada}
                 >
-                  <option>Opciones</option>
-                  <option value="op1">Opción 1</option>
-                  <option value="op2">Opción 2</option>
-                  <option value="op3">Opción 3</option>
-                  <option value="op4">Opción 4</option>
+                  <option value="">Opciones</option>
+                  {rutinas.length !== 0
+                    ? rutinas.map((rutina, index) => (
+                      <option key={index} value={rutina.nombre}>
+                        {rutina.nombre}
+                      </option>
+                    ))
+                    : <option value="">No hay rutinas</option>
+                  }
                 </select>
               </div>
             </div>
@@ -601,30 +682,29 @@ export default function VisualizadorProgreso() {
                   </div>
                   {metaCalorias != 0 ? (
                     <div>
-                    <div>
-                      <h1 className = "font-heebo font-semibold">Estado de tu meta actual (cals):{" "} 
-                      <span className="text-blue-600">
-                          {metaCalorias}
-                        </span></h1>
-                    </div>
-                    <ProgressBar
-                      bgColor={` ${
-                        sumatoriaCalorias > metaCalorias
+                      <div>
+                        <h1 className="font-heebo font-semibold">Estado de tu meta actual (cals):{" "}
+                          <span className="text-blue-600">
+                            {metaCalorias}
+                          </span></h1>
+                      </div>
+                      <ProgressBar
+                        bgColor={` ${sumatoriaCalorias > metaCalorias
                           ? "#dc2626"
                           : "#2563eb"
-                      }`}
-                      width="100%"
-                      completed={sumatoriaCalorias}
-                      maxCompleted={metaCalorias}
-                    />
-                  </div>
+                          }`}
+                        width="100%"
+                        completed={sumatoriaCalorias}
+                        maxCompleted={metaCalorias}
+                      />
+                    </div>
                   ) : (
                     <div>
-                      <h1 className = "font-heebo font-semibold">Aún no defines una meta. Pulsa {" "}
-                      <span className="text-blue-600 underline">
-                        <Link href = "../visualizadorCalorias">
-                           aquí 
-                           </Link>
+                      <h1 className="font-heebo font-semibold">Aún no defines una meta. Pulsa {" "}
+                        <span className="text-blue-600 underline">
+                          <Link href="../visualizadorCalorias">
+                            aquí
+                          </Link>
                         </span> para definirla</h1>
                     </div>
                   )
