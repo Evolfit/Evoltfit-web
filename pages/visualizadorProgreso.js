@@ -30,23 +30,23 @@ export default function VisualizadorProgreso() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
+  const [modelocarga, setModelocarga] = useState(true);
   const [opcionSeleccionada, setOpcionSeleccionada] = useState("");
-  const [cargandoRutinas, setCargandoRutinas] = useState(true);
   const [ejerciciosRutina, setEjerciciosRutina] = useState([]);
   const [abdomen, setAbdomen] = useState(255);
-  const [oblicuos, setOblicuos] = useState(220);
-  const [antebrazos, setAntebrazos] = useState(180);
-  const [biceps, setBiceps] = useState(160);
-  const [triceps, setTriceps] = useState(130);
-  const [hombros, setHombros] = useState(100);
-  const [trapecio, setTrapecio] = useState(80);
-  const [pecho, setPecho] = useState(60);
-  const [cuadriceps, setCuadriceps] = useState(240);
-  const [pantorrillas, setPantorrillas] = useState(230);
-  const [isquiotibiales, setIsquiotibiales] = useState(210);
-  const [dorsales, setDorsales] = useState(170);
-  const [gluteos, setGluteos] = useState(190);
-  const [espaldaBaja, setEspaldaBaja] = useState(0);
+  const [oblicuos, setOblicuos] = useState(255);
+  const [antebrazos, setAntebrazos] = useState(255);
+  const [biceps, setBiceps] = useState(255);
+  const [triceps, setTriceps] = useState(255);
+  const [hombros, setHombros] = useState(255);
+  const [trapecio, setTrapecio] = useState(255);
+  const [pecho, setPecho] = useState(255);
+  const [cuadriceps, setCuadriceps] = useState(255);
+  const [pantorrillas, setPantorrillas] = useState(255);
+  const [isquiotibiales, setIsquiotibiales] = useState(255);
+  const [dorsales, setDorsales] = useState(255);
+  const [gluteos, setGluteos] = useState(255);
+  const [espaldaBaja, setEspaldaBaja] = useState(255);
 
   //Para cargar La rutina
   useEffect(() => {
@@ -54,14 +54,14 @@ export default function VisualizadorProgreso() {
       cargar_rutinas();
     }
   }, [userID]);
-    //Para cargar La rutina
-    useEffect(() => {
-      if (rutinas) { // solo cargar las rutinas si userID tiene un valor válido
-        cargar_ejercicios();
-      }
-    }, [rutinas]);
+  //Para cargar La rutina
+  useEffect(() => {
+    if (rutinas) { // solo cargar las rutinas si userID tiene un valor válido
+      cargar_ejercicios();
+    }
+  }, [rutinas]);
   //Para cargar los Ejercicios
-  
+
   //Carga La rutina
   async function cargar_rutinas() {
     let query = supabase
@@ -69,8 +69,8 @@ export default function VisualizadorProgreso() {
       .select('id,nombre')
       .eq('usuario', userID)
     const data2 = await query;
-    console.log("Rutinas")
-    console.log(data2.data)
+    //console.log("Rutinas")
+    //console.log(data2.data)
     setRutinas(data2.data)
   };
   async function cargar_ejercicios() {
@@ -100,16 +100,97 @@ export default function VisualizadorProgreso() {
       //console.log('Ejercicios por rutina:');
       //console.log(ejerciciosPorRutina);
       setEjerciciosRutina(ejerciciosPorRutina);
+      setModelocarga(false);
     }
   }
+
+
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------Logica Pintar Mono------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  // <-------------- ---------------------------------- ---------------->
+  const musculos = {
+    "Abdomen": 0,
+    "Oblicuos": 0,
+    "Antebrazos": 0,
+    "Biceps": 0,
+    "Triceps": 0,
+    "Hombros": 0,
+    "Trapecio": 0,
+    "Pecho": 0,
+    "Cuadriceps": 0,
+    "Pantorrillas": 0,
+    "Isquiotibiales": 0,
+    "Dorsales": 0,
+    "Gluteos": 0,
+    "Espalda Baja": 0
+  };
   function opcion_rutina(event) {
+    restaurarMusculos();
+    //Variables
     const opcionSeleccionada = event.target.value;
     console.log(opcionSeleccionada);
     setOpcionSeleccionada(opcionSeleccionada);
-    setCargandoRutinas(false); // se han cargado los datos
-    console.log(ejerciciosRutina)
-  }
 
+
+    if (opcionSeleccionada !== "Ninguna") {
+      const contenidoArray = Object.values(ejerciciosRutina[opcionSeleccionada]);
+      // Iteramos sobre el array de objetos "contenidoArray"
+      // Iteramos sobre el array de objetos "contenidoArray"
+      contenidoArray.forEach((ejercicio) => {
+        const musculoPrimario = ejercicio.ejercicio.musculo_primario;
+        // Sumamos 20 al músculo primario y ajustamos a 255 si supera este valor
+        musculos[musculoPrimario] += 50;
+        if (musculos[musculoPrimario] > 255) musculos[musculoPrimario] = 255;
+
+        ejercicio.ejercicio.musculo_otros.forEach((musculoSecundario) => {
+          // Sumamos 5 al músculo secundario y ajustamos a 255 si supera este valor
+          musculos[musculoSecundario] += 30;
+          if (musculos[musculoSecundario] > 255) musculos[musculoSecundario] = 255;
+        });
+      });
+      console.log(contenidoArray);
+      console.log(musculos);
+
+      // Restar valores
+      setAbdomen((prevVal) => prevVal - musculos.Abdomen);
+      setOblicuos((prevVal) => prevVal - musculos.Oblicuos);
+      setAntebrazos((prevVal) => prevVal - musculos.Antebrazos);
+      setBiceps((prevVal) => prevVal - musculos.Biceps);
+      setTriceps((prevVal) => prevVal - musculos.Triceps);
+      setHombros((prevVal) => prevVal - musculos.Hombros);
+      setTrapecio((prevVal) => prevVal - musculos.Trapecio);
+      setPecho((prevVal) => prevVal - musculos.Pecho);
+      setCuadriceps((prevVal) => prevVal - musculos.Cuadriceps);
+      setPantorrillas((prevVal) => prevVal - musculos.Pantorrillas);
+      setIsquiotibiales((prevVal) => prevVal - musculos.Isquiotibiales);
+      setDorsales((prevVal) => prevVal - musculos.Dorsales);
+      setGluteos((prevVal) => prevVal - musculos.Gluteos);
+      setEspaldaBaja((prevVal) => prevVal - musculos["Espalda Baja"]);
+    } else {
+      console.log("No se seleccionó ninguna opcion")
+      restaurarMusculos();
+    }
+
+    
+  }
+  function restaurarMusculos() {
+    setAbdomen(255);
+    setOblicuos(255);
+    setAntebrazos(255);
+    setBiceps(255);
+    setTriceps(255);
+    setHombros(255);
+    setTrapecio(255);
+    setPecho(255);
+    setCuadriceps(255);
+    setPantorrillas(255);
+    setIsquiotibiales(255);
+    setDorsales(255);
+    setGluteos(255);
+    setEspaldaBaja(255);
+  }
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
@@ -240,14 +321,22 @@ export default function VisualizadorProgreso() {
 
         <div className="grid grid-cols-1 gap-y-16 mt-16 lg:grid-cols-2 place-items-center">
           {/* Musculos trabajados */}
+        
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
               <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 ¿Cuánto trabaja tu rutina?
               </h1>
             </div>
-
-            <div className="flex mt-10">
+            {modelocarga ? (
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '39vh' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <div className="loader"></div>
+            </div>
+            <p style={{ marginTop: '20px', textAlign: 'center' }}>Cargando...</p>
+          </div>
+            ) : (
+            <div className="flex mt-10"> {/* Loading */}
               <div className="body-map2 w-9/12" id="body-map2">
                 <div id="male-body-maps" className="body-map__container2">
                   <div className="body-map__body2">
@@ -267,7 +356,7 @@ export default function VisualizadorProgreso() {
                       </g>
 
                       <g className={"body-map__muscle2"} style={{ color: `rgb(${oblicuos}, ${Math.round(80 + ((oblicuos / 255) * (255 - 80)))}, 255)` }}
-                      id="Oblicuos">
+                        id="Oblicuos">
                         <path
                           d="M278.25 405.1L278.22 405.27L278.23 405.26L278.2 405.42L278.181 405.528C275.415 420.952 272.286 438.408 274.68 454.63C279.61 488.3 267.94 503.64 262.69 508.67C257.5 513.64 249.36 516.54 241.25 516.54C239.37 516.54 237.5 516.38 235.66 516.06C235.43 516.02 235.27 515.81 235.3 515.58C236.6 505.04 237.65 495.4 238.26 488.43C238.68 483.48 239.34 478.52 240.05 473.27L240.08 473.02L240.082 473.006C242.671 453.691 245.348 433.726 235.63 414.4C215.71 376.03 210.63 351.86 209.81 347.41V347.31C209.81 347.26 209.81 347.22 209.83 347.17C210.97 343.85 211.84 340.34 212.44 336.75C213.35 331.07 215.45 317.93 211.12 308.04C211.04 307.85 211.1 307.63 211.27 307.51C211.44 307.39 211.67 307.41 211.82 307.55C214.24 309.84 216.37 312.33 218.14 314.46C219.35 315.91 220.38 317.07 221.37 318.09C221.384 318.104 221.398 318.12 221.413 318.137C221.43 318.157 221.449 318.179 221.47 318.2C221.47 318.21 221.54 318.28 221.54 318.28C231.955 329.911 244.178 340.439 254.971 349.736L255.08 349.83L255.22 349.96L255.238 349.975C268.64 361.529 280.21 371.503 281.06 377.77C281.088 377.911 281.108 378.106 281.127 378.295L281.13 378.33V378.45C281.15 378.5 281.17 378.65 281.17 378.82C281.21 379.09 281.23 379.41 281.25 379.75L281.28 380.33C281.3 380.41 281.3 380.49 281.3 380.56C281.51 386.9 280 395.33 278.25 405.1Z"
                           fill="currentColor"
@@ -278,7 +367,7 @@ export default function VisualizadorProgreso() {
                         />
                       </g>
 
-                      <g className={"body-map__muscle2"} style={{ color: `rgb(${antebrazos}, ${Math.round(80 + ((antebrazos / 255) * (255 - 80)))}, 255)` }} id="Antebrazos" > 
+                      <g className={"body-map__muscle2"} style={{ color: `rgb(${antebrazos}, ${Math.round(80 + ((antebrazos / 255) * (255 - 80)))}, 255)` }} id="Antebrazos" >
                         <path
                           d="M135.05 418.55C141.32 418.55 148.19 416.1 154.92 411.47V411.46C155.1 411.34 155.33 411.37 155.48 411.52C155.63 411.67 155.65 411.91 155.52 412.08C151.51 417.52 146.59 424.21 144.16 427.73C139.457 435.289 136.843 440.787 134.543 445.625L134.46 445.8L134.457 445.806C130.428 454.264 126.627 462.244 113.47 478.7C101.33 493.83 93.04 500.16 84.26 506.86L84.199 506.906C77.9179 511.692 71.4135 516.648 63.23 525.21C63.21 525.23 63.19 525.25 63.16 525.27C61.56 527.38 58.6 531.44 56.45 535.48C56.4 535.57 56.33 535.64 56.23 535.68C53.2 536.91 50.19 537.52 47.41 537.52C44.92 537.52 42.61 537.03 40.63 536.04C35.84 533.67 32.13 527.92 30.95 521.04C30.94 520.95 30.95 520.86 30.99 520.78C31.81 519.04 32.73 517.24 33.72 515.43C37.33 507.63 41.56 497.2 46.32 485.38L46.43 485.1C57.43 457.87 71.12 423.99 84.49 407.9C92.4 398.38 98.13 392.38 102.32 388L102.5 387.81C108.4 381.64 111.64 378.25 114.13 372.23C114.229 371.995 114.327 371.761 114.425 371.528C114.593 371.127 114.759 370.728 114.93 370.33L115.04 370.08C115.13 369.87 115.36 369.77 115.58 369.84C115.8 369.91 115.92 370.14 115.87 370.36C108.45 400.78 117.14 412.23 125.73 416.48C128.51 417.85 131.64 418.55 135.05 418.55Z"
                           fill="currentColor"
@@ -440,7 +529,7 @@ export default function VisualizadorProgreso() {
                         />
                       </g>
 
-                      <g id="Dorsales" className={"body-map__muscle2"} style={{ color: `rgb(${gluteos}, ${Math.round(80 + ((gluteos / 255) * (255 - 80)))}, 255)` }}>
+                      <g id="Dorsales" className={"body-map__muscle2"} style={{ color: `rgb(${dorsales}, ${Math.round(80 + ((dorsales / 255) * (255 - 80)))}, 255)` }}>
                         <path
                           d="M454.007 309.662L454.036 309.519L454.028 309.502L454.04 309.443C456.729 296.531 459.508 283.182 453.627 279.328H453.609C449.07 277.219 444.591 274.51 440.4 270.998C433.569 265.282 426.947 260.141 420.517 255.166L420.163 254.892C410.325 247.256 400.986 240.007 391.902 231.388L391.676 231.649C371.514 269.107 359.228 298.619 351.09 320.263C349.887 323.513 348.763 326.571 347.718 329.472C347.648 329.647 347.596 329.804 347.544 329.978C337.009 362.469 344.485 385.22 371.148 436.079C378.223 449.549 377.63 463.543 377.107 475.88L377.107 475.901C376.515 490.495 376.042 502.153 388.199 507.971H388.217C388.905 508.267 389.567 508.546 390.212 508.86L390.578 509.017C402.89 514.009 420.517 524.683 429.517 537.282C424.115 514.41 420.412 471.994 420.621 459.116C420.626 458.736 420.63 458.345 420.633 457.943C420.64 456.943 420.644 455.872 420.656 454.716C420.708 440.313 420.83 413.494 432.41 395.083C443.781 377.012 451.527 343.501 452.607 338.578C449.301 332.278 451.587 321.294 454.007 309.662Z"
                           fill="currentColor"
@@ -567,7 +656,8 @@ export default function VisualizadorProgreso() {
                   }
                 </select>
               </div>
-            </div>
+            </div> 
+           )}
           </div>
 
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
