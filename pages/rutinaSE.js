@@ -831,7 +831,28 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
+  async function  datos_usuario() {
+    const { error } = await supabase
+    .from('perfiles')
+    .update({
+      edad: formulario.edad,
+      estatura: formulario.altura,
+      peso: formulario.peso,
+      sexo: opciones[0]
+    })
+    .eq('id', sesion.user.id)
+
+  if (error) {
+    console.log('ERROR: No se pudo actualizar el perfil.')
+    console.log(error)
+  } else {
+    console.log('Perfil actualizado.')
+  }
+
+  };
   async function  handleClick() {
+    //cambiar sexo estatura y peso
+    datos_usuario();
     setLoading(true);
     setLoadingtexto("Guardando tu rutina...")
     window.scrollTo(0, 0);
