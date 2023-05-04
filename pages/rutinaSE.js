@@ -79,6 +79,7 @@ export default function Home() {
   const [nivelfrecuencia, setnivelfrecuencia] = useState("");
   const [enfoquetexti, setenfoquetexto] = useState("");
   const [enfoquetitulo, setenfoquetitulo] = useState("");
+  const [sexo, setsexo] = useState("");
   // <--------------------- >
   // <--------------------- >
   // <----- Variables ----- >
@@ -158,9 +159,11 @@ export default function Home() {
 
     //Para datos del usuario
     if (formulario.edad === 0 || formulario.altura === 0 || formulario.peso === 0 || formulario === null) {
+      setsexo("No proporcionado")
       setinfousuario("No se prorcionó toda la información del usuario")
     } else {
-      setinfousuario(opciones[0] + " Edad: " + formulario.edad + " Altura: " + formulario.altura + " Peso: " + formulario.peso)
+      setsexo("Sexo:"+opciones[0]);
+      setinfousuario(" Edad: " + formulario.edad +" años "+ " Altura: " + formulario.altura +" cm"+ " Peso: " + formulario.peso+" Kg")
     }
     //Su objetivo
     const equivalencia = equivalencias[opciones[1]];
@@ -956,7 +959,7 @@ export default function Home() {
     //console.log(localStorage.getItem('bandera'));
   }, [data]);
 
-
+  console.log(infousuario)
   return (
     <div className="bg-blue-100 w-full">
       <Head>
@@ -979,7 +982,7 @@ export default function Home() {
           <br /><br /><br /><br /><br />
           <div style={{ float: 'left', marginLeft: '40px' }}>
             <p>Rutina personalizada para {usuario.nombre}</p>
-            <p>Con estos datos: {infousuario}</p>
+            <p>Con estos datos:{infousuario}</p>
 
           </div>
           <br /><br />
