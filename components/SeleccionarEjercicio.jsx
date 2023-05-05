@@ -114,7 +114,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
     //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
 
-    query = query.order('id', { ascending: false })
+    query = query.order('puntuacion', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
@@ -164,7 +164,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     }>
       <div className="h-full w-11/12 md:w-9/12 mx-auto max-w-5xl">
           <div className='flex fixed justify-end top-24 mt-2 right-4 md:right-36 md:mr-1 z-20'>
-            <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow-md p-2 mt-2">
+            <button onClick={() => {setToggleSeleccionar(false)}} className="btn btn-lg btn-ghost text-5xl bg-white rounded-lg shadow p-2 mt-2">
                   <ion-icon name='close-outline'></ion-icon>
             </button>
           </div>
@@ -176,7 +176,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" className="w-3 h-3  lg:w-5 lg:h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
-              <input name="search" id="search" onBlur={getEjercicios} className="input input-secondary border-0 block w-full pl-8 lg:p-8 lg:pl-11 text-sm lg:text-lg rounded-xl shadow-md" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
+              <input name="search" id="search" onBlur={getEjercicios} className="input input-secondary border-0 block w-full pl-8 lg:p-8 lg:pl-11 text-sm lg:text-lg rounded-xl shadow" value={formInput.search || ""} onChange={handleOnInputChange} placeholder="Buscar ejercicio..."/>
               <button type="submit" onClick={getEjercicios} className="btn text-white absolute right-2 lg:right-3 lg:bottom-2 btn-secondary rounded-lg btn-sm lg:btn-md top-2 lg:px-6 lg:py-2">BUSCAR</button>
             </div>
 
@@ -185,7 +185,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
             
             {/* SELECT GRUPO MUSCULAR */}
             <div className="form-control mt-4 mb-4">
-              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary lg:text-xl lg:py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue={formInput.musculo}>
+              <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary lg:text-xl lg:py-4 h-full border-0 font-normal rounded-xl shadow" defaultValue={formInput.musculo}>
                 <option id="Todos" value="Todos" hidden>Grupo Muscular</option>
                 <option id="Todos" value="Todos">Todos</option>
                 <option id="Abdomen" value="Abdomen">Abdomen</option>
@@ -206,7 +206,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
               </select>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow-md text-sm lg:text-xl">
+            <div className="collapse collapse-arrow bg-base-100 rounded-xl shadow text-sm lg:text-xl">
                 <input type="checkbox" className="peer"/> 
                 <div className="collapse-title text-secondary peer-checked:h-0">
                   Equipo
@@ -335,7 +335,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
                   ejercicios.map((ejercicio) =>(
                   <div 
                     key={ejercicio.id}
-                    className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
+                    className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
                     onClick={() => {
                       router.push({
                       pathname: '/detalleEjercicio',

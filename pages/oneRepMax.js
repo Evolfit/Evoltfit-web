@@ -173,7 +173,7 @@ export default function OneRepMax() {
               <span className="ml-2">{"Volver a Herramientas"}</span>
             </button>
           </div>
-          <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl bg-white p-4 sm:p-6 rounded-xl">
+          <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl bg-white p-4 sm:p-6 rounded-xl shadow-md">
             <h2 className="text-3xl sm:text-4xl w-full font-semibold">
               {"Máximo Peso para una Repetición"}
             </h2>
@@ -185,12 +185,12 @@ export default function OneRepMax() {
                 <p className="text-2xl font-medium mb-2">Repeticiones</p>
                 <input 
                 maxLength={2}
-                className="bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.reps || ""} onChange={handleOnInputChange} placeholder="" name="reps" id="reps" />
+                className="shadow bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.reps || ""} onChange={handleOnInputChange} placeholder="" name="reps" id="reps" />
               </div>
               <div className="py-4 sm:pr-6 flex-auto">
                 <p className="text-2xl font-medium mb-2">Peso</p>
                 <div className="flex flex-row items-center">
-                  <input className="bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.peso || ""} onChange={handleOnInputChange} placeholder="" name="peso" id="peso" />
+                  <input className="shadow bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.peso || ""} onChange={handleOnInputChange} placeholder="" name="peso" id="peso" />
                   <div className="-translate-x-16 z-10 w-0">
                     <span className="text-lg">
                       {' ' + formInput.tipo}
@@ -243,7 +243,7 @@ export default function OneRepMax() {
                     }
                   </button>
                 </div>
-                <table className="w-full text-left text-gray-500 bg-slate-100 rounded-lg my-2">
+                <table className="w-full text-left text-gray-500 bg-slate-100 rounded-lg my-2 shadow">
                   <thead className="text-gray-700 uppercase">
                     <tr>
                       <th scope="col" className="w-4/12 border-r text-center py-3">{'Repeticiones'}</th>
