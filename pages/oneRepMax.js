@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
 import Navbar from "/components/Navbar";
+import Aviso from "/components/Aviso";
 import Footer from "/components/Footer";
 import supabase from "../config/supabaseClient";
 
@@ -9,6 +10,7 @@ export default function OneRepMax() {
   const router = useRouter();
 
   const [sesion, setSesion] = useState(null);
+  const [mostrarAviso, setMostrarAviso] = useState(false);
   const [formInput, setFormInput] = useState(
     {
       peso: 0,
@@ -40,6 +42,32 @@ export default function OneRepMax() {
   const handleOnInputChange = useCallback(
     (event) => {
       const { value, name, id, checked} = event.target;
+
+      if (name == 'reps'){
+        let check = value.replace(/\D/g, '');
+
+        if (check < 0){
+          check = 1
+        }
+        else if(check > 99){
+          check = 99
+        }
+
+        value = check;
+      }
+
+      if (name == 'peso'){
+        let check = value.replace(/\D/g, '');
+
+        if (check < 0){
+          check = 1
+        }
+        else if(check > 999){
+          check = 999
+        }
+
+        value = check;
+      }
 
       setFormInput({
         ...formInput,
@@ -90,22 +118,27 @@ export default function OneRepMax() {
       }
     }
     else{
+      if (formInput.peso == '' || formInput.reps == '') {
+        setMostrarAviso(true)
+      }
+      else{
       let ORM100 = formInput.peso * ( 1 + (formInput.reps / 30))
-      setOneRepMax({
-        M100f: ORM100,
-        M100: Math.round(ORM100),
-        M95: Math.round(ORM100 * 0.95),
-        M90: Math.round(ORM100 * 0.90),
-        M85: Math.round(ORM100 * 0.85),
-        M80: Math.round(ORM100 * 0.80),
-        M75: Math.round(ORM100 * 0.75),
-        M70: Math.round(ORM100 * 0.70),
-        M65: Math.round(ORM100 * 0.65),
-        M60: Math.round(ORM100 * 0.60),
-        M55: Math.round(ORM100 * 0.55),
-        M50: Math.round(ORM100 * 0.50),
-        tipo: formInput.tipo
-      })
+        setOneRepMax({
+          M100f: ORM100,
+          M100: Math.round(ORM100),
+          M95: Math.round(ORM100 * 0.95),
+          M90: Math.round(ORM100 * 0.90),
+          M85: Math.round(ORM100 * 0.85),
+          M80: Math.round(ORM100 * 0.80),
+          M75: Math.round(ORM100 * 0.75),
+          M70: Math.round(ORM100 * 0.70),
+          M65: Math.round(ORM100 * 0.65),
+          M60: Math.round(ORM100 * 0.60),
+          M55: Math.round(ORM100 * 0.55),
+          M50: Math.round(ORM100 * 0.50),
+          tipo: formInput.tipo
+        })
+      }
     }
   }
 
@@ -119,116 +152,169 @@ export default function OneRepMax() {
       <Navbar />
 
       <main className="relative min-h-[75vh]">
+        <Aviso
+          mostrarAviso={mostrarAviso}
+          setMostrarAviso={setMostrarAviso}
+          color={'red'}
+          mensaje={'No ha llenado todos los campos.'}
+        />
         <br />
         <br />
         <br />
         <br />
         <br />
-        
-        <div className="w-11/12 md:w-9/12 mx-auto max-w-5xl">
-          <h2 className="text-2xl font-bold">Máximo Peso para una Repetición</h2>
-          <h3 className="text-xl">One Rep Max</h3>
 
-          <p className="text-lg font-bold">Peso</p>
-          <span className="p-4 bg-white rounded-lg">
-            <input className="py-3.5 w-16 rounded-lg outline-none" type="number" value={formInput.peso || ""} onChange={handleOnInputChange} placeholder="" name="peso" id="peso" />
-            <span>{' ' + formInput.tipo}</span>
-          </span>
-          <button className="btn" onClick={handleOnInputChange} name="tipo" id="lbs" value="lbs">
-            lbs
-          </button>
-          <button className="btn" onClick={handleOnInputChange} name="tipo" id="kg" value="kg">
-            kg
-          </button>
-
-          <p className="text-md font-bold">Repeticiones</p>
-          <input className="input" type="number" value={formInput.reps || ""} onChange={handleOnInputChange} placeholder="" name="reps" id="reps" />
-
-          <br/>
-          <button className="btn" onClick={()=>{calcularOneRepMax(false)}}>Calcular</button>
-
-          { oneRepMax.M100 ? 
-            <div className="relative overflow-x-auto">
-              <p className="text-xl font-bold">One Rep Max</p>
-              
-              <button className="btn" onClick={()=>{calcularOneRepMax(true)}}>
-                {oneRepMax.tipo == 'lbs' ?
-                  'Cambiar a kg'
-                  :
-                  'Cambiar a lbs'
-                }
-              </button>
-
-              <table className="w-full text-left text-gray-500 border-2 border-blue-500 bg-blue-200">
-                <thead className="text-gray-700 uppercase">
-                  <tr>
-                    <th scope="col" className="px-6 py-3">{'Repeticiones'}</th>
-                    <th scope="col" className="px-6 py-3">{'Peso (' + oneRepMax.tipo + ')'}</th>
-                    <th scope="col" className="px-6 py-3">{'Porcentaje de 1RM'}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'1'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M100 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'100%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'2'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M95 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'95%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'4'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M90 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'90%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'6'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M85 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'85%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'8'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M80 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'80%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'10'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M75 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'75%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'12'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M70 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'70%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'16'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M65 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'65%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'20'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M60 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'60%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'24'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M55 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'55%'}</td>
-                  </tr>
-                  <tr scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <td className="px-6 py-2">{'30'}</td>
-                    <td className="px-6 py-2">{oneRepMax.M50 + ' ' + oneRepMax.tipo}</td>
-                    <td className="px-6 py-2">{'50%'}</td>
-                  </tr>
-                </tbody>
-              </table>
+        <div className="mx-auto">
+          <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
+            <button className="mb-4 btn btn-ghost m-0 px-2 text-lg w-fit " onClick={() => {router.push('/rutinas')}}>
+              <div className='text-3xl mt-auto'>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </div>
+              <span className="ml-2">{"Volver a Herramientas"}</span>
+            </button>
+          </div>
+          <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl bg-white p-4 sm:p-6 rounded-xl">
+            <h2 className="text-3xl sm:text-4xl w-full font-semibold">
+              {"Máximo Peso para una Repetición"}
+            </h2>
+            <h2 className="text-2xl sm:text-2xl my-2 w-full font-light whitespace-nowrap text-ellipsis overflow-hidden">
+              {"One Rep Max"}
+            </h2>
+            <div className="flex flex-col sm:flex-row justify-center align-center">
+              <div className="py-4 sm:pr-6 flex-auto">
+                <p className="text-2xl font-medium mb-2">Repeticiones</p>
+                <input 
+                maxLength={2}
+                className="bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.reps || ""} onChange={handleOnInputChange} placeholder="" name="reps" id="reps" />
+              </div>
+              <div className="py-4 sm:pr-6 flex-auto">
+                <p className="text-2xl font-medium mb-2">Peso</p>
+                <div className="flex flex-row items-center">
+                  <input className="bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.peso || ""} onChange={handleOnInputChange} placeholder="" name="peso" id="peso" />
+                  <div className="-translate-x-16 z-10 w-0">
+                    <span className="bg-white text-lg rounded-lg duration-100">
+                      {' ' + formInput.tipo}
+                    </span>
+                  </div>
+                  <button 
+                  onClick={handleOnInputChange}
+                  name="tipo"
+                  id="lbs"
+                  value="lbs"
+                  className="cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md mx-2 shadow">
+                    LBS
+                  </button>
+                  <button 
+                  onClick={handleOnInputChange}
+                  name="tipo"
+                  id="kg"
+                  value="kg"
+                  className="cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow">
+                    KG
+                  </button>
+                </div>
+                  
+                
+              </div>
             </div>
-          :
-            ''
-          }
+            <div className="flex align-center justify-center">
+              <button
+              className="cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-lg my-4 shadow"
+              onClick={()=>{calcularOneRepMax(false)}}>
+                CALCULAR
+              </button>
+            </div>
+
+            <div className="w-full">
+              { oneRepMax.M100 ? 
+              <div className="relative">
+                <div className="divider"></div>
+                <div className="flex flex-row items-center h-16 w-full">
+                  <span className="align-left text-2xl font-medium">
+                    One Rep Max
+                  </span>
+                  <button
+                  className="absolute right-0 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md mx- shadow"
+                  onClick={()=>{calcularOneRepMax(true)}}>
+                    {oneRepMax.tipo == 'lbs' ?
+                      'CAMBIAR A KG'
+                      :
+                      'CAMBIAR A LBS'
+                    }
+                  </button>
+                </div>
+                <table className="w-full text-left text-gray-500 bg-slate-100 rounded-lg my-2">
+                  <thead className="text-gray-700 uppercase">
+                    <tr>
+                      <th scope="col" className="w-4/12 border-r text-center py-3">{'Repeticiones'}</th>
+                      <th scope="col" className="w-4/12 border-r text-center py-3">{'Peso (' + oneRepMax.tipo + ')'}</th>
+                      <th scope="col" className="w-4/12 text-center py-3">{'Porcentaje de 1RM'}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'1'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M100 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'100%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'2'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M95 + ' ' + oneRepMax.tipo}</td>
+                      <td className="border-r text-center py-2">{'95%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'4'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M90 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'90%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'6'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M85 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'85%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'8'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M80 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'80%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'10'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M75 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'75%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'12'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M70 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'70%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'16'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M65 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'65%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'20'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M60 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'60%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'24'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M55 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'55%'}</td>
+                    </tr>
+                    <tr scope="row" className="text-center py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <td className="border-r text-center py-2">{'30'}</td>
+                      <td className="border-r text-center py-2">{oneRepMax.M50 + ' ' + oneRepMax.tipo}</td>
+                      <td className="text-center py-2">{'50%'}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              :
+                ''
+              }
+            </div>
+          </div>
         </div>
 
         <br />
