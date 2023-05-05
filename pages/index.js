@@ -74,7 +74,6 @@ export default function Home() {
                 }
               } else {
                 console.log("Aun no termina el plan");
-                setUsosSe("Ilimitado")
               }
             } else {
               console.log("El plan ya fue cancelado");
@@ -84,7 +83,6 @@ export default function Home() {
         checkPlanStatus();
       } else {
         console.log("No hay una sesion iniciada");
-        setUsosSe("0")
       }
     }
     setFlag(true);
@@ -101,11 +99,21 @@ export default function Home() {
       .select("se")
       .eq('id', data.session.user.id)
 
-    if (data8.data[0].se === 1) {
-      setUsosSe("1");
-      }else if(data8.data[0].se === 0){
-      setUsosSe("0");
-      }
+      let { data: pagos, err } = await supabase
+      .from("sus_pagos")
+      .select("activo")
+      .eq("id_usuario", data.session.user.id);
+    if (pagos.length === 0) {
+      console.log("Este usuario no tiene plan");
+      if (data8.data[0].se === 1) {
+        setUsosSe("1");
+        }else if(data8.data[0].se === 0){
+        setUsosSe("0");
+        }
+    }else{
+      setUsosSe("Ilimitados");
+    }
+    
     } else {
       setSesion(null);
       //console.log("No hay Sesión " + error);
@@ -144,10 +152,10 @@ export default function Home() {
                 O también...
               </span>
               <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
-              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
+              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20"> 
                 Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
                 rutina para ti.<br/><br/>
-              Usos: {usosSe}
+              Usos: <p style={{ color: usosSe === "Ilimitados" ? "green" : "black" }}>{usosSe}</p>
               </h2>
               <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
                 <Link href="/sistemaexperto">
