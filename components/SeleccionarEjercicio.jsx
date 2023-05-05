@@ -336,7 +336,11 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
                   <div 
                     key={ejercicio.id}
                     className="flex flex-row sm:items-center items-start justify-center w-full bg-white hover:border-blue-500 border-2 my-2 rounded-lg shadow-md cursor-pointer duration-100 hover:scale-105 hover:shadow-lg sm:px-0 sm:py-0 py-3 px-3"
-                    onClick={() => {agregarEjercicio(ejercicio.id)}}
+                    onClick={() => {
+                      router.push({
+                      pathname: '/detalleEjercicio',
+                      query: { ejercicio: ejercicio.id }
+                    })}}
                   >
                     <img 
                       src={ejercicio.img} 
@@ -357,7 +361,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
                         <p
                         className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
                         >
-                          {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
+                          {ejercicio.recomendaciones}
                         </p>
                       </div>
                       <div
