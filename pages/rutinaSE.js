@@ -10,23 +10,79 @@ import supabase from "../config/supabaseClient";
 
 export default function Home() {
   // <-------- Usuario Logueado --------->
+  const [loading, setLoading] = useState(true);
+  const [loadlogin, setLoadlogin] = useState(true);
+  const [loadfinal, setLoadfinal] = useState(true);
   const [sesion, setSesion] = useState(null);
   useEffect(() => {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
   }, []);
-  
+
+  useEffect(() => {
+    if (loading === false && loadlogin === false) {
+      setLoadfinal(false);
+    } else {
+      setLoadfinal(true);
+    }
+  }, [loading, loadlogin]);
+
   async function handleSesion() {
     const { data, error } = await supabase.auth.getSession();
 
     if (data.session) {
       setSesion(data.session);
+      let { data: pagos, err } = await supabase
+        .from("sus_pagos")
+        .select("activo")
+        .eq("id_usuario", data.session.user.id);
+      if (pagos.length == 0) {
+        console.log("Este usuario no tiene plan");
+        //SI no tiene un plan entonces 
+        const data8 = await supabase
+          .from('perfiles')
+          .select("se")
+          .eq('id', data.session.user.id)
+
+        if (data8.data[0].se === 1) {
+          console.log('Tiene un uso.')
+          setLoadlogin(false);
+          localStorage.setItem('bandera2', 'false');
+          const { error } = await supabase
+            .from('perfiles')
+            .update({
+              se:0
+            })
+            .eq('id', data.session.user.id)
+
+          if (error) {
+            //console.log('ERROR: No se pudo actualizar el perfil.')
+            console.log(error)
+          } else {
+            //console.log('Perfil actualizado.')
+          }
+        } else {
+          if (localStorage.getItem('bandera2') !== 'false') {
+            router.push("/");
+          } else {
+            setLoadlogin(false);
+            //console.log("Todavia sigues dentro")
+          }
+        }
+
+
+      } else {
+        //console.log("Tiene un Plan")
+        setLoadlogin(false);
+      }
       //console.log(data);
+
     } else {
       setSesion(null);
       router.push("/login");
     }
+
   };
 
   // <-------- Recuperar valores --------->
@@ -66,7 +122,7 @@ export default function Home() {
   let variables1 = { push: 4, Pecho: 2 }, variables2 = { pull: 4, espalda: 2 }, variables3 = { leg: 4, pierna: 2 };
   let variables4 = { prueba1: 6 }, variables5 = { prueba2: 6 }, variables6 = { prueba3: 6 };
   let variables7 = {};
-  const [loading, setLoading] = useState(true);
+
   const [loadingtexto, setLoadingtexto] = useState("Cargando tu Rutina de Entrenamiento...");
   const [data, setData] = useState([]);
   const [infousuario, setinfousuario] = useState(null);
@@ -162,8 +218,8 @@ export default function Home() {
       setsexo("No proporcionado")
       setinfousuario("No se prorcionó toda la información del usuario")
     } else {
-      setsexo("Sexo:"+opciones[0]);
-      setinfousuario(" Edad: " + formulario.edad +" años "+ " Altura: " + formulario.altura +" cm"+ " Peso: " + formulario.peso+" Kg")
+      setsexo("Sexo:" + opciones[0]);
+      setinfousuario(" Edad: " + formulario.edad + " años " + " Altura: " + formulario.altura + " cm" + " Peso: " + formulario.peso + " Kg")
     }
     //Su objetivo
     const equivalencia = equivalencias[opciones[1]];
@@ -247,10 +303,10 @@ export default function Home() {
     query = query.order('puntuacion', { ascending: false })
 
     const data = await query;
-    
-      console.log(data.data)
-      setData(data.data);
-  
+
+    //console.log(data.data)
+    setData(data.data);
+
   };
 
   //contenidos de puede llegar a contener cada dia
@@ -701,7 +757,7 @@ export default function Home() {
           }
         }
       }
-      if(diasActivos===5 || diasActivos===4){
+      if (diasActivos === 5 || diasActivos === 4) {
         similares = [];
       }
     }
@@ -831,26 +887,26 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
-  async function  datos_usuario() {
+  async function datos_usuario() {
     const { error } = await supabase
-    .from('perfiles')
-    .update({
-      edad: formulario.edad,
-      estatura: formulario.altura,
-      peso: formulario.peso,
-      sexo: opciones[0]
-    })
-    .eq('id', sesion.user.id)
+      .from('perfiles')
+      .update({
+        edad: formulario.edad,
+        estatura: formulario.altura,
+        peso: formulario.peso,
+        sexo: opciones[0]
+      })
+      .eq('id', sesion.user.id)
 
-  if (error) {
-    console.log('ERROR: No se pudo actualizar el perfil.')
-    console.log(error)
-  } else {
-    console.log('Perfil actualizado.')
-  }
+    if (error) {
+      console.log('ERROR: No se pudo actualizar el perfil.')
+      console.log(error)
+    } else {
+      console.log('Perfil actualizado.')
+    }
 
   };
-  async function  handleClick() {
+  async function handleClick() {
     //cambiar sexo estatura y peso
     datos_usuario();
     setLoading(true);
@@ -878,8 +934,8 @@ export default function Home() {
           //Se agregan los ejercicios
           for (let j = 0; j < arrays[i].length; j++) {
             if (!["Abdomen", "Oblicuos", "Antebrazos", "Biceps", "Triceps", "Hombros", "Trapecio", "Trapecio Medio", "Pecho", "Cuadriceps", "Pantorrillas", "Isquiotibiales", "Dorsales", "Gluteos", "Espalda Baja"].includes(arrays[i][j].nombreE)) {
-            rutinaEjercicios(idNumero, i, j);
-            }else{
+              rutinaEjercicios(idNumero, i, j);
+            } else {
               //console.log("Encontró un Ejercicio que no tiene asignado nada")
             }
             //----------------------------------------------------------------------------------------
@@ -887,6 +943,7 @@ export default function Home() {
         }
       }
     }
+    localStorage.setItem('bandera2', 'true');
     router.push("/rutinas");
   };
 
@@ -925,14 +982,14 @@ export default function Home() {
       //console.log("Se agregó un nuevo ejercicio.")
       //console.log(data[0])
       const iddelEjercicio = data[0].id;
-      
+
       for (let k = 0; k < arrays[i][j].series; k++) {
-        
+
         const { error } = await supabase
           .from('rutinas_ejercicio_sets')
           .insert({
             ejercicio_rutina: iddelEjercicio,
-            reps:arrays[i][j].repeticiones,
+            reps: arrays[i][j].repeticiones,
           })
 
         if (error) {
@@ -955,7 +1012,7 @@ export default function Home() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
-  
+
   //Use effect para detectar si el usuario sale de rutinaSE
   useEffect(() => {
     const handlePopstate = () => {
@@ -975,12 +1032,15 @@ export default function Home() {
     } else {
       if (localStorage.getItem('bandera') !== 'true') {
         cambiar_ejercicios();
+      } else {
+        //console.log("Si llega")
+        setLoading(false);
       }
     }
     //console.log(localStorage.getItem('bandera'));
   }, [data]);
 
-  console.log(infousuario)
+  //console.log(infousuario)
   return (
     <div className="bg-blue-100 w-full">
       <Head>
@@ -991,12 +1051,12 @@ export default function Home() {
       <Navbar />
 
 
-      {loading ? (
+      {loadfinal ? (
         <div>
           <br /><br /><br /><br /><br />
           <div className="loader" style={{ marginTop: '10%', marginBottom: '50px' }}></div>
-          <p style={{ marginTop: '50px', marginBottom: '40%', textAlign: 'center'}}>{loadingtexto}</p>
-          
+          <p style={{ marginTop: '50px', marginBottom: '40%', textAlign: 'center' }}>{loadingtexto}</p>
+
         </div>
       ) : (
         <main >
@@ -1100,13 +1160,13 @@ export default function Home() {
           </div>
           <br /><br />
 
-          <button onClick={handleClick}  style={{
-          
-                marginLeft: "40%",
-  
-              }}
-              className="bottonSig-2">Guardar Rutina</button>
-         
+          <button onClick={handleClick} style={{
+
+            marginLeft: "40%",
+
+          }}
+            className="bottonSig-2">Guardar Rutina</button>
+
           <br /><br /> <br /> <br /> <br /> <br /> <br />
         </main>
       )}
