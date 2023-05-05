@@ -83,120 +83,120 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:mt-12 lg:gap-12 lg:grid-cols-4">
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/sistemaexperto">
-                    <div className="flex flex-col justify-center w-full h-full px-8 py-4 ">
+                    <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                        <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="rutina.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl font-bold text-center text-blue-600">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Crear rutina inteligente
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/visualizadorCalorias">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                        <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="cal.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Contador de calorías
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/rutinas">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="registro.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Registro de rutinas, series y repeticiones
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/biblioteca">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="biblio.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Biblioteca de ejecicios
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/visualizadorProgreso">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="progreso.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Visualizador de progreso
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../oneRepMax">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Máximo peso para una repetición
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/metodoSobrecarga">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Sobrecarga progresiva
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="/metodoBilbo">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Método Bilbo
                       </h2>
                     </div>
@@ -220,69 +220,69 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-4">
                 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 hover:border-red-400 duration-100 hover:scale-105">
+              <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="rutina.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Crear rutina inteligente
                       </h2>
-                      <p className="mt-2 text-base tracking-wider text-red-400 font-catamaran">
-                        Necesitas una cuenta para poder utilizarla
+                      <p className="mt-2 text-base tracking-wider text-red-400 text-center group-hover:text-red-300">
+                        Es necesario iniciar sesión.
                       </p>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 hover:border-red-400 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="cal.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Contador de calorías
                       </h2>
-                      <p className="mt-2 text-base tracking-wider text-red-400 font-catamaran">
-                        Necesitas una cuenta para poder utilizarla
+                      <p className="mt-2 text-base tracking-wider text-red-400 text-center group-hover:text-red-300">
+                        Es necesario iniciar sesión.
                       </p>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 hover:border-red-400 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="registro.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Registro de rutinas, series y repeticiones
                       </h2>
-                      <p className="mt-2 text-base tracking-wider text-red-400 font-catamaran">
-                        Necesitas una cuenta para poder utilizarla
+                      <p className="mt-2 text-base tracking-wider text-red-400 text-center group-hover:text-red-300">
+                        Es necesario iniciar sesión.
                       </p>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../biblioteca">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="biblio.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Biblioteca de ejercicios
                       </h2>
                       
@@ -290,63 +290,63 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 hover:border-red-400 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../registro">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="progreso.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Visualizador de progreso
                       </h2>
-                      <p className="mt-2 text-base tracking-wider text-red-400 font-catamaran">
-                        Necesitas una cuenta para poder utilizarla
+                      <p className="mt-2 text-base tracking-wider text-red-400 text-center group-hover:text-red-300">
+                        Es necesario iniciar sesión.
                       </p>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../oneRepMax">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Máximo peso para una repetición
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../metodoSobrecarga">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Sobrecarga progresiva
                       </h2>
                     </div>
                   </Link>
                 </div>
 
-                <div className="bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-lg shadow-zinc-500 border-2 border-blue-600 duration-100 hover:scale-105">
+                <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
                   <Link href="../metodoBilbo">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
-                        <div className="h-20 w-20">
+                      <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
                           <img src="metodo.png"></img>
                         </div>
                       </center>
-                      <h2 className="mt-12 text-2xl text-blue-600 font-bold text-center">
+                      <h2 className="text-blue-500 group-hover:text-white mt-12 text-2xl font-bold text-center">
                         Método Bilbo
                       </h2>
                     </div>

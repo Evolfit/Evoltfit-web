@@ -166,7 +166,7 @@ export default function OneRepMax() {
 
         <div className="mx-auto">
           <div className="flex flex-col w-11/12 sm:w-9/12 mx-auto max-w-5xl">
-            <button className="mb-4 btn btn-ghost m-0 px-2 text-lg w-fit " onClick={() => {router.push('/rutinas')}}>
+            <button className="mb-4 btn btn-ghost m-0 px-2 text-lg w-fit " onClick={() => {router.push('/herramientas')}}>
               <div className='text-3xl mt-auto'>
                 <ion-icon name="arrow-back-outline"></ion-icon>
               </div>
@@ -192,7 +192,7 @@ export default function OneRepMax() {
                 <div className="flex flex-row items-center">
                   <input className="bg-slate-100 rounded-md p-4 text-lg outline-none focus:border-2 border-blue-500 duration-100 w-full" type="number" value={formInput.peso || ""} onChange={handleOnInputChange} placeholder="" name="peso" id="peso" />
                   <div className="-translate-x-16 z-10 w-0">
-                    <span className="bg-white text-lg rounded-lg duration-100">
+                    <span className="text-lg">
                       {' ' + formInput.tipo}
                     </span>
                   </div>
