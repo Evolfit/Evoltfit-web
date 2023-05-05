@@ -362,7 +362,7 @@ export default function Home() {
                         <p
                         className="lg:text-sm text-xs line-clamp-5 sm:line-clamp-3 md:line-clamp-2"
                         >
-                          {ejercicio.recomendaciones + 'Este es un ejercicio compuesto por lo que se utilizan otros músculos de manera simultánea. Para hacerlo de forma segura y controlada es importante incluir la activación del abdomen, los cuádriceps y los glúteos. La respiración al momento de subir o antes de es inhalando y al momento de bajar o antes de es exhalando.'}
+                          {ejercicio.recomendaciones}
                         </p>
                       </div>
                       <div
