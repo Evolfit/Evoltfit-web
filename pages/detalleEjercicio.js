@@ -98,10 +98,6 @@ export default function DetalleEjercicio() {
       //console.log(data);
       //console.log("Se creó una nueva rutina.")
       agregarEjercicio(data[0].id)
-      router.push({
-        pathname: '/editarRutina',
-        query: { rutina: data[0].id }
-      })
     }
   }
 
@@ -147,6 +143,10 @@ export default function DetalleEjercicio() {
       }
       else{
         console.log("Se agregó un nuevo set.")
+        router.push({
+          pathname: '/editarRutina',
+          query: { rutina: idRutina }
+        })
       }
     }
   }
@@ -171,10 +171,6 @@ export default function DetalleEjercicio() {
         }
         else{
           agregarEjercicio(value)
-          router.push({
-            pathname: '/editarRutina',
-            query: { rutina: value }
-          })
         }
       }
 
