@@ -656,7 +656,7 @@ export default function VisualizadorProgreso() {
                         {rutina.nombre}
                       </option>
                     ))
-                    : <option value="Ninguna">No hay rutinas</option>
+                    : <option value="">No hay rutinas</option>
                   }
                 </select>
               </div>
