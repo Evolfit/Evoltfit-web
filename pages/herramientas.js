@@ -221,7 +221,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-4">
                 
               <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
-                  <Link href="../registro">
+                  <Link href="../login">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                       <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
@@ -239,7 +239,7 @@ export default function Home() {
                 </div>
 
                 <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
-                  <Link href="../registro">
+                  <Link href="../login">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                       <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
@@ -257,7 +257,7 @@ export default function Home() {
                 </div>
 
                 <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
-                  <Link href="../registro">
+                  <Link href="../login">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                       <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
@@ -291,7 +291,7 @@ export default function Home() {
                 </div>
 
                 <div className="group bg-white overflow-hidden rounded-lg cursor-pointer h-80 group shadow-md border duration-100 hover:scale-105 active:scale-95 hover:bg-blue-500 hover:shadow-slate-300 hover:border-blue-500">
-                  <Link href="../registro">
+                  <Link href="../login">
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4">
                       <center>
                       <div className="h-20 w-20 group-hover:invert group-hover:brightness-0">
