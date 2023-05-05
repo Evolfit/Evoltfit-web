@@ -75,11 +75,11 @@ function arriba()  {
   function llenarrapido() {
     setCheckboxes2({
       Lunes: true,
-      Martes: false,
-      Miercoles: false,
-      Jueves: false,
-      Viernes: false,
-      Sabado: false,
+      Martes: true,
+      Miercoles: true,
+      Jueves: true,
+      Viernes: true,
+      Sabado: true,
       Domingo: false,
     });
     setCheckboxes({

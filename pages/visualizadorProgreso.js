@@ -71,7 +71,11 @@ export default function VisualizadorProgreso() {
     const data2 = await query;
     //console.log("Rutinas")
     //console.log(data2.data)
+    if(data2!==null){
+    setModelocarga(false);
+    }else{
     setRutinas(data2.data)
+    }
   };
   async function cargar_ejercicios() {
     if (rutinas && rutinas.length > 0) {
@@ -130,7 +134,7 @@ export default function VisualizadorProgreso() {
     restaurarMusculos();
     //Variables
     const opcionSeleccionada = event.target.value;
-    console.log(opcionSeleccionada);
+    //console.log(opcionSeleccionada);
     setOpcionSeleccionada(opcionSeleccionada);
 
 
@@ -150,8 +154,8 @@ export default function VisualizadorProgreso() {
           if (musculos[musculoSecundario] > 255) musculos[musculoSecundario] = 255;
         });
       });
-      console.log(contenidoArray);
-      console.log(musculos);
+      //console.log(contenidoArray);
+      //console.log(musculos);
 
       // Restar valores
       setAbdomen((prevVal) => prevVal - musculos.Abdomen);
@@ -169,7 +173,7 @@ export default function VisualizadorProgreso() {
       setGluteos((prevVal) => prevVal - musculos.Gluteos);
       setEspaldaBaja((prevVal) => prevVal - musculos["Espalda Baja"]);
     } else {
-      console.log("No se seleccionó ninguna opcion")
+      //console.log("No se seleccionó ninguna opcion")
       restaurarMusculos();
     }
 

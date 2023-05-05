@@ -11,7 +11,7 @@ export default function Home() {
   const [sesion, setSesion] = useState(null);
   const [flag, setFlag] = useState(false);
   const [resultado, setResultado] = useState(null);
-  const [usosSe,setUsosSe]=useState("1");
+  const [usosSe,setUsosSe]=useState("");
   useEffect(() => {
     handleSesion();
     localStorage.removeItem("NombrePaquete");
