@@ -146,7 +146,7 @@ export default function VisualizadorProgreso() {
       contenidoArray.forEach((ejercicio) => {
         const musculoPrimario = ejercicio.ejercicio.musculo_primario;
         // Sumamos 20 al músculo primario y ajustamos a 255 si supera este valor
-        musculos[musculoPrimario] += 50;
+        musculos[musculoPrimario] += 60;
         if (musculos[musculoPrimario] > 255) musculos[musculoPrimario] = 255;
 
         ejercicio.ejercicio.musculo_otros.forEach((musculoSecundario) => {

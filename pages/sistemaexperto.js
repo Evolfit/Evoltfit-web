@@ -73,13 +73,14 @@ function arriba()  {
 
   //ELIMINAR DESPUES
   function llenarrapido() {
+    localStorage.setItem('bandera3', 'true');
     setCheckboxes2({
       Lunes: true,
       Martes: true,
       Miercoles: true,
-      Jueves: true,
-      Viernes: true,
-      Sabado: true,
+      Jueves: false,
+      Viernes: false,
+      Sabado: false,
       Domingo: false,
     });
     setCheckboxes({
@@ -98,7 +99,7 @@ function arriba()  {
       BancoInclinado: false,
       Cuerda: false,
     });
-    setArreglo(["hombre", "masamuscular", "experimentado", "2hr", "brazos"]);
+    setArreglo(["hombre", "salud", "experimentado", "2hr", "brazos"]);
   }
 
   const handleSesion = async () => {
@@ -334,7 +335,9 @@ function arriba()  {
       setShowButton(false);
     }
   }, [formData, formData2, arreglo, checkboxes, checkboxes2]);
-
+  function guardarBandera() {
+    localStorage.setItem('bandera3', 'true');
+  }
   return (
     <div className="bg-gray-100 p-3 w-full">
       <div id="arriba"></div>
@@ -411,7 +414,7 @@ function arriba()  {
                         },
                       }}
                     >
-                      <button className="bottonSig-2">Finalizar</button>
+                      <button className="bottonSig-2" onClick={guardarBandera}>Finalizar</button>
                     </Link>
                   ) : (
                     <button className="bottonSig-1">Finalizar</button>

@@ -231,6 +231,7 @@ export default function Home() {
           <div className="form-control mt-4 mb-4 lg:mb-7">
               <select name="musculo" id="musculo" onChange={handleOnInputChange} className="select select-secondary text-secondary text-xl py-4 h-full border-0 font-normal rounded-xl shadow-md" defaultValue={formInput.musculo}>
                 <option id="Todos" value="Todos" hidden>Musculo Primario</option>
+                <option id="Cardio" value="Cardio">Cardio</option>
                 <option id="Abdomen" value="Abdomen">Abdomen</option>
                 <option id="Oblicuos" value="Oblicuos">Oblicuos</option>
                 <option id="Antebrazos" value="Antebrazos">Antebrazos</option>

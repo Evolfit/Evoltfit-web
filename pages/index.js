@@ -18,6 +18,7 @@ export default function Home() {
     localStorage.removeItem("Meses");
     localStorage.setItem('bandera', 'false');
     localStorage.setItem('bandera2', 'true');
+    localStorage.setItem('bandera3', 'false');
     if (flag == true) {
       if (sesion) {
         async function checkPlanStatus() {

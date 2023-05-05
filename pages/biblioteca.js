@@ -204,6 +204,7 @@ export default function Home() {
                 <option id="Dorsales" value="Dorsales">Dorsales</option>
                 <option id="Gluteos" value="Gluteos">Gluteos</option>
                 <option id="Espalda Baja" value="Espalda Baja">Espalda Baja</option>
+                <option id="Cardio" value="Cardio">Cardio</option>
               </select>
             </div>
 
