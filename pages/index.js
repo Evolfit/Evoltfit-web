@@ -137,7 +137,7 @@ export default function Home() {
         <br />
 
         <div className="flex flex-col p-3 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5">
-          <div className="border-blue-600 border-2 w-12/12 mt-6 mb-6 rounded-md shadow-2xl">
+          <div className="border-blue-600 border-2 w-12/12 mt-6 mb-6 rounded-md shadow-xl">
             <div className="grid place-items-center p-10">
               <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
                 Bienvenido a{" "}
