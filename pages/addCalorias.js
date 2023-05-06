@@ -21,6 +21,8 @@ export default function Home() {
   var year = today.getFullYear();
 
   var fecha_baseDatos = `${year}-${month}-${day}`
+  var fecha_Visual = `${day}/${month}/${year}`;
+  var fecha_Tol = `${year}/${month}/${day}`;
 
   const [sesion, setSesion] = useState(null);
   const [registro, setRegistro] = useState(null);
@@ -209,6 +211,7 @@ export default function Home() {
           producto_id: idProducto,
           usuario: sesion.user.id,
           fecha_agregado: fecha_baseDatos,
+          fecha_agregadoFormat: fecha_Tol,
           registro: registroIndex,
           calorias: conversionCaloriasGramos,
           proteinas: conversioProteinasGramos,
@@ -286,6 +289,7 @@ export default function Home() {
           producto_id: idProducto,
           usuario: sesion.user.id,
           fecha_agregado: fecha_baseDatos,
+          fecha_agregadoFormat: fecha_Tol,
           registro: registroIndex,
           calorias: conversionCaloriasPieza,
           proteinas: conversioProteinasPieza,
