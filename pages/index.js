@@ -448,7 +448,7 @@ export default function Home() {
                   <Link
                     href={{
                       pathname: "../biblioteca",
-                      query: { name: "Trapecio Medio" },
+                      query: { name: "Trapecio" },
                     }}
                   >
                     <g id="Trapecio Medio" className="body-map__muscle">

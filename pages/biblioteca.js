@@ -196,7 +196,6 @@ export default function Home() {
                 <option id="Triceps" value="Triceps">Triceps</option>
                 <option id="Hombros" value="Hombros">Hombros</option>
                 <option id="Trapecio" value="Trapecio">Trapecio</option>
-                <option id="Trapecio Medio" value="Trapecio Medio">Trapecio Medio</option>
                 <option id="Pecho" value="Pecho">Pecho</option>
                 <option id="Cuadriceps" value="Cuadriceps">Cuadriceps</option>
                 <option id="Pantorrillas" value="Pantorrillas">Pantorrillas</option>
