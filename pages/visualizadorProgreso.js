@@ -1479,9 +1479,12 @@ export default function VisualizadorProgreso() {
                     <div>
                       <h2 className="font-heebo font-semibold">
                         Aún no defines una meta. Pulsa{" "}
-                        <span className="text-blue-600 underline">
-                          <Link href="../visualizadorCalorias">aquí</Link>
-                        </span>{" "}
+                        <Link href={{
+                      pathname: "../biblioteca"
+                    }}>
+                        <a className="text-blue-600 underline">
+                          aquí
+                        </a></Link>{" "}
                         para definirla
                       </h2>
                     </div>

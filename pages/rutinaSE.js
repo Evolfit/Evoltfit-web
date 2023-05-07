@@ -1097,6 +1097,8 @@ export default function Home() {
                     <th className="px-6 py-3">Domingo</th>
                   </tr>
                 </thead>
+
+
                 <tbody>
                   {longestArray.map((_, index) => (
                     <tr key={`${arrays[index]}-${index}`} className="bg-white border-b">
@@ -1127,6 +1129,9 @@ export default function Home() {
                     </tr>
                   ))}
                 </tbody>
+
+
+                
               </table>
             </div>
           </div>
