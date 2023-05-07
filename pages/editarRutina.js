@@ -189,6 +189,7 @@ export default function Home() {
       .from('rutinas_ejercicio_sets')
       .insert({
         ejercicio_rutina: data[0].id, 
+        reps: data[0].ejercicio.musculo_primario == 'Cardio' ? 60 : 12
         })
 
       if (error) {
@@ -289,7 +290,7 @@ export default function Home() {
                     id="nombre" 
                     type="text" 
                     className="text-2xl py-2 sm:text-4xl px-2 sm:py-4 text-secondary my-2 w-full font-semibold bg-inherit border-b-2
-                    outline-none border-blue-500 focus:border-b-4 duration-150  whitespace-nowrap text-ellipsis overflow-hidden" 
+                    outline-none border-blue-500 focus:border-b-4 duration-150  whitespace-nowrap text-ellipsis overflow-hidden text-center" 
                     value={formInput.nombre || ""} 
                     onChange={handleOnInputChange}
                   />

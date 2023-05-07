@@ -24,8 +24,8 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
           if (check < 0){
             check = 1
           }
-          else if(check > 99){
-            check = 99
+          else if(check > 999){
+            check = 999
           }
 
           value = check;
@@ -104,7 +104,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
         <td className="text-center text-base border-l-2 hover:bg-blue-50 duration-100">
           <input 
           name='reps' 
-          maxLength={2}
+          maxLength={3}
           value={formInput.reps} 
           onChange={handleOnInputChange}
           className="w-16 text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 

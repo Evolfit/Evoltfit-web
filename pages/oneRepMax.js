@@ -234,7 +234,7 @@ export default function OneRepMax() {
                     One Rep Max
                   </span>
                   <button
-                  className="absolute right-0 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md mx- shadow"
+                  className="absolute right-0 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow"
                   onClick={()=>{calcularOneRepMax(true)}}>
                     {oneRepMax.tipo == 'lbs' ?
                       'CAMBIAR A KG'

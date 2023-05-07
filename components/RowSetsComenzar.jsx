@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
 
-const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
+const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio, cardio }) => {
     //console.log(set);
 
     const [ejerciciosRutina, setEjerciciosRutina] = useState([])
@@ -42,7 +42,7 @@ const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
     const [formInput, setFormInput] = useState({
       reps: set.reps,
       tipo: set.tipo || '',
-      peso: set.peso || 0
+      peso: set.peso || cardio ? 1 : 0
     });
 
     const handleOnInputChange = useCallback(
@@ -55,8 +55,8 @@ const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
           if (check < 0){
             check = 1
           }
-          else if(check > 99){
-            check = 99
+          else if(check > 999){
+            check = 999
           }
 
           value = check;
@@ -192,13 +192,13 @@ const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
           </select>
         </td>
         <td className={ toggleTerminado ?
-          "text-center text-base border-l-2 duration-100"
+          "text-center text-base border-l-2 border-r-2 duration-100"
           :
-          "text-center text-base border-l-2 hover:bg-blue-50 duration-100"
+          "text-center text-base border-l-2 border-r-2 hover:bg-blue-50 duration-100"
         }>
           <input 
           name='reps' 
-          maxLength={2}
+          maxLength={3}
           value={formInput.reps} 
           onChange={handleOnInputChange}
           disabled={ toggleTerminado ? "disabled" : '' }
@@ -208,68 +208,69 @@ const RowSetsEjercicio = ({ set, index, updateSet, indexEjercicio  }) => {
             "w-12 sm:w-full text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
           }/>
         </td>
-        <td className={ toggleTerminado ? 
-        "text-center text-base border-l-2 duration-75"
-        :
-        "text-center text-base border-l-2 hover:bg-blue-50 duration-75"
-        }>
-          <input 
-          name='peso' 
-          maxLength={3}
-          value={formInput.peso} 
-          onChange={handleOnInputChange}
-          disabled={ toggleTerminado ? "disabled" : '' }
-          className={toggleTerminado ? 
-            "w-12 sm:w-full text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit cursor-not-allowed text-gray-200" 
-            :
-            "w-12 sm:w-full text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
-          }
-          />
-        </td>
-          <td 
-          className=""
-          onClick={() => {}}
-          >
-            <div className="flex items-center justify-center w-16 mx-auto">
-            {toggleTerminado ?
-              toggleCancelar ?
-                <div className="flex items-center justify-center p-1 m-0.5 text-xl cursor-pointer text-gray-600 rounded-md bg-white
-                hover:bg-gray-100 duration-100 active:scale-95"
-                onClick={fToggleTerminado}
-                >
-                  <ion-icon name="create-outline"></ion-icon>
-                </div>
+        {
+          cardio ?
+          ''
+          :
+          (
+          <td className={ toggleTerminado ? 
+          "text-center text-base duration-75"
+          :
+          "text-center text-base hover:bg-blue-50 duration-75"
+          }>
+            <input 
+            name='peso' 
+            maxLength={3}
+            value={formInput.peso} 
+            onChange={handleOnInputChange}
+            disabled={ toggleTerminado ? "disabled" : '' }
+            className={toggleTerminado ? 
+              "w-12 sm:w-full text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit cursor-not-allowed text-gray-200" 
               :
-                <div className="flex items-center justify-center p-1 m-0.5 text-xl cursor-pointer text-white rounded-md bg-gray-600
-                hover:bg-gray-700 duration-100 active:scale-95"
-                onClick={fToggleTerminado}
-                >
-                  <ion-icon name="create-outline"></ion-icon>
-                </div>
-                
-            :
-            <div className="flex items-center justify-center w-full">
-              <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-green-600
-              hover:bg-green-700 duration-100 active:scale-95"
+              "w-12 sm:w-full text-center py-1 font-normal border-0 border-blue-500 focus:outline-none focus:border-b-2 rounded-none duration-75 bg-inherit" 
+            }
+            />
+          </td>
+          )  
+        }
+        <td 
+        className=""
+        onClick={() => {}}
+        >
+          <div className="flex items-center justify-center w-16 mx-auto">
+          {toggleTerminado ?
+            toggleCancelar ?
+              <div className="flex items-center justify-center p-1 m-0.5 text-xl cursor-pointer text-gray-600 rounded-md bg-white
+              hover:bg-gray-100 duration-100 active:scale-95"
               onClick={fToggleTerminado}
               >
-                  <ion-icon name="checkmark-outline"></ion-icon>
+                <ion-icon name="create-outline"></ion-icon>
               </div>
-              <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-gray-600
+            :
+              <div className="flex items-center justify-center p-1 m-0.5 text-xl cursor-pointer text-white rounded-md bg-gray-600
               hover:bg-gray-700 duration-100 active:scale-95"
-              onClick={fToggleCancelar}
+              onClick={fToggleTerminado}
               >
-                  <ion-icon name="close-outline"></ion-icon>
+                <ion-icon name="create-outline"></ion-icon>
               </div>
-            </div>
-            }
-            
               
+          :
+          <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-green-600
+            hover:bg-green-700 duration-100 active:scale-95"
+            onClick={fToggleTerminado}
+            >
+                <ion-icon name="checkmark-outline"></ion-icon>
             </div>
-          </td>
-        
-        <td className="text-center">
-          
+            <div className="flex items-center justify-center p-0.5 m-0.5 text-2xl cursor-pointer text-white rounded-md bg-gray-600
+            hover:bg-gray-700 duration-100 active:scale-95"
+            onClick={fToggleCancelar}
+            >
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+          </div>
+          }
+          </div>
         </td>
       </tr>
     );

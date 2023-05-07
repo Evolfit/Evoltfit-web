@@ -210,13 +210,17 @@ export default function DetalleEjercicio() {
                     </button>
                     <br/>
                     {/* EJERCICIO */}
-                    <div className="mt-6 bg-white rounded-3xl p-8 shadow">
+                    <div className="mt-6 bg-white rounded-xl p-8 shadow">
                       <h2 className="text-4xl font-medium">{ejercicio.nombre}</h2>
                       <p className="text-2xl font-light">{ejercicio.musculo_primario}</p>                      
                       
                       {/* AGREGAR A RUTINA */}
                       <div className="form-control my-4">
-                        <select name="agregarRutina" id="agregarRutina" onChange={handleOnInputChange} className="select select-secondary text-base lg:py-4 h-full border-0 font-normal rounded-xl shadow-md bg-white-100 hover:scale-105 shadow-gray-200" defaultValue='agregar'>
+                        <select name="agregarRutina" id="agregarRutina"
+                        className="select select-secondary border border-gray-100 bg-slate-50 hover:bg-slate-100 text-base lg:py-4 h-full border-0 font-normal rounded-xl shadow-md shadow-gray-200"
+                        onChange={handleOnInputChange}
+                        defaultValue='agregar'
+                        >
                           <option id="agregar" value="agregar" hidden>Agregar a Rutina</option>
                           { rutinas ? 
                               (rutinas.length !== 0 ? 
@@ -238,19 +242,19 @@ export default function DetalleEjercicio() {
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                        <div className="flex-auto w-full p-6 rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 duration-100 hover:scale-[1.01]">
                           <h3 className="text-lg font-medium">Equipo</h3>
                           <p className="text-md font-light">{ejercicio.equipo.join(", ")}</p>
                         </div>
-                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                        <div className="flex-auto w-full p-6 rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 duration-100 hover:scale-[1.01]">
                           <h3 className="text-lg font-medium">Otros musculos activados</h3>
                           <p className="text-md font-light">{ejercicio.musculo_otros.join(", ")}</p>
                         </div>
-                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                        <div className="flex-auto w-full p-6 rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 duration-100 hover:scale-[1.01]">
                           <h3 className="text-lg font-medium">Recomendaciones</h3>
                           <p className="text-md font-light">{ejercicio.recomendaciones}</p>
                         </div>
-                        <div className="flex-auto w-full p-6 rounded-xl shadow">
+                        <div className="flex-auto w-full p-6 rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 duration-100 hover:scale-[1.01]">
                           <h3 className="text-lg font-medium">Errores comunes</h3>
                           <p className="text-md font-light">{ejercicio.errores}</p>
                         </div>

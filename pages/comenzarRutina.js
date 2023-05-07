@@ -248,7 +248,10 @@ export default function ComenzarRutina() {
     }
     else{
       console.log('Se terminó el entrenamiento')
-      router.push('/visualizadorProgreso')
+      router.push({ 
+        pathname: '/visualizadorProgreso',
+        query: { rutinaId: rutina.id }
+      })
     }
   }
 

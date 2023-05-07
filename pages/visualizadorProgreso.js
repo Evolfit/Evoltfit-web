@@ -18,6 +18,8 @@ import {
 
 export default function VisualizadorProgreso() {
   const router = useRouter();
+  let rutinaId = router.query.rutinaId;
+  
   const [sesion, setSesion] = useState(null);
   const [opCal, setOpCal] = useState(0);
   const [perfil, setPerfil] = useState(null);
@@ -43,7 +45,7 @@ export default function VisualizadorProgreso() {
   // <-------------- ---------------------------------- ---------------->
   // <-------------- ---------------------------------- ---------------->
   const [modelocarga, setModelocarga] = useState(true);
-  const [opcionSeleccionada, setOpcionSeleccionada] = useState("");
+  const [opcionSeleccionada, setOpcionSeleccionada] = useState(rutinaId);
   const [ejerciciosRutina, setEjerciciosRutina] = useState([]);
   const [abdomen, setAbdomen] = useState(255);
   const [oblicuos, setOblicuos] = useState(255);
@@ -125,6 +127,17 @@ export default function VisualizadorProgreso() {
       //console.log(ejerciciosPorRutina);
       setEjerciciosRutina(ejerciciosPorRutina);
       setModelocarga(false);
+      console.log("%%%%%%%%%%%%%% RutinaIndex: " + rutinaId)
+      if (!rutinaId) {
+        rutinaId = "Ninguna"
+      }
+      else{
+        opcion_rutina({
+          target:{
+            value: rutinaId
+          }
+        }, ejerciciosPorRutina)
+      }
     }
   }
 
@@ -149,7 +162,7 @@ export default function VisualizadorProgreso() {
     Gluteos: 0,
     "Espalda Baja": 0,
   };
-  function opcion_rutina(event) {
+  function opcion_rutina(event, ejerciciosRutina) {
     restaurarMusculos();
     //Variables
     const opcionSeleccionada = event.target.value;
@@ -293,7 +306,18 @@ export default function VisualizadorProgreso() {
 
     let query = supabase
     .from('progreso_sets')
-    .select('*')
+    .select(`
+      id,
+      usuario,
+      ejercicio (
+        id,
+        musculo_primario
+      ),
+      tipo_set,
+      reps,
+      peso,
+      created_at
+    `)
     .eq('usuario', userId)
     .gt('created_at', haceSieteDias)
     .order('created_at', { ascending: true })
@@ -314,28 +338,29 @@ export default function VisualizadorProgreso() {
     let volumenDia = []
 
     for (let index = 0; index < sets.length; index++) {
-      volumenTotal += (sets[index].reps * sets[index].peso)
+      if (sets[index].ejercicio.musculo_primario !== 'Cardio') {
+        volumenTotal += (sets[index].reps * sets[index].peso)
+
+        //console.log(format(new Date(sets[index].created_at), "dd/MM/yy"))
+        //Volumen por Día
+        if(!dia.includes(format(new Date(sets[index].created_at), "dd/MM/yy"))){
+          dia.push(format(new Date(sets[index].created_at), "dd/MM/yy"))
+          volumenDia.push(sets[index].reps * sets[index].peso)
+        }
+        else{
+          let indexDia = dia.indexOf(format(new Date(sets[index].created_at), "dd/MM/yy"))
+          volumenDia[indexDia] += sets[index].reps * sets[index].peso
+        }
+      }
       
       //Volumen Por Ejercicio
-      if (!ejercicios.includes(sets[index].ejercicio)) {
-        ejercicios.push(sets[index].ejercicio)
+      if (!ejercicios.includes(sets[index].ejercicio.id)) {
+        ejercicios.push(sets[index].ejercicio.id)
         volumen.push(sets[index].reps * sets[index].peso)
       }
       else{
-        let indexEjercicio = ejercicios.indexOf(sets[index].ejercicio)
+        let indexEjercicio = ejercicios.indexOf(sets[index].ejercicio.id)
         volumen[indexEjercicio] += sets[index].reps * sets[index].peso
-      }
-
-      //console.log(format(new Date(sets[index].created_at), "dd/MM/yy"))
-
-      //Volumen por Día
-      if(!dia.includes(format(new Date(sets[index].created_at), "dd/MM/yy"))){
-        dia.push(format(new Date(sets[index].created_at), "dd/MM/yy"))
-        volumenDia.push(sets[index].reps * sets[index].peso)
-      }
-      else{
-        let indexEjercicio = ejercicios.indexOf(format(new Date(sets[index].created_at), "dd/MM/yy"))
-        volumenDia[indexEjercicio] += sets[index].reps * sets[index].peso
       }
     }
 
@@ -364,7 +389,7 @@ export default function VisualizadorProgreso() {
     for (let index = 0; index < dia.length; index++) {
       volumenDiario.push({
         dia: dia[index],
-        volumen: volumen[index]
+        volumen: volumenDia[index]
       })
     }
 
@@ -735,7 +760,7 @@ export default function VisualizadorProgreso() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className="relative min-h-[75vh]">
+      <main className="relative min-h-[75vh] flex flex-col items-center w-11/12 xs:w-9/12 mx-auto">
         <br />
         <br />
         <br />
@@ -743,22 +768,44 @@ export default function VisualizadorProgreso() {
         <br />
         <br />
 
-        <div className="container">
-          <h2 className="text-3xl font-semibold text-center text-blue-600 lg:text-4xl">
+        <div className="w-full">
+          <h2 className="text-center text-3xl font-semibold text-blue-600 lg:text-4xl">
             Sigue tu progreso
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-y-16 mt-16 lg:grid-cols-2 place-items-center">
+        <div className="grid grid-cols-1 gap-y-16 mt-16 xl:grid-cols-2 place-items-center w-full">
           {/* Musculos trabajados */}
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
-            <div className="w-11/12">
+          <div className="bg-white flex flex-col bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
+            <div className="w-full px-2">
               <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 ¿Cuánto trabaja tu rutina?
               </h2>
+              <div className="divider my-0"></div>
+              <select
+                id="opciones"
+                className="select select-secondary w-full text-base border-0 font-normal rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 shadow-gray-200"
+                onChange={() => {opcion_rutina(event, ejerciciosRutina)}}
+                value={opcionSeleccionada}
+                defaultValue={opcionSeleccionada}
+              >
+                <option value="Ninguna" id="Ninguna" hidden>Selecciona una Rutina</option>
+                {rutinas.length !== 0 ? (
+                  rutinas.map((rutina, index) => (
+                    <option key={index} id={rutina.id} value={rutina.id}>
+                      {rutina.nombre}
+                    </option>
+                  ))
+                ) : (
+                  <option value="Ninguna">No hay rutinas</option>
+                )}
+              </select>
             </div>
-            {modelocarga ? (
+            {rutinas.length !== 0 ? 
+            (
+            <div className="h-full w-full">
+              {modelocarga ? (
               <div
                 style={{
                   display: "flex",
@@ -782,11 +829,11 @@ export default function VisualizadorProgreso() {
                 </p>
               </div>
             ) : (
-              <div className="flex mt-10">
-                {" "}
+              <div className="flex h-full w-full">
+                {""}
                 {/* Loading */}
-                <div className="body-map2 w-9/12" id="body-map2">
-                  <div id="male-body-maps" className="body-map__container2">
+                <div className="body-map2 flex-auto h-full w-full" id="body-map2">
+                  <div id="male-body-maps" className="flex items-center scale-[1.35] sm:scale-125 body-map__container2 h-full w-full">
                     <div className="body-map__body2">
                       <svg
                         height="100%"
@@ -1235,35 +1282,32 @@ export default function VisualizadorProgreso() {
                     </div>
                   </div>
                 </div>
-                <div className="w-3/12">
-                  <select
-                    id="opciones"
-                    className="bg-gray-50 border border-blue-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-heebo"
-                    onChange={opcion_rutina}
-                    value={opcionSeleccionada}
-                  >
-                    <option value="Ninguna">Opciones</option>
-                    {rutinas.length !== 0 ? (
-                      rutinas.map((rutina, index) => (
-                        <option key={index} value={rutina.id}>
-                          {rutina.nombre}
-                        </option>
-                      ))
-                    ) : (
-                      <option value="Ninguna">No hay rutinas</option>
-                    )}
-                  </select>
-                </div>
               </div>
-            )}
+              )}
+            </div>
+            )
+            :
+            <div className="flex flex-col justify-center items-center h-full">
+              <p className="text-center font-light text-xl">
+                Aún no tiene rutinas.
+              </p>
+              <button 
+              onClick={() => {router.push('/rutinas')}}
+              className="my-2 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow"
+              >
+                {'IR A RUTINAS'}
+              </button>
+            </div>
+            }
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+          <div className="bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
             <div className="w-11/12">
               <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Tu ritmo cardíaco -{" "}
                 <span className="text-green-600">Próximamente</span>
               </h2>
+              <div className="divider my-0"></div>
             </div>
             <div className="border-2 border-gray-500 rounded-md mt-7 h-80 flex p-2 gap-2">
               <div className="w-4/12 flex flex-col gap-2">
@@ -1342,68 +1386,84 @@ export default function VisualizadorProgreso() {
             </div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+          <div className="bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
             <div className="flex flex-col w-full h-full">
               <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Volumen por Ejercicio
               </h2>
-                         
-              {
-                volumenEjercicio ? (
-                  volumenEjercicio.length !== 0 ? 
-                  (
-                    <div className="flex flex-col h-[92%] w-full ">
-                      <div className="py-2 flex flex-row border-b-2 shadow-sm">
-                        <div className="w-8/12 px-2">
-                          <p className="text-secondary font-medium text-xl truncate">Volumen Total</p>
-                        </div>
-                        <div className="w-4/12 flex items-center justify-center px-2">
-                          <p className="font-medium text-xl">{volumenTotal + ' lbs'}</p>
-                        </div>
+              <div className="divider my-0"></div>
+
+              {volumenEjercicio ? (
+                volumenEjercicio.length !== 0 ? (
+                  <div className="flex flex-col h-[92%] w-full ">
+                    <div className="py-2 flex flex-row border-b-2 shadow-sm">
+                      <div className="w-8/12 px-2">
+                        <p className="text-secondary font-medium text-xl truncate">
+                          Volumen Total
+                        </p>
                       </div>
-                      <div className="w-full h-full overflow-auto">
-                      {
-                        volumenEjercicio.map((ejercicio) =>(
-                          <div key={ejercicio.ejercicio.id} className="py-2 flex flex-row border-b shadow-sm">
-                            <div className="w-8/12 px-2">
-                              <p className="text-secondary font-medium text-lg truncate">{ejercicio.ejercicio.nombre}</p>
-                              <p className="truncate">{ejercicio.ejercicio.musculo_primario}</p>
-                            </div>
-                            <div className="w-4/12 flex items-center justify-center px-2">
-                              <p className="font-medium text-lg elipsis">{ejercicio.volumen + ' lbs'}</p>
-                            </div>
+                      <div className="w-4/12 flex items-center justify-center px-2">
+                        <p className="font-medium text-xl">
+                          {volumenTotal + " lbs"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full h-full overflow-auto">
+                      {volumenEjercicio.map((ejercicio) => (
+                        <div
+                          key={ejercicio.ejercicio.id}
+                          className="py-2 flex flex-row border-b shadow-sm"
+                        >
+                          <div className="w-8/12 px-2">
+                            <p className="text-secondary font-medium text-lg truncate">
+                              {ejercicio.ejercicio.nombre}
+                            </p>
+                            <p className="truncate">
+                              {ejercicio.ejercicio.musculo_primario}
+                            </p>
                           </div>
-                        ))
-                      }
-                      </div>
+                          <div className="w-4/12 flex items-center justify-center px-2">
+                            <p className="font-medium text-lg elipsis">
+                              { ejercicio.ejercicio.musculo_primario == 'Cardio' ?
+                              ejercicio.volumen + " min."
+                              :
+                              ejercicio.volumen + " lbs"
+                              }
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  )
-                  :
-                  (
-                    <div className="flex flex-col justify-center items-center h-full"> 
-                      <div className="my-6">
-                        <div className="loader"></div>
-                      </div>
-                      <p>Cargando...</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col justify-center items-center h-full">
+                    <div className="my-6">
+                      <div className="loader"></div>
                     </div>
-                  )
-                )
-                :
-                (
-                  <div className="flex flex-col justify-center items-center h-full"> 
-                    <p className="text-center font-light text-xl">
-                      No se ha registrado ningún entrenamiento en los últimos 7 dias.
-                    </p>
+                    <p>Cargando...</p>
                   </div>
                 )
-              }
+              ) : (
+                <div className="flex flex-col justify-center items-center h-full">
+                  <p className="text-center font-light text-xl">
+                    No se ha registrado ningún entrenamiento en los últimos 7
+                    dias.
+                  </p>
+                  <button 
+                  onClick={() => {router.push('/rutinas')}}
+                  className="my-2 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow"
+                  >
+                    {'IR A RUTINAS'}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="grid place-items-center p-10"></div>
           </div>
 
           {perfil ? (
-            <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
-              <div className="w-11/12">
+            <div className="bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
+              <div className="w-full border-b-2 pb-2">
                 <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                   Meta de calorías - {perfil.nombre}
                 </h2>
@@ -1420,27 +1480,47 @@ export default function VisualizadorProgreso() {
                             <XAxis dataKey="fecha" />
                             <YAxis />
                             <Tooltip />
-                            <Bar dataKey="TotalCaloríasAlDía" stackId="a" fill="#2563eb"/>
+                            <Bar
+                              dataKey="TotalCaloríasAlDía"
+                              stackId="a"
+                              fill="#2563eb"
+                            />
                           </BarChart>
                         </div>
                       ) : opCal == "op2" ? (
                         <div className="-translate-x-3 h-96">
-                          <BarChart width={400} height={320} data={graphicData2}>
+                          <BarChart
+                            width={400}
+                            height={320}
+                            data={graphicData2}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="fecha" />
                             <YAxis />
                             <Tooltip />
-                            <Bar dataKey="TotalProteinasAlDía" stackId="a" fill="#2563eb"/>
+                            <Bar
+                              dataKey="TotalProteinasAlDía"
+                              stackId="a"
+                              fill="#2563eb"
+                            />
                           </BarChart>
                         </div>
                       ) : opCal == "op3" ? (
                         <div className="-translate-x-3 h-96">
-                          <BarChart width={400} height={320} data={graphicData3}>
+                          <BarChart
+                            width={400}
+                            height={320}
+                            data={graphicData3}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="fecha" />
                             <YAxis />
                             <Tooltip />
-                            <Bar dataKey="TotalGrasasAlDía" stackId="a" fill="#2563eb"/>
+                            <Bar
+                              dataKey="TotalGrasasAlDía"
+                              stackId="a"
+                              fill="#2563eb"
+                            />
                           </BarChart>
                         </div>
                       ) : (
@@ -1450,7 +1530,11 @@ export default function VisualizadorProgreso() {
                             <XAxis dataKey="fecha" />
                             <YAxis />
                             <Tooltip />
-                            <Bar dataKey="TotalCaloríasAlDía" stackId="a" fill="#2563eb" />
+                            <Bar
+                              dataKey="TotalCaloríasAlDía"
+                              stackId="a"
+                              fill="#2563eb"
+                            />
                           </BarChart>
                         </div>
                       )}
@@ -1480,8 +1564,8 @@ export default function VisualizadorProgreso() {
                       <h2 className="font-heebo font-semibold">
                         Aún no defines una meta. Pulsa{" "}
                         <Link href={{
-                      pathname: "../biblioteca"
-                    }}>
+                          pathname: "../biblioteca"
+                        }}>
                         <a className="text-blue-600 underline">
                           aquí
                         </a></Link>{" "}
@@ -1494,7 +1578,7 @@ export default function VisualizadorProgreso() {
                   <div className="">
                     <select
                       id="opciones"
-                      className="bg-stone-100 border border-blue-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-heebo"
+                      className="select select-secondary w-full text-base border-0 font-normal rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 shadow-gray-200"
                       onChange={handleSelectChange}
                     >
                       <option value="op1">Calorías</option>
@@ -1547,72 +1631,81 @@ export default function VisualizadorProgreso() {
             </div>
           )}
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+          <div className="bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
             <div className="flex flex-col w-full h-full">
               <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Volumen por Día
               </h2>
-              {
-                volumenDiario ? (
-                  volumenDiario.length !== 0 ? 
-                  (
-                    <div className="flex flex-col h-[92%] w-full ">
-                      <div className="py-2 flex flex-row border-b-2 shadow-sm">
-                        <div className="w-8/12 px-2">
-                          <p className="text-secondary font-medium text-xl truncate">Volumen Total</p>
-                        </div>
-                        <div className="w-4/12 flex items-center justify-center px-2">
-                          <p className="font-medium text-xl">{volumenTotal + ' lbs'}</p>
-                        </div>
+              <div className="divider my-0"></div>
+              {volumenDiario ? (
+                volumenDiario.length !== 0 ? (
+                  <div className="flex flex-col h-[92%] w-full ">
+                    <div className="py-2 flex flex-row border-b-2 shadow-sm">
+                      <div className="w-8/12 px-2">
+                        <p className="text-secondary font-medium text-xl truncate">
+                          Volumen Total
+                        </p>
                       </div>
-                      <div className="w-full h-full overflow-auto">
-                      {
-                        volumenDiario.map((dia) =>(
-                          <div key={dia.dia} className="py-2 flex flex-row border-b shadow-sm">
-                            <div className="w-8/12 px-2">
-                              <p className="text-secondary font-medium text-lg truncate">{dia.dia}</p>
-                              <p className="truncate">{'lunes'}</p>
-                            </div>
-                            <div className="w-4/12 flex items-center justify-center px-2">
-                              <p className="font-medium text-lg elipsis">{dia.volumen + ' lbs'}</p>
-                            </div>
+                      <div className="w-4/12 flex items-center justify-center px-2">
+                        <p className="font-medium text-xl">
+                          {volumenTotal + " lbs"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full h-full overflow-auto">
+                      {volumenDiario.map((dia) => (
+                        <div
+                          key={dia.dia}
+                          className="py-2 flex flex-row border-b shadow-sm"
+                        >
+                          <div className="w-8/12 px-2">
+                            <p className="text-secondary font-medium text-lg truncate">
+                              {dia.dia}
+                            </p>
+                            <p className="truncate">{/*"lunes"*/}</p>
                           </div>
-                        ))
-                      }
-                      </div>
+                          <div className="w-4/12 flex items-center justify-center px-2">
+                            <p className="font-medium text-lg elipsis">
+                              {dia.volumen + " lbs"}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  )
-                  :
-                  (
-                    <div className="flex flex-col justify-center items-center h-full"> 
-                      <div className="my-6">
-                        <div className="loader"></div>
-                      </div>
-                      <p>Cargando...</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col justify-center items-center h-full">
+                    <div className="my-6">
+                      <div className="loader"></div>
                     </div>
-                  )
-                )
-                :
-                (
-                  <div className="flex flex-col justify-center items-center h-full"> 
-                    <p className="text-center font-light text-xl">
-                      No se ha registrado ningún entrenamiento en los últimos 7 dias.
-                    </p>
+                    <p>Cargando...</p>
                   </div>
                 )
-              }
-              
-
+              ) : (
+                <div className="flex flex-col justify-center items-center h-full">
+                  <p className="text-center font-light text-xl">
+                    No se ha registrado ningún entrenamiento en los últimos 7
+                    dias.
+                  </p>
+                  <button 
+                  onClick={() => {router.push('/rutinas')}}
+                  className="my-2 cursor-pointer font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow"
+                  >
+                    {'IR A RUTINAS'}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="grid place-items-center p-10"></div>
           </div>
 
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+          <div className="bg-white border w-11/12 h-celdasVP rounded-md shadow-xl p-5">
             <div className="">
               <h2 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
                 Ejercicios donde se recomienda subir peso -{" "}
                 <span className="text-green-600">Próximamente</span>
               </h2>
+              <div className="divider my-0"></div>
             </div>
 
             <div className="p-5 h-96 mt-1">
