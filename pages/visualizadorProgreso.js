@@ -25,6 +25,9 @@ export default function VisualizadorProgreso() {
   const [sumatoriaCalorias, setSumatoriaCalorias] = useState([]);
   const [rutinas, setRutinas] = useState([]);
   const [userID, serUserID] = useState("");
+  const [volumenTotal, setVolumenTotal] = useState(0);
+  const [volumenEjercicio, setVolumenEjercicio] = useState([]);
+  const [volumenDiario, setVolumenDiario] = useState([]);
   const handleSelectChange = (event) => {
     setOpCal(event.target.value);
   };
@@ -251,11 +254,14 @@ export default function VisualizadorProgreso() {
       setSesion(data.session);
       serUserID(data.session.user.id);
       obtenerPerfil(data.session.user.id);
+      getSetsVolumen(data.session.user.id)
       calcularFechas();
       obtenerRegistrosCaloricos(data.session, fechasAnteriores);
       obtenerMeta(data.session);
     } else {
       setSesion(null);
+      //console.log("No hay Sesión " + error);
+      router.push('/login')
     }
   };
 
@@ -268,6 +274,129 @@ export default function VisualizadorProgreso() {
 
     //console.log(fechasAnteriores)
   }
+
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+
+  async function getSetsVolumen(userId) {
+    let haceSieteDias = String(format(subDays(today, 7), "MM/dd/yyyy"))
+    //console.log(haceSieteDias)
+
+    let query = supabase
+    .from('progreso_sets')
+    .select('*')
+    .eq('usuario', userId)
+    .gt('created_at', haceSieteDias)
+    .order('created_at', { ascending: true })
+
+    const data = await query
+    
+    //console.log(data.data)
+    calcularVolumen(data.data)
+  }
+
+  async function calcularVolumen(sets) {
+    console.log(sets)
+    let volumenTotal = 0
+    let ejercicios = []
+    let volumen = []
+
+    let dia = []
+    let volumenDia = []
+
+    for (let index = 0; index < sets.length; index++) {
+      volumenTotal += (sets[index].reps * sets[index].peso)
+      
+      //Volumen Por Ejercicio
+      if (!ejercicios.includes(sets[index].ejercicio)) {
+        ejercicios.push(sets[index].ejercicio)
+        volumen.push(sets[index].reps * sets[index].peso)
+      }
+      else{
+        let indexEjercicio = ejercicios.indexOf(sets[index].ejercicio)
+        volumen[indexEjercicio] += sets[index].reps * sets[index].peso
+      }
+
+      //console.log(format(new Date(sets[index].created_at), "dd/MM/yy"))
+
+      //Volumen por Día
+      if(!dia.includes(format(new Date(sets[index].created_at), "dd/MM/yy"))){
+        dia.push(format(new Date(sets[index].created_at), "dd/MM/yy"))
+        volumenDia.push(sets[index].reps * sets[index].peso)
+      }
+      else{
+        let indexEjercicio = ejercicios.indexOf(format(new Date(sets[index].created_at), "dd/MM/yy"))
+        volumenDia[indexEjercicio] += sets[index].reps * sets[index].peso
+      }
+    }
+
+    let volumenEjercicios = []
+
+    for (let index = 0; index < ejercicios.length; index++) {
+      const { data, error } = await supabase
+      .from('ejercicios')
+      .select('*')
+      .eq('id', ejercicios[index])
+
+      if (error) {
+        console.log('ERROR: No se encontró el ejercicio.')
+        console.log(error)
+      }
+      else{
+        volumenEjercicios.push({
+          ejercicio: data[0],
+          volumen: volumen[index]
+        })
+      }
+    }
+
+    let volumenDiario = []
+
+    for (let index = 0; index < dia.length; index++) {
+      volumenDiario.push({
+        dia: dia[index],
+        volumen: volumen[index]
+      })
+    }
+
+    console.log(volumenTotal + ' lbs')
+    console.log('Volumen por Ejercicio:')
+    console.log(volumenEjercicios)
+    console.log('Volumen por Dia:')
+    console.log(volumenDiario)
+
+    if (volumenEjercicios.length == 0){
+      volumenEjercicios = null
+    }
+    if (volumenDiario.length == 0){
+      volumenDiario = null
+    }
+
+    setVolumenTotal(volumenTotal)
+    setVolumenEjercicio(volumenEjercicios)
+    setVolumenDiario(volumenDiario)
+  }
+
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
+  //AKJEFBNAOIHJSEBFAHUOSEBFUHASEBFAUISOHEBFIAUSEHBFASEIUHFBASEUHFB
 
   async function obtenerRegistrosCaloricos(session, fechasAnteriores) {
     var sumatoriaCal = []
@@ -615,9 +744,9 @@ export default function VisualizadorProgreso() {
         <br />
 
         <div className="container">
-          <h1 className="text-3xl font-semibold text-center text-blue-600 lg:text-4xl">
+          <h2 className="text-3xl font-semibold text-center text-blue-600 lg:text-4xl">
             Sigue tu progreso
-          </h1>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-y-16 mt-16 lg:grid-cols-2 place-items-center">
@@ -625,9 +754,9 @@ export default function VisualizadorProgreso() {
 
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+              <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 ¿Cuánto trabaja tu rutina?
-              </h1>
+              </h2>
             </div>
             {modelocarga ? (
               <div
@@ -1131,15 +1260,15 @@ export default function VisualizadorProgreso() {
 
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="w-11/12">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+              <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                 Tu ritmo cardíaco -{" "}
                 <span className="text-green-600">Próximamente</span>
-              </h1>
+              </h2>
             </div>
             <div className="border-2 border-gray-500 rounded-md mt-7 h-80 flex p-2 gap-2">
               <div className="w-4/12 flex flex-col gap-2">
                 <div className="border-2 border-gray-500 h-1/2 flex justify-center items-center rounded-md">
-                  <h1 className="text-3xl font-semibold text-blue-600">72</h1>
+                  <h2 className="text-3xl font-semibold text-blue-600">72</h2>
                 </div>
                 <div className="border-2 border-gray-500 h-1/2 flex flex-col justify-center items-center rounded-md">
                   <p className="text-base font-semibold">Usuario</p>
@@ -1214,10 +1343,60 @@ export default function VisualizadorProgreso() {
           </div>
 
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
-            <div className="w-11/12">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
-                Volumen semanal
-              </h1>
+            <div className="flex flex-col w-full h-full">
+              <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+                Volumen por Ejercicio
+              </h2>
+                         
+              {
+                volumenEjercicio ? (
+                  volumenEjercicio.length !== 0 ? 
+                  (
+                    <div className="flex flex-col h-[92%] w-full ">
+                      <div className="py-2 flex flex-row border-b-2 shadow-sm">
+                        <div className="w-8/12 px-2">
+                          <p className="text-secondary font-medium text-xl truncate">Volumen Total</p>
+                        </div>
+                        <div className="w-4/12 flex items-center justify-center px-2">
+                          <p className="font-medium text-xl">{volumenTotal + ' lbs'}</p>
+                        </div>
+                      </div>
+                      <div className="w-full h-full overflow-auto">
+                      {
+                        volumenEjercicio.map((ejercicio) =>(
+                          <div key={ejercicio.ejercicio.id} className="py-2 flex flex-row border-b shadow-sm">
+                            <div className="w-8/12 px-2">
+                              <p className="text-secondary font-medium text-lg truncate">{ejercicio.ejercicio.nombre}</p>
+                              <p className="truncate">{ejercicio.ejercicio.musculo_primario}</p>
+                            </div>
+                            <div className="w-4/12 flex items-center justify-center px-2">
+                              <p className="font-medium text-lg elipsis">{ejercicio.volumen + ' lbs'}</p>
+                            </div>
+                          </div>
+                        ))
+                      }
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <div className="flex flex-col justify-center items-center h-full"> 
+                      <div className="my-6">
+                        <div className="loader"></div>
+                      </div>
+                      <p>Cargando...</p>
+                    </div>
+                  )
+                )
+                :
+                (
+                  <div className="flex flex-col justify-center items-center h-full"> 
+                    <p className="text-center font-light text-xl">
+                      No se ha registrado ningún entrenamiento en los últimos 7 dias.
+                    </p>
+                  </div>
+                )
+              }
             </div>
             <div className="grid place-items-center p-10"></div>
           </div>
@@ -1225,9 +1404,9 @@ export default function VisualizadorProgreso() {
           {perfil ? (
             <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
               <div className="w-11/12">
-                <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+                <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
                   Meta de calorías - {perfil.nombre}
-                </h1>
+                </h2>
               </div>
 
               <div className="flex gap-2 mt-5">
@@ -1280,10 +1459,10 @@ export default function VisualizadorProgreso() {
                   {metaCalorias != 0 ? (
                     <div>
                       <div>
-                        <h1 className="font-heebo font-semibold">
+                        <h2 className="font-heebo font-semibold">
                           Tu meta actual es (cals):{" "}
                           <span className="text-blue-600">{metaCalorias}</span>
-                        </h1>
+                        </h2>
                       </div>
                       <ProgressBar
                         bgColor={` ${
@@ -1298,13 +1477,13 @@ export default function VisualizadorProgreso() {
                     </div>
                   ) : (
                     <div>
-                      <h1 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold">
                         Aún no defines una meta. Pulsa{" "}
                         <span className="text-blue-600 underline">
                           <Link href="../visualizadorCalorias">aquí</Link>
                         </span>{" "}
                         para definirla
-                      </h1>
+                      </h2>
                     </div>
                   )}
                 </div>
@@ -1322,38 +1501,38 @@ export default function VisualizadorProgreso() {
                   </div>
                   <div className="flex flex-col gap-2">
                     {perfil.edad ? (
-                      <h1 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold">
                         Edad:{" "}
                         <span className="text-blue-600">
                           {perfil.edad} años
                         </span>
-                      </h1>
+                      </h2>
                     ) : (
-                      <h1 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold">
                         Edad: <span className="text-blue-600">N/A</span>
-                      </h1>
+                      </h2>
                     )}
                     {perfil.estatura ? (
-                      <h1 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold">
                         Estatura:{" "}
                         <span className="text-blue-600">
                           {perfil.estatura} mts.
                         </span>
-                      </h1>
+                      </h2>
                     ) : (
-                      <h1 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold">
                         Estatura: <span className="text-blue-600">N/A</span>
-                      </h1>
+                      </h2>
                     )}
                     {perfil.peso ? (
-                      <h1 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold">
                         Peso:{" "}
                         <span className="text-blue-600">{perfil.peso} kg</span>
-                      </h1>
+                      </h2>
                     ) : (
-                      <h1 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold">
                         Peso: <span className="text-blue-600">N/A</span>
-                      </h1>
+                      </h2>
                     )}
                   </div>
                 </div>
@@ -1364,22 +1543,73 @@ export default function VisualizadorProgreso() {
               <div className="loader mt-6"></div>
             </div>
           )}
-          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
-            <div className="w-11/12">
-              <h1 className="text-xl text-blue-500 xl:text-2xl font-semibold">
-                Ganacia muscular
-              </h1>
-            </div>
 
+          <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
+            <div className="flex flex-col w-full h-full">
+              <h2 className="text-xl text-blue-500 xl:text-2xl font-semibold">
+                Volumen por Día
+              </h2>
+              {
+                volumenDiario ? (
+                  volumenDiario.length !== 0 ? 
+                  (
+                    <div className="flex flex-col h-[92%] w-full ">
+                      <div className="py-2 flex flex-row border-b-2 shadow-sm">
+                        <div className="w-8/12 px-2">
+                          <p className="text-secondary font-medium text-xl truncate">Volumen Total</p>
+                        </div>
+                        <div className="w-4/12 flex items-center justify-center px-2">
+                          <p className="font-medium text-xl">{volumenTotal + ' lbs'}</p>
+                        </div>
+                      </div>
+                      <div className="w-full h-full overflow-auto">
+                      {
+                        volumenDiario.map((dia) =>(
+                          <div key={dia.dia} className="py-2 flex flex-row border-b shadow-sm">
+                            <div className="w-8/12 px-2">
+                              <p className="text-secondary font-medium text-lg truncate">{dia.dia}</p>
+                              <p className="truncate">{'lunes'}</p>
+                            </div>
+                            <div className="w-4/12 flex items-center justify-center px-2">
+                              <p className="font-medium text-lg elipsis">{dia.volumen + ' lbs'}</p>
+                            </div>
+                          </div>
+                        ))
+                      }
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <div className="flex flex-col justify-center items-center h-full"> 
+                      <div className="my-6">
+                        <div className="loader"></div>
+                      </div>
+                      <p>Cargando...</p>
+                    </div>
+                  )
+                )
+                :
+                (
+                  <div className="flex flex-col justify-center items-center h-full"> 
+                    <p className="text-center font-light text-xl">
+                      No se ha registrado ningún entrenamiento en los últimos 7 dias.
+                    </p>
+                  </div>
+                )
+              }
+              
+
+            </div>
             <div className="grid place-items-center p-10"></div>
           </div>
 
           <div className="border-blue-600 border-2 w-11/12 h-celdasVP rounded-md shadow-2xl p-5">
             <div className="">
-              <h1 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
+              <h2 className="text-xl  text-blue-500 xl:text-2xl font-semibold">
                 Ejercicios donde se recomienda subir peso -{" "}
                 <span className="text-green-600">Próximamente</span>
-              </h1>
+              </h2>
             </div>
 
             <div className="p-5 h-96 mt-1">
@@ -1394,7 +1624,7 @@ export default function VisualizadorProgreso() {
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
+                    <h2 className="font-semibold text-lg">Aumenta 5 lbs</h2>
                   </div>
                 </div>
                 <div className="border-gray-500 border-2 rounded-md h-40 w-full">
@@ -1407,7 +1637,7 @@ export default function VisualizadorProgreso() {
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h1 className="font-semibold text-lg">Aumenta 15 lbs</h1>
+                    <h2 className="font-semibold text-lg">Aumenta 15 lbs</h2>
                   </div>
                 </div>
                 <div className="border-gray-500 border-2 rounded-md h-40 w-full">
@@ -1420,7 +1650,7 @@ export default function VisualizadorProgreso() {
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h1 className="font-semibold text-lg">Aumenta 5 lbs</h1>
+                    <h2 className="font-semibold text-lg">Aumenta 5 lbs</h2>
                   </div>
                 </div>
                 <div className="border-gray-500 border-2 rounded-md h-40 w-full">
@@ -1433,7 +1663,7 @@ export default function VisualizadorProgreso() {
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h1 className="font-semibold text-lg">Aumenta 20 lbs</h1>
+                    <h2 className="font-semibold text-lg">Aumenta 20 lbs</h2>
                   </div>
                 </div>
               </div>

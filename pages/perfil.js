@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Navbar from "/components/Navbar";
 import supabase from "../config/supabaseClient";
 import Footer from "/components/Footer";
+import { subDays, format } from "date-fns";
 
 export default function Perfil() {
   const router = useRouter();
@@ -359,7 +360,7 @@ export default function Perfil() {
                 <div className="w-full">
                   <p className="text-lg font-semibold">Fecha de Creación</p>
                   <p className="text-base font-normal">
-                    {sesion.user.created_at.slice(0, 10)}
+                    {format(new Date(sesion.user.created_at), "dd/MM/yy")}
                   </p>
                 </div>
               </div>

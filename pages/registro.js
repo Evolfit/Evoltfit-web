@@ -114,7 +114,7 @@ export default function Home() {
       
         const avatar = createAvatar(micah, {
           seed: formInput.nombre,
-          baseColor: ["#f7bba3"],
+          baseColor: ["f7bba3"],
           earringsProbability: 0,
           eyebrows: ["down","up"],
           facialHairProbability: 0,
