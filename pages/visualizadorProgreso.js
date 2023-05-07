@@ -13,7 +13,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip
+  Tooltip,
+  ResponsiveContainer
 } from "recharts";
 
 export default function VisualizadorProgreso() {
@@ -1474,69 +1475,141 @@ export default function VisualizadorProgreso() {
                   <div className="border-gray-500 border-2 rounded-md">
                     <div className="h-80">
                       {opCal == "op1" ? (
-                        <div className=" -translate-x-3 h-96">
-                          <BarChart width={400} height={320} data={graphicData}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="fecha" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar
-                              dataKey="TotalCaloríasAlDía"
-                              stackId="a"
-                              fill="#2563eb"
-                            />
-                          </BarChart>
+                        <div
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                          paddingBottom: "250px",
+                        }}
+                        className="-translate-x-6"
+                      >
+                        <div
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                          }}
+                        >
+                          <ResponsiveContainer>
+                            <BarChart data={graphicData}>
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="fecha" />
+                              <YAxis />
+                              <Tooltip />
+                              <Bar
+                                dataKey="TotalCaloríasAlDía"
+                                stackId="a"
+                                fill="#2563eb"
+                              />
+                            </BarChart>
+                          </ResponsiveContainer>
                         </div>
+                      </div>
                       ) : opCal == "op2" ? (
-                        <div className="-translate-x-3 h-96">
-                          <BarChart
-                            width={400}
-                            height={320}
-                            data={graphicData2}
+                        <div
+                          style={{
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                            paddingBottom: "250px",
+                          }}
+                          className="-translate-x-6"
+                        >
+                          <div
+                            style={{
+                              position: "absolute",
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              top: 0,
+                            }}
                           >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="fecha" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar
-                              dataKey="TotalProteinasAlDía"
-                              stackId="a"
-                              fill="#2563eb"
-                            />
-                          </BarChart>
+                            <ResponsiveContainer>
+                              <BarChart data={graphicData2}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="fecha" />
+                                <YAxis />
+                                <Tooltip />
+                                <Bar
+                                  dataKey="TotalProteinasAlDía"
+                                  stackId="a"
+                                  fill="#2563eb"
+                                />
+                              </BarChart>
+                            </ResponsiveContainer>
+                          </div>
                         </div>
                       ) : opCal == "op3" ? (
-                        <div className="-translate-x-3 h-96">
-                          <BarChart
-                            width={400}
-                            height={320}
-                            data={graphicData3}
+                        <div
+                          style={{
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                            paddingBottom: "250px",
+                          }}
+                          className="-translate-x-6"
+                        >
+                          <div
+                            style={{
+                              position: "absolute",
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              top: 0,
+                            }}
                           >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="fecha" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar
-                              dataKey="TotalGrasasAlDía"
-                              stackId="a"
-                              fill="#2563eb"
-                            />
-                          </BarChart>
+                            <ResponsiveContainer>
+                              <BarChart data={graphicData3}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="fecha" />
+                                <YAxis />
+                                <Tooltip />
+                                <Bar
+                                  dataKey="TotalGrasasAlDía"
+                                  stackId="a"
+                                  fill="#2563eb"
+                                />
+                              </BarChart>
+                            </ResponsiveContainer>
+                          </div>
                         </div>
                       ) : (
-                        <div className="-translate-x-3 h-96">
-                          <BarChart width={400} height={320} data={graphicData}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="fecha" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar
-                              dataKey="TotalCaloríasAlDía"
-                              stackId="a"
-                              fill="#2563eb"
-                            />
-                          </BarChart>
+                        <div
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                          paddingBottom: "250px",
+                        }}
+                        className="-translate-x-6"
+                      >
+                        <div
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                          }}
+                        >
+                          <ResponsiveContainer>
+                            <BarChart data={graphicData}>
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="fecha" />
+                              <YAxis />
+                              <Tooltip />
+                              <Bar
+                                dataKey="TotalCaloríasAlDía"
+                                stackId="a"
+                                fill="#2563eb"
+                              />
+                            </BarChart>
+                          </ResponsiveContainer>
                         </div>
+                      </div>
                       )}
                     </div>
                   </div>
@@ -1561,24 +1634,25 @@ export default function VisualizadorProgreso() {
                     </div>
                   ) : (
                     <div>
-                      <h2 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold text-sm lg:text-base">
                         Aún no defines una meta. Pulsa{" "}
-                        <Link href={{
-                          pathname: "../biblioteca"
-                        }}>
-                        <a className="text-blue-600 underline">
-                          aquí
-                        </a></Link>{" "}
+                        <Link
+                          href={{
+                            pathname: "../biblioteca",
+                          }}
+                        >
+                          <a className="text-blue-600 underline">aquí</a>
+                        </Link>{" "}
                         para definirla
                       </h2>
                     </div>
                   )}
                 </div>
-                <div className="w-3/12 h-celdaCalorias flex flex-col gap-48">
+                <div className="w-3/12 h-celdaCalorias flex flex-col gap-32 sm:gap-48">
                   <div className="">
                     <select
                       id="opciones"
-                      className="select select-secondary w-full text-base border-0 font-normal rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 shadow-gray-200"
+                      className="select select-secondary w-full text-base font-normal rounded-xl shadow border border-gray-100 bg-slate-50 hover:bg-slate-100 shadow-gray-200"
                       onChange={handleSelectChange}
                     >
                       <option value="op1">Calorías</option>
@@ -1588,36 +1662,36 @@ export default function VisualizadorProgreso() {
                   </div>
                   <div className="flex flex-col gap-2">
                     {perfil.edad ? (
-                      <h2 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold text-sm lg:text-base">
                         Edad:{" "}
                         <span className="text-blue-600">
                           {perfil.edad} años
                         </span>
                       </h2>
                     ) : (
-                      <h2 className="font-heebo font-semibold">
+                      <h2 className="font-heebo font-semibold text-sm lg:text-base">
                         Edad: <span className="text-blue-600">N/A</span>
                       </h2>
                     )}
                     {perfil.estatura ? (
-                      <h2 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold text-sm lg:text-base">
                         Estatura:{" "}
                         <span className="text-blue-600">
                           {perfil.estatura} mts.
                         </span>
                       </h2>
                     ) : (
-                      <h2 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold text-sm lg:text-base">
                         Estatura: <span className="text-blue-600">N/A</span>
                       </h2>
                     )}
                     {perfil.peso ? (
-                      <h2 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold text-sm lg:text-base">
                         Peso:{" "}
                         <span className="text-blue-600">{perfil.peso} kg</span>
                       </h2>
                     ) : (
-                      <h2 className="font-hebbo font-semibold">
+                      <h2 className="font-hebbo font-semibold text-sm lg:text-base">
                         Peso: <span className="text-blue-600">N/A</span>
                       </h2>
                     )}
@@ -1710,56 +1784,56 @@ export default function VisualizadorProgreso() {
 
             <div className="p-5 h-96 mt-1">
               <div className="grid grid-cols-2 gap-2">
-                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                <div className="border-gray-500 border-2 rounded-md h-32 w-auto sm:h-40 sm:w-full">
                   <div className="grid place-items-center mt-2">
                     <img
-                      className="rounded-full"
-                      height="100xp"
-                      width="100px"
+                      className="rounded-full h-16 w-16 sm:h-24 sm:w-24"
                       src="exVP1.gif"
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h2 className="font-semibold text-lg">Aumenta 5 lbs</h2>
+                    <h2 className="font-semibold text-sm sm:text-lg">
+                      Aumenta 5 lbs
+                    </h2>
                   </div>
                 </div>
-                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                <div className="border-gray-500 border-2 rounded-md h-32 w-auto sm:h-40 sm:w-full">
                   <div className="grid place-items-center mt-2">
                     <img
-                      className="rounded-full"
-                      height="100xp"
-                      width="100px"
+                      className="rounded-full h-16 w-16 sm:h-24 sm:w-24"
                       src="exVP2.gif"
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h2 className="font-semibold text-lg">Aumenta 15 lbs</h2>
+                    <h2 className="font-semibold text-sm sm:text-lg">
+                      Aumenta 15 lbs
+                    </h2>
                   </div>
                 </div>
-                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                <div className="border-gray-500 border-2 rounded-md h-32 w-auto sm:h-40 sm:w-full">
                   <div className="grid place-items-center mt-2">
                     <img
-                      className="rounded-full"
-                      height="100xp"
-                      width="100px"
+                      className="rounded-full h-16 w-16 sm:h-24 sm:w-24"
                       src="exVP3.gif"
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h2 className="font-semibold text-lg">Aumenta 5 lbs</h2>
+                    <h2 className="font-semibold text-sm sm:text-lg">
+                      Aumenta 5 lbs
+                    </h2>
                   </div>
                 </div>
-                <div className="border-gray-500 border-2 rounded-md h-40 w-full">
+                <div className="border-gray-500 border-2 rounded-md h-32 w-auto sm:h-40 sm:w-full">
                   <div className="grid place-items-center mt-2">
                     <img
-                      className="rounded-full"
-                      height="100xp"
-                      width="100px"
+                      className="rounded-full h-16 w-16 sm:h-24 sm:w-24"
                       src="exVP4.gif"
                     />
                   </div>
                   <div className="flex justify-center items-center">
-                    <h2 className="font-semibold text-lg">Aumenta 20 lbs</h2>
+                    <h2 className="font-semibold text-sm sm:text-lg">
+                      Aumenta 20 lbs
+                    </h2>
                   </div>
                 </div>
               </div>
