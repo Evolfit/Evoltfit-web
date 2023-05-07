@@ -80,24 +80,24 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
                 <td className=""></td>
                 <td className=""></td>
                 <td className=""></td>
+                <td className=""></td>
                 
                 {
                     ejercicio.ejercicio.musculo_primario == 'Cardio' ?
-                    ''
+                    <div className="h-10"></div>
                     :
-                    <td className=""></td>
-                }
-                <td 
-                className="text-center"
-                onClick={() => agregarSet(ejercicioSeleccionado)}
-                >
-                    <div className="flex items-center justify-center f-full w-full">
-                        <div className="flex items-center justify-center p-0.5 text-2xl cursor-pointer text-white rounded-md bg-blue-500
-                        hover:bg-blue-600 duration-100 active:scale-95 my-0.5">
-                            <ion-icon name="add-outline"></ion-icon>
+                    <td 
+                    className="text-center"
+                    onClick={() => agregarSet(ejercicioSeleccionado)}
+                    >
+                        <div className="flex items-center justify-center f-full w-full">
+                            <div className="flex items-center justify-center p-0.5 text-2xl cursor-pointer text-white rounded-md bg-blue-500
+                            hover:bg-blue-600 duration-100 active:scale-95 my-0.5">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </div>
                         </div>
-                    </div>
-                </td>
+                    </td>
+                }
             </tr>
             </tbody>
         </table>

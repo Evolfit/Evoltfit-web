@@ -259,17 +259,22 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
                                 <td className=""></td>
                                 <td className=""></td>
                                 <td className=""></td>
-                                <td 
-                                className="text-center"
-                                onClick={agregarSet}
-                                >
-                                    <div className="flex items-center justify-center f-full w-full">
-                                        <div className="flex items-center justify-center p-0.5 text-2xl cursor-pointer text-white rounded-md bg-blue-500
-                                        hover:bg-blue-600 duration-100 active:scale-95 my-0.5">
-                                            <ion-icon name="add-outline"></ion-icon>
+                                {
+                                    ejercicio.musculo_primario == 'Cardio' ?
+                                        <td className="h-10"></td>
+                                    :
+                                    <td 
+                                    className="text-center"
+                                    onClick={agregarSet}
+                                    >
+                                        <div className="flex items-center justify-center f-full w-full">
+                                            <div className="flex items-center justify-center p-0.5 text-2xl cursor-pointer text-white rounded-md bg-blue-500
+                                            hover:bg-blue-600 duration-100 active:scale-95 my-0.5">
+                                                <ion-icon name="add-outline"></ion-icon>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
+                                }
                             </tr>
                             </tbody>
                         </table>

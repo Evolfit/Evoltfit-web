@@ -26,10 +26,12 @@ const CardRutina = ({ rutina }) => {
         .select(`
           id,
           ejercicio(
-            nombre
+            nombre,
+            musculo_primario
           ),
           rutinas_ejercicio_sets (
-            id
+            id,
+            reps
           ),
           orden
         `)
@@ -227,10 +229,16 @@ const CardRutina = ({ rutina }) => {
                             {(ejercicio.orden+1) + '. ' + ejercicio.ejercicio.nombre}
                           </span>
                           <span className="w-3/12 font-light text-base sm:ml-1">
-                            {ejercicio.rutinas_ejercicio_sets.length === 1 ? 
-                              '| ' + ejercicio.rutinas_ejercicio_sets.length + ' Set'
-                            :
-                              '| ' + ejercicio.rutinas_ejercicio_sets.length + ' Sets'
+                            {
+                              ejercicio.ejercicio.musculo_primario == 'Cardio' ?
+                              '| ' + ejercicio.rutinas_ejercicio_sets[0].reps + ' Min.'
+                              :
+                              (
+                                  ejercicio.rutinas_ejercicio_sets.length === 1 ? 
+                                  '| ' + ejercicio.rutinas_ejercicio_sets.length + ' Set'
+                                :
+                                  '| ' + ejercicio.rutinas_ejercicio_sets.length + ' Sets'
+                              )
                             }
                             
                           </span>
