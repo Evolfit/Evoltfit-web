@@ -99,7 +99,7 @@ const CardRutina = ({ rutina }) => {
           (rutina.rutina_en_progreso[0].count !== 1 ?
             'hover:border-blue-500'
             :
-            'hover:border-amber-500'
+            'hover:border-emerald-500'
           )
           +
           " flex flex-col h-full bg-white border-2 rounded-lg shadow-md hover:scale-105 hover:shadow-lg duration-100"}>
@@ -112,7 +112,7 @@ const CardRutina = ({ rutina }) => {
                     :
                     'bg-indigo-500 hover:bg-indigo-600 cursor-pointer'
                   :
-                  'bg-amber-500 hover:bg-amber-600 cursor-pointer'
+                  'bg-emerald-500 hover:bg-emerald-600 cursor-pointer'
                 )
                 +
                 " rounded-t-md shadow-md duration-150 "
@@ -278,8 +278,8 @@ const CardRutina = ({ rutina }) => {
                   </div>
                   <div className="flex items-end justify-end w-full">
                     <button 
-                        className="flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-amber-500
-                        hover:bg-amber-600 duration-100 active:scale-95 h-full w-fit px-3 py-2"
+                        className="flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-emerald-500
+                        hover:bg-emerald-600 duration-100 active:scale-95 h-full w-fit px-3 py-2"
                         onClick={() => {
                           router.push({
                               pathname: '/comenzarRutina',
