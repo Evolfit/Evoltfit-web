@@ -61,7 +61,6 @@ export default function Home() {
           proteinas_pieza: formInput.proteinasPieza,
           grasas_pieza: formInput.grasasPieza,
           tipo: formInput.clasificacion,
-          cantidad: "c/100gr.",
           img: 'https://ichwtlkazihzvtpmxbnw.supabase.co/storage/v1/object/public/img/' + data.path
           })
 
@@ -175,6 +174,7 @@ export default function Home() {
                 <option id="Huevos" value="Huevos">Huevos</option>
                 <option id="Embutidos" value="Embutidos">Embutidos</option>
                 <option id="Carne de Ave" value="Carne de Ave">Carne de Ave</option>
+                <option id="Yoghurt" value="Yoghurt">Yoghurt</option>
               </select>
             </div>
 
