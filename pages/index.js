@@ -130,44 +130,45 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <main>
+      <main className="mx-auto max-w-screen-2xl rounded-md">
         <br />
         <br />
         <br />
         <br />
-
-        <div className="flex flex-col p-3 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5">
-          <div className="border-blue-600 border-2 w-12/12 mt-6 mb-6 rounded-md shadow-xl">
-            <div className="grid place-items-center p-10">
-              <h1 className="text-center text-2xl text-black xl:text-3xl font-semibold">
-                Bienvenido a{" "}
-                <span className="text-blue-600 text-2xl xl:text-3xl italic font-bold font-catamaran">
-                  EvoltFit
-                </span>
-              </h1>
-              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20">
-                Selecciona un músculo del modelo y busca los ejercicios que
-                mejor te acomoden.
+        
+        <div className="flex flex-col p-3 mt-6 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5">
+          <div className="border hover:scale-105 mb-6 duration-100 w-12/12 rounded-md shadow-md bg-white"> 
+            <div className="grid place-items-center px-8 pb-6">
+              <div className="flex flex-col mt-6">
+                <span className="text-xl font-light text-black">{'Bienvenido a'}</span>
+                <span className="text-6xl font-medium text-secondary text-center">EvoltFit</span>
+              </div>
+              <h2 className="mt-5 text-lg text-black text-center xl:pl-20 xl:pr-20 pb-6 border-b-2">
+                Para comenzar, selecciona un grupo muscular del modelo.
               </h2>
-              <span className="text-black text-xl font-semibold mt-3">
-                O también...
+              <span className="mt-5 text-lg text-black text-center xl:pl-20 xl:pr-20"> 
+                {'O puedes crear una rutina inteligente utilizando nuestro '}
               </span>
-              <span className="inline-block w-44 xl:w-60 h-1 bg-blue-500 rounded-full mt-3"></span>
-              <h2 className="mt-5 text-xl text-black text-center xl:pl-20 xl:pr-20"> 
-                Puedes dejarnos todo el trabajo a nosotros y crearemos la mejor
-                rutina para ti.<br/><br/>
-              Usos: <p style={{ color: usosSe === "Ilimitados" ? "green" : "black" }}>{usosSe}</p>
-              </h2>
-              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+              <span className="text-xl font-medium text-secondary text-center border-b p-2">
+                {'Sistema Experto.'}
+              </span>
+              <div className="text-sm pt-2">
+                <span>{'Usos: '}</span>
+                <span style={{ color: usosSe === "Ilimitados" ? "blue" : "black" }}>
+                  {usosSe}
+                </span>
+              </div>
+              <div className="flex flex-col my-6 space-y-3 lg:space-y-0 lg:flex-row">
                 <Link href="/sistemaexperto">
-                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-gray-700">
-                    Vamos
-                  </a>
+                  <button 
+                    className="cursor-pointer px-12 font-medium text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 btn-md shadow-md">
+                    CREAR RUTINA INTELIGENTE
+                  </button>
                 </Link>
               </div>
             </div>
           </div>
-          <div className="body-map" id="body-map">
+          <div className="body-map hover:scale-105 transition duration-100" id="body-map">
             <div id="male-body-maps" className="body-map__container">
               <div className="body-map__body">
                 <svg
@@ -580,257 +581,258 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main>
+        <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+          <div className="w-full lg:w-1/2">
+            <div className="lg:max-w-lg">
+              <h1 className="text-3xl font-semibold tracking-wide text-gray-800 lg:text-4xl">
+                Encuentra la mejor forma de entrenar en EvoltFit
+              </h1>
 
-      <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
-        <div className="w-full lg:w-1/2">
-          <div className="lg:max-w-lg">
-            <h1 className="text-3xl font-semibold tracking-wide text-gray-800 lg:text-4xl">
-              Encuentra la mejor forma de entrenar en EvoltFit
-            </h1>
-
-            <div className="grid gap-6 mt-8 sm:grid-cols-2">
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Rutinas personalizadas</span>
-              </div>
-
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Rutinas inteligentes</span>
-              </div>
-
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Biblioteca de ejercicios</span>
-              </div>
-
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Calculadora de calorías</span>
-              </div>
-
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Planes accesibles</span>
-              </div>
-
-              <div className="flex items-center text-gray-800 -px-3">
-                <svg
-                  className="w-5 h-5 mx-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-
-                <span className="mx-3">Manejo intuitivo</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
-          <img
-            className="object-cover w-full h-full max-w-2xl rounded-md"
-            src="bannerindex2.jpg"
-          />
-        </div>
-      </div>
-
-      <div className="container px-6 py-10 mx-auto">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="mt-2 text-3xl font-semibold text-gray-800 capitalize lg:text-4xl">
-            Nuestros colaboradores
-          </h1>
-          <div className="mt-2">
-            <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
-            <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
-            <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
-            <img
-              className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
-              src="col1.png"
-              alt=""
-            />
-
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
-              Karina Villareal
-            </h1>
-
-            <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
-              Licenciada en nutrición
-            </p>
-
-            <div className="flex mt-3 -mx-2">
-              <Link href="https://www.instagram.com/karivima/">
-                <a
-                  className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
-                  aria-label="Facebook"
-                >
+              <div className="grid gap-6 mt-8 sm:grid-cols-2">
+                <div className="flex items-center text-gray-800 -px-3">
                   <svg
-                    className="w-6 h-6 fill-current"
-                    viewBox="0 0 24 24"
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
                     fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
-                </a>
-              </Link>
+
+                  <span className="mx-3">Rutinas personalizadas</span>
+                </div>
+
+                <div className="flex items-center text-gray-800 -px-3">
+                  <svg
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+
+                  <span className="mx-3">Rutinas inteligentes</span>
+                </div>
+
+                <div className="flex items-center text-gray-800 -px-3">
+                  <svg
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+
+                  <span className="mx-3">Biblioteca de ejercicios</span>
+                </div>
+
+                <div className="flex items-center text-gray-800 -px-3">
+                  <svg
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+
+                  <span className="mx-3">Calculadora de calorías</span>
+                </div>
+
+                <div className="flex items-center text-gray-800 -px-3">
+                  <svg
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+
+                  <span className="mx-3">Planes accesibles</span>
+                </div>
+
+                <div className="flex items-center text-gray-800 -px-3">
+                  <svg
+                    className="w-5 h-5 mx-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+
+                  <span className="mx-3">Manejo intuitivo</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
+          <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
             <img
-              className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
-              src="col2.png"
-              alt=""
+              className="object-cover w-full h-full max-w-2xl rounded-md"
+              src="bannerindex2.jpg"
             />
-
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
-              Jimena Cuevas
-            </h1>
-
-            <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
-              Coach personalizado profesional
-            </p>
-
-            <div className="flex mt-3 -mx-2">
-              <Link href="https://instagram.com/jimena.cuevasfit?igshid=OGQ2MjdiOTE=">
-                <a
-                  className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
-                  aria-label="Facebook"
-                >
-                  <svg
-                    className="w-6 h-6 fill-current"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
-                  </svg>
-                </a>
-              </Link>
-            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-1 xl:mt-32 xl:flex">
-        <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold text-gray-800 lg:text-4xl">
-              Entrena y aprende con{" "}
-              <span className="text-blue-600">EvoltFit</span>
-            </h2>
+        <div className="container px-6 py-10 mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="mt-2 text-3xl font-semibold text-gray-800 capitalize lg:text-4xl">
+              Nuestros colaboradores
+            </h1>
+            <div className="mt-2">
+              <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
+              <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+              <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
+            <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
+              <img
+                className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
+                src="col1.png"
+                alt=""
+              />
 
-            <p className="mt-4 text-sm text-gray-500 lg:text-base">
-              EvoltFit esta preparado para ayudar a todo tipo de usuarios. Si
-              eres principiante te proporcionamos la guía perfecta para obtener
-              la mejor rutina para ti y así aprendas lo que le funciona a tu
-              cuerpo; en cambio si eres alguien con conocimientos previos
-              ponemos a tu disposición herramientas para que puedas organizar tu
-              entrenamiento de la mejor forma posible.
-            </p>
+              <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
+                Karina Villareal
+              </h1>
 
-            <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-              {sesion ? (
-                <a></a>
-              ) : (
-                <Link href="../registro">
-                  <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">
-                    Registrarse
+              <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
+                Licenciada en nutrición
+              </p>
+
+              <div className="flex mt-3 -mx-2">
+                <Link href="https://www.instagram.com/karivima/">
+                  <a
+                    className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
+                    aria-label="Facebook"
+                  >
+                    <svg
+                      className="w-6 h-6 fill-current"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+                    </svg>
                   </a>
                 </Link>
-              )}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600">
+              <img
+                className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
+                src="col2.png"
+                alt=""
+              />
+
+              <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white">
+                Jimena Cuevas
+              </h1>
+
+              <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
+                Coach personalizado profesional
+              </p>
+
+              <div className="flex mt-3 -mx-2">
+                <Link href="https://instagram.com/jimena.cuevasfit?igshid=OGQ2MjdiOTE=">
+                  <a
+                    className="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white"
+                    aria-label="Facebook"
+                  >
+                    <svg
+                      className="w-6 h-6 fill-current"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+                    </svg>
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div className="xl:w-full xl:h-64 xl:w-1/2 xl:h-auto">
-          <div className="invisible xl:w-full xl:h-full xl:bg-cover bg-internal-img3 xl:visible">
-            <div className="w-full h-full bg-black opacity-25"></div>
+
+        <div className="mt-1 xl:mt-32 xl:flex">
+          <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
+            <div className="max-w-xl">
+              <h2 className="text-3xl font-semibold text-gray-800 lg:text-4xl">
+                Entrena y aprende con{" "}
+                <span className="text-blue-600">EvoltFit</span>
+              </h2>
+
+              <p className="mt-4 text-sm text-gray-500 lg:text-base">
+                EvoltFit esta preparado para ayudar a todo tipo de usuarios. Si
+                eres principiante te proporcionamos la guía perfecta para obtener
+                la mejor rutina para ti y así aprendas lo que le funciona a tu
+                cuerpo; en cambio si eres alguien con conocimientos previos
+                ponemos a tu disposición herramientas para que puedas organizar tu
+                entrenamiento de la mejor forma posible.
+              </p>
+
+              <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                {sesion ? (
+                  <a></a>
+                ) : (
+                  <Link href="../registro">
+                    <a className="block px-6 py-2.5 text-sm font-medium tracking-wider text-center text-white uppercase transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">
+                      Registrarse
+                    </a>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="xl:w-full xl:h-64 xl:w-1/2 xl:h-auto">
+            <div className="invisible xl:w-full xl:h-full xl:bg-cover bg-internal-img3 xl:visible">
+              <div className="w-full h-full bg-black opacity-25"></div>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      
 
       <br></br>
 

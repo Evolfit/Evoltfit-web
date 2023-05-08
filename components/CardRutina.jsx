@@ -99,7 +99,7 @@ const CardRutina = ({ rutina }) => {
           (rutina.rutina_en_progreso[0].count !== 1 ?
             'hover:border-blue-500'
             :
-            'hover:border-emerald-500'
+            'hover:border-amber-500'
           )
           +
           " flex flex-col h-full bg-white border-2 rounded-lg shadow-md hover:scale-105 hover:shadow-lg duration-100"}>
@@ -107,9 +107,12 @@ const CardRutina = ({ rutina }) => {
             <div 
               className={
                 (rutina.rutina_en_progreso[0].count !== 1 ?
-                  'bg-blue-500 hover:bg-blue-600 cursor-pointer'
+                  rutina.esSE == false ?
+                    'bg-blue-500 hover:bg-blue-600 cursor-pointer'
+                    :
+                    'bg-indigo-500 hover:bg-indigo-600 cursor-pointer'
                   :
-                  'bg-emerald-500 hover:bg-emerald-600 cursor-pointer'
+                  'bg-amber-500 hover:bg-amber-600 cursor-pointer'
                 )
                 +
                 " rounded-t-md shadow-md duration-150 "
@@ -131,6 +134,14 @@ const CardRutina = ({ rutina }) => {
             >
               <div className="flex flex-row w-full my-4 px-4">
                 <div className="flex items-center w-10/12">
+                  {
+                    rutina.esSE == true ?
+                    <div className='text-white text-3xl mr-2 translate-y-1'>
+                      <ion-icon name="share-social-outline"></ion-icon>
+                    </div>
+                    :
+                    ''
+                  }
                   <span className="tracking-wide font-medium text-xl text-white truncate">
                     {rutina.nombre}
                   </span>
@@ -267,8 +278,8 @@ const CardRutina = ({ rutina }) => {
                   </div>
                   <div className="flex items-end justify-end w-full">
                     <button 
-                        className="flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-emerald-500
-                        hover:bg-emerald-600 duration-100 active:scale-95 h-full w-fit px-3 py-2"
+                        className="flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-amber-500
+                        hover:bg-amber-600 duration-100 active:scale-95 h-full w-fit px-3 py-2"
                         onClick={() => {
                           router.push({
                               pathname: '/comenzarRutina',
@@ -377,8 +388,12 @@ const CardRutina = ({ rutina }) => {
                       ''
                     :
                     <button 
-                      className="flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-blue-500
-                      hover:bg-blue-600 duration-100 active:scale-95 h-full w-fit px-3"
+                      className={
+                        rutina.esSE == true ?
+                        "flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-indigo-500 hover:bg-indigo-600 duration-100 active:scale-95 h-full w-fit px-3"
+                        :
+                        "flex flex-row items-center justify-center cursor-pointer text-white rounded-md bg-blue-500 hover:bg-blue-600 duration-100 active:scale-95 h-full w-fit px-3"
+                      }
                       onClick={() => {
                         router.push({ 
                           pathname: '/comenzarRutina',

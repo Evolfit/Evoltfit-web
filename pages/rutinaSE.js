@@ -936,7 +936,8 @@ export default function Home() {
           .from('rutinas')
           .insert({
             usuario: sesion.user.id,
-            nombre: nombreRutina
+            nombre: nombreRutina,
+            esSE: true
           })
           .select('id')
 
