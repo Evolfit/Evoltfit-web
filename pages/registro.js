@@ -172,7 +172,7 @@ export default function Home() {
               setDatos(data);
 
 
-              setMensajeAviso('¡Se envío un corre de verificación!');
+              setMensajeAviso('¡Se envío un correo de verificación!');
               setColorAviso('green');
               setMostrarAviso(true)
             }
@@ -419,7 +419,7 @@ export default function Home() {
                   <span className="sr-only">Icono de todo correcto</span>
                 </div>
                 <div className="ml-3 text-sm font-normal">
-                  ¡Se envío un corre de verificación!
+                  ¡Se envío un correo de verificación!
                 </div>
               </div>
             </div>
