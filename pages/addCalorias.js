@@ -221,9 +221,7 @@ export default function Home() {
 
       if (error2) {
         //console.log(error2);
-        //console.log(
-          "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
-        );
+        //console.log("ERROR: Hubo un error al agregar un nuevo producto a la tabla total.");
       } else {
         //console.log("Se agregó el producto a la tabla de productos totales.");
       }
@@ -299,9 +297,7 @@ export default function Home() {
 
       if (error2) {
         //console.log(error2);
-        //console.log(
-          "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
-        );
+        //console.log("ERROR: Hubo un error al agregar un nuevo producto a la tabla total." );
       } else {
         //console.log("Se agregó el producto a la tabla de productos totales.");
       }

@@ -35,11 +35,9 @@ const CardCalorias = ({ registro }) => {
       .eq("registro", registro.id);
 
     if (error) {
-      //console.log(
-        "ERROR: Hubo un error al recuperar los productos de la rutina."
-      );
+      //console.log("ERROR: Hubo un error al recuperar los productos de la rutina.");
       //console.log(error);
-    } else {
+      } else {
       ////console.log(data);
       setProductosRutina(data);
 
