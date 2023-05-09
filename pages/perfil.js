@@ -269,7 +269,9 @@ export default function Perfil() {
               </div>
               <div className="flex flex-row px-4 py-3 border-t border-gray-300">
                 <div className="w-full">
-                  <p className="text-lg font-semibold">Datos generales del usuario</p>
+                  <p className="text-lg font-semibold">
+                    Datos generales del usuario
+                  </p>
                   <div className="flex gap-1">
                     {perfil.edad ? (
                       <p className="text-base font-normal">
@@ -297,22 +299,12 @@ export default function Perfil() {
 
                     {perfil.sexo ? (
                       <p className="text-base font-normal">
-                        Género: {perfil.sexo} 
+                        Género: {perfil.sexo}
                       </p>
                     ) : (
                       <p className="text-base font-normal">Género: N/A</p>
                     )}
                   </div>
-                </div>
-                <div className="w-fit my-auto">
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => {
-                      router.push("/passwordOlvidada");
-                    }}
-                  >
-                    Editar
-                  </button>
                 </div>
               </div>
               {resultado == 0 ? (
@@ -338,10 +330,14 @@ export default function Perfil() {
                 <div className="flex flex-row px-4 py-3 border-t border-gray-300">
                   <div className="w-full">
                     <p className="text-lg font-semibold">Plan</p>
-                    <p className="text-base font-normal">
-                      {datosPlan[0].plan_name} | Fecha de termino:{" "}
-                      {datosPlan[0].fecha_termino}
-                    </p>
+                    {datosPlan ? (
+                      <p className="text-base font-normal">
+                        {datosPlan[0].plan_name} | Fecha de termino:{" "}
+                        {datosPlan[0].fecha_termino}
+                      </p>
+                    ) : (
+                      <p className="text-base font-normal">Cargando...</p>
+                    )}
                   </div>
                   <div className="w-fit my-auto">
                     <button

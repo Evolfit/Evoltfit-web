@@ -956,6 +956,8 @@ height: 28.5rem;
   transform: translateY(-1px);
 }
 
+/* Clases para la tabla generada por el SE */
+
 .chorizo{
   display: block;
   overflow-x: scroll;
@@ -970,3 +972,18 @@ height: 28.5rem;
   width: 100%;
 }
 
+
+/*  Clases de estilos de rutinaSE */
+
+@media screen and (max-width: 380px) {
+  .resp-text-se{
+    font-size: 1rem;
+  }
+  .resp-text-se2{
+    font-size: 1.2rem;
+  }
+}
+
+.sizeNombreE{
+  font-size: 15px;
+}

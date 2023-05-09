@@ -6,13 +6,23 @@ const Footer = () => {
   return (
     <footer className="relative p-4 bg-white sm:p-6 z-40">
       <div className="md:flex md:justify-between">
-        <div className="mb-6 md:mb-0">
+        <div className="mb-6 md:mb-0 flex flex-col gap-44">
           <Link href="../">
             <div className="flex items-center cursor-pointer">
               <img src="/evologo.png" className="mr-3 h-8" alt="Evolfit Logo" />
               <span className="self-center text-blue-600 text-2xl font-semibold whitespace-nowrap">
                 EvoltFit
               </span>
+            </div>
+          </Link>
+          <Link href="https://musclewiki.com">
+            <div className="flex items-center cursor-pointer translate-y-5">
+              <span className="self-center text-black text-sm font-semibold whitespace-nowrap">
+                Creditos a {" "}<span className="self-center text-blue-600 text-sm font-semibold whitespace-nowrap">
+                MuscleWiki
+              </span>
+              </span>
+              
             </div>
           </Link>
         </div>
@@ -64,7 +74,7 @@ const Footer = () => {
           </div>
 
           
-          <div>
+          {/* <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
               Legal
             </h2>
@@ -80,7 +90,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -94,7 +104,7 @@ const Footer = () => {
           . Todos los derechos reservados.
         </span>
         <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-          <Link href="#">
+          <Link href="https://www.facebook.com/?stype=lo&jlou=AfffXbu9A_7H1JSDTywmclKlN3ktC3ZQyB-Bp5Y1abePZMDOmKQY2Mqc1uzt5lJfm9tCIU1pnNaOOL6fowXlsoSSH93oPGhikeeMLzWBQy3HPg&smuh=14888&lh=Ac-j-J5v4rmf6XHSkr4">
             <div>
               <svg
                 className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
@@ -111,7 +121,7 @@ const Footer = () => {
               <span className="sr-only">Facebook</span>
             </div>
           </Link>
-          <Link href="#">
+          <Link href="https://www.instagram.com">
             <div>
               <svg
                 className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
@@ -128,7 +138,7 @@ const Footer = () => {
               <span className="sr-only">Instagram</span>
             </div>
           </Link>
-          <Link href="#">
+          <Link href="https://twitter.com/?lang=es">
             <div>
               <svg
                 className="w-5 h-5 text-gray-500 hover:text-blue-900 cursor-pointer"
