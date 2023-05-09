@@ -8,7 +8,7 @@ import RowSetsComenzar from "/components/RowSetsComenzar";
 
 const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionado, agregarSet  }) => {
   const router = useRouter();  
-  //console.log(ejercicioSeleccionado);
+  ////console.log(ejercicioSeleccionado);
 
   return (
     <div className="flex-auto bg-white rounded-lg shadow my-2 p-6">

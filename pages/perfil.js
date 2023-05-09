@@ -39,19 +39,19 @@ export default function Perfil() {
     const { data, error } = await supabase.auth.getSession();
 
     if (data.session) {
-      //console.log(data.session)
+      ////console.log(data.session)
       setSesion(data.session);
       getPerfil(data.session.user.id);
       getPlan(data.session.user.id);
     } else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
+      ////console.log("No hay Sesión " + error);
       router.push("/");
     }
   };
 
   const getPerfil = async (idUsuario) => {
-    //console.log(idUsuario)
+    ////console.log(idUsuario)
 
     const { data, error } = await supabase
       .from("perfiles")
@@ -59,9 +59,9 @@ export default function Perfil() {
       .eq("id", idUsuario);
 
     if (error) {
-      console.log("ERROR: No se pudo conseguir el perfil.");
+      //console.log("ERROR: No se pudo conseguir el perfil.");
     } else {
-      //console.log(data[0])
+      ////console.log(data[0])
       setPerfil(data[0]);
     }
   };
@@ -73,10 +73,10 @@ export default function Perfil() {
       .match({ id_usuario: sesion_id, activo: 1 });
 
     if (sus_pagos.length == 0) {
-      console.log("Este usuario no tiene plan");
+      //console.log("Este usuario no tiene plan");
       setResultado(0);
     } else {
-      console.log("Este usuario si tiene un plan");
+      //console.log("Este usuario si tiene un plan");
       setDatosPlan(sus_pagos);
       setResultado(sus_pagos[0].activo);
     }
@@ -101,7 +101,7 @@ export default function Perfil() {
     const { error } = await supabase.auth.signOut();
 
     if (error) {
-      console.log(error);
+      //console.log(error);
     } else {
       router.reload(window.location.pathname);
     }
@@ -116,8 +116,8 @@ export default function Perfil() {
         [name]: value,
       });
 
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
-      //console.log(formInput.equipo)
+      ////console.log(name + " | " + id + ": " + value + " -> " + checked);
+      ////console.log(formInput.equipo)
     },
     [formInput, setFormInput]
   );
@@ -129,11 +129,11 @@ export default function Perfil() {
       });
 
       if (error) {
-        console.log("ERROR: No se pudo actualizar el correo del usuario.");
-        console.log(error);
+        //console.log("ERROR: No se pudo actualizar el correo del usuario.");
+        //console.log(error);
       } else {
-        console.log("Se envió un correo de verificación.");
-        console.log(data);
+        //console.log("Se envió un correo de verificación.");
+        //console.log(data);
         setCorreoVerificacion(true);
         setUpdateSuccess(true);
       }
@@ -146,10 +146,10 @@ export default function Perfil() {
         .eq("id", sesion.user.id);
 
       if (error) {
-        console.log("ERROR: No se pudo actualizar el perfil.");
-        console.log(error);
+        //console.log("ERROR: No se pudo actualizar el perfil.");
+        //console.log(error);
       } else {
-        console.log("Perfil actualizado.");
+        //console.log("Perfil actualizado.");
         setPerfil({
           nombre: formInput.nombre,
           avatar: perfil.avatar,

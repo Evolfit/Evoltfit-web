@@ -9,7 +9,7 @@ import Aviso from "/components/Aviso";
 export default function Home() {
   const router = useRouter();
 
-  //console.log(supabase);
+  ////console.log(supabase);
   const [fetchError, setFetchError] = useState(null);
   const [datos, setDatos] = useState(null);
 
@@ -50,12 +50,12 @@ export default function Home() {
       setMensajeAviso('Correo o contraseña incorrectos.');
       setColorAviso('red');
       setMostrarAviso(true)
-      console.log("Login fallido");
-      console.log(error);
+      //console.log("Login fallido");
+      //console.log(error);
     } else {
       setDatos(data);
       setFetchError(null);
-      console.log("Login exitoso");
+      //console.log("Login exitoso");
       router.push('/')
     }
   };

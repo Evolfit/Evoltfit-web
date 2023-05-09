@@ -59,8 +59,8 @@ export default function Home() {
       .eq("id", registroIndex);
 
     if (error) {
-      console.log("ERROR: No se encontró el registro de calorias.");
-      console.log(error);
+      //console.log("ERROR: No se encontró el registro de calorias.");
+      //console.log(error);
     } else {
       setRegistro(data[0]);
       setFormInput({
@@ -72,7 +72,7 @@ export default function Home() {
   }
 
   async function updateRegistro(nombre) {
-    //console.log(rutinaIndex)
+    ////console.log(rutinaIndex)
     let temp;
 
     if (nombre == "") {
@@ -87,11 +87,11 @@ export default function Home() {
       .eq("id", registroIndex);
 
     if (error) {
-      console.log("ERROR: No se pudo actualizar el registro.");
-      console.log(error);
+      //console.log("ERROR: No se pudo actualizar el registro.");
+      //console.log(error);
     } else {
-      console.log("Registro actualizado");
-      //console.log(data[0])
+      //console.log("Registro actualizado");
+      ////console.log(data[0])
     }
   }
 
@@ -102,10 +102,10 @@ export default function Home() {
       .match({ id: registro.id, usuario: sesion.user.id });
 
     if (error) {
-      console.log("ERROR: Error al eliminar el registro calorico.");
-      console.log(error);
+      //console.log("ERROR: Error al eliminar el registro calorico.");
+      //console.log(error);
     } else {
-      console.log("Se eliminó " + registro.nombre);
+      //console.log("Se eliminó " + registro.nombre);
       router.push("/visualizadorCalorias");
     }
   }
@@ -131,10 +131,10 @@ export default function Home() {
       .eq("registro", registroIndex);
 
     if (error) {
-      console.log("ERROR: Hubo un error al recuperar los productos.");
-      console.log(error);
+      //console.log("ERROR: Hubo un error al recuperar los productos.");
+      //console.log(error);
     } else {
-      //console.log(data);
+      ////console.log(data);
       setProductosRegistro(data);
     }
   }
@@ -147,7 +147,7 @@ export default function Home() {
     if(cantidadSeleccionada == undefined || cantidadSeleccionada == ""){
       alert("Ingrese la cantidad")
     }else{if (tipoMedicion == false) {
-      console.log("El usuario seleccionó " + cantidadSeleccionada + " gramos");
+      //console.log("El usuario seleccionó " + cantidadSeleccionada + " gramos");
 
       let { data: res, err } = await supabase
         .from("calorias_productos")
@@ -167,9 +167,9 @@ export default function Home() {
         100
       ).toFixed(2);
 
-      // console.log(conversionCaloriasGramos)
-      // console.log(conversioProteinasGramos)
-      // console.log(conversionGrasasGramos)
+      // //console.log(conversionCaloriasGramos)
+      // //console.log(conversioProteinasGramos)
+      // //console.log(conversionGrasasGramos)
 
       const { data, error } = await supabase
         .from("calorias_registro_productos")
@@ -196,12 +196,12 @@ export default function Home() {
       `);
 
       if (error) {
-        console.log(error);
-        console.log("ERROR: Hubo un error al agregar un nuevo producto.");
+        //console.log(error);
+        //console.log("ERROR: Hubo un error al agregar un nuevo producto.");
       } else {
-        console.log("Se agregó un nuevo producto.");
-        console.log(data[0]);
-        console.log(data[0].id);
+        //console.log("Se agregó un nuevo producto.");
+        //console.log(data[0]);
+        //console.log(data[0].id);
         setProductosRegistro((current) => [...current, data[0]]);
       }
 
@@ -220,17 +220,17 @@ export default function Home() {
         });
 
       if (error2) {
-        console.log(error2);
-        console.log(
+        //console.log(error2);
+        //console.log(
           "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
         );
       } else {
-        console.log("Se agregó el producto a la tabla de productos totales.");
+        //console.log("Se agregó el producto a la tabla de productos totales.");
       }
 
       setToggleSeleccionar(false);
     } else if (tipoMedicion) {
-      console.log("El usuario seleccionó " + cantidadSeleccionada + " piezas");
+      //console.log("El usuario seleccionó " + cantidadSeleccionada + " piezas");
       let { data: res, err } = await supabase
         .from("calorias_productos")
         .select("calorias_pieza, proteinas_pieza, grasas_pieza")
@@ -246,9 +246,9 @@ export default function Home() {
         res[0].grasas_pieza * cantidadSeleccionada
       ).toFixed(2);
 
-      // console.log(conversionCaloriasPieza);
-      // console.log(conversioProteinasPieza);
-      // console.log(conversionGrasasPieza);
+      // //console.log(conversionCaloriasPieza);
+      // //console.log(conversioProteinasPieza);
+      // //console.log(conversionGrasasPieza);
 
       const { data, error } = await supabase
         .from("calorias_registro_productos")
@@ -275,11 +275,11 @@ export default function Home() {
       `);
 
       if (error) {
-        console.log(error);
-        console.log("ERROR: Hubo un error al agregar un nuevo producto.");
+        //console.log(error);
+        //console.log("ERROR: Hubo un error al agregar un nuevo producto.");
       } else {
-        console.log("Se agregó un nuevo producto.");
-        console.log(data[0]);
+        //console.log("Se agregó un nuevo producto.");
+        //console.log(data[0]);
         setProductosRegistro((current) => [...current, data[0]]);
       }
 
@@ -298,12 +298,12 @@ export default function Home() {
         });
 
       if (error2) {
-        console.log(error2);
-        console.log(
+        //console.log(error2);
+        //console.log(
           "ERROR: Hubo un error al agregar un nuevo producto a la tabla total."
         );
       } else {
-        console.log("Se agregó el producto a la tabla de productos totales.");
+        //console.log("Se agregó el producto a la tabla de productos totales.");
       }
 
       setToggleSeleccionar(false);

@@ -19,10 +19,10 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
     
         if (data.session) {
           setSesion(data.session);
-          //console.log(data);
+          ////console.log(data);
         } else {
           setSesion(null);
-          //console.log("No hay Sesión " + error);
+          ////console.log("No hay Sesión " + error);
         }
       };
 
@@ -37,7 +37,7 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
         .eq("usuario", sesion.user.id)
 
         if(data.length == 0){
-            console.log("Este usuario no habia fijado meta")
+            //console.log("Este usuario no habia fijado meta")
             const { data, error } = await supabase
             .from('calorias_metas')
             .insert({
@@ -46,12 +46,12 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
               })
     
               if(error) {
-                console.log(error)
-                console.log("ERROR: Hubo un error al agregar la meta del usuario.")
+                //console.log(error)
+                //console.log("ERROR: Hubo un error al agregar la meta del usuario.")
               }
               else{
-                console.log("Se agregó una meta de calorías")
-                console.log(data)
+                //console.log("Se agregó una meta de calorías")
+                //console.log(data)
                 setToggleSeleccionar(false);
                 router.reload()
               }
@@ -62,10 +62,10 @@ const AsignarMeta = ({ setToggleSeleccionar }) => {
             .eq("usuario", sesion.user.id)
 
             if(error){
-                console.log("ERROR: Hubo un error actualizando la meta del usuario")
-                console.log(error)
+                //console.log("ERROR: Hubo un error actualizando la meta del usuario")
+                //console.log(error)
             }else{
-                console.log("Meta del usuario actualizada")
+                //console.log("Meta del usuario actualizada")
                 setToggleSeleccionar(false);
                 router.reload()
             }

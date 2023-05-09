@@ -37,17 +37,17 @@ export default function Home() {
     if(data.session){
       setSesion(data.session);
       getRutina();
-      //console.log(data);
+      ////console.log(data);
     } 
     else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
+      ////console.log("No hay Sesión " + error);
       router.push('/login')
     }
   }
 
   async function getRutina() {
-    //console.log(rutinaIndex)
+    ////console.log(rutinaIndex)
     
     const { data, error } = await supabase
     .from('rutinas')
@@ -55,8 +55,8 @@ export default function Home() {
     .eq('id', rutinaIndex)
 
     if (error) {
-      console.log('ERROR: No se encontró la rutina.')
-      console.log(error)
+      //console.log('ERROR: No se encontró la rutina.')
+      //console.log(error)
     }
     else{
       setRutina(data[0]);
@@ -65,12 +65,12 @@ export default function Home() {
       })
       
       getEjerciciosRutina();
-      //console.log(data[0])
+      ////console.log(data[0])
     }
   }
 
   async function updateRutina(nombre) {
-    //console.log(rutinaIndex)
+    ////console.log(rutinaIndex)
     let temp;
 
     if (nombre == ''){
@@ -86,12 +86,12 @@ export default function Home() {
     .eq('id', rutinaIndex)
 
     if (error) {
-      console.log('ERROR: No se pudo actualizar la rutina.')
-      console.log(error)
+      //console.log('ERROR: No se pudo actualizar la rutina.')
+      //console.log(error)
     }
     else{
-      console.log('Rutina Actualizada.')
-      //console.log(data[0])
+      //console.log('Rutina Actualizada.')
+      ////console.log(data[0])
     }
   }
 
@@ -101,12 +101,12 @@ export default function Home() {
     .upsert(ordenEjercicios)
 
     if (error) {
-      console.log('ERROR: No se pudo actualizar el orden de los ejercicios.')
-      console.log(error)
+      //console.log('ERROR: No se pudo actualizar el orden de los ejercicios.')
+      //console.log(error)
     }
     else{
-      //console.log('Orden de los ejercicios actualizado.')
-      //console.log(data)
+      ////console.log('Orden de los ejercicios actualizado.')
+      ////console.log(data)
     }
   }
 
@@ -117,11 +117,11 @@ export default function Home() {
     .match({id: rutina.id, usuario: sesion.user.id})
 
     if (error) {
-      console.log('ERROR: Error al eliminar la rutina.')
-      console.log(error)
+      //console.log('ERROR: Error al eliminar la rutina.')
+      //console.log(error)
     }
     else{
-      //console.log('Se eliminó ' + rutina.nombre)
+      ////console.log('Se eliminó ' + rutina.nombre)
       router.push('/rutinas')
     }
   }
@@ -144,11 +144,11 @@ export default function Home() {
     .order('orden', { ascending: true })
 
     if (error) {
-      console.log('ERROR: Hubo un error al recuperar los ejercicios.')
-      console.log(error)
+      //console.log('ERROR: Hubo un error al recuperar los ejercicios.')
+      //console.log(error)
     }
     else{
-      console.log(data);
+      //console.log(data);
       setEjerciciosRutina(data);
     }
   }
@@ -176,12 +176,12 @@ export default function Home() {
     setToggleSeleccionar(false);
 
     if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
+      //console.log(error)
+      //console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.")
     }
     else{
-      console.log("Se agregó un nuevo ejercicio.")
-      console.log(data[0])
+      //console.log("Se agregó un nuevo ejercicio.")
+      //console.log(data[0])
 
       setEjerciciosRutina(current => [...current, data[0]]);
       
@@ -193,11 +193,11 @@ export default function Home() {
         })
 
       if (error) {
-        console.log(error)
-        console.log("ERROR: Hubo un error al agregar un nuevo set.")
+        //console.log(error)
+        //console.log("ERROR: Hubo un error al agregar un nuevo set.")
       }
       else{
-        console.log("Se agregó un nuevo set.")
+        //console.log("Se agregó un nuevo set.")
         document.getElementById((data[0].orden + 1) + '.' + data[0].ejercicio.nombre).scrollIntoView({
           behavior: 'auto',
           block: 'center',
@@ -218,20 +218,20 @@ export default function Home() {
 
       updateRutina(value)
 
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
+      ////console.log(name + " | " + id + ": " + value + " -> " + checked);
     },
     [formInput, setFormInput]
   );
 
   function handleOnDragEnd(result) {
-    //console.log(result)
+    ////console.log(result)
 
     if (!result.destination) return;
 
     const items = Array.from(ejerciciosRutina);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    //console.log(items)
+    ////console.log(items)
 
     const ordenEjercicios = [];
     for (let index = 0; index < items.length; index++) {
@@ -242,7 +242,7 @@ export default function Home() {
       };
       ordenEjercicios.push(element)
     }
-    //console.log(ordenEjercicios)
+    ////console.log(ordenEjercicios)
 
     updateOrdenEjercicios(ordenEjercicios)
     setEjerciciosRutina(items)

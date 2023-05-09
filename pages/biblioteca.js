@@ -23,7 +23,7 @@ export default function Home() {
   const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
   
   useEffect(() => {
-    //console.log("useEffect")
+    ////console.log("useEffect")
     getEjerciciosBiblioteca();
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
@@ -72,8 +72,8 @@ export default function Home() {
 
       setPaginacion(1)
 
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
-      //console.log(formInput.equipo)
+      ////console.log(name + " | " + id + ": " + value + " -> " + checked);
+      ////console.log(formInput.equipo)
     },
     [formInput, setFormInput]
   );
@@ -103,19 +103,19 @@ export default function Home() {
     .range(rango-10, rango-1)
   
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
+    //if (filtrarMusculo) { //console.log("Filtro musculo: " + filtrarMusculo)}
 
     if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
-    //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
+    //if (filtrarEquipo) { //console.log("Filtro equipo: " + filtrarEquipo)}
 
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
-    //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
+    //if (filtrarSearch) { //console.log("Filtro search: " + filtrarSearch) }
 
     query = query.order('puntuacion', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
-    console.log(data.data)
+    //console.log(data.data)
 
     //CONTEO TOTAL DE REGISTROS
 
@@ -130,7 +130,7 @@ export default function Home() {
     const count = await query
 
     setCantidad(count.count);
-    console.log(count.count);
+    //console.log(count.count);
   }
 
   function incluye(arreglo, buscar) {

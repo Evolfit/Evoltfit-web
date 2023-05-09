@@ -43,17 +43,17 @@ export default function ComenzarRutina() {
     if(data.session){
       setSesion(data.session);
       getRutina();
-      //console.log(data);
+      ////console.log(data);
     } 
     else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
+      ////console.log("No hay Sesión " + error);
       router.push('/login')
     }
   }
 
   async function getRutina() {
-    //console.log(rutinaIndex)
+    ////console.log(rutinaIndex)
     
     const { data, error } = await supabase
     .from('rutinas')
@@ -64,12 +64,12 @@ export default function ComenzarRutina() {
     .eq('id', rutinaIndex)
 
     if (error) {
-      console.log('ERROR: No se encontró la rutina.')
-      console.log(error)
+      //console.log('ERROR: No se encontró la rutina.')
+      //console.log(error)
     }
     else{
       setRutina(data[0]);
-      //console.log(data[0])
+      ////console.log(data[0])
 
       if (data[0].rutina_en_progreso.length === 0) {
         getEjerciciosRutina();
@@ -142,11 +142,11 @@ export default function ComenzarRutina() {
     .order('id', { foreignTable: 'rutinas_ejercicio_sets', ascending: true })
 
     if (error) {
-      console.log('ERROR: Hubo un error al recuperar los ejercicios.')
-      console.log(error)
+      //console.log('ERROR: Hubo un error al recuperar los ejercicios.')
+      //console.log(error)
     }
     else{
-      //console.log(data);
+      ////console.log(data);
       setEjerciciosRutina(data);
     }
   }
@@ -163,12 +163,12 @@ export default function ComenzarRutina() {
     })
 
     if (error) {
-      console.log('ERROR: No se pudo actualizar la rutina en progreso.')
-      console.log(error)
+      //console.log('ERROR: No se pudo actualizar la rutina en progreso.')
+      //console.log(error)
     }
     else{
-      //console.log('Se actualizó la rutina en progreso.')
-      //console.log(data)
+      ////console.log('Se actualizó la rutina en progreso.')
+      ////console.log(data)
     }
   }
 
@@ -178,19 +178,19 @@ export default function ComenzarRutina() {
 
     ejerciciosRutina.map((ejercicio, i) => {
       if (bounce){
-        console.log("bounce2")
+        //console.log("bounce2")
         return 0;
       }
       
-      //console.log(i + ': Ejercicio')
+      ////console.log(i + ': Ejercicio')
       bounce = false;
 
       ejercicio.rutinas_ejercicio_sets.map((set, j) => {
-        console.log(' - ' + j + ': Set')
-        console.log(set)
+        //console.log(' - ' + j + ': Set')
+        //console.log(set)
         
         if (set.estado == '' || !set.estado) {
-          console.log("bounce1")
+          //console.log("bounce1")
           bounce = true;
           return 0;
         }
@@ -208,14 +208,14 @@ export default function ComenzarRutina() {
     });
 
     if (bounce){
-      console.log('No has marcado todos tus sets,')
+      //console.log('No has marcado todos tus sets,')
       setMensajeAviso('No has marcado todos tus sets.');
       setColorAviso('red');
       setMostrarAviso(true)
       return 0;
     }
 
-    console.log(sets)
+    //console.log(sets)
 
     const { data, error } = await supabase
     .from('progreso_sets')
@@ -223,15 +223,15 @@ export default function ComenzarRutina() {
     .select('*')
 
     if (error) {
-      console.log('ERROR: No se pudo registrar el progreso.')
-      console.log(error)
+      //console.log('ERROR: No se pudo registrar el progreso.')
+      //console.log(error)
     }
     else{
-      console.log('Se finalizó la rutina y se registró el progreso.')
+      //console.log('Se finalizó la rutina y se registró el progreso.')
       setMensajeAviso('Se guardó tu progreso.');
       setColorAviso('green');
       setMostrarAviso(true)
-      //console.log(data)
+      ////console.log(data)
       terminarEntrenamiento()
     }
   }
@@ -243,11 +243,11 @@ export default function ComenzarRutina() {
     .match({rutina: rutina.id })
 
     if (error) {
-      console.log('ERROR: Error al terminar el entrenamiento.')
-      console.log(error)
+      //console.log('ERROR: Error al terminar el entrenamiento.')
+      //console.log(error)
     }
     else{
-      console.log('Se terminó el entrenamiento')
+      //console.log('Se terminó el entrenamiento')
       router.push({ 
         pathname: '/visualizadorProgreso',
         query: { rutinaId: rutina.id }
@@ -262,11 +262,11 @@ export default function ComenzarRutina() {
     .match({rutina: rutina.id })
 
     if (error) {
-      console.log('ERROR: Error al terminar el entrenamiento.')
-      console.log(error)
+      //console.log('ERROR: Error al terminar el entrenamiento.')
+      //console.log(error)
     }
     else{
-      console.log('Se canceló el entrenamiento.')
+      //console.log('Se canceló el entrenamiento.')
       router.push('/rutinas')
     }
   }

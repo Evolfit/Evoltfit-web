@@ -14,10 +14,10 @@ const CardProducto = ({ registroProducto, sesion, getProductosRegistro }) => {
       .match({ id: registroProducto.id });
 
     if (error) {
-      console.log("ERROR: Error al eliminar el producto.");
-      console.log(error);
+      //console.log("ERROR: Error al eliminar el producto.");
+      //console.log(error);
     } else {
-      console.log("Se eliminó el producto");
+      //console.log("Se eliminó el producto");
       getProductosRegistro();
     }
 
@@ -28,10 +28,10 @@ const CardProducto = ({ registroProducto, sesion, getProductosRegistro }) => {
       .match({ producto_id: producto.id, usuario: sesion, calorias_registro_productos_id: registroProducto.id });
 
       if(err){
-        console.log("ERROR: Ocurrió un error eliminado el producto de la tabla totales")
-        console.log(err)
+        //console.log("ERROR: Ocurrió un error eliminado el producto de la tabla totales")
+        //console.log(err)
       }else{
-        console.log("Producto eliminiado de la tabla totales")
+        //console.log("Producto eliminiado de la tabla totales")
       }
   }
 

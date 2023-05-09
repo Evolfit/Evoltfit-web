@@ -73,8 +73,8 @@ export default function VisualizadorCalorias() {
       .select();
 
     if (error) {
-      console.log(error);
-      console.log("ERROR: Hubo un error al crear un nuevo registro.");
+      //console.log(error);
+      //console.log("ERROR: Hubo un error al crear un nuevo registro.");
     } else {
       //console.log(data);
       //console.log("Se creó una nueva rutina.")
@@ -93,8 +93,8 @@ export default function VisualizadorCalorias() {
       .order("fecha_formato_orden", { ascending: false });
 
     if (error) {
-      console.log("ERROR: Hubo un error al recuperar el registro.");
-      console.log(error);
+      //console.log("ERROR: Hubo un error al recuperar el registro.");
+      //console.log(error);
     } else {
       //console.log(data);
       setRegistros(data);
@@ -106,10 +106,8 @@ export default function VisualizadorCalorias() {
       .match({ usuario: session.user.id, fecha_agregado: fecha_baseDatos });
 
     if (err) {
-      console.log(
-        "ERROR: Hubo un error al recuperar todos los productos del usuario."
-      );
-      console.log(err);
+      //console.log("ERROR: Hubo un error al recuperar todos los productos del usuario.");
+      //console.log(err);
     } else {
       //console.log(res);
       for (var i = 0; i <= res.length - 1; i++) {
@@ -126,14 +124,14 @@ export default function VisualizadorCalorias() {
       .eq("usuario", session.user.id);
 
     if (err) {
-      console.log("ERROR: Hubo un error obteniendo la meta del ususario");
-      console.log(err);
+      //console.log("ERROR: Hubo un error obteniendo la meta del ususario");
+      //console.log(err);
     } else {
       if (res.length == 0) {
-        console.log("El usuario no tiene una meta establecida");
-        console.log(res);
+        //console.log("El usuario no tiene una meta establecida");
+        //console.log(res);
       } else {
-        console.log("Meta obtenida exitosamente");
+        //console.log("Meta obtenida exitosamente");
         //console.log(res)
         setMetaCalorias(res[0].cals_meta);
       }

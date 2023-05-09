@@ -15,8 +15,8 @@ const Footer = () => {
               </span>
             </div>
           </Link>
-          <Link href="https://musclewiki.com">
-            <div className="flex items-center cursor-pointer translate-y-5">
+          <div>
+            <div className="flex items-center translate-y-5">
               <span className="self-center text-black text-sm font-semibold whitespace-nowrap">
                 Creditos a {" "}<span className="self-center text-blue-600 text-sm font-semibold whitespace-nowrap">
                 MuscleWiki
@@ -24,7 +24,7 @@ const Footer = () => {
               </span>
               
             </div>
-          </Link>
+          </div>
         </div>
 
         <div className="mb-6 md:mb-0 box-border h-36 w-72">

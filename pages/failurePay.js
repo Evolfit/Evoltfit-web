@@ -13,7 +13,7 @@ export default function Home() {
     localStorage.removeItem("NombrePaquete");
     localStorage.removeItem("Meses");
     setTimeout(function(){
-      console.log("Redirigiendo...");
+      //console.log("Redirigiendo...");
       router.push("/");
   }, 3000);
   }, [])

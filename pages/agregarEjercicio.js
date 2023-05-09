@@ -8,7 +8,7 @@ import supabase from '../config/supabaseClient';
 export default function Home() {
   const router = useRouter();
 
-  //console.log(supabase);
+  ////console.log(supabase);
   const [fetchError, setFetchError] = useState(null);
   const [datos, setDatos] = useState(null);
 
@@ -49,14 +49,14 @@ export default function Home() {
       .upload('ejercicios/' + nombre, formInput.imagen)
 
       if (error) {
-        //console.log("Hubo un error al cargar la imagen.")
+        ////console.log("Hubo un error al cargar la imagen.")
         alert("ERROR: Hubo un error al cargar la imagen.")
-        console.log(error)
+        //console.log(error)
       }
 
       if (data) {
-        //console.log("Imagen cargada.")
-        console.log(data.path)
+        ////console.log("Imagen cargada.")
+        //console.log(data.path)
 
         const { error } = await supabase
         .from('ejercicios')
@@ -72,7 +72,7 @@ export default function Home() {
 
         if (error) {
           alert("ERROR: Hubo un error al generar el registro.")
-          console.log(error)
+          //console.log(error)
         }
         else{
           if(!alert(
@@ -168,8 +168,8 @@ export default function Home() {
         setImagenNombre(value)
       }
 
-      console.log(name + " | " + id + ": " + value + " -> " + checked);
-      //console.log(formInput.musculoOtro)
+      //console.log(name + " | " + id + ": " + value + " -> " + checked);
+      ////console.log(formInput.musculoOtro)
 
 
     },

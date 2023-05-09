@@ -20,18 +20,18 @@ const Navbar = () => {
         const { data, error } = await supabase.auth.getSession()
 
         if(data.session){
-            //console.log(data.session)
+            ////console.log(data.session)
             setSesion(data.session);
             getPerfil(data.session.user.id);
         } 
         else {
             setSesion(null);
-            console.log("No hay Sesión " + error);
+            //console.log("No hay Sesión " + error);
         }
     }
 
     const getPerfil = async (idUsuario) => {
-        //console.log(idUsuario)
+        ////console.log(idUsuario)
 
         const { data, error } = await supabase
             .from('perfiles')
@@ -39,11 +39,11 @@ const Navbar = () => {
             .eq('id', idUsuario)
 
             if(error){
-                console.log('ERROR: No se pudo conseguir el perfil.')
-                console.log(error)
+                //console.log('ERROR: No se pudo conseguir el perfil.')
+                //console.log(error)
             }
             else{
-                //console.log(data[0])
+                ////console.log(data[0])
                 setPerfil(data[0])
             }
     }
@@ -52,7 +52,7 @@ const Navbar = () => {
         const { error } = await supabase.auth.signOut()
         
         if(error){
-        console.log(error);
+        //console.log(error);
         }
         else{
         router.reload(window.location.pathname);

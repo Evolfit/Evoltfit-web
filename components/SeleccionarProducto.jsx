@@ -88,7 +88,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
     const data = await query
 
     setProductos(data.data);
-    //console.log(data.data)
+    ////console.log(data.data)
 
     //CONTEO TOTAL DE REGISTROS
 
@@ -102,7 +102,7 @@ const SeleccionarEjercicio = ({ agregarProducto, setToggleSeleccionar }) => {
     const count = await query
 
     setCantidad(count.count);
-    //console.log(count.count);
+    ////console.log(count.count);
   }
 
   function obtenerCantidad (){

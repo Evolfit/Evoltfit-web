@@ -71,7 +71,7 @@ export default function Home() {
       setFlag(false);
 
       if (sesion) {
-        //console.log("El usuario conectado es:" + sesion.user.id);
+        ////console.log("El usuario conectado es:" + sesion.user.id);
 
         async function getPlan() {
           
@@ -81,17 +81,17 @@ export default function Home() {
             .eq("id_usuario", sesion.user.id);
 
             if(sus_pagos.length == 0){
-              console.log("Este usuario no tiene plan")
+              //console.log("Este usuario no tiene plan")
               setResultado(0)
             }else{
-              console.log("Este usuario si tiene un plan")
+              //console.log("Este usuario si tiene un plan")
               setResultado(sus_pagos[0].activo)
             }
         }
 
         getPlan();
       } else {
-        console.log("No hay una sesion iniciada");
+        //console.log("No hay una sesion iniciada");
       }
     }
     setFlag(true);
@@ -102,11 +102,11 @@ export default function Home() {
 
     if (data.session) {
       setSesion(data.session);
-      console.log(data);
+      //console.log(data);
     } else {
       setSesion(null);
-      console.log("No hay Sesión " + error);
-      console.log(data);
+      //console.log("No hay Sesión " + error);
+      //console.log(data);
     }
   };
 

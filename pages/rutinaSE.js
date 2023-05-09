@@ -41,7 +41,7 @@ export default function Home() {
         .select("activo")
         .eq("id_usuario", data.session.user.id);
       if (pagos.length == 0) {
-        console.log("Este usuario no tiene plan");
+        //console.log("Este usuario no tiene plan");
         //SI no tiene un plan entonces
         const data8 = await supabase
           .from("perfiles")
@@ -49,7 +49,7 @@ export default function Home() {
           .eq("id", data.session.user.id);
 
         if (data8.data[0].se === 1) {
-          console.log("Tiene un uso.");
+          //console.log("Tiene un uso.");
           setLoadlogin(false);
           localStorage.setItem("bandera2", "false");
           const { error } = await supabase
@@ -60,24 +60,24 @@ export default function Home() {
             .eq("id", data.session.user.id);
 
           if (error) {
-            //console.log('ERROR: No se pudo actualizar el perfil.')
-            console.log(error);
+            ////console.log('ERROR: No se pudo actualizar el perfil.')
+            //console.log(error);
           } else {
-            //console.log('Perfil actualizado.')
+            ////console.log('Perfil actualizado.')
           }
         } else {
           if (localStorage.getItem("bandera2") !== "false") {
             router.push("/");
           } else {
             setLoadlogin(false);
-            //console.log("Todavia sigues dentro")
+            ////console.log("Todavia sigues dentro")
           }
         }
       } else {
-        //console.log("Tiene un Plan")
+        ////console.log("Tiene un Plan")
         setLoadlogin(false);
       }
-      //console.log(data);
+      ////console.log(data);
     } else {
       setSesion(null);
       router.push("/login");
@@ -343,7 +343,7 @@ export default function Home() {
 
     const data = await query;
 
-    //console.log(data.data)
+    ////console.log(data.data)
     setData(data.data);
   }
 
@@ -394,7 +394,7 @@ export default function Home() {
   };
 
   if (!opcionesEjercicio[objetivo] || !opcionesEjercicio[objetivo][tiempo]) {
-    console.log("Error en el objetivo o tiempo seleccionado.");
+    //console.log("Error en el objetivo o tiempo seleccionado.");
     //return;
   }
   //Aqui se asignan los valores de repeticion, series y descanso.
@@ -424,7 +424,7 @@ export default function Home() {
     temp = 3;
     dosdecuatro = 0;
   } else {
-    //console.log("Error en el SE P:TIEMPO");
+    ////console.log("Error en el SE P:TIEMPO");
   }
   var card = 0;
   if (opciones[1] === "perdergrasa" || opciones[1] === "salud") {
@@ -1206,7 +1206,7 @@ export default function Home() {
   } else if (diasActivos === 1) {
     undia(diasActivos);
   } else {
-    //console.log("Error en el SE P:ENFOQUE");
+    ////console.log("Error en el SE P:ENFOQUE");
   }
 
   // <-------------- ---------------------------------- ---------------->
@@ -1326,10 +1326,10 @@ export default function Home() {
         // Copiamos el contenido del primer arreglo en el segundo arreglo
         arrays[idx2] = JSON.parse(JSON.stringify(arrays[idx1]));
       }
-      console.log(arrays);
+      //console.log(arrays);
       setArrays([...arrays]);
     } else {
-      console.log(arrays);
+      //console.log(arrays);
       setArrays([...arrays]);
     }
     setLoading(false);
@@ -1341,7 +1341,7 @@ export default function Home() {
 
   function mostrarPosicion(arrayIndex, index) {
     let obj2 = arrays[arrayIndex][index];
-    //console.log(obj2.nombreE)
+    ////console.log(obj2.nombreE)
     if (
       ![
         "Abdomen",
@@ -1390,7 +1390,7 @@ export default function Home() {
         obj2.id = siguienteEjercicio.id;
         setArrays([...arrays]);
       } else {
-        console.log("No hace Nada");
+        //console.log("No hace Nada");
       }
     } else {
       alert("No hay Ejercicios Para Asignar");
@@ -1455,10 +1455,10 @@ export default function Home() {
       .eq("id", sesion.user.id);
 
     if (error) {
-      console.log("ERROR: No se pudo actualizar el perfil.");
-      console.log(error);
+      //console.log("ERROR: No se pudo actualizar el perfil.");
+      //console.log(error);
     } else {
-      console.log("Perfil actualizado.");
+      //console.log("Perfil actualizado.");
     }
   }
   async function handleClick() {
@@ -1491,8 +1491,8 @@ export default function Home() {
           .select("id");
 
         if (error) {
-          console.log(error);
-          console.log(`ERROR: Hubo un error al crear ${nombreRutina}.`);
+          //console.log(error);
+          //console.log(`ERROR: Hubo un error al crear ${nombreRutina}.`);
         } else {
           const idNumero = data[0].id;
 
@@ -1520,7 +1520,7 @@ export default function Home() {
             ) {
               rutinaEjercicios(idNumero, i, j);
             } else {
-              //console.log("Encontró un Ejercicio que no tiene asignado nada")
+              ////console.log("Encontró un Ejercicio que no tiene asignado nada")
             }
             //----------------------------------------------------------------------------------------
           }
@@ -1534,9 +1534,9 @@ export default function Home() {
 
   const rutinaEjercicios = async (idNumero, i, j) => {
     //----------------------------------------------------------------------------------------
-    //console.log("Ejercicios")
-    //console.log(arrays[i][j].nombreE)
-    //console.log(arrays[i][j].id)
+    ////console.log("Ejercicios")
+    ////console.log(arrays[i][j].nombreE)
+    ////console.log(arrays[i][j].id)
     const tiempoMap = {
       "1min": 60,
       "1min 30sec": 90,
@@ -1560,11 +1560,11 @@ export default function Home() {
       .select();
 
     if (error) {
-      console.log(error);
-      console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.");
+      //console.log(error);
+      //console.log("ERROR: Hubo un error al agregar un nuevo ejercicio.");
     } else {
-      //console.log("Se agregó un nuevo ejercicio.")
-      //console.log(data[0])
+      ////console.log("Se agregó un nuevo ejercicio.")
+      ////console.log(data[0])
       const iddelEjercicio = data[0].id;
 
       for (let k = 0; k < arrays[i][j].series; k++) {
@@ -1574,10 +1574,10 @@ export default function Home() {
         });
 
         if (error) {
-          console.log(error);
-          console.log("ERROR: Hubo un error al agregar un nuevo set.");
+          //console.log(error);
+          //console.log("ERROR: Hubo un error al agregar un nuevo set.");
         } else {
-          //console.log("Se agregó un nuevo set.")
+          ////console.log("Se agregó un nuevo set.")
         }
       }
     }
@@ -1612,14 +1612,14 @@ export default function Home() {
       if (localStorage.getItem("bandera") !== "true") {
         cambiar_ejercicios();
       } else {
-        //console.log("Si llega")
+        ////console.log("Si llega")
         setLoading(false);
       }
     }
-    //console.log(localStorage.getItem('bandera'));
+    ////console.log(localStorage.getItem('bandera'));
   }, [data]);
 
-  //console.log(infousuario)
+  ////console.log(infousuario)
   return (
     <div className="bg-stone-100 w-full">
       <Head>

@@ -73,12 +73,12 @@ export default function Home() {
       .eq("id_usuario", sesion_id);
 
       if(sus_pagos.length == 0){
-        console.log("Este usuario no tiene plan")
+        //console.log("Este usuario no tiene plan")
         setResultado(0)
         router.push("/precios")
       }else{
-        console.log("Este usuario si tiene un plan")
-        //console.log(sus_pagos)
+        //console.log("Este usuario si tiene un plan")
+        ////console.log(sus_pagos)
         setDatosPlan(sus_pagos)
       }
   }
@@ -89,11 +89,11 @@ export default function Home() {
     if (data.session) {
       setSesion(data.session);
       getPlan(data.session.user.id)
-      console.log(data);
+      //console.log(data);
     } else {
       setSesion(null);
-      console.log("No hay Sesión " + error);
-      //console.log(data);
+      //console.log("No hay Sesión " + error);
+      ////console.log(data);
       router.push("/")
     }
   };

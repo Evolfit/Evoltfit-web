@@ -28,12 +28,12 @@ const CardsPrecios = ({
 
     if(data.session){
       setSesion(data.session);
-      console.log(data);
+      //console.log(data);
     } 
     else {
       setSesion(null);
-      console.log("No hay Sesión " + error);
-      console.log(data);
+      //console.log("No hay Sesión " + error);
+      //console.log(data);
     }
   }
   

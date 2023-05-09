@@ -43,12 +43,12 @@ export default function Home() {
 
       if (error) {
         alert("ERROR: Hubo un error al cargar la imagen.")
-        console.log(error)
+        //console.log(error)
       }
 
       if (data) {
-        //console.log("Imagen cargada.")
-        console.log(data.path)
+        ////console.log("Imagen cargada.")
+        //console.log(data.path)
 
         const { error } = await supabase
         .from('calorias_productos')
@@ -66,7 +66,7 @@ export default function Home() {
 
         if (error) {
           alert("ERROR: Hubo un error al generar el registro.")
-          console.log(error)
+          //console.log(error)
         }
         else{
           if(!alert(
@@ -116,7 +116,7 @@ export default function Home() {
         setImagenNombre(value)
       }
 
-      console.log(name + " | " + id + ": " + value + " -> " + checked);
+      //console.log(name + " | " + id + ": " + value + " -> " + checked);
     },
     [formInput, setFormInput]
   );

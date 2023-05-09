@@ -17,7 +17,7 @@ const PerfilDropdown = ({ sesion, perfil }) => {
         const { error } = await supabase.auth.signOut()
 
         if(error){
-            console.log(error);
+            //console.log(error);
         }
         else{
             router.reload(window.location.pathname);

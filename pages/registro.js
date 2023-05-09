@@ -11,7 +11,7 @@ import Aviso from "/components/Aviso";
 export default function Home() {
   const router = useRouter();
 
-  //console.log(supabase);
+  ////console.log(supabase);
   const [fetchError, setFetchError] = useState(null);
   const [datos, setDatos] = useState(null);
 
@@ -126,7 +126,7 @@ export default function Home() {
         });
         
         const avatarSvg = await avatar.toDataUri();
-        console.log(avatarSvg);
+        //console.log(avatarSvg);
 
         const { data, error } = await supabase.auth.signUp({
           email: formInput.correo,
@@ -141,7 +141,7 @@ export default function Home() {
         if (error) {
           setDatos(null);
           setMostrarAviso(true)
-          console.log("Error: " + error);
+          //console.log("Error: " + error);
 
           setFetchError("Hubo un error, favor de intentarlo mas tarde.");
           setMensajeAviso('Error al conseguir datos');
@@ -160,14 +160,14 @@ export default function Home() {
 
             if(error) {
               setFetchError("Error al conseguir datos");
-              console.log(error)
+              //console.log(error)
 
               setMensajeAviso('Hubo un error, esta cuenta ya existe.');
               setColorAviso('red');
               setMostrarAviso(true)
             }
             else{
-              console.log("Registro exitoso :)");
+              //console.log("Registro exitoso :)");
               setFetchError(null);
               setDatos(data);
 

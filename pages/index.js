@@ -28,21 +28,17 @@ export default function Home() {
             .eq("id_usuario", sesion.user.id);
 
           if (pagos.length == 0) {
-            console.log("Este usuario no tiene plan");
+            //console.log("Este usuario no tiene plan");
           } else {
             if (pagos[0].activo == 1) {
-              console.log(
-                "El usuario tiene un plan activo. Comprobando estado..."
-              );
+              //console.log("El usuario tiene un plan activo. Comprobando estado...");
 
               let { data: sus_pagos, error } = await supabase
                 .from("sus_pagos")
                 .select("fecha_termino")
                 .eq("id_usuario", sesion.user.id);
 
-              console.log(
-                "La fecha de termino es: " + sus_pagos[0].fecha_termino
-              );
+              console.log("La fecha de termino es: " + sus_pagos[0].fecha_termino);
 
               var today = new Date();
               // getDate() Regresa el día del mes (Desde 1 a 31)
@@ -56,34 +52,34 @@ export default function Home() {
                 "0" + day_Actual
               }`;
 
-              console.log("Fecha de hoy: " + fecha_Actual);
+              //console.log("Fecha de hoy: " + fecha_Actual);
 
               if (
                 fecha_Actual == sus_pagos[0].fecha_termino ||
                 sus_pagos[0].fecha_termino < fecha_Actual
               ) {
-                console.log("Ya se acabó el plan");
+                //console.log("Ya se acabó el plan");
                 let { data, error } = await supabase
                   .from("sus_pagos")
                   .update({ activo: 0 })
                   .eq("id_usuario", sesion.user.id);
 
                 if (error) {
-                  console.log("Surgió un error al cancelar el plan");
+                  //console.log("Surgió un error al cancelar el plan");
                 } else {
-                  console.log("Plan cancelado");
+                  //console.log("Plan cancelado");
                 }
               } else {
-                console.log("Aun no termina el plan");
+                //console.log("Aun no termina el plan");
               }
             } else {
-              console.log("El plan ya fue cancelado");
+              //console.log("El plan ya fue cancelado");
             }
           }
         }
         checkPlanStatus();
       } else {
-        console.log("No hay una sesion iniciada");
+        //console.log("No hay una sesion iniciada");
       }
     }
     setFlag(true);
@@ -105,7 +101,7 @@ export default function Home() {
       .select("activo")
       .eq("id_usuario", data.session.user.id);
     if (pagos.length === 0) {
-      console.log("Este usuario no tiene plan");
+      //console.log("Este usuario no tiene plan");
       if (data8.data[0].se === 1) {
         setUsosSe("1");
         }else if(data8.data[0].se === 0){
@@ -137,7 +133,7 @@ export default function Home() {
         <br />
         
         <div className="flex flex-col p-3 mt-6 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5">
-          <div className="border hover:scale-105 mb-6 duration-100 w-12/12 rounded-md shadow-md bg-white"> 
+          <div className="border border-blue-500 hover:scale-105 mb-6 duration-100 w-12/12 rounded-md shadow-md bg-white"> 
             <div className="grid place-items-center px-8 pb-6">
               <div className="flex flex-col mt-6">
                 <span className="text-xl font-light text-black">{'Bienvenido a'}</span>

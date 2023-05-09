@@ -28,13 +28,13 @@ export default function Home() {
       mesesConvertidos = parseInt(meses - 1);
 
       if (nombrePaquete && meses) {
-        //console.log("El usuario conectado es:" + sesion.user.id);
+        ////console.log("El usuario conectado es:" + sesion.user.id);
         registrarCambio();
         setTimeout(function () {
           router.push("/herramientas");
         }, 3000);
       } else {
-        console.log("No hay nada en localStorage, no se registrará nada");
+        //console.log("No hay nada en localStorage, no se registrará nada");
         setTimeout(function () {
           router.push("/");
         }, 1);
@@ -51,11 +51,11 @@ export default function Home() {
       .eq("id_usuario", sesion.user.id);
 
     if (error) {
-      console.log("ERROR al obtener la fecha de termino");
-      console.log(error);
+      //console.log("ERROR al obtener la fecha de termino");
+      //console.log(error);
     } else {
       var fecharTerminacionPlanActual = sus_pagos[0].fecha_termino;
-      //console.log(fecharTerminacionPlanActual)
+      ////console.log(fecharTerminacionPlanActual)
       var concatenarYear = parseInt(
           fecharTerminacionPlanActual[0] +
           fecharTerminacionPlanActual[1] +
@@ -71,23 +71,23 @@ export default function Home() {
 
       var fecha_PlanActual = `${concatenarYear}-${concatenarMonth}-${concatenarDay}`;
 
-      console.log(fecha_PlanActual);
+      //console.log(fecha_PlanActual);
 
       var month_TerminoPlanNuevo = concatenarMonth + mesesConvertidos;
 
         if (month_TerminoPlanNuevo > 12 && nombrePaquete == "12 meses") {
-          console.log("Rebasa los 12 meses y es un paquete de 12 meses")
+          //console.log("Rebasa los 12 meses y es un paquete de 12 meses")
           var fecha_TerminacionNuevoPlan = `${concatenarYear + 1}-${concatenarMonth}-${concatenarDay}`;
-          console.log(fecha_TerminacionNuevoPlan)
+          //console.log(fecha_TerminacionNuevoPlan)
         } else if(month_TerminoPlanNuevo > 12 && (nombrePaquete == "6 meses" || nombrePaquete == "1 mes")){
-          console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
+          //console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
           month_TerminoPlanNuevo = month_TerminoPlanNuevo - 12
           var fecha_TerminacionNuevoPlan = `${concatenarYear + 1}-${month_TerminoPlanNuevo}-${concatenarDay}`;
-          console.log(fecha_TerminacionNuevoPlan)
+          //console.log(fecha_TerminacionNuevoPlan)
         }else{
-          console.log("No rebasa los 12 meses")  
+          //console.log("No rebasa los 12 meses")  
           var fecha_TerminacionNuevoPlan = `${concatenarYear}-${month_TerminoPlanNuevo}-${concatenarDay}`;
-          console.log(fecha_TerminacionNuevoPlan)
+          //console.log(fecha_TerminacionNuevoPlan)
         }
 
         let { data, error } = await supabase
@@ -101,10 +101,10 @@ export default function Home() {
         .eq("id_usuario", sesion.user.id);
 
         if (error) {
-          console.log("ERROR: Surgió un error al actualizar el plan");
-          console.log(error);
+          //console.log("ERROR: Surgió un error al actualizar el plan");
+          //console.log(error);
         } else {
-          console.log("Plan actualizado");
+          //console.log("Plan actualizado");
         }
 
     }
@@ -119,12 +119,12 @@ export default function Home() {
 
     if (data.session) {
       setSesion(data.session);
-      //console.log(data);
+      ////console.log(data);
     } else {
       setSesion(null);
       router.push("/");
-      //console.log("No hay Sesión " + error);
-      //console.log(data);
+      ////console.log("No hay Sesión " + error);
+      ////console.log(data);
     }
   };
 

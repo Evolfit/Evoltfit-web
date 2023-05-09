@@ -106,7 +106,7 @@ function arriba()  {
     const { data, error } = await supabase.auth.getSession();
 
     if (data.session) {
-      //console.log(data.session)
+      ////console.log(data.session)
       setSesion(data.session);
       getPerfil(data.session.user.id);
     } else {
@@ -116,7 +116,7 @@ function arriba()  {
   };
 
   const getPerfil = async (idUsuario) => {
-    //console.log(idUsuario)
+    ////console.log(idUsuario)
 
     const { data, error } = await supabase
       .from("perfiles")
@@ -124,10 +124,10 @@ function arriba()  {
       .eq("id", idUsuario);
 
     if (error) {
-      console.log("ERROR: No se pudo conseguir el perfil.");
-      console.log(error);
+      //console.log("ERROR: No se pudo conseguir el perfil.");
+      //console.log(error);
     } else {
-      //console.log(data[0])
+      ////console.log(data[0])
       setPerfil(data[0]);
     }
   };
@@ -218,11 +218,11 @@ function arriba()  {
       formValues.peso === 0
     ) {
       setValue(value + 1);
-      //console.log(formValues);
+      ////console.log(formValues);
       setFinalizar(true);
       setFormData2(formValues);
     } else {
-      //console.log(formValues);
+      ////console.log(formValues);
       setFormData2(formValues);
       setShowButton(true);
     }
@@ -306,18 +306,18 @@ function arriba()  {
   }
   //actualizador para visualizar el funcionamiento de datos
   useEffect(() => {
-    console.log("------------------");
-    console.log(formData);
-    console.log(arreglo);
-    console.log("Herramientas: ");
-    console.log(checkboxes);
-    console.log("Semana: ");
-    console.log(checkboxes2);
-    console.log("Imputs: ");
-    console.log(formData2);
-    //console.log(arreglo[2]);
-    //console.log(formHerra);
-    console.log(value);
+    //console.log("------------------");
+    //console.log(formData);
+    //console.log(arreglo);
+    //console.log("Herramientas: ");
+    //console.log(checkboxes);
+    //console.log("Semana: ");
+    //console.log(checkboxes2);
+    //console.log("Imputs: ");
+    //console.log(formData2);
+    ////console.log(arreglo[2]);
+    ////console.log(formHerra);
+    //console.log(value);
     //para el botonfinal
     if (Object.entries(checkboxes).find((entry) => entry[1] === true)) {
       setFinalizar2(true);
@@ -442,6 +442,7 @@ function arriba()  {
               >
                 Comenzar
               </button>
+              {/*
               <Link
                 href={{
                   pathname: "../rutinaSE",
@@ -469,6 +470,8 @@ function arriba()  {
               >
                 LLENAR PRIMERO
               </button>
+              */
+              }
             </div>
           )}
         </div>

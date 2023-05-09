@@ -33,11 +33,11 @@ export default function Home() {
     if(data.session){
       setSesion(data.session);
       getRutinas(data.session);
-      //console.log(data);
+      ////console.log(data);
     } 
     else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
+      ////console.log("No hay Sesión " + error);
       router.push('/login')
     }
   }
@@ -49,7 +49,7 @@ export default function Home() {
     .eq('usuario', sesion.user.id)
 
     const count = await query
-    //console.log(count);
+    ////console.log(count);
 
     const { data, error } = await supabase
       .from('rutinas')
@@ -60,12 +60,12 @@ export default function Home() {
       .select()
 
     if (error) {
-      console.log(error)
-      console.log("ERROR: Hubo un error al crear una nueva rutina.")
+      //console.log(error)
+      //console.log("ERROR: Hubo un error al crear una nueva rutina.")
     }
     else{
-      //console.log(data);
-      //console.log("Se creó una nueva rutina.")
+      ////console.log(data);
+      ////console.log("Se creó una nueva rutina.")
       router.push({
         pathname: '/editarRutina',
         query: { rutina: data[0].id }
@@ -83,11 +83,11 @@ export default function Home() {
     .eq('usuario', session.user.id)
 
     if (error) {
-      console.log('ERROR: Hubo un error al recuperar la rutina.')
-      console.log(error)
+      //console.log('ERROR: Hubo un error al recuperar la rutina.')
+      //console.log(error)
     }
     else{
-      console.log(data);
+      //console.log(data);
       setRutinas(data);
     }
   }

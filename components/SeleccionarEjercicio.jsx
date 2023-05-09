@@ -19,7 +19,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
   const [equipo, setEquipo] = useState(["Ninguno","Banda de resistencia","Banda de suspension","Barra","Barra Z","Barras (dominadas, paralelas)","Mancuerna","Mancuernas","Pesa rusa","Placa de peso","Maquinas en GYM","Banco plano","Banco declinado","Banco inclinado","Cuerda"]);
   
   useEffect(() => {
-    console.log("seleccionarEjercicios")
+    //console.log("seleccionarEjercicios")
     getEjercicios();
     
     if (toggleSeleccionar){
@@ -28,7 +28,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
           block: 'center',
           inline: 'center'
       });
-      console.log('miRAME')
+      //console.log('miRAME')
   }
   }, [formInput, paginacion, toggleSeleccionar]);
 
@@ -75,8 +75,8 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
 
       setPaginacion(1)
 
-      //console.log(name + " | " + id + ": " + value + " -> " + checked);
-      //console.log(formInput.equipo)
+      ////console.log(name + " | " + id + ": " + value + " -> " + checked);
+      ////console.log(formInput.equipo)
     },
     [formInput, setFormInput]
   );
@@ -106,19 +106,19 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     .range(rango-10, rango-1)
   
     if (filtrarMusculo)  { query = query.eq('musculo_primario', filtrarMusculo) }
-    //if (filtrarMusculo) { console.log("Filtro musculo: " + filtrarMusculo)}
+    //if (filtrarMusculo) { //console.log("Filtro musculo: " + filtrarMusculo)}
 
     if (filtrarEquipo)  { query = query.containedBy('equipo', filtrarEquipo) }
-    //if (filtrarEquipo) { console.log("Filtro equipo: " + filtrarEquipo)}
+    //if (filtrarEquipo) { //console.log("Filtro equipo: " + filtrarEquipo)}
 
     if (filtrarSearch) { query = query.ilike('nombre', filtrarSearch) }
-    //if (filtrarSearch) { console.log("Filtro search: " + filtrarSearch) }
+    //if (filtrarSearch) { //console.log("Filtro search: " + filtrarSearch) }
 
     query = query.order('puntuacion', { ascending: false })
     const data = await query
 
     setEjercicios(data.data);
-    console.log(data.data)
+    //console.log(data.data)
 
     //CONTEO TOTAL DE REGISTROS
 
@@ -133,7 +133,7 @@ const SeleccionarEjercicio = ({ toggleSeleccionar, agregarEjercicio, setToggleSe
     const count = await query
 
     setCantidad(count.count);
-    console.log(count.count);
+    //console.log(count.count);
   }
 
   function incluye(arreglo, buscar) {

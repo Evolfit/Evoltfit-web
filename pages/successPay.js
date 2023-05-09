@@ -27,13 +27,13 @@ export default function Home() {
       mesesConvertidos = parseInt(meses)
 
       if (nombrePaquete && meses) {
-        //console.log("El usuario conectado es:" + sesion.user.id);
+        ////console.log("El usuario conectado es:" + sesion.user.id);
         registrarPago();
         setTimeout(function () {
           router.push("/herramientas");
         }, 3000);
       } else {
-        console.log("No hay nada en localStorage, no se registrará nada");
+        //console.log("No hay nada en localStorage, no se registrará nada");
         setTimeout(function () {
           router.push("/");
         }, 1);
@@ -57,19 +57,19 @@ export default function Home() {
     var fecha_Actual = `${year_Actual}-${month_Actual}-${day_Actual}`
     var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
 
-    //console.log(fecha_Actual)
-    //console.log(fecha_Terminacion)
+    ////console.log(fecha_Actual)
+    ////console.log(fecha_Terminacion)
 
     if(month_Termino > 12 && nombrePaquete == "12 meses"){
-      console.log("Rebasa los 12 meses y es un paquete de 12 meses")
+      //console.log("Rebasa los 12 meses y es un paquete de 12 meses")
        var fecha_Terminacion = `${year_Actual + 1}-${month_Actual}-${day_Actual}`
     }else if(month_Termino > 12 && (nombrePaquete == "6 meses" || nombrePaquete == "1 mes")){
-      console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
+      //console.log("Rebasa los 12 meses pero es un paquete de 6 o 1 mes")
       month_Termino = month_Termino - 12
       var fecha_Terminacion = `${year_Actual + 1}-${month_Termino}-${day_Actual}`;
-      console.log(fecha_Terminacion)
+      //console.log(fecha_Terminacion)
     }else{
-      console.log("No rebasa los 12 meses")
+      //console.log("No rebasa los 12 meses")
       var fecha_Terminacion = `${year_Actual}-${month_Termino}-${day_Actual}`
     } 
 
@@ -92,10 +92,10 @@ export default function Home() {
       });
 
       if (error) {
-        console.log("ERROR: Hubo un error al registrar el plan.");
-        console.log(error);
+        //console.log("ERROR: Hubo un error al registrar el plan.");
+        //console.log(error);
       } else {
-        console.log("Plan registrado");
+        //console.log("Plan registrado");
       }
     } else {
       let { data, error } = await supabase
@@ -109,10 +109,10 @@ export default function Home() {
         .eq("id_usuario", sesion.user.id);
 
         if (error) {
-          console.log("ERROR: Surgió un error al reanudar el plan");
-          console.log(error);
+          //console.log("ERROR: Surgió un error al reanudar el plan");
+          //console.log(error);
         } else {
-          console.log("Plan reanudado");
+          //console.log("Plan reanudado");
         }
     }
 
@@ -126,11 +126,11 @@ export default function Home() {
 
     if (data.session) {
       setSesion(data.session);
-      //console.log(data);
+      ////console.log(data);
     } else {
       setSesion(null);
-      //console.log("No hay Sesión " + error);
-      //console.log(data);
+      ////console.log("No hay Sesión " + error);
+      ////console.log(data);
     }
   };
 

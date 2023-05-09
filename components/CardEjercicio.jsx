@@ -20,7 +20,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         segundos: rutinaEjercicio.descanso - (descansoMinutos * 60)
     });
 
-    console.log(rutinaEjercicio)
+    //console.log(rutinaEjercicio)
     
     useEffect(() => {
         getSets();
@@ -34,11 +34,11 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         .order('created_at', { ascending: true })
 
         if (error) {
-            console.log('ERROR: No se consiguieron los sets.')
-            console.log(error)
+            //console.log('ERROR: No se consiguieron los sets.')
+            //console.log(error)
         }
         else{
-            console.log(data)
+            //console.log(data)
             if(data.length > 1) {
                 setEliminarSet(false)
             }
@@ -51,7 +51,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     }
 
     async function updateEjercicio(name, value) {
-        //console.log(rutinaIndex)
+        ////console.log(rutinaIndex)
         
         const query = supabase.from('rutinas_ejercicio');
         
@@ -70,12 +70,12 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         const { error } = await query
     
         if (error) {
-          console.log('ERROR: No se pudo actualizar el ejercicio.')
-          console.log(error)
+          //console.log('ERROR: No se pudo actualizar el ejercicio.')
+          //console.log(error)
         }
         else{
-          console.log('Ejercicio Actualizado.')
-          //console.log(data[0])
+          //console.log('Ejercicio Actualizado.')
+          ////console.log(data[0])
         }
     }
 
@@ -86,11 +86,11 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         .match({id: rutinaEjercicio.id})
     
         if (error) {
-            console.log('ERROR: Error al eliminar el ejercicio.')
-            console.log(error)
+            //console.log('ERROR: Error al eliminar el ejercicio.')
+            //console.log(error)
         }
         else{
-            console.log('Se eliminó el ejercicio')
+            //console.log('Se eliminó el ejercicio')
             getEjerciciosRutina()
         }
     }
@@ -106,11 +106,11 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
         .select('*')
 
         if (error) {
-            console.log(error)
-            console.log("ERROR: Hubo un error al agregar un nuevo set.")
+            //console.log(error)
+            //console.log("ERROR: Hubo un error al agregar un nuevo set.")
         }
         else{
-            console.log("Se agregó un nuevo set.")
+            //console.log("Se agregó un nuevo set.")
             setEliminarSet(false)
             setSetsEjercicio(current => [...current, data[0]]);
         }
@@ -141,7 +141,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
 
           updateEjercicio(name, value);
     
-          //console.log(name + " | " + id + ": " + value + " -> " + checked);
+          ////console.log(name + " | " + id + ": " + value + " -> " + checked);
         },
         [formInput, setFormInput]
       );

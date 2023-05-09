@@ -7,7 +7,7 @@ import supabase from "../config/supabaseClient";
 export default function Home() {
   const router = useRouter();
 
-  //console.log(supabase);
+  ////console.log(supabase);
   const [fetchError, setFetchError] = useState(null);
   const [datos, setDatos] = useState(null);
 
@@ -90,11 +90,11 @@ export default function Home() {
       if (error) {
         setDatos(null);
         setFetchError("Error al conseguir datos");
-        console.log("Error: " + error);
+        //console.log("Error: " + error);
       } else {
         setDatos(data);
         setFetchError(null);
-        console.log("Se envió un correo de verificación");
+        //console.log("Se envió un correo de verificación");
       }
     }
   };

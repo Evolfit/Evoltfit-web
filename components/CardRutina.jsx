@@ -39,11 +39,11 @@ const CardRutina = ({ rutina }) => {
         .order('orden', { ascending: true })
     
         if (error) {
-          console.log('ERROR: Hubo un error al recuperar los ejercicios.')
-          console.log(error)
+          //console.log('ERROR: Hubo un error al recuperar los ejercicios.')
+          //console.log(error)
         }
         else{
-          console.log(data);
+          //console.log(data);
           setEjerciciosRutina(data);
         }
     }
@@ -55,11 +55,11 @@ const CardRutina = ({ rutina }) => {
       .match({id: rutina.id })
   
       if (error) {
-        console.log('ERROR: Error al eliminar la rutina.')
-        console.log(error)
+        //console.log('ERROR: Error al eliminar la rutina.')
+        //console.log(error)
       }
       else{
-        console.log('Se eliminó ' + rutina.nombre)
+        //console.log('Se eliminó ' + rutina.nombre)
         router.reload()
       }
     }
@@ -71,11 +71,11 @@ const CardRutina = ({ rutina }) => {
       .match({rutina: rutina.id })
   
       if (error) {
-        console.log('ERROR: Error al cancelar el entrenamiento.')
-        console.log(error)
+        //console.log('ERROR: Error al cancelar el entrenamiento.')
+        //console.log(error)
       }
       else{
-        console.log('Se canceló el entrenamiento')
+        //console.log('Se canceló el entrenamiento')
         router.reload()
       }
     }

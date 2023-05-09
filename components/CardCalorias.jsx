@@ -35,15 +35,15 @@ const CardCalorias = ({ registro }) => {
       .eq("registro", registro.id);
 
     if (error) {
-      console.log(
+      //console.log(
         "ERROR: Hubo un error al recuperar los productos de la rutina."
       );
-      console.log(error);
+      //console.log(error);
     } else {
-      //console.log(data);
+      ////console.log(data);
       setProductosRutina(data);
 
-      //console.log(data[0].producto_id.calorias);
+      ////console.log(data[0].producto_id.calorias);
       for (var i = 0; i <= data.length - 1; i++) {
         sumatoriaCal = sumatoriaCal + data[i].calorias;
         sumatoriaPro = sumatoriaPro + data[i].proteinas;

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
 
 const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
-    //console.log(set);
+    ////console.log(set);
 
     const [ejerciciosRutina, setEjerciciosRutina] = useState([])
     const [formInput, setFormInput] = useState({
@@ -43,7 +43,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
     );
     
     async function updateSet(name, value) {
-      //console.log(rutinaIndex)
+      ////console.log(rutinaIndex)
       
       const query = supabase.from('rutinas_ejercicio_sets');
 
@@ -57,12 +57,12 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
       const { error } = await query
   
       if (error) {
-        console.log('ERROR: No se pudo actualizar el set.')
-        console.log(error)
+        //console.log('ERROR: No se pudo actualizar el set.')
+        //console.log(error)
       }
       else{
-        console.log('Set Actualizado.')
-        //console.log(data[0])
+        //console.log('Set Actualizado.')
+        ////console.log(data[0])
       }
     }
     
@@ -73,11 +73,11 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
       .match({id: set.id })
   
       if (error) {
-        console.log('ERROR: Error al eliminar el set.')
-        console.log(error)
+        //console.log('ERROR: Error al eliminar el set.')
+        //console.log(error)
       }
       else{
-        console.log('Se eliminó el set')
+        //console.log('Se eliminó el set')
         getSets()
       }
     }
