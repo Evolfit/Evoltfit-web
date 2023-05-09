@@ -184,7 +184,7 @@ export default function VisualizadorCalorias() {
                   </div>
                 </div>
               <h2 className="text-xl xl:text-2xl text-center">
-                {"Registros calóricos de " + sesion.user.user_metadata.nombre}
+                {"Mis Registros"}
               </h2>
 
               <br />
