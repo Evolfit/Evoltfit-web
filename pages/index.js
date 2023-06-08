@@ -134,6 +134,8 @@ export default function Home() {
         
         <div className="flex flex-col p-3 mt-6 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5">
           <div className="border border-blue-500 hover:scale-105 mb-6 duration-100 w-12/12 rounded-md shadow-md bg-white"> 
+        <div className="flex flex-col p-3 mt-6 lg:grid lg:grid-cols-2 lg:gap-2xl lg:h-full lg:ml-11 lg:mr-11 lg:p-5 ">
+          <div className="border hover:scale-105 mb-6 duration-100 w-12/12 rounded-md shadow-md bg-white"> 
             <div className="grid place-items-center px-8 pb-6">
               <div className="flex flex-col mt-6">
                 <span className="text-xl font-light text-black">{'Bienvenido a'}</span>
