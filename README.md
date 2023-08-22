@@ -19,7 +19,7 @@ Los usuarios pueden llevar un registro de su progreso, calorias y rutinas de ent
 
 EvoltFit colaboradores:
 
-- [José Daniel Vazquez Franco](https://github.com/JDaniVF)
+- [José Daniel Vazquez Franco](https://github.com/danielvazcont)
 - [Juan Guillermo Uribe Parra](https://github.com/juan-uribe-p) 
 - [Carlos Alberto Conchas Montañez](https://github.com/IamSharls)
 
