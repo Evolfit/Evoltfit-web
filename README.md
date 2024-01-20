@@ -7,7 +7,6 @@ Evoltfit es una plataforma de ejercicios en línea diseñada para ayudar a los u
 
 Los usuarios pueden llevar un registro de su progreso, sus calorias consumidas y rutinas de entrenamiento que puedes agregar de manera manual, aparte de tener una amplia biblioteca de ejercicios para los usuarios.
 </div>
-<br>
 
 <h3><a target='_blank' style = "text-decoration:none" href = "https://evoltfit-app.vercel.app/">Visita Evoltfit</a></h3>
 
