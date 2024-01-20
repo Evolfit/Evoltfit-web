@@ -3,21 +3,19 @@
 
 
 <div style="text-align: justify;">
-Esta aplicación web es una plataforma de ejercicios en línea diseñada para ayudar a los usuarios a alcanzar sus metas de fitness. Permite crear rutinas personalizadas de entrenamiento atravez de un sistema expero con ejercicios para diferentes grupos musculares.
+Evoltfit es una plataforma de ejercicios en línea diseñada para ayudar a los usuarios a alcanzar sus metas de fitness. Permite crear rutinas personalizadas de entrenamiento a través de un sistema experto con ejercicios para diferentes grupos musculares.
 
-Los usuarios pueden llevar un registro de su progreso, calorias y rutinas de entrenamiento que puedes agregar de manera manual, aparte de tener una amplia biblioteca de ejercicios para los usuarios.
-
+Los usuarios pueden llevar un registro de su progreso, sus calorias consumidas y rutinas de entrenamiento que puedes agregar de manera manual, aparte de tener una amplia biblioteca de ejercicios para los usuarios.
 </div>
+<br>
+<a style = "text-decoration:none" href = "https://evoltfit-app.vercel.app/">Visita Evoltfit</a>
 
 ### Link
 
 [Evoltfit](https://evoltfit-app.vercel.app/)
 
 
-
 ## Miembros del equipo
-
-EvoltFit colaboradores:
 
 - [José Daniel Vazquez Franco](https://github.com/danielvazcont)
 - [Juan Guillermo Uribe Parra](https://github.com/juan-uribe-p) 
