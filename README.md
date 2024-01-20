@@ -1,4 +1,4 @@
-### Evoltfit 
+<h1>Evoltfit</h1>
 <a href='https://postimg.cc/Bj9ZMQ4D' target='_blank'><img src='https://i.postimg.cc/FH1fF76P/EVOLTFIT.png' border='0' alt='EVOLTFIT' width='60' height='60'  style='margin-left: 30px; margin-top: 10px;'/></a>
 
 
@@ -8,12 +8,8 @@ Evoltfit es una plataforma de ejercicios en línea diseñada para ayudar a los u
 Los usuarios pueden llevar un registro de su progreso, sus calorias consumidas y rutinas de entrenamiento que puedes agregar de manera manual, aparte de tener una amplia biblioteca de ejercicios para los usuarios.
 </div>
 <br>
-<a style = "text-decoration:none" href = "https://evoltfit-app.vercel.app/">Visita Evoltfit</a>
 
-### Link
-
-[Evoltfit](https://evoltfit-app.vercel.app/)
-
+<h3><a target='_blank' style = "text-decoration:none" href = "https://evoltfit-app.vercel.app/">Visita Evoltfit</a></h3>
 
 ## Miembros del equipo
 
