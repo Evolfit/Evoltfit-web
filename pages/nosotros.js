@@ -3,7 +3,7 @@ import Navbar from "/components/Navbar";
 import Footer from "/components/Footer";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Typed from "react-typed";
+import Typed from "/components/Typed";
 
 export default function Nosotros() {
   const router = useRouter();

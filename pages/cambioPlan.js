@@ -6,7 +6,7 @@ import PreciosCambio from "/components/CardsPrecioCambio";
 import { useRouter } from "next/router";
 import supabase from "/config/supabaseClient";
 import { useState, useEffect } from "react";
-import Typed from "react-typed";
+import Typed from "/components/Typed";
 
 const plans = [
   {
