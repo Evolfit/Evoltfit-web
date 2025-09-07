@@ -21,7 +21,7 @@ const CardEjercicioEntrenamiento = ({ ejercicio, updateSet, ejercicioSeleccionad
             query: { ejercicio: ejercicio.id }
         })}}
         >
-            <Image className='rounded-full' src={ejercicio.ejercicio.img} layout='fill' objectFit="cover"/>
+            <Image className='rounded-full' src={`${process.env.NEXT_PUBLIC_IMG_EJERCICIOS_BASE}${ejercicio.ejercicio.img}`} layout='fill' objectFit="cover"/>
         </div>
         <div className="flex-auto w-2 pl-2">
             <p 

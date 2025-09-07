@@ -238,7 +238,7 @@ export default function DetalleEjercicio() {
                       </div>
                       
                       <div className="flex justify-center w-full h-fit">
-                        <img className="rounded-3xl" src={ejercicio.img} alt={ejercicio.nombre} />
+                        <img className="rounded-3xl" src={`${process.env.NEXT_PUBLIC_IMG_EJERCICIOS_BASE}${ejercicio.img}`} alt={ejercicio.nombre} />
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">

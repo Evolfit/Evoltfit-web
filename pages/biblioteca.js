@@ -344,7 +344,7 @@ export default function Home() {
                     })}}
                   >
                     <img 
-                      src={ejercicio.img} 
+                      src={`${process.env.NEXT_PUBLIC_IMG_EJERCICIOS_BASE}${ejercicio.img}`} 
                       alt={ejercicio.nombre} 
                       className="w-1/2 sm:w-3/12 sm:p-2 md:w-2/12 z-0"
                     />
