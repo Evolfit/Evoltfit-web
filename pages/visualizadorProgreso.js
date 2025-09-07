@@ -1638,8 +1638,9 @@ export default function VisualizadorProgreso() {
                           href={{
                             pathname: "../biblioteca",
                           }}
+                          className="text-blue-600 underline"
                         >
-                          <a className="text-blue-600 underline">aquí</a>
+                          aquí
                         </Link>{" "}
                         para definirla
                       </h2>

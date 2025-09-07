@@ -53,7 +53,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
     async function updateEjercicio(name, value) {
         ////console.log(rutinaIndex)
         
-        const query = supabase.from('rutinas_ejercicio');
+        let query = supabase.from('rutinas_ejercicio');
         
         if ( name == 'minutos' ){
             let segundos = (value * 60) + parseInt(formInput.segundos);
@@ -119,7 +119,7 @@ const CardEjercicio = ({ rutinaEjercicio, getEjerciciosRutina, index }) => {
 
     const handleOnInputChange = useCallback(
         (event) => {
-          const { value, name } = event.target;
+          let { value, name } = event.target;
 
           if (name == 'minutos' || name == 'segundos'){
             let check = value.replace(/\D/g, '');

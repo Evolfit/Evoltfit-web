@@ -14,6 +14,6 @@ Tecnologías usadas: React.js, Next.js, TailwindCSS, Supabase, Git
 ## Miembros del equipo
 
 - [José Daniel Vazquez Franco](https://github.com/danielvazcont)
-- [Juan Guillermo Uribe Parra](https://github.com/juan-uribe-p) 
+- [Juan Guillermo Uribe Parra](https://github.com/juan-uribe) 
 - [Carlos Alberto Conchas Montañez](https://github.com/IamSharls)
 

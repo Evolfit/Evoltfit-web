@@ -41,7 +41,7 @@ export default function OneRepMax() {
 
   const handleOnInputChange = useCallback(
     (event) => {
-      const { value, name, id, checked} = event.target;
+      let { value, name, id, checked} = event.target;
 
       if (name == 'reps'){
         let check = value.replace(/\D/g, '');

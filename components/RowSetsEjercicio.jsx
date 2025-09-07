@@ -16,7 +16,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
 
     const handleOnInputChange = useCallback(
       (event) => {
-        const { value, name } = event.target;
+        let { value, name } = event.target;
 
         if (name == 'reps'){
           let check = value.replace(/\D/g, '');
@@ -45,7 +45,7 @@ const RowSetsEjercicio = ({ set, index, getSets, eliminar }) => {
     async function updateSet(name, value) {
       ////console.log(rutinaIndex)
       
-      const query = supabase.from('rutinas_ejercicio_sets');
+      let query = supabase.from('rutinas_ejercicio_sets');
 
       if (name == 'reps'){
           query = query.update({ reps: value}).eq('id', set.id)

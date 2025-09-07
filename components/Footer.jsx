@@ -46,29 +46,19 @@ const Footer = () => {
             </h2>
             <ul className="text-gray-600">
               <li className="mb-4">
-                <Link href="../">
-                  <a className="hover:underline">Inicio</a>
-                </Link>
+                <Link href="../" className="hover:underline">Inicio</Link>
               </li>
               <li className="mb-4">
-                <Link href="../herramientas">
-                  <a className="hover:underline">Herramientas</a>
-                </Link>
+                <Link href="../herramientas" className="hover:underline">Herramientas</Link>
               </li>
               <li className="mb-4">
-                <Link href="/nosotros">
-                  <a className="hover:underline">Nosotros</a>
-                </Link>
+                <Link href="/nosotros" className="hover:underline">Nosotros</Link>
               </li>
               <li className="mb-4">
-                <Link href="/ayuda">
-                  <a className="hover:underline">Ayuda</a>
-                </Link>
+                <Link href="/ayuda" className="hover:underline">Ayuda</Link>
               </li>
               <li>
-                <Link href="../precios">
-                  <a className="hover:underline">Precios</a>
-                </Link>
+                <Link href="../precios" className="hover:underline">Precios</Link>
               </li>
             </ul>
           </div>
